@@ -1,19 +1,28 @@
 // constants/theme.js
 
 export const Colors = {
-  BG_BASE: '#0A0A0F',
-  SURFACE: '#13121E',
-  SURFACE_RAISED: '#1E1C2A',
-  BORDER: '#2A2840',
-  PRIMARY: '#6C5CE7',
-  PRIMARY_LIGHT: '#A09CF5',
-  PRIMARY_DIM: '#2D1F6E',
-  TEXT_HIGH: '#F0EEF8',
-  TEXT_MED: '#C8C4E0',
-  TEXT_LOW: '#6B6880',
-  SUCCESS: '#00C48C',
-  ERROR: '#FF5E5E',
-  WARNING: '#FFB547',
+  BG_BASE: '#000000',        // pure black now, not near-black
+  SURFACE: '#0F0F0F',
+  SURFACE_RAISED: '#1A1A1A',
+  BORDER: 'rgba(255,255,255,0.12)',
+  BORDER_SOFT: 'rgba(255,255,255,0.06)',
+
+  PRIMARY: '#FFFFFF',        // primary text/fill on dark
+  PRIMARY_DIM: '#4A4A4E',    // inactive dots, subtle fills
+
+  // Glow gradient accent (used for hero image + button border only)
+  GLOW_VIOLET: '#8B5CF6',
+  GLOW_MAGENTA: '#B54AF0',
+  GLOW_ORANGE: '#FF6B4A',
+
+  TEXT_HIGH: '#FFFFFF',
+  TEXT_MED: '#9A9A9E',
+  TEXT_DIM: '#8A8A8E',
+  TEXT_LOW: '#6E6D6B',
+
+  SUCCESS: '#8FBF9F',
+  ERROR: '#C77B7B',
+  WARNING: '#D4B27A',
 };
 
 export const Spacing = {

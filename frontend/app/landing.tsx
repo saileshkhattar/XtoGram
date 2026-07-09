@@ -1,30 +1,17 @@
-// screens/Landing.tsx
+// app/landing.tsx
 import { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Animated, Easing, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Easing } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome6, Feather } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { Colors, Spacing, Radius, FontSize } from '../constants/theme';
-import { Screen } from '../App';
+import CroppedImage from '../utils/croppedmage';
+import ScatteredIcons from '../utils/scatteredIcons';
+import Button from '../components/ui/Button';
+import GoogleButton from '../components/ui/GoogleButton';
 
-type Props = {
-  navigate: (to: Screen) => void;
-};
-
-
-const SCATTERED_ICONS = [
-  { Comp: Feather, name: 'heart', top: '8%', left: '8%', size: 22, opacity: 0.07, rotate: '-12deg' },
-  { Comp: FontAwesome6, name: 'instagram', top: '14%', right: '-4%', size: 34, opacity: 0.06, rotate: '8deg' },
-  { Comp: Feather, name: 'repeat', top: '28%', left: '-5%', size: 26, opacity: 0.07, rotate: '5deg' },
-  { Comp: Feather, name: 'share', top: '38%', right: '10%', size: 18, opacity: 0.08, rotate: '-6deg' },
-  { Comp: FontAwesome6, name: 'x-twitter', top: '55%', left: '6%', size: 20, opacity: 0.06, rotate: '10deg' },
-  { Comp: Feather, name: 'message-circle', top: '62%', right: '-6%', size: 30, opacity: 0.05, rotate: '-10deg' },
-  { Comp: Feather, name: 'bookmark', top: '75%', left: '-4%', size: 24, opacity: 0.07, rotate: '4deg' },
-  { Comp: Feather, name: 'heart', top: '82%', right: '12%', size: 16, opacity: 0.09, rotate: '15deg' },
-  { Comp: Feather, name: 'send', top: '4%', right: '22%', size: 15, opacity: 0.08, rotate: '-18deg' },
-] as const;
-
-export default function LandingScreen({ navigate }: Props) {
+export default function LandingScreen() {
   const heroOpacity = useRef(new Animated.Value(0)).current;
   const heroScale = useRef(new Animated.Value(0.92)).current;
   const badgeAnim = useRef(new Animated.Value(0)).current;
@@ -32,6 +19,8 @@ export default function LandingScreen({ navigate }: Props) {
   const subAnim = useRef(new Animated.Value(0)).current;
   const btn1 = useRef(new Animated.Value(0)).current;
   const btn2 = useRef(new Animated.Value(0)).current;
+  const btn3 = useRef(new Animated.Value(0)).current;
+  const btn4 = useRef(new Animated.Value(0)).current;
   const drift = useRef(new Animated.Value(0)).current;
   const scatterFade = useRef(new Animated.Value(0)).current;
 
@@ -58,8 +47,8 @@ export default function LandingScreen({ navigate }: Props) {
         }),
       ]),
       Animated.stagger(
-        130,
-        [badgeAnim, headlineAnim, subAnim, btn1, btn2].map((v) =>
+        110,
+        [badgeAnim, headlineAnim, subAnim, btn1, btn2, btn3, btn4].map((v) =>
           Animated.timing(v, {
             toValue: 1,
             duration: 420,
@@ -99,24 +88,11 @@ export default function LandingScreen({ navigate }: Props) {
 
   return (
     <View style={styles.root}>
-      {/* Scattered decorative icons — sit behind all foreground content */}
-      <Animated.View style={[StyleSheet.absoluteFillObject, { opacity: scatterFade }]} pointerEvents="none">
-        {SCATTERED_ICONS.map((icon, i) => {
-          const { Comp, name, size, opacity, rotate, ...position } = icon;
-          return (
-            <View
-              key={i}
-              style={[styles.scatterIcon, position, { transform: [{ rotate }] }]}
-            >
-              <Comp name={name as any} size={size} color={Colors.TEXT_HIGH} style={{ opacity }} />
-            </View>
-          );
-        })}
-      </Animated.View>
+      <ScatteredIcons fadeIn={scatterFade} />
 
       <SafeAreaView style={styles.safe}>
         <View style={styles.container}>
-          {/* Hero glow image */}
+          {/* Hero image — cropped to a fixed square regardless of source size */}
           <Animated.View
             style={[
               styles.heroWrap,
@@ -126,10 +102,10 @@ export default function LandingScreen({ navigate }: Props) {
               },
             ]}
           >
-            <Image
+            <CroppedImage
               source={require('../assets/App_Icon.png')}
-              style={styles.heroImage}
-              resizeMode="contain"
+              size={160}
+              radius={Radius.full}
             />
           </Animated.View>
 
@@ -141,7 +117,7 @@ export default function LandingScreen({ navigate }: Props) {
               <FontAwesome6 name="instagram" size={14} color={Colors.TEXT_HIGH} />
             </Animated.View>
 
-            {/* Two-tone headline */}
+            {/* Two-tone headline, app name gets the violet glow */}
             <Animated.View style={fadeUp(headlineAnim)}>
               <Text style={styles.headline}>
                 <Text style={styles.headlineDim}>Effortless{'\n'}control with{'\n'}</Text>
@@ -149,16 +125,15 @@ export default function LandingScreen({ navigate }: Props) {
               </Text>
             </Animated.View>
 
-            {/* Subtitle */}
             <Animated.Text style={[styles.tagline, fadeUp(subAnim)]}>
               Turn tweets into stunning visual cards — ready to share anywhere.
             </Animated.Text>
           </View>
 
-          {/* Buttons */}
+          {/* Actions */}
           <View style={styles.actions}>
             <Animated.View style={fadeUp(btn1)}>
-              <TouchableOpacity activeOpacity={0.85}>
+              <TouchableOpacity activeOpacity={0.85} onPress={() => {}}>
                 <LinearGradient
                   colors={[Colors.GLOW_MAGENTA, Colors.GLOW_ORANGE]}
                   start={{ x: 0, y: 0 }}
@@ -166,19 +141,27 @@ export default function LandingScreen({ navigate }: Props) {
                   style={styles.btnPrimaryBorder}
                 >
                   <View style={styles.btnPrimaryInner}>
-                    <Text style={styles.btnPrimaryText}>Sign Up</Text>
+                    <Text style={styles.btnPrimaryText}>Log In</Text>
                   </View>
                 </LinearGradient>
               </TouchableOpacity>
             </Animated.View>
 
             <Animated.View style={fadeUp(btn2)}>
+              <Button label="Sign Up" variant="secondary" onPress={() => {}} />
+            </Animated.View>
+
+            <Animated.View style={fadeUp(btn3)}>
+              <GoogleButton onPress={() => {}} />
+            </Animated.View>
+
+            <Animated.View style={fadeUp(btn4)}>
               <TouchableOpacity
-                style={styles.btnSecondary}
-                activeOpacity={0.85}
-                onPress={() => navigate('home')}
+                activeOpacity={0.7}
+                style={styles.guestLink}
+                onPress={() => router.replace('/(tabs)/home')}
               >
-                <Text style={styles.btnSecondaryText}>Sign in</Text>
+                <Text style={styles.guestLinkText}>Continue as guest</Text>
               </TouchableOpacity>
             </Animated.View>
           </View>
@@ -203,17 +186,10 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.xl,
     paddingTop: Spacing.lg,
   },
-  scatterIcon: {
-    position: 'absolute',
-  },
   heroWrap: {
     alignItems: 'center',
     justifyContent: 'center',
     height: 180,
-  },
-  heroImage: {
-    width: 200,
-    height: 200,
   },
   textBlock: {
     alignItems: 'center',
@@ -243,8 +219,12 @@ const styles = StyleSheet.create({
     color: Colors.TEXT_DIM,
   },
   headlineBright: {
-    color: Colors.TEXT_HIGH,
+    color: Colors.PRIMARY,
     fontWeight: '800',
+    // The signature glow — same violet as the hero image, applied to text
+    textShadowColor: Colors.GLOW_VIOLET,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 20,
   },
   tagline: {
     fontSize: FontSize.body,
@@ -272,16 +252,14 @@ const styles = StyleSheet.create({
     fontSize: FontSize.label,
     fontWeight: '600',
   },
-  btnSecondary: {
-    borderWidth: 1,
-    borderColor: Colors.BORDER,
-    borderRadius: Radius.full,
-    paddingVertical: 13,
+  guestLink: {
     alignItems: 'center',
+    paddingVertical: 10,
   },
-  btnSecondaryText: {
-    color: Colors.TEXT_HIGH,
-    fontSize: FontSize.label,
-    fontWeight: '600',
+  guestLinkText: {
+    color: Colors.TEXT_LOW,
+    fontSize: FontSize.bodySmall,
+    fontWeight: '500',
+    textDecorationLine: 'underline',
   },
 });
