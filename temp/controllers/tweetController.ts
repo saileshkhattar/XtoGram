@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { processTweet } from '../services/tweetService'
+import { processTweet } from '../../src/services/tweetService'
 
 export const getTweet = async (req: Request, res: Response) => {
   try {
