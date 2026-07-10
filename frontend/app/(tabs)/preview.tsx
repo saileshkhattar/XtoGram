@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import TopNavBar from '../../components/ui/TopNavbar';
+import TopNavBar from '../../components/ui/TopNavBar';
 import { Colors, Spacing } from '../../constants/theme';
 
 export default function Preview() {

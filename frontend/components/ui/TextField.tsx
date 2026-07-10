@@ -6,9 +6,10 @@ type Props = {
   value: string;
   onChangeText: (text: string) => void;
   placeholder?: string;
+  secureTextEntry?: boolean;
 };
 
-export default function TextField({ value, onChangeText, placeholder }: Props) {
+export default function TextField({ value, onChangeText, placeholder, secureTextEntry }: Props) {
   const focusAnim = useRef(new Animated.Value(0)).current;
 
   const borderColor = focusAnim.interpolate({
@@ -30,6 +31,7 @@ export default function TextField({ value, onChangeText, placeholder }: Props) {
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
+        secureTextEntry={secureTextEntry}
         placeholderTextColor={Colors.TEXT_LOW}
         onFocus={handleFocus}
         onBlur={handleBlur}

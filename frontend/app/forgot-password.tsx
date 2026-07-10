@@ -1,11 +1,11 @@
 // app/forgot-password.tsx
 import { useState } from 'react';
 import { Text, StyleSheet, Animated, View } from 'react-native';
-import AuthScreenShell from '../components/auth/AuthScreenShell';
+import AuthScreenShell from '../components/auth/authScreenShell';
 import TextField from '../components/ui/TextField';
 import Button from '../components/ui/Button';
-import { apiFetch } from '../lib/api';
-import { useFadeUpSequence } from '../hooks/useFadeUpSequence';
+import { apiFetch } from '../utils/api';
+import { useFadeUpSequence } from '../hooks/useFadeUp';
 import { Colors, Spacing, FontSize } from '../constants/theme';
 
 export default function ForgotPassword() {

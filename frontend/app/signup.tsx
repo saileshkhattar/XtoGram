@@ -2,13 +2,13 @@
 import { useState } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import { router } from 'expo-router';
-import AuthScreenShell from '../components/auth/AuthScreenShell';
+import AuthScreenShell from '../components/auth/authScreenShell';
 import TextField from '../components/ui/TextField';
 import Button from '../components/ui/Button';
 import GoogleButton from '../components/ui/GoogleButton';
 import { useAuth } from '../context/AuthContext';
-import { useGoogleAuth } from '../hooks/useGoogleAuth';
-import { useFadeUpSequence } from '../hooks/useFadeUpSequence';
+// import { useGoogleAuth } from '../hooks/useGoogleAuth';
+import { useFadeUpSequence } from '../hooks/useFadeUp';
 import { Colors, Spacing, FontSize } from '../constants/theme';
 
 export default function Signup() {
@@ -20,14 +20,14 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [f1, f2, f3, f4, f5] = useFadeUpSequence(5);
 
-  const { promptAsync } = useGoogleAuth(async (idToken) => {
-    try {
-      await loginWithGoogle(idToken);
-      router.replace('/(tabs)/home'); // Google accounts are pre-verified, skip verify-email
-    } catch (e: any) {
-      setError(e.message || 'Google sign-in failed');
-    }
-  });
+  // const { promptAsync } = useGoogleAuth(async (idToken) => {
+  //   try {
+  //     await loginWithGoogle(idToken);
+  //     router.replace('/(tabs)/home'); // Google accounts are pre-verified, skip verify-email
+  //   } catch (e: any) {
+  //     setError(e.message || 'Google sign-in failed');
+  //   }
+  // });
 
   const handleSignup = async () => {
     setError('');
@@ -59,7 +59,7 @@ export default function Signup() {
       <View style={{ height: Spacing.md }} />
       <Animated.View style={f4}><Button label={loading ? 'Creating account...' : 'Sign Up'} onPress={handleSignup} /></Animated.View>
       <View style={{ height: Spacing.sm }} />
-      <Animated.View style={f5}><GoogleButton onPress={() => promptAsync()} /></Animated.View>
+      {/* <Animated.View style={f5}><GoogleButton onPress={() => promptAsync()} /></Animated.View> */}
     </AuthScreenShell>
   );
 }

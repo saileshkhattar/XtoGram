@@ -1,4 +1,3 @@
-// app/landing.tsx
 import { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Animated, Easing } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -238,12 +237,12 @@ const styles = StyleSheet.create({
     gap: Spacing.sm,
   },
   btnPrimaryBorder: {
-    borderRadius: Radius.full,
+    borderRadius: Radius.sm,
     padding: 1.5,
   },
   btnPrimaryInner: {
     backgroundColor: Colors.BG_BASE,
-    borderRadius: Radius.full,
+    borderRadius: Radius.sm,
     paddingVertical: 13,
     alignItems: 'center',
   },

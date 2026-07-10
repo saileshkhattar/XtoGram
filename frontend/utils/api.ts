@@ -1,8 +1,6 @@
-// lib/api.ts
 import { getAccessToken, getRefreshToken, saveTokens, clearTokens } from './auth';
 
-// Your PC's LAN IP — same gotcha as before, physical device can't use localhost.
-const BASE_URL = 'http://192.168.1.42:3000';
+const BASE_URL = 'http://192.168.1.54:3000';
 
 let refreshPromise: Promise<string | null> | null = null;
 

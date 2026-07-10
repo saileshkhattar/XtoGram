@@ -1,7 +1,7 @@
 // context/AuthContext.tsx
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { getAccessToken, getRefreshToken, saveTokens, clearTokens } from '../lib/auth';
-import { apiFetch } from '../lib/api';
+import { getAccessToken, getRefreshToken, saveTokens, clearTokens } from '../utils/auth';
+import { apiFetch } from '../utils/api';
 
 type User = { id: string; email: string; name: string; emailVerified: boolean } | null;
 
