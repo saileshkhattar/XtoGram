@@ -10,8 +10,6 @@ import { useFadeUpSequence } from '../hooks/useFadeUp';
 import { Colors, Spacing, FontSize } from '../constants/theme';
 
 export default function VerifyEmail() {
-  // Two ways to land here: after signup (email param, OTP entry) or by
-  // tapping the emailed link (token param, deep link — auto-submits).
   const { email, token } = useLocalSearchParams<{ email?: string; token?: string }>();
   const [otp, setOtp] = useState('');
   const [error, setError] = useState('');

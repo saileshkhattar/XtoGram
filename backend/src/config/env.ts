@@ -8,6 +8,7 @@ const required = [
   "EMAIL_FROM",
   "APP_SCHEME",
   "GOOGLE_CLIENT_ID",
+  "TWITTER_API_KEY",
 ] as const;
 
 for (const key of required) {
@@ -24,6 +25,7 @@ export const env = {
   port: Number(process.env.PORT || 3000),
   mongoUri: getRequiredEnv("MONGO_URI"),
   jwtAccessSecret: getRequiredEnv("JWT_ACCESS_SECRET"),
+  twitterApiKey: getRequiredEnv("TWITTER_API_KEY"),
   resendApiKey: getRequiredEnv("RESEND_API_KEY"),
   emailFrom: getRequiredEnv("EMAIL_FROM"),
   appScheme: getRequiredEnv("APP_SCHEME"),

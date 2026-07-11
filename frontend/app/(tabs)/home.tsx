@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { router } from 'expo-router';
 import { FontAwesome6, Feather } from '@expo/vector-icons';
-import TopNavBar from '../../components/ui/TopNavBar'
+import TopNavBar from '../../components/ui/TopNavbar'
 import TextField from '../../components/ui/TextField';
 import Button from '../../components/ui/Button';
 import { Colors, Spacing, Radius, FontSize } from '../../constants/theme';
@@ -56,12 +56,6 @@ export default function Home() {
     ).start();
   }, []);
 
-  const fadeUp = (v: Animated.Value, distance = 12) => ({
-    opacity: v,
-    transform: [
-      { translateY: v.interpolate({ inputRange: [0, 1], outputRange: [distance, 0] }) },
-    ],
-  });
 
   const glowOpacity = glowPulse.interpolate({ inputRange: [0, 1], outputRange: [0.25, 0.55] });
   const glowScale = glowPulse.interpolate({ inputRange: [0, 1], outputRange: [0.96, 1.06] });
@@ -92,24 +86,24 @@ export default function Home() {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <View style={styles.container}>
-          <Animated.View style={[styles.badge, fadeUp(badgeAnim)]}>
+          <Animated.View style={[styles.badge, badgeAnim]}>
             <FontAwesome6 name="x-twitter" size={13} color={Colors.TEXT_HIGH} />
             <Feather name="arrow-right" size={13} color={Colors.TEXT_MED} style={styles.badgeArrow} />
             <Text style={styles.badgeText}>paste a link to begin</Text>
           </Animated.View>
 
-          <Animated.View style={fadeUp(headlineAnim)}>
+          <Animated.View style={headlineAnim}>
             <Text style={styles.headline}>
               <Text style={styles.headlineDim}>Turn any tweet into{'\n'}something </Text>
               <Text style={styles.headlineBright}>worth sharing</Text>
             </Text>
           </Animated.View>
 
-          <Animated.Text style={[styles.tagline, fadeUp(subAnim)]}>
+          <Animated.Text style={[styles.tagline, subAnim]}>
             Drop in a tweet link below and we'll pull everything we need to build your card.
           </Animated.Text>
 
-          <Animated.View style={[styles.fieldWrap, fadeUp(fieldAnim)]}>
+          <Animated.View style={[styles.fieldWrap, fieldAnim]}>
             <TextField
               value={url}
               onChangeText={(text) => {
@@ -121,7 +115,7 @@ export default function Home() {
             {error ? <Text style={styles.error}>{error}</Text> : null}
           </Animated.View>
 
-          <Animated.View style={[styles.btnWrap, fadeUp(btnAnim)]}>
+          <Animated.View style={[styles.btnWrap, btnAnim]}>
             <Animated.View
               style={[
                 styles.btnGlow,

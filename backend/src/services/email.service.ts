@@ -16,7 +16,8 @@ export async function sendVerificationEmail({
   linkToken,
 }: VerificationEmailPayload): Promise<void> {
   const link = `${env.appScheme}://verify-email?token=${linkToken}`;
-  await resend.emails.send({
+  console.log(link)
+  const mail = await resend.emails.send({
     from: env.emailFrom,
     to,
     subject: "Verify your email — Xtogram",
@@ -31,6 +32,8 @@ export async function sendVerificationEmail({
       </div>
     `,
   });
+
+  console.log(mail)
 }
 
 export async function sendPasswordResetEmail({

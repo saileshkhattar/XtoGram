@@ -5,7 +5,7 @@ import { Colors, FontSize, Spacing } from '../../constants/theme';
 import IconButton from './iconButton';
 
 type Props = {
-  title: string;
+  title?: string;
   showBack?: boolean;
 };
 

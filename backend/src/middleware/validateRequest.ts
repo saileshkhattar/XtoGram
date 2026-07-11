@@ -8,6 +8,7 @@ export function validateRequest(schema: ZodType): RequestHandler {
       res.status(400).json({ error: result.error.issues[0]?.message });
       return;
     }
+    console.log(result)
     next();
   };
 }

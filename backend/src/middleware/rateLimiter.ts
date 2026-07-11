@@ -7,3 +7,11 @@ export const authRateLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
+
+export const tweetRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 30,
+  message: { error: "Too many tweet fetches, please slow down" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});

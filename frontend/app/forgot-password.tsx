@@ -6,7 +6,7 @@ import TextField from '../components/ui/TextField';
 import Button from '../components/ui/Button';
 import { apiFetch } from '../utils/api';
 import { useFadeUpSequence } from '../hooks/useFadeUp';
-import { Colors, Spacing, FontSize } from '../constants/theme';
+import { Colors, Spacing, FontSize } from '../constants/theme'
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');

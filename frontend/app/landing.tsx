@@ -1,3 +1,4 @@
+// app/landing.tsx
 import { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Animated, Easing } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,8 +10,16 @@ import CroppedImage from '../utils/croppedmage';
 import ScatteredIcons from '../utils/scatteredIcons';
 import Button from '../components/ui/Button';
 import GoogleButton from '../components/ui/GoogleButton';
+import { useAuth } from '../context/AuthContext';
+import { useGoogleAuth } from '../hooks/useGoogleAuth';
 
 export default function LandingScreen() {
+  const { loginWithGoogle } = useAuth();
+  const { promptAsync } = useGoogleAuth(async (idToken) => {
+    await loginWithGoogle(idToken);
+    router.replace('/(tabs)/home');
+  });
+
   const heroOpacity = useRef(new Animated.Value(0)).current;
   const heroScale = useRef(new Animated.Value(0.92)).current;
   const badgeAnim = useRef(new Animated.Value(0)).current;
@@ -26,52 +35,22 @@ export default function LandingScreen() {
   useEffect(() => {
     Animated.sequence([
       Animated.parallel([
-        Animated.timing(heroOpacity, {
-          toValue: 1,
-          duration: 800,
-          easing: Easing.out(Easing.cubic),
-          useNativeDriver: true,
-        }),
-        Animated.timing(heroScale, {
-          toValue: 1,
-          duration: 800,
-          easing: Easing.out(Easing.cubic),
-          useNativeDriver: true,
-        }),
-        Animated.timing(scatterFade, {
-          toValue: 1,
-          duration: 1200,
-          easing: Easing.out(Easing.cubic),
-          useNativeDriver: true,
-        }),
+        Animated.timing(heroOpacity, { toValue: 1, duration: 800, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
+        Animated.timing(heroScale, { toValue: 1, duration: 800, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
+        Animated.timing(scatterFade, { toValue: 1, duration: 1200, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
       ]),
       Animated.stagger(
         110,
         [badgeAnim, headlineAnim, subAnim, btn1, btn2, btn3, btn4].map((v) =>
-          Animated.timing(v, {
-            toValue: 1,
-            duration: 420,
-            easing: Easing.out(Easing.cubic),
-            useNativeDriver: true,
-          })
+          Animated.timing(v, { toValue: 1, duration: 420, easing: Easing.out(Easing.cubic), useNativeDriver: true })
         )
       ),
     ]).start();
 
     Animated.loop(
       Animated.sequence([
-        Animated.timing(drift, {
-          toValue: 1,
-          duration: 7000,
-          easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
-        }),
-        Animated.timing(drift, {
-          toValue: 0,
-          duration: 7000,
-          easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
-        }),
+        Animated.timing(drift, { toValue: 1, duration: 7000, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+        Animated.timing(drift, { toValue: 0, duration: 7000, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
       ])
     ).start();
   }, []);
@@ -80,9 +59,7 @@ export default function LandingScreen() {
 
   const fadeUp = (v: Animated.Value, distance = 12) => ({
     opacity: v,
-    transform: [
-      { translateY: v.interpolate({ inputRange: [0, 1], outputRange: [distance, 0] }) },
-    ],
+    transform: [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [distance, 0] }) }],
   });
 
   return (
@@ -91,32 +68,19 @@ export default function LandingScreen() {
 
       <SafeAreaView style={styles.safe}>
         <View style={styles.container}>
-          {/* Hero image — cropped to a fixed square regardless of source size */}
           <Animated.View
-            style={[
-              styles.heroWrap,
-              {
-                opacity: heroOpacity,
-                transform: [{ scale: heroScale }, { translateY: driftY }],
-              },
-            ]}
+            style={[styles.heroWrap, { opacity: heroOpacity, transform: [{ scale: heroScale }, { translateY: driftY }] }]}
           >
-            <CroppedImage
-              source={require('../assets/App_Icon.png')}
-              size={160}
-              radius={Radius.full}
-            />
+            <CroppedImage source={require('../assets/App_Icon.png')} size={160} radius={Radius.full} />
           </Animated.View>
 
           <View style={styles.textBlock}>
-            {/* Badge — X -> arrow -> Instagram */}
             <Animated.View style={[styles.badge, fadeUp(badgeAnim)]}>
               <FontAwesome6 name="x-twitter" size={14} color={Colors.TEXT_HIGH} />
               <Feather name="arrow-right" size={14} color={Colors.TEXT_MED} style={styles.badgeArrow} />
               <FontAwesome6 name="instagram" size={14} color={Colors.TEXT_HIGH} />
             </Animated.View>
 
-            {/* Two-tone headline, app name gets the violet glow */}
             <Animated.View style={fadeUp(headlineAnim)}>
               <Text style={styles.headline}>
                 <Text style={styles.headlineDim}>Effortless{'\n'}control with{'\n'}</Text>
@@ -129,10 +93,9 @@ export default function LandingScreen() {
             </Animated.Text>
           </View>
 
-          {/* Actions */}
           <View style={styles.actions}>
             <Animated.View style={fadeUp(btn1)}>
-              <TouchableOpacity activeOpacity={0.85} onPress={() => {}}>
+              <TouchableOpacity activeOpacity={0.85} onPress={() => router.push('/login')}>
                 <LinearGradient
                   colors={[Colors.GLOW_MAGENTA, Colors.GLOW_ORANGE]}
                   start={{ x: 0, y: 0 }}
@@ -147,11 +110,11 @@ export default function LandingScreen() {
             </Animated.View>
 
             <Animated.View style={fadeUp(btn2)}>
-              <Button label="Sign Up" variant="secondary" onPress={() => {}} />
+              <Button label="Sign Up" variant="secondary" onPress={() => router.push('/signup')} />
             </Animated.View>
 
             <Animated.View style={fadeUp(btn3)}>
-              <GoogleButton onPress={() => {}} />
+              <GoogleButton onPress={() => promptAsync()} />
             </Animated.View>
 
             <Animated.View style={fadeUp(btn4)}>
@@ -171,94 +134,28 @@ export default function LandingScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: Colors.BG_BASE,
-  },
-  safe: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    paddingHorizontal: Spacing.screen,
-    justifyContent: 'space-between',
-    paddingBottom: Spacing.xl,
-    paddingTop: Spacing.lg,
-  },
-  heroWrap: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 180,
-  },
-  textBlock: {
-    alignItems: 'center',
-    marginTop: -Spacing.md,
-  },
+  root: { flex: 1, backgroundColor: Colors.BG_BASE },
+  safe: { flex: 1 },
+  container: { flex: 1, paddingHorizontal: Spacing.screen, justifyContent: 'space-between', paddingBottom: Spacing.xl, paddingTop: Spacing.lg },
+  heroWrap: { alignItems: 'center', justifyContent: 'center', height: 180 },
+  textBlock: { alignItems: 'center', marginTop: -Spacing.md },
   badge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: Colors.BORDER_SOFT,
-    borderWidth: 1,
-    borderColor: Colors.BORDER,
-    borderRadius: Radius.full,
-    paddingHorizontal: Spacing.md,
-    paddingVertical: 8,
-    marginBottom: Spacing.lg,
+    flexDirection: 'row', alignItems: 'center', backgroundColor: Colors.BORDER_SOFT,
+    borderWidth: 1, borderColor: Colors.BORDER, borderRadius: Radius.full,
+    paddingHorizontal: Spacing.md, paddingVertical: 8, marginBottom: Spacing.lg,
   },
-  badgeArrow: {
-    marginHorizontal: Spacing.sm,
-  },
-  headline: {
-    fontSize: FontSize.display + 4,
-    fontWeight: '700',
-    textAlign: 'center',
-    lineHeight: 42,
-  },
-  headlineDim: {
-    color: Colors.TEXT_DIM,
-  },
+  badgeArrow: { marginHorizontal: Spacing.sm },
+  headline: { fontSize: FontSize.display + 4, fontWeight: '700', textAlign: 'center', lineHeight: 42 },
+  headlineDim: { color: Colors.TEXT_DIM },
   headlineBright: {
-    color: Colors.PRIMARY,
-    fontWeight: '800',
-    // The signature glow — same violet as the hero image, applied to text
-    textShadowColor: Colors.GLOW_VIOLET,
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 20,
+    color: Colors.PRIMARY, fontWeight: '800',
+    textShadowColor: Colors.GLOW_VIOLET, textShadowOffset: { width: 0, height: 0 }, textShadowRadius: 20,
   },
-  tagline: {
-    fontSize: FontSize.body,
-    color: Colors.TEXT_MED,
-    textAlign: 'center',
-    lineHeight: 22,
-    paddingHorizontal: Spacing.lg,
-    marginTop: Spacing.md,
-  },
-  actions: {
-    gap: Spacing.sm,
-  },
-  btnPrimaryBorder: {
-    borderRadius: Radius.sm,
-    padding: 1.5,
-  },
-  btnPrimaryInner: {
-    backgroundColor: Colors.BG_BASE,
-    borderRadius: Radius.sm,
-    paddingVertical: 13,
-    alignItems: 'center',
-  },
-  btnPrimaryText: {
-    color: Colors.TEXT_HIGH,
-    fontSize: FontSize.label,
-    fontWeight: '600',
-  },
-  guestLink: {
-    alignItems: 'center',
-    paddingVertical: 10,
-  },
-  guestLinkText: {
-    color: Colors.TEXT_LOW,
-    fontSize: FontSize.bodySmall,
-    fontWeight: '500',
-    textDecorationLine: 'underline',
-  },
+  tagline: { fontSize: FontSize.body, color: Colors.TEXT_MED, textAlign: 'center', lineHeight: 22, paddingHorizontal: Spacing.lg, marginTop: Spacing.md },
+  actions: { gap: Spacing.sm },
+  btnPrimaryBorder: { borderRadius: Radius.sm, padding: 1.5 },
+  btnPrimaryInner: { backgroundColor: Colors.BG_BASE, borderRadius: Radius.sm, paddingVertical: 13, alignItems: 'center' },
+  btnPrimaryText: { color: Colors.TEXT_HIGH, fontSize: FontSize.label, fontWeight: '600' },
+  guestLink: { alignItems: 'center', paddingVertical: 10 },
+  guestLinkText: { color: Colors.TEXT_LOW, fontSize: FontSize.bodySmall, fontWeight: '500', textDecorationLine: 'underline' },
 });

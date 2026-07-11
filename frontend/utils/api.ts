@@ -1,6 +1,6 @@
 import { getAccessToken, getRefreshToken, saveTokens, clearTokens } from './auth';
+import { env } from "../config/env";
 
-const BASE_URL = 'http://192.168.1.54:3000';
 
 let refreshPromise: Promise<string | null> | null = null;
 
@@ -8,7 +8,7 @@ async function refreshAccessToken(): Promise<string | null> {
   const refreshToken = await getRefreshToken();
   if (!refreshToken) return null;
 
-  const res = await fetch(`${BASE_URL}/auth/refresh`, {
+  const res = await fetch(`${env.apiUrl}/auth/refresh`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ refreshToken }),
@@ -27,7 +27,7 @@ async function refreshAccessToken(): Promise<string | null> {
 export async function apiFetch(path: string, options: RequestInit = {}, retry = true): Promise<any> {
   const token = await getAccessToken();
 
-  const res = await fetch(`${BASE_URL}${path}`, {
+  const res = await fetch(`${env.apiUrl}${path}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
@@ -35,6 +35,9 @@ export async function apiFetch(path: string, options: RequestInit = {}, retry = 
       ...options.headers,
     },
   });
+
+
+  console.log(res)
 
 
   if (res.status === 401 && retry && path !== '/auth/refresh') {
@@ -52,4 +55,9 @@ export async function apiFetch(path: string, options: RequestInit = {}, retry = 
     throw new Error(err.error || 'Request failed');
   }
   return res.json();
+}
+
+
+export async function apiGet(path: string, options: RequestInit = {}): Promise<any> {
+  return apiFetch(path, { ...options, method: 'GET' });
 }

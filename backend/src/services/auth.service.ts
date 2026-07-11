@@ -112,6 +112,8 @@ export async function signupUser(
     "email_verify",
     10,
   );
+
+  console.log("otp", otp)
   await sendVerificationEmail({ to: email, otp, linkToken: linkTokenRaw });
 
   const tokens = await issueTokenPair(user._id, meta);
