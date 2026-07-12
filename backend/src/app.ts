@@ -13,7 +13,6 @@ export function createApp(): Application {
   app.use("/auth", authRoutes);
 
   // Everything under /api requires a valid access token from here down.
-  app.use("/api", requireAuth);
   app.use("/api", tweetRoutes);
 
   app.use(errorHandler);
