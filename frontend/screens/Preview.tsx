@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.BORDER,
   },
   backText: {
-    color: Colors.PRIMARY_LIGHT,
+    color: Colors.PRIMARY,
     fontSize: FontSize.body,
     width: 60,
   },
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     borderColor: '#4A3A9E',
   },
   badgeText: {
-    color: Colors.PRIMARY_LIGHT,
+    color: Colors.PRIMARY,
     fontSize: FontSize.caption,
     fontWeight: '600',
     letterSpacing: 0.8,

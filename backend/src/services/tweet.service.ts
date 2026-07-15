@@ -126,10 +126,12 @@ async function fetchChain(tweetId: string, depth = 0): Promise<Tweet[]> {
 
 export async function processTweet(url: string): Promise<ParsedTweetResponse> {
   const tweetId = extractTweetId(url);
+  console.log("tweetid", tweetId)
   if (!tweetId) throw new AppError("Invalid tweet URL", 400);
 
   const wasCached = await TweetCache.exists({ tweetId });
   const raw = await fetchRawTweet(tweetId);
+  console.log(raw);
   if (!raw) throw new AppError("Tweet not found", 404);
 
   const tweet = parseTweet(raw);

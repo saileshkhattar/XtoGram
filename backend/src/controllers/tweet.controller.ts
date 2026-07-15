@@ -7,6 +7,7 @@ export async function fetchTweet(
   next: NextFunction,
 ): Promise<void> {
   try {
+    console.log("herer")
     const result = await tweetService.processTweet(req.body.url);
     res.json(result);
   } catch (err) {

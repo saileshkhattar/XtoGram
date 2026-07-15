@@ -2,33 +2,44 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   Animated,
   Easing,
   KeyboardAvoidingView,
   Platform,
-  ActivityIndicator,
   Keyboard,
+  ScrollView,
+  Dimensions,
+  Alert,
+  LayoutAnimation,
+  UIManager,
 } from 'react-native';
-import { router } from 'expo-router';
-import { FontAwesome6, Feather } from '@expo/vector-icons';
-import TopNavBar from '../../components/ui/TopNavbar'
-import TextField from '../../components/ui/TextField';
-import Button from '../../components/ui/Button';
-import { Colors, Spacing, Radius, FontSize } from '../../constants/theme';
-import { useFadeUpSequence } from '../../hooks/useFadeUp';
+import TopNavBar from '../../components/ui/TopNavbar';
+import HomeHero from '../../components/tweet/HomeHero';
+import CardResult,  { type CardResultHandle } from '../../components/tweet/CardResult';
+import { Colors, Spacing } from '../../constants/theme';
 import ScatteredIcons from '../../utils/scatteredIcons';
 import { fetchTweetByUrl } from '../../utils/tweetApi';
+import { saveImageToLibrary, shareImage } from '../../components/tweet/exportCard';
+import type { ParsedTweetResponse, Tweet } from '../../types/tweet';
+
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const PREVIEW_WIDTH = SCREEN_WIDTH - Spacing.screen * 2;
 
 export default function Home() {
   const [url, setUrl] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [parsed, setParsed] = useState<ParsedTweetResponse | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [sharing, setSharing] = useState(false);
 
+  const cardResultRef = useRef<CardResultHandle>(null);
   const scatterFade = useRef(new Animated.Value(0)).current;
-  const glowPulse = useRef(new Animated.Value(0)).current;
-  const [badgeAnim, headlineAnim, subAnim, fieldAnim, btnAnim] = useFadeUpSequence(5);
 
   useEffect(() => {
     Animated.timing(scatterFade, {
@@ -37,28 +48,16 @@ export default function Home() {
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start();
-
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(glowPulse, {
-          toValue: 1,
-          duration: 2200,
-          easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
-        }),
-        Animated.timing(glowPulse, {
-          toValue: 0,
-          duration: 2200,
-          easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
-        }),
-      ])
-    ).start();
   }, []);
 
-
-  const glowOpacity = glowPulse.interpolate({ inputRange: [0, 1], outputRange: [0.25, 0.55] });
-  const glowScale = glowPulse.interpolate({ inputRange: [0, 1], outputRange: [0.96, 1.06] });
+  // Only the Regular template exists so far — for a reply chain, show the
+  // focus tweet (last one in the chain). Thread and reply-chain templates
+  // come next.
+  const tweet: Tweet | null = parsed
+    ? parsed.type === 'original'
+      ? parsed.tweet
+      : parsed.chain[parsed.chain.length - 1] ?? null
+    : null;
 
   const handleSubmit = async () => {
     if (!url.trim() || loading) return;
@@ -67,11 +66,39 @@ export default function Home() {
     setLoading(true);
     try {
       const data = await fetchTweetByUrl(url.trim());
-      router.push({ pathname: '/preview', params: { url: url.trim(), data: JSON.stringify(data) } });
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      setParsed(data);
     } catch (e: any) {
       setError(e.message || 'Could not fetch that tweet — check the link and try again');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const image = cardResultRef.current?.getExportImage();
+      if (!image) throw new Error('Card is not ready yet');
+      await saveImageToLibrary(image);
+      Alert.alert('Saved', 'Card saved to your photo library.');
+    } catch (e: any) {
+      Alert.alert('Could not save', e.message || 'Something went wrong');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleShare = async () => {
+    setSharing(true);
+    try {
+      const image = cardResultRef.current?.getExportImage();
+      if (!image) throw new Error('Card is not ready yet');
+      await shareImage(image);
+    } catch (e: any) {
+      Alert.alert('Could not share', e.message || 'Something went wrong');
+    } finally {
+      setSharing(false);
     }
   };
 
@@ -85,51 +112,34 @@ export default function Home() {
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
-        <View style={styles.container}>
-          <Animated.View style={[styles.badge, badgeAnim]}>
-            <FontAwesome6 name="x-twitter" size={13} color={Colors.TEXT_HIGH} />
-            <Feather name="arrow-right" size={13} color={Colors.TEXT_MED} style={styles.badgeArrow} />
-            <Text style={styles.badgeText}>paste a link to begin</Text>
-          </Animated.View>
+        <ScrollView
+          contentContainerStyle={styles.content}
+          keyboardShouldPersistTaps="handled"
+        >
+          <HomeHero
+            url={url}
+            onChangeUrl={(text) => {
+              setUrl(text);
+              if (error) setError('');
+            }}
+            error={error}
+            loading={loading}
+            onSubmit={handleSubmit}
+            compact={!!tweet}
+          />
 
-          <Animated.View style={headlineAnim}>
-            <Text style={styles.headline}>
-              <Text style={styles.headlineDim}>Turn any tweet into{'\n'}something </Text>
-              <Text style={styles.headlineBright}>worth sharing</Text>
-            </Text>
-          </Animated.View>
-
-          <Animated.Text style={[styles.tagline, subAnim]}>
-            Drop in a tweet link below and we'll pull everything we need to build your card.
-          </Animated.Text>
-
-          <Animated.View style={[styles.fieldWrap, fieldAnim]}>
-            <TextField
-              value={url}
-              onChangeText={(text) => {
-                setUrl(text);
-                if (error) setError('');
-              }}
-              placeholder="https://x.com/user/status/..."
+          {tweet && (
+            <CardResult
+              ref={cardResultRef}
+              tweet={tweet}
+              previewWidth={PREVIEW_WIDTH}
+              onSave={handleSave}
+              onShare={handleShare}
+              saving={saving}
+              sharing={sharing}
             />
-            {error ? <Text style={styles.error}>{error}</Text> : null}
-          </Animated.View>
-
-          <Animated.View style={[styles.btnWrap, btnAnim]}>
-            <Animated.View
-              style={[
-                styles.btnGlow,
-                { opacity: glowOpacity, transform: [{ scale: glowScale }] },
-              ]}
-              pointerEvents="none"
-            />
-            <Button
-              label={loading ? 'Fetching…' : 'Generate card'}
-              onPress={handleSubmit}
-              icon={loading ? <ActivityIndicator size="small" color={Colors.BG_BASE} /> : undefined}
-            />
-          </Animated.View>
-        </View>
+          )}
+        </ScrollView>
       </KeyboardAvoidingView>
     </View>
   );
@@ -140,72 +150,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.BG_BASE,
   },
-  container: {
-    flex: 1,
+  content: {
+    flexGrow: 1,
     paddingHorizontal: Spacing.screen,
-    justifyContent: 'center',
-    gap: Spacing.md,
-  },
-  badge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    backgroundColor: Colors.BORDER_SOFT,
-    borderWidth: 1,
-    borderColor: Colors.BORDER,
-    borderRadius: Radius.full,
-    paddingHorizontal: Spacing.md,
-    paddingVertical: 8,
-    marginBottom: Spacing.sm,
-  },
-  badgeArrow: {
-    marginHorizontal: Spacing.sm,
-  },
-  badgeText: {
-    color: Colors.TEXT_MED,
-    fontSize: FontSize.caption,
-    fontWeight: '600',
-  },
-  headline: {
-    fontSize: FontSize.display,
-    fontWeight: '700',
-    lineHeight: 38,
-  },
-  headlineDim: {
-    color: Colors.TEXT_DIM,
-  },
-  headlineBright: {
-    color: Colors.TEXT_HIGH,
-    fontWeight: '800',
-    textShadowColor: Colors.GLOW_VIOLET,
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 18,
-  },
-  tagline: {
-    fontSize: FontSize.body,
-    color: Colors.TEXT_MED,
-    lineHeight: 22,
-    marginTop: Spacing.xs,
-    marginBottom: Spacing.sm,
-  },
-  fieldWrap: {
-    marginBottom: Spacing.xs,
-  },
-  error: {
-    color: Colors.ERROR,
-    fontSize: FontSize.bodySmall,
-    marginTop: Spacing.sm,
-  },
-  btnWrap: {
-    marginTop: Spacing.xs,
-  },
-  btnGlow: {
-    position: 'absolute',
-    top: -14,
-    left: '10%',
-    right: '10%',
-    height: 60,
-    borderRadius: Radius.full,
-    backgroundColor: Colors.GLOW_VIOLET,
+    paddingTop: Spacing.lg,
+    paddingBottom: Spacing.xxl,
   },
 });
