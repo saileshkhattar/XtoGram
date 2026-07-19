@@ -77,6 +77,13 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
         // Export only includes the card, or the card + background box.
         if (!showBackground) return cardImage;
 
+        // cardImage is the Skia canvas's raw backing-store pixels, which is
+        // rendered at the device's pixel ratio (e.g. 3x) — NOT at the logical
+        // CARD_WIDTH the rest of this math assumes. Correct for that here so
+        // the card lands at the right size regardless of device pixel ratio,
+        // instead of getting drawn ~pixelRatio× too large and off-center.
+        const cardPixelRatio = cardImage.width() / CARD_WIDTH;
+
         const exportScale = EXPORT_LONG_SIDE / Math.max(frameWidth, frameHeight);
         const t = transformRef.current?.getSnapshot() ?? {
           translateX: 0,
@@ -93,7 +100,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
           transform: {
             translateX: t.translateX * exportScale,
             translateY: t.translateY * exportScale,
-            scale: t.scale * previewScale * exportScale,
+            scale: (t.scale * previewScale * exportScale) / cardPixelRatio,
             rotation: t.rotation,
           },
         });
@@ -103,7 +110,8 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
   );
 
   // Do not collapse the home hero until Skia has had a frame to paint the new
-  // card. The same brief overlay is used while a frame configuration reflows.
+  // card. Frame size changes (preset/custom width/height) no longer redraw
+  // the card itself, so they don't need to re-trigger this overlay anymore.
   useEffect(() => {
     if (!cardHeight) return;
     setIsRendering(true);
@@ -114,7 +122,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
       });
     });
     return () => cancelAnimationFrame(firstFrame);
-  }, [tweet.id, cardHeight, showBackground, preset, customWidth, customHeight, onReady]);
+  }, [tweet.id, cardHeight, onReady]);
 
   const cardOnly = (
     <View style={{ width: previewWidth, height: scaledCardHeight }}>
@@ -130,10 +138,12 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
     </View>
   );
 
-  // gesture logic only exists when there's a box to drag the card within
+  // gesture logic only exists when there's a box to drag the card within.
+  // No `key` here on purpose: remounting would tear down and re-render the
+  // Skia card underneath every time the frame size changes. Instead the
+  // effect below re-fits the existing transform in place.
   const withBackground = showBackground ? (
     <TransformableView
-      key={`${preset}-${frameWidth}-${frameHeight}`}
       ref={transformRef}
       frameWidth={frameWidth}
       frameHeight={frameHeight}
@@ -146,6 +156,16 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
   ) : (
     cardOnly
   );
+
+  // Re-fit the card into the frame whenever the frame's own size changes
+  // (preset switch, custom width/height edit). This does NOT reset pan or
+  // rotation the user has already applied, and never touches the card
+  // itself — only the transform wrapping it.
+  useEffect(() => {
+    if (!showBackground || !cardHeight) return;
+    transformRef.current?.setScale(initialFrameScale);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showBackground, preset, customWidth, customHeight]);
 
   /* Instagram-preview feature — deferred.
   const igFrameHeight = previewWidth / PRESET_RATIOS[instagramPreset];
@@ -189,7 +209,18 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
         onCustomHeightChange={setCustomHeight}
       />
 
-      <View style={styles.previewWrap}>
+      <View
+        style={[
+          styles.previewWrap,
+          {
+            minHeight: showBackground
+              ? frameHeight
+              : cardHeight
+                ? scaledCardHeight
+                : previewWidth * 1.25, // placeholder aspect until the real card height is known
+          },
+        ]}
+      >
         {displayed}
         {isRendering && (
           <View pointerEvents="none" style={styles.renderingOverlay}>

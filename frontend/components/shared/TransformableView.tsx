@@ -18,6 +18,7 @@ type Props = {
 export type TransformableViewHandle = {
   getSnapshot: () => TransformState;
   reset: () => void;
+  setScale: (value: number) => void;
 };
 
 // Content-agnostic: hands pan/pinch/rotate to whatever it wraps, and
@@ -30,19 +31,34 @@ export const TransformableView = forwardRef<TransformableViewHandle, Props>(
     { children, frameWidth, frameHeight, backgroundColor, minScale, maxScale, initial, onChange },
     ref
   ) {
-    const { gesture, animatedStyle, reset, getSnapshot } = useTransformGesture({
+    const { gesture, animatedStyle, reset, getSnapshot, setScale } = useTransformGesture({
       minScale,
       maxScale,
       initial,
       onChange,
     });
 
-    useImperativeHandle(ref, () => ({ getSnapshot, reset }), [getSnapshot, reset]);
+    useImperativeHandle(
+      ref,
+      () => ({ getSnapshot, reset, setScale }),
+      [getSnapshot, reset, setScale]
+    );
 
     return (
       <View style={[styles.frame, { width: frameWidth, height: frameHeight, backgroundColor }]}>
         <GestureDetector gesture={gesture}>
-          <Animated.View style={animatedStyle}>{children}</Animated.View>
+          {/* Sized to match the frame exactly, with content centered inside it,
+              so scale/rotate pivot around the frame's own center — the same
+              center exportFrame.tsx uses when compositing the final image. */}
+          <Animated.View
+            style={[
+              styles.content,
+              { width: frameWidth, height: frameHeight },
+              animatedStyle,
+            ]}
+          >
+            {children}
+          </Animated.View>
         </GestureDetector>
       </View>
     );
@@ -52,5 +68,9 @@ export const TransformableView = forwardRef<TransformableViewHandle, Props>(
 const styles = StyleSheet.create({
   frame: {
     overflow: 'hidden',
+  },
+  content: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

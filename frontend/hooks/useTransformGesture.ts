@@ -110,5 +110,15 @@ export function useTransformGesture(options: Options = {}) {
     [translateX, translateY, scale, rotation]
   );
 
-  return { gesture, animatedStyle, reset, getSnapshot };
+  // Re-fit the card to a new frame size (e.g. preset/custom size changed)
+  // without touching pan/rotation the user may have already applied, and
+  // without remounting whatever this transform is attached to.
+  const setScale = useCallback(
+    (value: number) => {
+      scale.value = Math.min(maxScale, Math.max(minScale, value));
+    },
+    [scale, minScale, maxScale]
+  );
+
+  return { gesture, animatedStyle, reset, getSnapshot, setScale };
 }
