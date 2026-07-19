@@ -1,7 +1,8 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import { useCanvasRef, type SkImage } from '@shopify/react-native-skia';
-import { RegularCard } from './templates/RegularCard';
+import { SceneRenderer } from './scene/ScreenRenderer';
+import { darkClassicTemplate } from './templates/definations';
 import { CARD_WIDTH } from './skia/layout';
 import { Colors, Spacing } from '../../constants/theme';
 import IconButton from '../ui/iconButton';
@@ -133,7 +134,12 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
           transformOrigin: 'top left',
         }}
       >
-        <RegularCard tweet={tweet} canvasRef={cardCanvasRef} onHeightComputed={setCardHeight} />
+        <SceneRenderer
+          tweet={tweet}
+          template={darkClassicTemplate}
+          canvasRef={cardCanvasRef}
+          onHeightComputed={setCardHeight}
+        />
       </View>
     </View>
   );

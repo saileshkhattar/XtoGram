@@ -38,17 +38,21 @@ export interface AuthorRowLayout {
   totalHeight: number;
 }
 
+// colors defaults to the original hardcoded values so any existing caller
+// (e.g. the now-legacy RegularCard.tsx) keeps rendering identically without
+// passing this new param.
 export function buildAuthorRowLayout(
   fontMgr: SkTypefaceFontProvider,
   name: string,
   handle: string,
   createdAt: string,
   maxWidth: number,
+  colors: { name: string; sub: string } = { name: "#F0EEF8", sub: "#6B6880" },
 ): AuthorRowLayout {
   const nameParagraph = buildParagraph(fontMgr, name, {
     size: FONT_SIZE_NAME,
     weight: FONT_WEIGHT_BOLD,
-    color: "#F0EEF8",
+    color: colors.name,
     maxWidth,
   });
 
@@ -56,7 +60,7 @@ export function buildAuthorRowLayout(
   const subParagraph = buildParagraph(fontMgr, subText, {
     size: FONT_SIZE_HANDLE,
     weight: FONT_WEIGHT_REGULAR,
-    color: "#6B6880",
+    color: colors.sub,
     maxWidth,
   });
 
@@ -82,11 +86,12 @@ export function buildBodyTextLayout(
   fontMgr: SkTypefaceFontProvider,
   text: string,
   maxWidth: number,
+  color: string = "#F0EEF8",
 ): BodyTextLayout {
   const paragraph = buildParagraph(fontMgr, text, {
     size: FONT_SIZE_BODY,
     weight: FONT_WEIGHT_REGULAR,
-    color: "#F0EEF8",
+    color,
     maxWidth,
     height: LINE_HEIGHT_BODY,
   });
