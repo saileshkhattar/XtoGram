@@ -2,9 +2,14 @@ import { View, Text, Pressable, TextInput, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Colors, Spacing, Radius, FontSize } from '../../constants/theme';
 
-export type FramePreset = 'post_square' | 'post_portrait' | 'story' | 'custom';
+export type FramePreset = 'post_square' | 'story' | 'custom';
+
+// Instagram-preview feature — deferred. Keep this type with the related
+// controls below so the feature can be restored without rebuilding it.
+// export type InstagramPreset = Exclude<FramePreset, 'custom'>;
 
 type Props = {
+  // checkbox 1 — background/frame box around the card
   enabled: boolean;
   onToggle: (value: boolean) => void;
   preset: FramePreset;
@@ -13,14 +18,25 @@ type Props = {
   customHeight: string;
   onCustomWidthChange: (value: string) => void;
   onCustomHeightChange: (value: string) => void;
+
+  // Instagram-preview feature — deferred.
+  // showInstagramPreview: boolean;
+  // onToggleInstagramPreview: (value: boolean) => void;
+  // instagramPreset: InstagramPreset;
+  // onInstagramPresetChange: (preset: InstagramPreset) => void;
 };
 
 const PRESETS: { key: FramePreset; label: string }[] = [
-  { key: 'post_square', label: 'Post 1:1' },
-  { key: 'post_portrait', label: 'Post 4:5' },
-  { key: 'story', label: 'Story/Reel' },
+  { key: 'post_square', label: '1:1' },
+  // { key: 'post_portrait', label: 'Post 4:5' }, // redundant for now
+  { key: 'story', label: '9:16' },
   { key: 'custom', label: 'Custom' },
 ];
+
+// const IG_PRESETS = PRESETS.filter((p) => p.key !== 'custom') as {
+//   key: InstagramPreset;
+//   label: string;
+// }[];
 
 export function CardOptions({
   enabled,
@@ -31,6 +47,10 @@ export function CardOptions({
   customHeight,
   onCustomWidthChange,
   onCustomHeightChange,
+  // showInstagramPreview,
+  // onToggleInstagramPreview,
+  // instagramPreset,
+  // onInstagramPresetChange,
 }: Props) {
   return (
     <View style={styles.wrap}>
@@ -38,7 +58,7 @@ export function CardOptions({
         <View style={[styles.checkbox, enabled && styles.checkboxChecked]}>
           {enabled && <Feather name="check" size={14} color={Colors.BG_BASE} />}
         </View>
-        <Text style={styles.checkboxLabel}>Custom size</Text>
+        <Text style={styles.checkboxLabel}>Add background/frame</Text>
       </Pressable>
 
       {enabled && (
@@ -78,6 +98,37 @@ export function CardOptions({
           />
         </View>
       )}
+
+      {/* Instagram-preview feature — deferred.
+      <Pressable
+        style={[styles.checkboxRow, { marginTop: Spacing.sm }]}
+        onPress={() => onToggleInstagramPreview(!showInstagramPreview)}
+        hitSlop={8}
+      >
+        <View style={[styles.checkbox, showInstagramPreview && styles.checkboxChecked]}>
+          {showInstagramPreview && <Feather name="check" size={14} color={Colors.BG_BASE} />}
+        </View>
+        <Text style={styles.checkboxLabel}>See as Instagram preview</Text>
+      </Pressable>
+
+      {showInstagramPreview && (
+        <View style={styles.presetsRow}>
+          {IG_PRESETS.map((p) => (
+            <Pressable
+              key={p.key}
+              onPress={() => onInstagramPresetChange(p.key)}
+              style={[styles.presetChip, instagramPreset === p.key && styles.presetChipActive]}
+            >
+              <Text
+                style={[styles.presetText, instagramPreset === p.key && styles.presetTextActive]}
+              >
+                {p.label}
+              </Text>
+            </Pressable>
+          ))}
+        </View>
+      )}
+      */}
     </View>
   );
 }

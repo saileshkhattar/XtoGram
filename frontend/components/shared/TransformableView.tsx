@@ -8,6 +8,7 @@ type Props = {
   children: React.ReactNode;
   frameWidth: number;
   frameHeight: number;
+  backgroundColor?: string;
   minScale?: number;
   maxScale?: number;
   initial?: Partial<TransformState>;
@@ -26,7 +27,7 @@ export type TransformableViewHandle = {
 // what its children actually are.
 export const TransformableView = forwardRef<TransformableViewHandle, Props>(
   function TransformableView(
-    { children, frameWidth, frameHeight, minScale, maxScale, initial, onChange },
+    { children, frameWidth, frameHeight, backgroundColor, minScale, maxScale, initial, onChange },
     ref
   ) {
     const { gesture, animatedStyle, reset, getSnapshot } = useTransformGesture({
@@ -39,7 +40,7 @@ export const TransformableView = forwardRef<TransformableViewHandle, Props>(
     useImperativeHandle(ref, () => ({ getSnapshot, reset }), [getSnapshot, reset]);
 
     return (
-      <View style={[styles.frame, { width: frameWidth, height: frameHeight }]}>
+      <View style={[styles.frame, { width: frameWidth, height: frameHeight, backgroundColor }]}>
         <GestureDetector gesture={gesture}>
           <Animated.View style={animatedStyle}>{children}</Animated.View>
         </GestureDetector>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { memo, useEffect, useMemo } from "react";
 import { Canvas, RoundedRect, useCanvasRef } from "@shopify/react-native-skia";
 import { Avatar } from "../skia/Avatar";
 import { AuthorRow } from "../skia/AuthorRow";
@@ -41,7 +41,7 @@ function computeMediaHeight(tweet: Tweet, contentWidth: number): number {
   return contentWidth * 0.6;
 }
 
-export function RegularCard({ tweet, canvasRef, onHeightComputed }: Props) {
+export const RegularCard = memo(function RegularCard({ tweet, canvasRef, onHeightComputed }: Props) {
   const fontMgr = useTweetFonts();
 
   const contentX = PADDING + AVATAR_SIZE + AVATAR_GAP;
@@ -110,4 +110,4 @@ export function RegularCard({ tweet, canvasRef, onHeightComputed }: Props) {
       />
     </Canvas>
   );
-}
+});

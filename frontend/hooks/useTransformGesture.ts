@@ -6,16 +6,13 @@ export type TransformState = {
   translateX: number;
   translateY: number;
   scale: number;
-  rotation: number; // radians
+  rotation: number; 
 };
 
 type Options = {
   minScale?: number;
   maxScale?: number;
   initial?: Partial<TransformState>;
-  // Fired (on the JS thread) whenever a gesture ends — plain numbers,
-  // safe to setState from. Not called during the gesture itself, to
-  // avoid re-rendering React on every frame.
   onChange?: (t: TransformState) => void;
 };
 
@@ -25,7 +22,9 @@ type Options = {
 // both the frame-crop preview today and the component-level editor
 // (repositioning an avatar, a text block, etc.) later.
 export function useTransformGesture(options: Options = {}) {
-  const { minScale = 0.5, maxScale = 4, initial, onChange } = options;
+  // A framed card may be intentionally tiny. Keep a small positive floor to
+  // avoid a singular transform while allowing it to be reduced substantially.
+  const { minScale = 0.05, maxScale = 4, initial, onChange } = options;
 
   const translateX = useSharedValue(initial?.translateX ?? 0);
   const translateY = useSharedValue(initial?.translateY ?? 0);

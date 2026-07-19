@@ -1,3 +1,4 @@
+/* Instagram-preview feature — deferred. Retained verbatim for later.
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Colors, Spacing, FontSize, Radius } from '../../constants/theme';
@@ -80,3 +81,4 @@ const styles = StyleSheet.create({
     marginRight: Spacing.md,
   },
 });
+*/

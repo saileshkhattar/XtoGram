@@ -9,16 +9,7 @@ type Options = {
   transform: TransformState;
 };
 
-// Composites the rendered card image onto a background canvas of
-// arbitrary size, applying the user's pan/pinch/rotate transform.
-// Runs fully imperatively (no React tree) so there's no render-timing
-// race with the interactive on-screen preview.
-//
-// NOTE: verify Skia.Surface.MakeOffscreen against your installed
-// @shopify/react-native-skia version (2.2.12) — this needs a quick
-// on-device check since it can't be exercised in this environment.
-// If it's unavailable, Skia.Surface.Make(width, height) is the CPU
-// raster equivalent with the same call shape.
+
 export function renderFramedImage(opts: Options): SkImage {
   const surface =
     Skia.Surface.MakeOffscreen(opts.frameWidth, opts.frameHeight) ??

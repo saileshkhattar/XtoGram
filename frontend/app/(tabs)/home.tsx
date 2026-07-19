@@ -1,5 +1,5 @@
 // app/(tabs)/home.tsx
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -37,9 +37,11 @@ export default function Home() {
   const [parsed, setParsed] = useState<ParsedTweetResponse | null>(null);
   const [saving, setSaving] = useState(false);
   const [sharing, setSharing] = useState(false);
+  const [isCardReady, setIsCardReady] = useState(false);
 
   const cardResultRef = useRef<CardResultHandle>(null);
   const scatterFade = useRef(new Animated.Value(0)).current;
+  const handleCardReady = useCallback(() => setIsCardReady(true), []);
 
   useEffect(() => {
     Animated.timing(scatterFade, {
@@ -50,19 +52,23 @@ export default function Home() {
     }).start();
   }, []);
 
-  // Only the Regular template exists so far — for a reply chain, show the
-  // focus tweet (last one in the chain). Thread and reply-chain templates
-  // come next.
-  const tweet: Tweet | null = parsed
-    ? parsed.type === 'original'
-      ? parsed.tweet
-      : parsed.chain[parsed.chain.length - 1] ?? null
-    : null;
+
+  let tweet: Tweet | null;
+
+  if (!parsed) {
+    tweet = null;
+  } else if (parsed.type === 'original') {
+    tweet = parsed.tweet;
+  } else {
+    const chainTweet = parsed.chain[parsed.chain.length - 1];
+    tweet = chainTweet ?? null;
+  }
 
   const handleSubmit = async () => {
     if (!url.trim() || loading) return;
     Keyboard.dismiss();
     setError('');
+    setIsCardReady(false);
     setLoading(true);
     try {
       const data = await fetchTweetByUrl(url.trim());
@@ -125,11 +131,12 @@ export default function Home() {
             error={error}
             loading={loading}
             onSubmit={handleSubmit}
-            compact={!!tweet}
+            compact={isCardReady}
           />
 
           {tweet && (
             <CardResult
+              key={tweet.id}
               ref={cardResultRef}
               tweet={tweet}
               previewWidth={PREVIEW_WIDTH}
@@ -137,6 +144,7 @@ export default function Home() {
               onShare={handleShare}
               saving={saving}
               sharing={sharing}
+              onReady={handleCardReady}
             />
           )}
         </ScrollView>

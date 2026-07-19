@@ -1,11 +1,11 @@
-import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import { useCanvasRef, type SkImage } from '@shopify/react-native-skia';
 import { RegularCard } from './templates/RegularCard';
 import { CARD_WIDTH } from './skia/layout';
 import { Colors, Spacing } from '../../constants/theme';
 import IconButton from '../ui/iconButton';
-import { InstagramFrame } from './InstagramFrame'
+// import { InstagramFrame } from './InstagramFrame'; // deferred Instagram preview
 import { CardOptions, type FramePreset } from './CardOptions';
 import { TransformableView, type TransformableViewHandle } from '../shared/TransformableView';
 import { renderFramedImage } from './exportFrame';
@@ -22,38 +22,48 @@ type Props = {
   onShare: () => void;
   saving: boolean;
   sharing: boolean;
+  onReady?: () => void;
 };
 
 const PRESET_RATIOS: Record<Exclude<FramePreset, 'custom'>, number> = {
   post_square: 1,
-  post_portrait: 4 / 5,
   story: 9 / 16,
+  // post_portrait: 4 / 5, // redundant for now
 };
 
 const EXPORT_LONG_SIDE = 1080;
 
 const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
-  { tweet, previewWidth, onSave, onShare, saving, sharing },
+  { tweet, previewWidth, onSave, onShare, saving, sharing, onReady },
   ref
 ) {
   const cardCanvasRef = useCanvasRef();
   const [cardHeight, setCardHeight] = useState(0);
 
-  const [customSize, setCustomSize] = useState(false);
+  // checkbox 1 — background/frame box around the card
+  const [showBackground, setShowBackground] = useState(false);
   const [preset, setPreset] = useState<FramePreset>('post_square');
   const [customWidth, setCustomWidth] = useState('1080');
   const [customHeight, setCustomHeight] = useState('1080');
+  const [isRendering, setIsRendering] = useState(true);
 
   const transformRef = useRef<TransformableViewHandle>(null);
 
   const previewScale = previewWidth / CARD_WIDTH;
   const scaledCardHeight = cardHeight * previewScale;
 
+  // size of the background/frame box (checkbox 1) — feeds export sizing too
   const frameWidth = previewWidth;
   const frameHeight =
     preset === 'custom'
       ? frameWidth * ((Number(customHeight) || 1) / (Number(customWidth) || 1))
       : frameWidth / PRESET_RATIOS[preset as Exclude<FramePreset, 'custom'>];
+  // Fit the complete card into a newly selected frame. This avoids exporting
+  // the initial 1× card as a cropped, zoomed image; users can still pinch
+  // smaller or larger afterwards.
+  const initialFrameScale = cardHeight
+    ? Math.min(frameWidth / previewWidth, frameHeight / scaledCardHeight)
+    : 1;
 
   useImperativeHandle(
     ref,
@@ -64,11 +74,9 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
         const cardImage = canvas.makeImageSnapshot();
         if (!cardImage) throw new Error('Could not snapshot the card');
 
-        if (!customSize) return cardImage;
+        // Export only includes the card, or the card + background box.
+        if (!showBackground) return cardImage;
 
-        // Export at a fixed resolution regardless of screen size —
-        // scale everything (frame + transform) up from preview-pixel
-        // space into export-pixel space by the same factor.
         const exportScale = EXPORT_LONG_SIDE / Math.max(frameWidth, frameHeight);
         const t = transformRef.current?.getSnapshot() ?? {
           translateX: 0,
@@ -80,7 +88,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
         return renderFramedImage({
           frameWidth: frameWidth * exportScale,
           frameHeight: frameHeight * exportScale,
-          backgroundColor: Colors.BG_BASE,
+          backgroundColor: Colors.SURFACE,
           cardImage,
           transform: {
             translateX: t.translateX * exportScale,
@@ -91,10 +99,24 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
         });
       },
     }),
-    [customSize, frameWidth, frameHeight, previewScale]
+    [showBackground, frameWidth, frameHeight, previewScale]
   );
 
-  const cardBlock = (
+  // Do not collapse the home hero until Skia has had a frame to paint the new
+  // card. The same brief overlay is used while a frame configuration reflows.
+  useEffect(() => {
+    if (!cardHeight) return;
+    setIsRendering(true);
+    const firstFrame = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setIsRendering(false);
+        onReady?.();
+      });
+    });
+    return () => cancelAnimationFrame(firstFrame);
+  }, [tweet.id, cardHeight, showBackground, preset, customWidth, customHeight, onReady]);
+
+  const cardOnly = (
     <View style={{ width: previewWidth, height: scaledCardHeight }}>
       <View
         style={{
@@ -108,11 +130,57 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
     </View>
   );
 
+  // gesture logic only exists when there's a box to drag the card within
+  const withBackground = showBackground ? (
+    <TransformableView
+      key={`${preset}-${frameWidth}-${frameHeight}`}
+      ref={transformRef}
+      frameWidth={frameWidth}
+      frameHeight={frameHeight}
+      backgroundColor={Colors.SURFACE}
+      minScale={0.05}
+      initial={{ scale: initialFrameScale }}
+    >
+      {cardOnly}
+    </TransformableView>
+  ) : (
+    cardOnly
+  );
+
+  /* Instagram-preview feature — deferred.
+  const igFrameHeight = previewWidth / PRESET_RATIOS[instagramPreset];
+  const displayed = showInstagramPreview ? (
+    <InstagramFrame author={tweet.author}>
+      <View
+        style={{
+          width: previewWidth,
+          height: igFrameHeight,
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
+        }}
+      >
+        {withBackground}
+      </View>
+    </InstagramFrame>
+  ) : (
+    withBackground
+  );
+  */
+  const displayed = withBackground;
+
+  /* Instagram-preview feature — deferred CardOptions props:
+  showInstagramPreview={showInstagramPreview}
+  onToggleInstagramPreview={setShowInstagramPreview}
+  instagramPreset={instagramPreset}
+  onInstagramPresetChange={setInstagramPreset}
+  */
+
   return (
     <View style={styles.wrap}>
       <CardOptions
-        enabled={customSize}
-        onToggle={setCustomSize}
+        enabled={showBackground}
+        onToggle={setShowBackground}
         preset={preset}
         onPresetChange={setPreset}
         customWidth={customWidth}
@@ -121,23 +189,14 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
         onCustomHeightChange={setCustomHeight}
       />
 
-      <InstagramFrame author={tweet.author}>
-        {customSize ? (
-          // Card renders at its natural size and gets dragged/pinched
-          // as a sticker inside the fixed frame — the frame itself
-          // never reflows the card's own layout.
-          <TransformableView
-            ref={transformRef}
-            frameWidth={frameWidth}
-            frameHeight={frameHeight}
-            minScale={frameWidth / previewWidth}
-          >
-            {cardBlock}
-          </TransformableView>
-        ) : (
-          <View style={{ width: frameWidth }}>{cardBlock}</View>
+      <View style={styles.previewWrap}>
+        {displayed}
+        {isRendering && (
+          <View pointerEvents="none" style={styles.renderingOverlay}>
+            <ActivityIndicator size="small" color={Colors.PRIMARY} />
+          </View>
         )}
-      </InstagramFrame>
+      </View>
 
       <View style={styles.actions}>
         <IconButton name="download" onPress={onSave} loading={saving} disabled={sharing} />
@@ -159,5 +218,16 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: 'row',
     gap: Spacing.md,
+  },
+  previewWrap: {
+    position: 'relative',
+    alignSelf: 'stretch',
+    alignItems: 'center',
+  },
+  renderingOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(10, 10, 15, 0.35)',
   },
 });

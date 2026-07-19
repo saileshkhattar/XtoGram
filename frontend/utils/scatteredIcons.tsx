@@ -16,11 +16,10 @@ const ICONS = [
 ] as const;
 
 type Props = {
-  fadeIn: Animated.Value; // passed in from the parent screen's entrance animation
+  fadeIn: Animated.Value;
 };
 
 export default function ScatteredIcons({ fadeIn }: Props) {
-  // One independent Animated.Value per icon, all starting at 0.
   const drifts = useRef(ICONS.map(() => new Animated.Value(0))).current;
 
   useEffect(() => {
@@ -44,8 +43,6 @@ export default function ScatteredIcons({ fadeIn }: Props) {
     );
     loops.forEach((loop) => loop.start());
 
-    // Stop all loops if this component unmounts, so they don't keep
-    // running (and leaking) in the background.
     return () => loops.forEach((loop) => loop.stop());
   }, []);
 
