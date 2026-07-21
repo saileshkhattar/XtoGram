@@ -16,10 +16,11 @@ import {
 } from 'react-native';
 import TopNavBar from '../../components/ui/TopNavbar';
 import HomeHero from '../../components/tweet/HomeHero';
-import CardResult,  { type CardResultHandle } from '../../components/tweet/CardResult';
-import { TemplateSheet, PEEK_HEIGHT } from '../../components/tweet/templatePicker/TemplateSheet';
+import CardResult, { type CardResultHandle } from '../../components/tweet/CardResult';
+import { EditSheet, type EditSheetHandle, PEEK_HEIGHT } from '../../components/tweet/editSheet/EditSheet';
 import { darkClassicTemplate } from '../../components/tweet/templates/definations';
 import type { CardTemplate } from '../../components/tweet/scene/types';
+import { PADDING } from '../../components/tweet/skia/layout';
 import { Colors, Spacing } from '../../constants/theme';
 import ScatteredIcons from '../../utils/scatteredIcons';
 import { fetchTweetByUrl } from '../../utils/tweetApi';
@@ -47,7 +48,26 @@ export default function Home() {
   // experience you want.
   const [selectedTemplate, setSelectedTemplate] = useState<CardTemplate>(darkClassicTemplate);
 
+  // Quick-adjust state — lifted up here (rather than living inside
+  // CardResult) so it can be shared with EditSheet's Adjust tab and so a
+  // future template-switch reset (see TODO below) has one place to act.
+  // These persist across template switches for now, same reasoning as
+  // selectedTemplate persisting across a new tweet.
+  const [frameBackgroundColor, setFrameBackgroundColor] = useState(Colors.SURFACE);
+  const [cardColorOverride, setCardColorOverride] = useState<string | undefined>(undefined);
+  const [cardRadius, setCardRadius] = useState(0);
+  const [cardPadding, setCardPadding] = useState(PADDING);
+
+  // TODO (agreed, not yet implemented): switching to a genuinely different
+  // template should reset frameBackgroundColor/cardColorOverride/cardRadius
+  // /cardPadding back to defaults, with a confirmation prompt — but only
+  // when there's actually something to lose (i.e. at least one of these is
+  // already non-default). Frame preset/size (owned inside CardResult) should
+  // NOT reset — that's a canvas-format choice, a different axis from the
+  // card's own visual style.
+
   const cardResultRef = useRef<CardResultHandle>(null);
+  const editSheetRef = useRef<EditSheetHandle>(null);
   const scatterFade = useRef(new Animated.Value(0)).current;
   const handleCardReady = useCallback(() => setIsCardReady(true), []);
 
@@ -154,13 +174,33 @@ export default function Home() {
               saving={saving}
               sharing={sharing}
               onReady={handleCardReady}
+              frameBackgroundColor={frameBackgroundColor}
+              cardColorOverride={cardColorOverride}
+              cardRadius={cardRadius}
+              cardPadding={cardPadding}
+              onOpenAdjust={() => editSheetRef.current?.expand('adjust')}
             />
           )}
         </ScrollView>
       </KeyboardAvoidingView>
 
       {tweet && (
-        <TemplateSheet selectedTemplateId={selectedTemplate.id} onSelect={setSelectedTemplate} />
+        <EditSheet
+          ref={editSheetRef}
+          tweet={tweet}
+          template={selectedTemplate}
+          selectedTemplateId={selectedTemplate.id}
+          onSelectTemplate={setSelectedTemplate}
+          backgroundColor={frameBackgroundColor}
+          onBackgroundColorChange={setFrameBackgroundColor}
+          cardColor={cardColorOverride}
+          onCardColorChange={setCardColorOverride}
+          defaultCardColor={selectedTemplate.palette.cardSurface}
+          cardRadius={cardRadius}
+          onCardRadiusChange={setCardRadius}
+          cardPadding={cardPadding}
+          onCardPaddingChange={setCardPadding}
+        />
       )}
     </View>
   );

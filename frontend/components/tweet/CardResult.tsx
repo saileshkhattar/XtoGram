@@ -4,12 +4,11 @@ import { useCanvasRef, type SkImage } from '@shopify/react-native-skia';
 import { SceneRenderer } from './scene/ScreenRenderer';
 import { darkClassicTemplate } from './templates/definations';
 import type { CardTemplate } from './scene/types';
-import { CARD_WIDTH, PADDING } from './skia/layout';
+import { CARD_WIDTH } from './skia/layout';
 import { Colors, Spacing } from '../../constants/theme';
 import IconButton from '../ui/iconButton';
 // import { InstagramFrame } from './InstagramFrame'; // deferred Instagram preview
 import { CardOptions, type FramePreset } from './CardOptions';
-import { QuickAdjustTray } from './quickAdjust/QuickAdjustTray';
 import { TransformableView, type TransformableViewHandle } from '../shared/TransformableView';
 import { renderFramedImage } from './exportFrame';
 import type { Tweet } from '../../types/tweet';
@@ -30,6 +29,16 @@ type Props = {
   saving: boolean;
   sharing: boolean;
   onReady?: () => void;
+
+  // Quick-adjust values — now owned by the parent screen (home.tsx), not
+  // local state here, so the parent (and the EditSheet it hosts) can
+  // coordinate resetting these when the template changes. CardResult just
+  // renders whatever it's given and forwards the "open the sheet" tap.
+  frameBackgroundColor: string;
+  cardColorOverride?: string;
+  cardRadius: number;
+  cardPadding: number;
+  onOpenAdjust: () => void;
 };
 
 const PRESET_RATIOS: Record<Exclude<FramePreset, 'custom'>, number> = {
@@ -41,7 +50,21 @@ const PRESET_RATIOS: Record<Exclude<FramePreset, 'custom'>, number> = {
 const EXPORT_LONG_SIDE = 1080;
 
 const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
-  { tweet, previewWidth, template = darkClassicTemplate, onSave, onShare, saving, sharing, onReady },
+  {
+    tweet,
+    previewWidth,
+    template = darkClassicTemplate,
+    onSave,
+    onShare,
+    saving,
+    sharing,
+    onReady,
+    frameBackgroundColor,
+    cardColorOverride,
+    cardRadius,
+    cardPadding,
+    onOpenAdjust,
+  },
   ref
 ) {
   const cardCanvasRef = useCanvasRef();
@@ -53,17 +76,6 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
   const [customWidth, setCustomWidth] = useState('1080');
   const [customHeight, setCustomHeight] = useState('1080');
   const [isRendering, setIsRendering] = useState(true);
-
-  // Quick Adjust tray state — layered on top of whichever template is
-  // active, same idea as palette being separate from structure. These
-  // persist across template switches on purpose (a chosen background color
-  // isn't tied to any one template), same as selectedTemplate persists
-  // across pasting a new tweet in home.tsx.
-  const [adjustTrayOpen, setAdjustTrayOpen] = useState(false);
-  const [frameBackgroundColor, setFrameBackgroundColor] = useState(Colors.SURFACE);
-  const [cardColorOverride, setCardColorOverride] = useState<string | undefined>(undefined);
-  const [cardRadius, setCardRadius] = useState(0);
-  const [cardPadding, setCardPadding] = useState(PADDING);
 
   const transformRef = useRef<TransformableViewHandle>(null);
 
@@ -256,24 +268,10 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
       </View>
 
       <View style={styles.actions}>
-        <IconButton name="sliders" onPress={() => setAdjustTrayOpen(true)} disabled={saving || sharing} />
+        <IconButton name="sliders" onPress={onOpenAdjust} disabled={saving || sharing} />
         <IconButton name="download" onPress={onSave} loading={saving} disabled={sharing} />
         <IconButton name="share-2" onPress={onShare} loading={sharing} disabled={saving} />
       </View>
-
-      <QuickAdjustTray
-        visible={adjustTrayOpen}
-        onClose={() => setAdjustTrayOpen(false)}
-        backgroundColor={frameBackgroundColor}
-        onBackgroundColorChange={setFrameBackgroundColor}
-        cardColor={cardColorOverride}
-        onCardColorChange={setCardColorOverride}
-        defaultCardColor={template.palette.cardSurface}
-        cardRadius={cardRadius}
-        onCardRadiusChange={setCardRadius}
-        cardPadding={cardPadding}
-        onCardPaddingChange={setCardPadding}
-      />
     </View>
   );
 });
