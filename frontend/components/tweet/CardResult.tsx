@@ -3,11 +3,13 @@ import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import { useCanvasRef, type SkImage } from '@shopify/react-native-skia';
 import { SceneRenderer } from './scene/ScreenRenderer';
 import { darkClassicTemplate } from './templates/definations';
-import { CARD_WIDTH } from './skia/layout';
+import type { CardTemplate } from './scene/types';
+import { CARD_WIDTH, PADDING } from './skia/layout';
 import { Colors, Spacing } from '../../constants/theme';
 import IconButton from '../ui/iconButton';
 // import { InstagramFrame } from './InstagramFrame'; // deferred Instagram preview
 import { CardOptions, type FramePreset } from './CardOptions';
+import { QuickAdjustTray } from './quickAdjust/QuickAdjustTray';
 import { TransformableView, type TransformableViewHandle } from '../shared/TransformableView';
 import { renderFramedImage } from './exportFrame';
 import type { Tweet } from '../../types/tweet';
@@ -19,6 +21,10 @@ export type CardResultHandle = {
 type Props = {
   tweet: Tweet;
   previewWidth: number;
+  // Which CardTemplate to render. Defaults to Dark Classic so any existing
+  // caller not yet passing this (or a future one that doesn't care) keeps
+  // working unchanged.
+  template?: CardTemplate;
   onSave: () => void;
   onShare: () => void;
   saving: boolean;
@@ -35,7 +41,7 @@ const PRESET_RATIOS: Record<Exclude<FramePreset, 'custom'>, number> = {
 const EXPORT_LONG_SIDE = 1080;
 
 const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
-  { tweet, previewWidth, onSave, onShare, saving, sharing, onReady },
+  { tweet, previewWidth, template = darkClassicTemplate, onSave, onShare, saving, sharing, onReady },
   ref
 ) {
   const cardCanvasRef = useCanvasRef();
@@ -47,6 +53,17 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
   const [customWidth, setCustomWidth] = useState('1080');
   const [customHeight, setCustomHeight] = useState('1080');
   const [isRendering, setIsRendering] = useState(true);
+
+  // Quick Adjust tray state — layered on top of whichever template is
+  // active, same idea as palette being separate from structure. These
+  // persist across template switches on purpose (a chosen background color
+  // isn't tied to any one template), same as selectedTemplate persists
+  // across pasting a new tweet in home.tsx.
+  const [adjustTrayOpen, setAdjustTrayOpen] = useState(false);
+  const [frameBackgroundColor, setFrameBackgroundColor] = useState(Colors.SURFACE);
+  const [cardColorOverride, setCardColorOverride] = useState<string | undefined>(undefined);
+  const [cardRadius, setCardRadius] = useState(0);
+  const [cardPadding, setCardPadding] = useState(PADDING);
 
   const transformRef = useRef<TransformableViewHandle>(null);
 
@@ -96,7 +113,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
         return renderFramedImage({
           frameWidth: frameWidth * exportScale,
           frameHeight: frameHeight * exportScale,
-          backgroundColor: Colors.SURFACE,
+          backgroundColor: frameBackgroundColor,
           cardImage,
           transform: {
             translateX: t.translateX * exportScale,
@@ -107,7 +124,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
         });
       },
     }),
-    [showBackground, frameWidth, frameHeight, previewScale]
+    [showBackground, frameWidth, frameHeight, previewScale, frameBackgroundColor]
   );
 
   // Do not collapse the home hero until Skia has had a frame to paint the new
@@ -136,7 +153,10 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
       >
         <SceneRenderer
           tweet={tweet}
-          template={darkClassicTemplate}
+          template={template}
+          cardColorOverride={cardColorOverride}
+          cardRadius={cardRadius}
+          cardPadding={cardPadding}
           canvasRef={cardCanvasRef}
           onHeightComputed={setCardHeight}
         />
@@ -153,7 +173,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
       ref={transformRef}
       frameWidth={frameWidth}
       frameHeight={frameHeight}
-      backgroundColor={Colors.SURFACE}
+      backgroundColor={frameBackgroundColor}
       minScale={0.05}
       initial={{ scale: initialFrameScale }}
     >
@@ -236,9 +256,24 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
       </View>
 
       <View style={styles.actions}>
+        <IconButton name="sliders" onPress={() => setAdjustTrayOpen(true)} disabled={saving || sharing} />
         <IconButton name="download" onPress={onSave} loading={saving} disabled={sharing} />
         <IconButton name="share-2" onPress={onShare} loading={sharing} disabled={saving} />
       </View>
+
+      <QuickAdjustTray
+        visible={adjustTrayOpen}
+        onClose={() => setAdjustTrayOpen(false)}
+        backgroundColor={frameBackgroundColor}
+        onBackgroundColorChange={setFrameBackgroundColor}
+        cardColor={cardColorOverride}
+        onCardColorChange={setCardColorOverride}
+        defaultCardColor={template.palette.cardSurface}
+        cardRadius={cardRadius}
+        onCardRadiusChange={setCardRadius}
+        cardPadding={cardPadding}
+        onCardPaddingChange={setCardPadding}
+      />
     </View>
   );
 });

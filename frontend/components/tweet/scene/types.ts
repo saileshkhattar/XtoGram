@@ -53,6 +53,10 @@ export type CardElement = {
   gapBefore?: number;
   // Defaults to true when omitted.
   visible?: boolean;
+  // Flow-mode only: ignore the card's standard PADDING inset for this one
+  // element and give it the full card width instead (x=0, width=CARD_WIDTH).
+  // Used by media.fullBleed. Ignored if `position` is set.
+  edgeToEdge?: boolean;
   // Absolute override — set once a user drags/resizes this element in the
   // advanced editor. Undefined = participate in flow layout instead.
   position?: ElementPosition;
@@ -87,9 +91,9 @@ export type ElementVariantProps = {
 export type ElementRenderProps = ElementVariantProps & {
   x: number;
   y: number;
-  // Present when this element has an absolute `position` (fixed box) —
-  // variants that need to fill/clip to a box (e.g. media crops) read this;
-  // flow-mode elements can ignore it and size themselves naturally.
+  // Present when this element has an absolute `position` (fixed box) or is
+  // a flow element (always populated by SceneRenderer either way) —
+  // variants that need to fill/clip to a box (e.g. media crops) read this.
   height?: number;
 };
 

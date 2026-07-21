@@ -17,6 +17,9 @@ import {
 import TopNavBar from '../../components/ui/TopNavbar';
 import HomeHero from '../../components/tweet/HomeHero';
 import CardResult,  { type CardResultHandle } from '../../components/tweet/CardResult';
+import { TemplateSheet, PEEK_HEIGHT } from '../../components/tweet/templatePicker/TemplateSheet';
+import { darkClassicTemplate } from '../../components/tweet/templates/definations';
+import type { CardTemplate } from '../../components/tweet/scene/types';
 import { Colors, Spacing } from '../../constants/theme';
 import ScatteredIcons from '../../utils/scatteredIcons';
 import { fetchTweetByUrl } from '../../utils/tweetApi';
@@ -38,6 +41,11 @@ export default function Home() {
   const [saving, setSaving] = useState(false);
   const [sharing, setSharing] = useState(false);
   const [isCardReady, setIsCardReady] = useState(false);
+  // Persists across a new tweet being pasted in the same session, same as
+  // how Instagram remembers your last-used filter rather than resetting it
+  // per photo. Change the default/reset behavior here if that's not the
+  // experience you want.
+  const [selectedTemplate, setSelectedTemplate] = useState<CardTemplate>(darkClassicTemplate);
 
   const cardResultRef = useRef<CardResultHandle>(null);
   const scatterFade = useRef(new Animated.Value(0)).current;
@@ -140,6 +148,7 @@ export default function Home() {
               ref={cardResultRef}
               tweet={tweet}
               previewWidth={PREVIEW_WIDTH}
+              template={selectedTemplate}
               onSave={handleSave}
               onShare={handleShare}
               saving={saving}
@@ -149,6 +158,10 @@ export default function Home() {
           )}
         </ScrollView>
       </KeyboardAvoidingView>
+
+      {tweet && (
+        <TemplateSheet selectedTemplateId={selectedTemplate.id} onSelect={setSelectedTemplate} />
+      )}
     </View>
   );
 }
@@ -162,6 +175,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingHorizontal: Spacing.screen,
     paddingTop: Spacing.lg,
-    paddingBottom: Spacing.xxl,
+    paddingBottom: Spacing.xxl + PEEK_HEIGHT,
   },
 });

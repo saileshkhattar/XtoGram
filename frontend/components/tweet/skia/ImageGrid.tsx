@@ -8,6 +8,7 @@ type Props = {
   y: number;
   width: number;
   height: number; // total height allotted to the grid
+  radius?: number; // corner radius per slot — defaults to IMAGE_RADIUS
 };
 
 // Mirrors X's actual image-grid rules:
@@ -16,7 +17,7 @@ type Props = {
 //   3 images -> one tall image left, two stacked right
 //   4 images -> even 2x2 grid
 // (Only up to 4 — the backend/parser doesn't fetch more than that.)
-export function ImageGrid({ media, x, y, width, height }: Props) {
+export function ImageGrid({ media, x, y, width, height, radius = IMAGE_RADIUS }: Props) {
   // Fixed number of hook calls regardless of how many images actually
   // exist — required since hooks can't be called conditionally/in a loop.
   const img0 = useImage(media[0]?.url);
@@ -34,33 +35,13 @@ export function ImageGrid({ media, x, y, width, height }: Props) {
       {slots.map((slot, i) => {
         const image = images[i];
         const clip = Skia.Path.Make();
-        clip.addRRect(
-          Skia.RRectXY(
-            Skia.XYWHRect(slot.x, slot.y, slot.width, slot.height),
-            IMAGE_RADIUS,
-            IMAGE_RADIUS,
-          ),
-        );
+        clip.addRRect(Skia.RRectXY(Skia.XYWHRect(slot.x, slot.y, slot.width, slot.height), radius, radius));
         return (
           <Group key={i} clip={clip}>
             {image ? (
-              <Image
-                image={image}
-                x={slot.x}
-                y={slot.y}
-                width={slot.width}
-                height={slot.height}
-                fit="cover"
-              />
+              <Image image={image} x={slot.x} y={slot.y} width={slot.width} height={slot.height} fit="cover" />
             ) : (
-              <RoundedRect
-                x={slot.x}
-                y={slot.y}
-                width={slot.width}
-                height={slot.height}
-                r={IMAGE_RADIUS}
-                color="#1E1C2A"
-              />
+              <RoundedRect x={slot.x} y={slot.y} width={slot.width} height={slot.height} r={radius} color="#1E1C2A" />
             )}
           </Group>
         );
@@ -69,9 +50,11 @@ export function ImageGrid({ media, x, y, width, height }: Props) {
   );
 }
 
-type Slot = { x: number; y: number; width: number; height: number };
+export type Slot = { x: number; y: number; width: number; height: number };
 
-function computeSlots(count: number, x: number, y: number, width: number, height: number): Slot[] {
+// Exported so variants that need the same 1/2/3/4 grid geometry (e.g.
+// Framed, to draw a border per slot) don't have to duplicate this math.
+export function computeSlots(count: number, x: number, y: number, width: number, height: number): Slot[] {
   if (count === 1) {
     return [{ x, y, width, height }];
   }

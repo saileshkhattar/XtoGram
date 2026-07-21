@@ -1,156 +1,180 @@
-// screens/Home.tsx
-import { useState } from 'react';
+// app/(tabs)/home.tsx
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  View, Text, StyleSheet, TextInput, TouchableOpacity,
-  ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView,
+  View,
+  StyleSheet,
+  Animated,
+  Easing,
+  KeyboardAvoidingView,
+  Platform,
+  Keyboard,
+  ScrollView,
+  Dimensions,
+  Alert,
+  LayoutAnimation,
+  UIManager,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Colors, Spacing, Radius, FontSize } from '../constants/theme';
-import { Screen } from '../App';
+import TopNavBar from '../../components/ui/TopNavbar';
+import HomeHero from '../../components/tweet/HomeHero';
+import CardResult,  { type CardResultHandle } from '../../components/tweet/CardResult';
+import { TemplateSheet, PEEK_HEIGHT } from '../../components/tweet/templatePicker/TemplateSheet';
+import { darkClassicTemplate } from '../../components/tweet/templates/definitions';
+import type { CardTemplate } from '../../components/tweet/scene/types';
+import { Colors, Spacing } from '../../constants/theme';
+import ScatteredIcons from '../../utils/scatteredIcons';
+import { fetchTweetByUrl } from '../../utils/tweetApi';
+import { saveImageToLibrary, shareImage } from '../../components/tweet/exportCard';
+import type { ParsedTweetResponse, Tweet } from '../../types/tweet';
 
-const API_BASE = 'http://YOUR_LOCAL_IP:3000'; // ← change this later
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
-type Props = {
-  navigate: (to: Screen, data?: any) => void;
-};
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const PREVIEW_WIDTH = SCREEN_WIDTH - Spacing.screen * 2;
 
-export default function HomeScreen({ navigate }: Props) {
+export default function Home() {
   const [url, setUrl] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [parsed, setParsed] = useState<ParsedTweetResponse | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [sharing, setSharing] = useState(false);
+  const [isCardReady, setIsCardReady] = useState(false);
+  // Persists across a new tweet being pasted in the same session, same as
+  // how Instagram remembers your last-used filter rather than resetting it
+  // per photo. Change the default/reset behavior here if that's not the
+  // experience you want.
+  const [selectedTemplate, setSelectedTemplate] = useState<CardTemplate>(darkClassicTemplate);
 
-  async function handleFetch() {
-    if (!url.trim()) return;
+  const cardResultRef = useRef<CardResultHandle>(null);
+  const scatterFade = useRef(new Animated.Value(0)).current;
+  const handleCardReady = useCallback(() => setIsCardReady(true), []);
+
+  useEffect(() => {
+    Animated.timing(scatterFade, {
+      toValue: 1,
+      duration: 1200,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+
+  let tweet: Tweet | null;
+
+  if (!parsed) {
+    tweet = null;
+  } else if (parsed.type === 'original') {
+    tweet = parsed.tweet;
+  } else {
+    const chainTweet = parsed.chain[parsed.chain.length - 1];
+    tweet = chainTweet ?? null;
+  }
+
+  const handleSubmit = async () => {
+    if (!url.trim() || loading) return;
+    Keyboard.dismiss();
+    setError('');
+    setIsCardReady(false);
     setLoading(true);
-    setError(null);
-
     try {
-      const res = await fetch(`${API_BASE}/tweet?url=${encodeURIComponent(url)}`);
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Something went wrong');
-      navigate('preview', data);
-    } catch (err: any) {
-      setError(err.message);
+      const data = await fetchTweetByUrl(url.trim());
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      setParsed(data);
+    } catch (e: any) {
+      setError(e.message || 'Could not fetch that tweet — check the link and try again');
     } finally {
       setLoading(false);
     }
-  }
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const image = cardResultRef.current?.getExportImage();
+      if (!image) throw new Error('Card is not ready yet');
+      await saveImageToLibrary(image);
+      Alert.alert('Saved', 'Card saved to your photo library.');
+    } catch (e: any) {
+      Alert.alert('Could not save', e.message || 'Something went wrong');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleShare = async () => {
+    setSharing(true);
+    try {
+      const image = cardResultRef.current?.getExportImage();
+      if (!image) throw new Error('Card is not ready yet');
+      await shareImage(image);
+    } catch (e: any) {
+      Alert.alert('Could not share', e.message || 'Something went wrong');
+    } finally {
+      setSharing(false);
+    }
+  };
 
   return (
-    <SafeAreaView style={styles.safe}>
+    <View style={styles.root}>
+      <ScatteredIcons fadeIn={scatterFade} />
+
+      <TopNavBar title="Home" showBack={false} />
+
       <KeyboardAvoidingView
-        style={styles.flex}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <ScrollView
-          contentContainerStyle={styles.container}
+          contentContainerStyle={styles.content}
           keyboardShouldPersistTaps="handled"
         >
-          <Text style={styles.heading}>New post</Text>
-          <Text style={styles.subheading}>Paste a tweet URL to get started</Text>
+          <HomeHero
+            url={url}
+            onChangeUrl={(text) => {
+              setUrl(text);
+              if (error) setError('');
+            }}
+            error={error}
+            loading={loading}
+            onSubmit={handleSubmit}
+            compact={isCardReady}
+          />
 
-          <View style={styles.card}>
-            <Text style={styles.label}>TWEET URL</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="https://x.com/user/status/..."
-              placeholderTextColor={Colors.TEXT_LOW}
-              value={url}
-              onChangeText={setUrl}
-              autoCapitalize="none"
-              autoCorrect={false}
-              keyboardType="url"
+          {tweet && (
+            <CardResult
+              key={tweet.id}
+              ref={cardResultRef}
+              tweet={tweet}
+              previewWidth={PREVIEW_WIDTH}
+              template={selectedTemplate}
+              onSave={handleSave}
+              onShare={handleShare}
+              saving={saving}
+              sharing={sharing}
+              onReady={handleCardReady}
             />
-
-            {error && <Text style={styles.errorText}>{error}</Text>}
-
-            <TouchableOpacity
-              style={[styles.btnPrimary, loading && { opacity: 0.6 }]}
-              onPress={handleFetch}
-              disabled={loading}
-              activeOpacity={0.85}
-            >
-              {loading
-                ? <ActivityIndicator color="#fff" size="small" />
-                : <Text style={styles.btnText}>Fetch tweet</Text>
-              }
-            </TouchableOpacity>
-          </View>
-
-          {loading && (
-            <Text style={styles.hint}>This may take a moment…</Text>
           )}
         </ScrollView>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+
+      {tweet && (
+        <TemplateSheet selectedTemplateId={selectedTemplate.id} onSelect={setSelectedTemplate} />
+      )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: Colors.BG_BASE },
-  flex: { flex: 1 },
-  container: {
+  root: {
+    flex: 1,
+    backgroundColor: Colors.BG_BASE,
+  },
+  content: {
     flexGrow: 1,
     paddingHorizontal: Spacing.screen,
-    paddingTop: Spacing.xl,
-    paddingBottom: Spacing.xl,
-  },
-  heading: {
-    fontSize: FontSize.h1,
-    fontWeight: '700',
-    color: Colors.TEXT_HIGH,
-    letterSpacing: -0.5,
-    marginBottom: Spacing.xs,
-  },
-  subheading: {
-    fontSize: FontSize.body,
-    color: Colors.TEXT_LOW,
-    marginBottom: Spacing.xl,
-  },
-  card: {
-    backgroundColor: Colors.SURFACE,
-    borderRadius: Radius.md,
-    borderWidth: 1,
-    borderColor: Colors.BORDER,
-    padding: Spacing.md,
-    gap: Spacing.sm,
-  },
-  label: {
-    fontSize: FontSize.caption,
-    color: Colors.TEXT_LOW,
-    fontWeight: '600',
-    letterSpacing: 0.8,
-  },
-  input: {
-    backgroundColor: Colors.BG_BASE,
-    borderRadius: Radius.sm,
-    borderWidth: 1,
-    borderColor: Colors.BORDER,
-    color: Colors.TEXT_HIGH,
-    fontSize: FontSize.body,
-    paddingHorizontal: Spacing.md,
-    paddingVertical: 12,
-  },
-  errorText: {
-    fontSize: FontSize.caption,
-    color: Colors.ERROR,
-  },
-  btnPrimary: {
-    backgroundColor: Colors.PRIMARY,
-    borderRadius: Radius.sm,
-    paddingVertical: 14,
-    alignItems: 'center',
-    marginTop: Spacing.xs,
-  },
-  btnText: {
-    color: '#FFFFFF',
-    fontSize: FontSize.label,
-    fontWeight: '600',
-  },
-  hint: {
-    marginTop: Spacing.lg,
-    textAlign: 'center',
-    color: Colors.TEXT_LOW,
-    fontSize: FontSize.caption,
+    paddingTop: Spacing.lg,
+    paddingBottom: Spacing.xxl + PEEK_HEIGHT,
   },
 });

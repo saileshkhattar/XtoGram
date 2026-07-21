@@ -1,7 +1,7 @@
 import { memo, useEffect, useMemo } from "react";
 import { Canvas, RoundedRect, useCanvasRef } from "@shopify/react-native-skia";
 import { useTweetFonts } from "../skia/fonts";
-import { CARD_WIDTH, PADDING } from "../skia/layout";
+import { CARD_WIDTH, PADDING, CARD_RADIUS } from "../skia/layout";
 import { elementRegistry } from "./registry";
 import type { CardElement, CardTemplate, ElementVariantProps } from "./types";
 import { type Tweet } from "../../../types/tweet";
@@ -11,6 +11,12 @@ type Props = {
   template: CardTemplate;
   canvasRef: ReturnType<typeof useCanvasRef>;
   onHeightComputed?: (height: number) => void;
+  // Quick-adjust overrides — layered on top of the template rather than
+  // part of it, same idea as palette being separate from structure.
+  // Undefined = use the template's/layout's own value.
+  cardColorOverride?: string;
+  cardRadius?: number;
+  cardPadding?: number;
 };
 
 // Fallback spacing between flow-mode elements when a template doesn't set
@@ -42,16 +48,20 @@ export const SceneRenderer = memo(function SceneRenderer({
   template,
   canvasRef,
   onHeightComputed,
+  cardColorOverride,
+  cardRadius,
+  cardPadding,
 }: Props) {
   const fontMgr = useTweetFonts();
-  const contentWidth = CARD_WIDTH - PADDING * 2;
+  const padding = cardPadding ?? PADDING;
+  const contentWidth = CARD_WIDTH - padding * 2;
 
   const layout = useMemo(() => {
     if (!fontMgr) return null;
 
     const visibleElements = template.elements.filter((el) => el.visible !== false);
     const positioned: PositionedElement[] = [];
-    let flowY = PADDING;
+    let flowY = padding;
     let flowElementCount = 0;
 
     for (const element of visibleElements) {
@@ -75,9 +85,14 @@ export const SceneRenderer = memo(function SceneRenderer({
         continue;
       }
 
+      // edgeToEdge elements (e.g. media.fullBleed) skip the card's usual
+      // padding inset and span the full card width instead.
+      const elementX = element.edgeToEdge ? 0 : padding;
+      const elementWidth = element.edgeToEdge ? CARD_WIDTH : contentWidth;
+
       const variantProps: ElementVariantProps = {
         data,
-        width: contentWidth,
+        width: elementWidth,
         palette: template.palette,
         style: element.style,
         fontMgr,
@@ -97,14 +112,14 @@ export const SceneRenderer = memo(function SceneRenderer({
 
       const gap = flowElementCount > 0 ? (element.gapBefore ?? DEFAULT_GAP) : 0;
       flowY += gap;
-      positioned.push({ element, x: PADDING, y: flowY, width: contentWidth, height, data });
+      positioned.push({ element, x: elementX, y: flowY, width: elementWidth, height, data });
       flowY += height;
       flowElementCount += 1;
     }
 
-    const cardHeight = flowY + PADDING;
+    const cardHeight = flowY + padding;
     return { positioned, cardHeight };
-  }, [fontMgr, tweet, template, contentWidth]);
+  }, [fontMgr, tweet, template, contentWidth, padding]);
 
   useEffect(() => {
     if (layout) onHeightComputed?.(layout.cardHeight);
@@ -119,8 +134,8 @@ export const SceneRenderer = memo(function SceneRenderer({
         y={0}
         width={CARD_WIDTH}
         height={layout.cardHeight}
-        r={0}
-        color={template.palette.cardSurface}
+        r={cardRadius ?? CARD_RADIUS}
+        color={cardColorOverride ?? template.palette.cardSurface}
       />
 
       {layout.positioned.map(({ element, x, y, width, height, data }) => {
