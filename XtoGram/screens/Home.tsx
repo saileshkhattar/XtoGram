@@ -92,7 +92,7 @@ export default function Home() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      const image = cardResultRef.current?.getExportImage();
+      const image = await cardResultRef.current?.getExportImage();
       if (!image) throw new Error('Card is not ready yet');
       await saveImageToLibrary(image);
       Alert.alert('Saved', 'Card saved to your photo library.');
@@ -106,7 +106,7 @@ export default function Home() {
   const handleShare = async () => {
     setSharing(true);
     try {
-      const image = cardResultRef.current?.getExportImage();
+      const image = await cardResultRef.current?.getExportImage();
       if (!image) throw new Error('Card is not ready yet');
       await shareImage(image);
     } catch (e: any) {

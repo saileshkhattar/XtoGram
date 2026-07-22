@@ -1,4 +1,13 @@
 import type { Tweet } from '../../../types/tweet';
+import { Image } from 'react-native';
+
+// Bundled locally so template thumbnails remain stable and render offline.
+// Keep these assets square/landscape; ImageGrid crops them consistently.
+const SAMPLE_MEDIA = [
+  Image.resolveAssetSource(require('../../../assets/placeholders/sample-city.jpg')).uri,
+  Image.resolveAssetSource(require('../../../assets/placeholders/sample-mountains.jpg')).uri,
+  Image.resolveAssetSource(require('../../../assets/placeholders/sample-desk.jpg')).uri,
+];
 
 // Never tied to a real user's tweet, so the same fixture — and therefore
 // the same cache key/thumbnail — is reused for every template preview
@@ -22,10 +31,7 @@ export const THUMBNAIL_SAMPLE_TWEET: Tweet = {
     verifiedType: 'blue',
     followers: 10234,
   },
-  // A real placeholder image — Avatar.tsx/ImageGrid.tsx already fall back
-  // to a neutral gray box if this fails to load (offline, etc.), so this
-  // is a quality-of-preview tradeoff, not a reliability risk.
-  media: [{ url: 'https://picsum.photos/seed/xtogram/1200/800', width: 1200, height: 800 }],
+  media: SAMPLE_MEDIA.map((url) => ({ url, width: 1200, height: 800 })),
   hashtags: [],
   mentions: [],
   quotedTweet: null,

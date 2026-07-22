@@ -1,4 +1,4 @@
-import { Skia, type SkImage } from '@shopify/react-native-skia';
+import { Skia, TileMode, type SkImage } from '@shopify/react-native-skia';
 import type { TransformState } from '../../hooks/useTransformGesture';
 
 type Options = {
@@ -7,10 +7,23 @@ type Options = {
   backgroundColor: string;
   cardImage: SkImage;
   transform: TransformState;
+  backgroundImageUri?: string;
+  backgroundImageBlur?: number;
 };
 
+/** Draws an image with the same cover behaviour as React Native Image. */
+function drawCoverImage(canvas: ReturnType<NonNullable<ReturnType<typeof Skia.Surface.MakeOffscreen>>['getCanvas']>, image: SkImage, width: number, height: number, blur = 0) {
+  const scale = Math.max(width / image.width(), height / image.height());
+  const destinationWidth = image.width() * scale;
+  const destinationHeight = image.height() * scale;
+  const left = (width - destinationWidth) / 2;
+  const top = (height - destinationHeight) / 2;
+  const paint = Skia.Paint();
+  if (blur > 0) paint.setImageFilter(Skia.ImageFilter.MakeBlur(blur, blur, TileMode.Clamp, null));
+  canvas.drawImageRect(image, Skia.XYWHRect(0, 0, image.width(), image.height()), Skia.XYWHRect(left, top, destinationWidth, destinationHeight), paint, true);
+}
 
-export function renderFramedImage(opts: Options): SkImage {
+export async function renderFramedImage(opts: Options): Promise<SkImage> {
   const surface =
     Skia.Surface.MakeOffscreen(opts.frameWidth, opts.frameHeight) ??
     Skia.Surface.Make(opts.frameWidth, opts.frameHeight);
@@ -18,6 +31,11 @@ export function renderFramedImage(opts: Options): SkImage {
 
   const canvas = surface.getCanvas();
   canvas.clear(Skia.Color(opts.backgroundColor));
+  if (opts.backgroundImageUri) {
+    const data = await Skia.Data.fromURI(opts.backgroundImageUri);
+    const backgroundImage = Skia.Image.MakeImageFromEncoded(data);
+    if (backgroundImage) drawCoverImage(canvas, backgroundImage, opts.frameWidth, opts.frameHeight, opts.backgroundImageBlur);
+  }
 
   const { cardImage, transform } = opts;
   const cx = opts.frameWidth / 2 + transform.translateX;

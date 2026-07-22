@@ -10,6 +10,7 @@ type Props = {
   frameHeight: number;
   backgroundColor?: string;
   backgroundImageUri?: string;
+  backgroundImageBlur?: number;
   minScale?: number;
   maxScale?: number;
   initial?: Partial<TransformState>;
@@ -29,7 +30,7 @@ export type TransformableViewHandle = {
 // what its children actually are.
 export const TransformableView = forwardRef<TransformableViewHandle, Props>(
   function TransformableView(
-    { children, frameWidth, frameHeight, backgroundColor, backgroundImageUri, minScale, maxScale, initial, onChange },
+    { children, frameWidth, frameHeight, backgroundColor, backgroundImageUri, backgroundImageBlur = 0, minScale, maxScale, initial, onChange },
     ref
   ) {
     const { gesture, animatedStyle, reset, getSnapshot, setScale } = useTransformGesture({
@@ -47,7 +48,7 @@ export const TransformableView = forwardRef<TransformableViewHandle, Props>(
 
     return (
       <View style={[styles.frame, { width: frameWidth, height: frameHeight, backgroundColor }]}>
-        {backgroundImageUri && <Image source={{ uri: backgroundImageUri }} style={StyleSheet.absoluteFill} resizeMode="cover" />}
+        {backgroundImageUri && <Image source={{ uri: backgroundImageUri }} style={StyleSheet.absoluteFill} resizeMode="cover" blurRadius={backgroundImageBlur} />}
         <GestureDetector gesture={gesture}>
           {/* Sized to match the frame exactly, with content centered inside it,
               so scale/rotate pivot around the frame's own center — the same

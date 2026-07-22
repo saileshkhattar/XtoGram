@@ -62,6 +62,8 @@ export default function Home() {
   // all redraw from one source of truth.
   const [backgroundImageUri, setBackgroundImageUri] = useState<string | undefined>();
   const [cardBackgroundImageUri, setCardBackgroundImageUri] = useState<string | undefined>();
+  const [backgroundImageBlur, setBackgroundImageBlur] = useState(0);
+  const [cardBackgroundImageBlur, setCardBackgroundImageBlur] = useState(0);
 
   // TODO (agreed, not yet implemented): switching to a genuinely different
   // template should reset frameBackgroundColor/cardColorOverride/cardRadius
@@ -117,7 +119,7 @@ export default function Home() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      const image = cardResultRef.current?.getExportImage();
+      const image = await cardResultRef.current?.getExportImage();
       if (!image) throw new Error('Card is not ready yet');
       await saveImageToLibrary(image);
       Alert.alert('Saved', 'Card saved to your photo library.');
@@ -131,7 +133,7 @@ export default function Home() {
   const handleShare = async () => {
     setSharing(true);
     try {
-      const image = cardResultRef.current?.getExportImage();
+      const image = await cardResultRef.current?.getExportImage();
       if (!image) throw new Error('Card is not ready yet');
       await shareImage(image);
     } catch (e: any) {
@@ -186,6 +188,8 @@ export default function Home() {
               cardPadding={cardPadding}
               backgroundImageUri={backgroundImageUri}
               cardBackgroundImageUri={cardBackgroundImageUri}
+              backgroundImageBlur={backgroundImageBlur}
+              cardBackgroundImageBlur={cardBackgroundImageBlur}
               onOpenAdjust={() => editSheetRef.current?.expand('adjust')}
             />
           )}
@@ -212,6 +216,10 @@ export default function Home() {
           onBackgroundImageChange={setBackgroundImageUri}
           cardBackgroundImageUri={cardBackgroundImageUri}
           onCardBackgroundImageChange={setCardBackgroundImageUri}
+          backgroundImageBlur={backgroundImageBlur}
+          onBackgroundImageBlurChange={setBackgroundImageBlur}
+          cardBackgroundImageBlur={cardBackgroundImageBlur}
+          onCardBackgroundImageBlurChange={setCardBackgroundImageBlur}
         />
       )}
     </View>

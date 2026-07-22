@@ -12,8 +12,8 @@ type Props = {
 // Tall rectangle rather than a square — closer to an actual card's own
 // proportions, and gives a real preview image (once generated) more room
 // to read clearly than a square crop would.
-const THUMB_WIDTH = 76;
-const THUMB_HEIGHT = 112;
+const THUMB_WIDTH = 108;
+const THUMB_HEIGHT = 156;
 
 export function TemplateThumb({ template, selected, onPress }: Props) {
   const thumbnailUri = useTemplateThumbnail(template);

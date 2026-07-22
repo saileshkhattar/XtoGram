@@ -14,7 +14,7 @@ import { renderFramedImage } from './exportFrame';
 import type { Tweet } from '../../types/tweet';
 
 export type CardResultHandle = {
-  getExportImage: () => SkImage;
+  getExportImage: () => Promise<SkImage>;
 };
 
 type Props = {
@@ -40,6 +40,8 @@ type Props = {
   cardPadding: number;
   backgroundImageUri?: string;
   cardBackgroundImageUri?: string;
+  backgroundImageBlur: number;
+  cardBackgroundImageBlur: number;
   onOpenAdjust: () => void;
 };
 
@@ -67,6 +69,8 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
     cardPadding,
     backgroundImageUri,
     cardBackgroundImageUri,
+    backgroundImageBlur,
+    cardBackgroundImageBlur,
     onOpenAdjust,
   },
   ref
@@ -102,7 +106,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
   useImperativeHandle(
     ref,
     () => ({
-      getExportImage: () => {
+      getExportImage: async () => {
         const canvas = cardCanvasRef.current;
         if (!canvas) throw new Error('Card is not ready yet');
         const cardImage = canvas.makeImageSnapshot();
@@ -130,6 +134,8 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
           frameWidth: frameWidth * exportScale,
           frameHeight: frameHeight * exportScale,
           backgroundColor: frameBackgroundColor,
+          backgroundImageUri,
+          backgroundImageBlur,
           cardImage,
           transform: {
             translateX: t.translateX * exportScale,
@@ -140,7 +146,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
         });
       },
     }),
-    [showBackground, frameWidth, frameHeight, previewScale, frameBackgroundColor]
+    [showBackground, frameWidth, frameHeight, previewScale, frameBackgroundColor, backgroundImageUri, backgroundImageBlur]
   );
 
   // Do not collapse the home hero until Skia has had a frame to paint the new
@@ -180,6 +186,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
           cardRadius={cardRadius}
           cardPadding={cardPadding}
           cardBackgroundImageUri={cardBackgroundImageUri}
+          cardBackgroundImageBlur={cardBackgroundImageBlur}
           canvasRef={cardCanvasRef}
           onHeightComputed={setCardHeight}
         />
@@ -198,6 +205,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
       frameHeight={frameHeight}
       backgroundColor={frameBackgroundColor}
       backgroundImageUri={backgroundImageUri}
+      backgroundImageBlur={backgroundImageBlur}
       minScale={0.05}
       initial={{ scale: initialFrameScale }}
     >

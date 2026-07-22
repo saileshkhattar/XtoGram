@@ -1,5 +1,5 @@
 import { memo, useEffect, useMemo } from "react";
-import { Canvas, Image as SkiaImage, RoundedRect, useCanvasRef, useImage } from "@shopify/react-native-skia";
+import { Blur, Canvas, Group, Image as SkiaImage, RoundedRect, useCanvasRef, useImage } from "@shopify/react-native-skia";
 import { useTweetFonts } from "../skia/fonts";
 import { CARD_WIDTH, PADDING, CARD_RADIUS } from "../skia/layout";
 import { elementRegistry } from "./registry";
@@ -18,6 +18,7 @@ type Props = {
   cardRadius?: number;
   cardPadding?: number;
   cardBackgroundImageUri?: string;
+  cardBackgroundImageBlur?: number;
 };
 
 // Fallback spacing between flow-mode elements when a template doesn't set
@@ -53,6 +54,7 @@ export const SceneRenderer = memo(function SceneRenderer({
   cardRadius,
   cardPadding,
   cardBackgroundImageUri,
+  cardBackgroundImageBlur = 0,
 }: Props) {
   const fontMgr = useTweetFonts();
   const backgroundImage = useImage(cardBackgroundImageUri);
@@ -133,7 +135,10 @@ export const SceneRenderer = memo(function SceneRenderer({
   return (
     <Canvas ref={canvasRef} style={{ width: CARD_WIDTH, height: layout.cardHeight }}>
       {backgroundImage ? (
-        <SkiaImage image={backgroundImage} x={0} y={0} width={CARD_WIDTH} height={layout.cardHeight} fit="cover" />
+        <Group>
+          {cardBackgroundImageBlur > 0 && <Blur blur={cardBackgroundImageBlur} />}
+          <SkiaImage image={backgroundImage} x={0} y={0} width={CARD_WIDTH} height={layout.cardHeight} fit="cover" />
+        </Group>
       ) : (
         <RoundedRect x={0} y={0} width={CARD_WIDTH} height={layout.cardHeight} r={cardRadius ?? CARD_RADIUS} color={cardColorOverride ?? template.palette.cardSurface} />
       )}

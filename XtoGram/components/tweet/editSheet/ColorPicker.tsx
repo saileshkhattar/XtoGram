@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
-import { PanResponder, StyleSheet, Text, View } from 'react-native';
+import { PanResponder, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Colors, FontSize, Radius, Spacing } from '../../../constants/theme';
 
@@ -45,6 +45,9 @@ export function ColorPicker({ color, onChange }: Props) {
   const hsvRef = useRef(hsv);
   hsvRef.current = hsv;
 
+  // Decorative children are pointerEvents="none", so locationX/locationY
+  // always belong to this picker surface — no stale screen measurement while
+  // the parent sheet is animating up or down.
   const updateSaturationValue = (x: number, y: number) => {
     const next = { ...hsvRef.current, s: clamp(x / pickerSize.width), v: 1 - clamp(y / pickerSize.height) };
     onChange(hsvToHex(next));
@@ -66,14 +69,14 @@ export function ColorPicker({ color, onChange }: Props) {
 
   return (
     <View style={styles.wrap}>
-      <View style={styles.picker} onLayout={(event) => setPickerSize(event.nativeEvent.layout)} {...colorPan.panHandlers}>
-        <LinearGradient colors={['#FFFFFF', hueColor(hsv.h)]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={StyleSheet.absoluteFill} />
-        <LinearGradient colors={['transparent', '#000000']} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill} />
-        <View style={[styles.colorThumb, { left: `${hsv.s * 100}%`, top: `${(1 - hsv.v) * 100}%` }]} />
+      <View style={styles.picker} onLayout={(event: LayoutChangeEvent) => setPickerSize(event.nativeEvent.layout)} {...colorPan.panHandlers}>
+        <LinearGradient pointerEvents="none" colors={['#FFFFFF', hueColor(hsv.h)]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={StyleSheet.absoluteFill} />
+        <LinearGradient pointerEvents="none" colors={['transparent', '#000000']} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill} />
+        <View pointerEvents="none" style={[styles.colorThumb, { left: `${hsv.s * 100}%`, top: `${(1 - hsv.v) * 100}%` }]} />
       </View>
-      <View style={styles.hueTrack} onLayout={(event) => setHueWidth(event.nativeEvent.layout.width)} {...huePan.panHandlers}>
-        <LinearGradient colors={['#FF0000', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#FF00FF', '#FF0000']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={StyleSheet.absoluteFill} />
-        <View style={[styles.hueThumb, { left: `${(hsv.h / 360) * 100}%` }]} />
+      <View style={styles.hueTrack} onLayout={(event: LayoutChangeEvent) => setHueWidth(event.nativeEvent.layout.width)} {...huePan.panHandlers}>
+        <LinearGradient pointerEvents="none" colors={['#FF0000', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#FF00FF', '#FF0000']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={StyleSheet.absoluteFill} />
+        <View pointerEvents="none" style={[styles.hueThumb, { left: `${(hsv.h / 360) * 100}%` }]} />
       </View>
       <Text style={styles.value}>{color.toUpperCase()}</Text>
     </View>

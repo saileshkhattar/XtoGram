@@ -1,5 +1,6 @@
 import { forwardRef, useImperativeHandle, useMemo, useState } from 'react';
 import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { BlurView } from 'expo-blur';
 import Animated, {
   Easing,
   interpolate,
@@ -20,7 +21,6 @@ import { useRecentTemplates } from '../../../hooks/useRecentTemplate';
 import { cardTemplates } from '../templates/definations';
 import type { CardTemplate } from '../scene/types';
 import type { Tweet } from '../../../types/tweet';
-import { TemplatePreviewModal } from './TemplatePreviewModal';
 
 export type EditSheetTab = 'templates' | 'adjust';
 
@@ -48,6 +48,10 @@ type Props = {
   onBackgroundImageChange: (uri: string | undefined) => void;
   cardBackgroundImageUri?: string;
   onCardBackgroundImageChange: (uri: string | undefined) => void;
+  backgroundImageBlur: number;
+  onBackgroundImageBlurChange: (value: number) => void;
+  cardBackgroundImageBlur: number;
+  onCardBackgroundImageBlurChange: (value: number) => void;
 };
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -84,6 +88,10 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
     onBackgroundImageChange,
     cardBackgroundImageUri,
     onCardBackgroundImageChange,
+    backgroundImageBlur,
+    onBackgroundImageBlurChange,
+    cardBackgroundImageBlur,
+    onCardBackgroundImageBlurChange,
   },
   ref
 ) {
@@ -93,7 +101,6 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
   // decide what to mount (docked preview, tab bar) — the actual open/close
   // motion is driven by the shared value below, not this.
   const [expandedUI, setExpandedUI] = useState(false);
-  const [templatePreview, setTemplatePreview] = useState<CardTemplate | null>(null);
 
   const { recentIds, recordTemplateUsed } = useRecentTemplates();
   const recentTemplates = useMemo(() => {
@@ -142,10 +149,9 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
       setExpanded(shouldExpand);
     });
 
-  const handleApplyTemplate = (next: CardTemplate) => {
+  const handleSelectTemplate = (next: CardTemplate) => {
     onSelectTemplate(next);
     recordTemplateUsed(next.id);
-    setTemplatePreview(null);
   };
 
   const sheetStyle = useAnimatedStyle(() => ({
@@ -165,6 +171,7 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
         sheetStyle,
       ]}
     >
+      {expandedUI && <BlurView intensity={100} tint="dark" experimentalBlurMethod="dimezisBlurView" style={styles.focusBackdrop} />}
       {/* Drag surface: the handle, plus (peeked) the "For you" row, or
           (expanded) the docked card + tab bar. Deliberately excludes the
           scrollable tab content below, so dragging there scrolls instead
@@ -189,7 +196,7 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
               title="For you"
               templates={recentTemplates}
               selectedId={selectedTemplateId}
-              onSelect={setTemplatePreview}
+              onSelect={handleSelectTemplate}
             />
           )}
 
@@ -214,7 +221,7 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
               a visibility change, so Skia thumbnails and picker state do not
               restart and flash when moving back and forth. */}
           <View style={tab === 'templates' ? undefined : styles.inactiveTab}>
-            <TemplatesTab selectedTemplateId={selectedTemplateId} onSelect={setTemplatePreview} />
+            <TemplatesTab selectedTemplateId={selectedTemplateId} onSelect={handleSelectTemplate} />
           </View>
           <View style={tab === 'adjust' ? undefined : styles.inactiveTab}>
             <AdjustTab
@@ -231,14 +238,17 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
               onBackgroundImageChange={onBackgroundImageChange}
               cardImageUri={cardBackgroundImageUri}
               onCardImageChange={onCardBackgroundImageChange}
+              backgroundImageBlur={backgroundImageBlur}
+              onBackgroundImageBlurChange={onBackgroundImageBlurChange}
+              cardImageBlur={cardBackgroundImageBlur}
+              onCardImageBlurChange={onCardBackgroundImageBlurChange}
             />
           </View>
         </ScrollView>
       )}
       <Animated.View pointerEvents="none" style={[styles.dockedPreview, dockStyle]}>
-        <DockedCardPreview tweet={tweet} template={template} cardColorOverride={cardColor} cardRadius={cardRadius} cardPadding={cardPadding} cardBackgroundImageUri={cardBackgroundImageUri} />
+        <DockedCardPreview tweet={tweet} template={template} cardColorOverride={cardColor} cardRadius={cardRadius} cardPadding={cardPadding} cardBackgroundImageUri={cardBackgroundImageUri} backgroundColor={backgroundColor} backgroundImageUri={backgroundImageUri} backgroundImageBlur={backgroundImageBlur} cardBackgroundImageBlur={cardBackgroundImageBlur} />
       </Animated.View>
-      <TemplatePreviewModal template={templatePreview} tweet={tweet} onClose={() => setTemplatePreview(null)} onApply={handleApplyTemplate} />
     </Animated.View>
   );
 });
@@ -277,6 +287,7 @@ const styles = StyleSheet.create({
   tabLabelActive: { color: Colors.TEXT_HIGH, borderBottomWidth: 2, borderBottomColor: Colors.PRIMARY },
   content: { marginTop: Spacing.md },
   contentInner: { paddingBottom: Spacing.lg },
-  dockedPreview: { position: 'absolute', bottom: EXPANDED_HEIGHT + Spacing.md, left: 0, right: 0 },
+  focusBackdrop: { position: 'absolute', top: -SCREEN_HEIGHT, bottom: EXPANDED_HEIGHT, left: -Spacing.md, right: -Spacing.md },
+  dockedPreview: { position: 'absolute', bottom: EXPANDED_HEIGHT + Spacing.xl, left: 0, right: 0, zIndex: 2 },
   inactiveTab: { display: 'none' },
 });

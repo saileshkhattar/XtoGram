@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Colors, Spacing, FontSize } from '../../../constants/theme';
 import { ColorSwatchRow } from '../quickAdjust/ColorsWatchRow';
-import { Stepper } from '../quickAdjust/Stepper';
+import { ValueSlider } from '../quickAdjust/ValueSlider';
 import { ColorPicker } from './ColorPicker';
 import { ImagePickerButton } from './ImagePickerButton';
 
@@ -22,6 +22,10 @@ type Props = {
   onBackgroundImageChange: (uri: string | undefined) => void;
   cardImageUri?: string;
   onCardImageChange: (uri: string | undefined) => void;
+  backgroundImageBlur: number;
+  onBackgroundImageBlurChange: (value: number) => void;
+  cardImageBlur: number;
+  onCardImageBlurChange: (value: number) => void;
 };
 
 const BACKGROUND_SWATCHES = ['#13121E', '#0A0A0F', '#1E1C2A', '#2D1F6E', '#6C5CE7', '#000000', '#F5F4FA', '#FFFFFF'];
@@ -49,6 +53,10 @@ export function AdjustTab({
   onBackgroundImageChange,
   cardImageUri,
   onCardImageChange,
+  backgroundImageBlur,
+  onBackgroundImageBlurChange,
+  cardImageBlur,
+  onCardImageBlurChange,
 }: Props) {
   const [subTab, setSubTab] = useState<SubTab>('background');
 
@@ -65,6 +73,10 @@ export function AdjustTab({
           Card
         </Text>
       </View>
+      <View style={styles.scrollHint}>
+        <Text style={styles.scrollHintText}>Swipe up for more editing options</Text>
+        <Text style={styles.scrollHintArrow}>↓</Text>
+      </View>
 
       {subTab === 'background' && (
         <View style={styles.group}>
@@ -72,6 +84,7 @@ export function AdjustTab({
           <ColorSwatchRow swatches={BACKGROUND_SWATCHES} selected={backgroundColor} onSelect={onBackgroundColorChange} />
           <ColorPicker color={backgroundColor} onChange={onBackgroundColorChange} />
           <ImagePickerButton label="background" imageUri={backgroundImageUri} onChange={onBackgroundImageChange} />
+          {backgroundImageUri && <><Text style={styles.groupLabel}>Image blur</Text><ValueSlider value={backgroundImageBlur} min={0} max={40} onChange={onBackgroundImageBlurChange} /></>}
         </View>
       )}
 
@@ -87,12 +100,13 @@ export function AdjustTab({
           />
           <ColorPicker color={cardColor ?? defaultCardColor} onChange={onCardColorChange} />
           <ImagePickerButton label="card" imageUri={cardImageUri} onChange={onCardImageChange} />
+          {cardImageUri && <><Text style={styles.groupLabel}>Image blur</Text><ValueSlider value={cardImageBlur} min={0} max={40} onChange={onCardImageBlurChange} /></>}
 
           <Text style={styles.groupLabel}>Corner rounding</Text>
-          <Stepper value={cardRadius} min={RADIUS_MIN} max={RADIUS_MAX} step={RADIUS_STEP} onChange={onCardRadiusChange} />
+          <ValueSlider value={cardRadius} min={RADIUS_MIN} max={RADIUS_MAX} step={RADIUS_STEP} onChange={onCardRadiusChange} />
 
           <Text style={styles.groupLabel}>Padding</Text>
-          <Stepper value={cardPadding} min={PADDING_MIN} max={PADDING_MAX} step={PADDING_STEP} onChange={onCardPaddingChange} />
+          <ValueSlider value={cardPadding} min={PADDING_MIN} max={PADDING_MAX} step={PADDING_STEP} onChange={onCardPaddingChange} />
         </View>
       )}
     </View>
@@ -106,4 +120,7 @@ const styles = StyleSheet.create({
   subTabLabelActive: { color: Colors.TEXT_HIGH, borderBottomWidth: 2, borderBottomColor: Colors.PRIMARY },
   group: { gap: Spacing.sm },
   groupLabel: { color: Colors.TEXT_HIGH, fontSize: FontSize.label, fontWeight: '600' },
+  scrollHint: { flexDirection: 'row', alignItems: 'center', gap: Spacing.xs },
+  scrollHintText: { color: Colors.TEXT_LOW, fontSize: FontSize.caption },
+  scrollHintArrow: { color: Colors.TEXT_LOW, fontSize: FontSize.bodySmall },
 });
