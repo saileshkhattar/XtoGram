@@ -1,5 +1,6 @@
-import { Pressable, View, Text, StyleSheet } from 'react-native';
+import { Pressable, View, Text, Image, StyleSheet } from 'react-native';
 import { Colors, Radius, FontSize } from '../../../constants/theme';
+import { useTemplateThumbnail } from '../thumbnail/useTemplateThumbnail';
 import type { CardTemplate } from '../scene/types';
 
 type Props = {
@@ -8,14 +9,15 @@ type Props = {
   onPress: () => void;
 };
 
-const THUMB_SIZE = 64;
+// Tall rectangle rather than a square — closer to an actual card's own
+// proportions, and gives a real preview image (once generated) more room
+// to read clearly than a square crop would.
+const THUMB_WIDTH = 76;
+const THUMB_HEIGHT = 112;
 
-// No real thumbnail rendering yet (CardTemplate.thumbnailUri is unset for
-// every template so far) — a swatch built from the template's own palette
-// stands in for now. Swap this for an actual rendered preview once
-// thumbnail generation exists; nothing about the surrounding layout needs
-// to change when that happens.
 export function TemplateThumb({ template, selected, onPress }: Props) {
+  const thumbnailUri = useTemplateThumbnail(template);
+
   return (
     <Pressable onPress={onPress} style={styles.wrap} hitSlop={8}>
       <View
@@ -28,7 +30,14 @@ export function TemplateThumb({ template, selected, onPress }: Props) {
           },
         ]}
       >
-        <View style={[styles.accentDot, { backgroundColor: template.palette.accent }]} />
+        {thumbnailUri ? (
+          <Image source={{ uri: thumbnailUri }} style={styles.image} resizeMode="cover" />
+        ) : (
+          // Loading-state fallback: a plain color swatch (palette accent)
+          // until the real preview finishes generating — first mount only,
+          // instant from cache on every mount after that.
+          <View style={[styles.accentDot, { backgroundColor: template.palette.accent }]} />
+        )}
       </View>
       <Text numberOfLines={1} style={[styles.label, selected && styles.labelSelected]}>
         {template.name}
@@ -38,14 +47,16 @@ export function TemplateThumb({ template, selected, onPress }: Props) {
 }
 
 const styles = StyleSheet.create({
-  wrap: { width: THUMB_SIZE + 8, alignItems: 'center', gap: 6 },
+  wrap: { width: THUMB_WIDTH + 8, alignItems: 'center', gap: 6 },
   swatch: {
-    width: THUMB_SIZE,
-    height: THUMB_SIZE,
+    width: THUMB_WIDTH,
+    height: THUMB_HEIGHT,
     borderRadius: Radius.md,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
+  image: { width: '100%', height: '100%' },
   accentDot: { width: 14, height: 14, borderRadius: Radius.full },
   label: { fontSize: FontSize.caption, color: Colors.TEXT_LOW, textAlign: 'center' },
   labelSelected: { color: Colors.TEXT_HIGH, fontWeight: '600' },

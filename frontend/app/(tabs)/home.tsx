@@ -18,7 +18,8 @@ import TopNavBar from '../../components/ui/TopNavbar';
 import HomeHero from '../../components/tweet/HomeHero';
 import CardResult, { type CardResultHandle } from '../../components/tweet/CardResult';
 import { EditSheet, type EditSheetHandle, PEEK_HEIGHT } from '../../components/tweet/editSheet/EditSheet';
-import { darkClassicTemplate } from '../../components/tweet/templates/definations';
+import { ThumbnailGeneratorProvider } from '../../components/tweet/thumbnails/ThumbnailGeneratorProvider';
+import { darkClassicTemplate } from '../../components/tweet/templates/definitions';
 import type { CardTemplate } from '../../components/tweet/scene/types';
 import { PADDING } from '../../components/tweet/skia/layout';
 import { Colors, Spacing } from '../../constants/theme';
@@ -137,7 +138,8 @@ export default function Home() {
   };
 
   return (
-    <View style={styles.root}>
+    <ThumbnailGeneratorProvider>
+      <View style={styles.root}>
       <ScatteredIcons fadeIn={scatterFade} />
 
       <TopNavBar title="Home" showBack={false} />
@@ -203,6 +205,7 @@ export default function Home() {
         />
       )}
     </View>
+    </ThumbnailGeneratorProvider>
   );
 }
 

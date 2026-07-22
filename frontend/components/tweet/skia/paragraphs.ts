@@ -9,6 +9,7 @@ import {
   LINE_HEIGHT_BODY,
   LINE_HEIGHT_QUOTE,
   NAME_HANDLE_GAP,
+  MAX_BODY_TEXT_CHARS,
 } from "./layout";
 
 // All Skia paragraph building is centralized here as plain functions
@@ -35,6 +36,19 @@ function buildParagraph(
   const paragraph = builder.build();
   paragraph.layout(opts.maxWidth);
   return paragraph;
+}
+
+// Caps unusually long tweet bodies (X Premium posts can run up to 25,000
+// characters) so the card can't grow unboundedly tall. Free-tier tweets
+// (280 chars) are always well under maxChars and are returned unchanged.
+// Cuts at the last word boundary rather than mid-word, unless there's no
+// reasonable break point nearby, in which case it falls back to a hard cut.
+function truncateBodyText(text: string, maxChars: number): string {
+  if (text.length <= maxChars) return text;
+  const slice = text.slice(0, maxChars);
+  const lastSpace = slice.lastIndexOf(" ");
+  const cut = lastSpace > maxChars * 0.6 ? slice.slice(0, lastSpace) : slice;
+  return `${cut.trimEnd()}…`;
 }
 
 export interface AuthorRowLayout {
@@ -96,7 +110,7 @@ export function buildBodyTextLayout(
   maxWidth: number,
   color: string = "#F0EEF8",
 ): BodyTextLayout {
-  const paragraph = buildParagraph(fontMgr, text, {
+  const paragraph = buildParagraph(fontMgr, truncateBodyText(text, MAX_BODY_TEXT_CHARS), {
     size: FONT_SIZE_BODY,
     weight: FONT_WEIGHT_REGULAR,
     color,
@@ -116,7 +130,7 @@ export function buildQuoteTextLayout(
   maxWidth: number,
   color: string = "#F0EEF8",
 ): BodyTextLayout {
-  const paragraph = buildParagraph(fontMgr, text, {
+  const paragraph = buildParagraph(fontMgr, truncateBodyText(text, MAX_BODY_TEXT_CHARS), {
     size: FONT_SIZE_QUOTE,
     weight: FONT_WEIGHT_REGULAR,
     color,

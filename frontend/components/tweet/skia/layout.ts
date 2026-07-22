@@ -45,3 +45,13 @@ export const FONT_SIZE_METRIC_MINIMAL = 24;
 
 // media.framed — border drawn on top of the default image grid
 export const IMAGE_BORDER_WIDTH = 4;
+
+// --- Added for body-text length cap (step 7) ---
+
+// X Premium posts can run up to 25,000 characters, shown truncated with
+// "Show more" in X's own timeline. Free-tier tweets (280 chars) are never
+// affected by this — it only kicks in for unusually long posts, to keep
+// the card from growing unboundedly tall. Applied in paragraphs.ts,
+// covers bodyText.default and bodyText.quote automatically since both
+// route through the same builder functions.
+export const MAX_BODY_TEXT_CHARS = 560;
