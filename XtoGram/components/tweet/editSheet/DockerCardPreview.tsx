@@ -27,29 +27,26 @@ type Props = {
 const FRAME_WIDTH = Math.min(Dimensions.get('window').width - Spacing.screen * 2, 392);
 const FRAME_PADDING = Spacing.md;
 const CARD_WIDTH_IN_PREVIEW = FRAME_WIDTH - FRAME_PADDING * 2;
-const DOCK_MAX_HEIGHT = 360;
+const CARD_MAX_HEIGHT_IN_PREVIEW = FRAME_WIDTH - FRAME_PADDING * 2;
 
 export function DockedCardPreview({ tweet, template, cardColorOverride, cardRadius, cardPadding, cardBackgroundImageUri, backgroundColor, backgroundImageUri, backgroundImageBlur, cardBackgroundImageBlur }: Props) {
   const canvasRef = useCanvasRef();
   const [cardHeight, setCardHeight] = useState(0);
-  const scale = CARD_WIDTH_IN_PREVIEW / CARD_WIDTH;
-
-  // IMPORTANT: the outer box is sized to the ALREADY-SCALED result
-  // (scaledHeight), not the card's raw height. transform:scale shrinks an
-  // element toward its own center — if the outer container's size doesn't
-  // exactly match the scaled visual size, the result crops off-center
-  // (same bug fixed earlier in TransformableView's frame pivot). Giving the
-  // outer box the exact scaled dimensions keeps both centers coincident.
-  // Only in the rare case of an unusually tall card (scaledHeight exceeding
-  // the cap) does this fall back to a symmetric center-crop rather than a
-  // top-anchored one — an acceptable tradeoff for a small dock preview.
-  const scaledHeight = cardHeight ? Math.min(cardHeight * scale + FRAME_PADDING * 2, DOCK_MAX_HEIGHT) : DOCK_MAX_HEIGHT;
+  // A fixed square matches the default 1:1 frame. Fit the whole card into
+  // it rather than letting a tall tweet crop away the user's background.
+  const scale = cardHeight
+    ? Math.min(CARD_WIDTH_IN_PREVIEW / CARD_WIDTH, CARD_MAX_HEIGHT_IN_PREVIEW / cardHeight)
+    : CARD_WIDTH_IN_PREVIEW / CARD_WIDTH;
+  const cardPreviewWidth = CARD_WIDTH * scale;
+  const cardPreviewHeight = cardHeight * scale;
+  const cardLeft = (FRAME_WIDTH - cardPreviewWidth) / 2;
+  const cardTop = (FRAME_WIDTH - cardPreviewHeight) / 2;
 
   return (
     <View
       style={{
         width: FRAME_WIDTH,
-        height: scaledHeight,
+        height: FRAME_WIDTH,
         alignSelf: 'center',
         overflow: 'hidden',
         borderRadius: Radius.md,
@@ -57,7 +54,7 @@ export function DockedCardPreview({ tweet, template, cardColorOverride, cardRadi
       }}
     >
       {backgroundImageUri && <Image source={{ uri: backgroundImageUri }} resizeMode="cover" blurRadius={backgroundImageBlur} style={StyleSheet.absoluteFill} />}
-      <View style={{ width: CARD_WIDTH, minHeight: DOCK_MAX_HEIGHT / scale, margin: FRAME_PADDING, transform: [{ scale }], transformOrigin: 'top left' }}>
+      <View style={{ position: 'absolute', left: cardLeft, top: cardTop, width: CARD_WIDTH, minHeight: CARD_MAX_HEIGHT_IN_PREVIEW / scale, transform: [{ scale }], transformOrigin: 'top left' }}>
         <SceneRenderer
           tweet={tweet}
           template={template}

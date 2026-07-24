@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { ActivityIndicator, View, StyleSheet } from 'react-native';
+import { router } from 'expo-router';
 import { useCanvasRef, type SkImage } from '@shopify/react-native-skia';
 import { SceneRenderer } from './scene/ScreenRenderer';
 import { darkClassicTemplate } from './templates/definations';
@@ -40,8 +41,8 @@ type Props = {
   cardPadding: number;
   backgroundImageUri?: string;
   cardBackgroundImageUri?: string;
-  backgroundImageBlur: number;
-  cardBackgroundImageBlur: number;
+  backgroundImageBlur?: number;
+  cardBackgroundImageBlur?: number;
   onOpenAdjust: () => void;
 };
 
@@ -69,8 +70,8 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
     cardPadding,
     backgroundImageUri,
     cardBackgroundImageUri,
-    backgroundImageBlur,
-    cardBackgroundImageBlur,
+    backgroundImageBlur = 0,
+    cardBackgroundImageBlur = 0,
     onOpenAdjust,
   },
   ref
@@ -289,6 +290,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
 
       <View style={styles.actions}>
         <IconButton name="sliders" onPress={onOpenAdjust} disabled={saving || sharing} />
+        <IconButton name="edit-3" onPress={() => router.push('/edit-advanced')} disabled={saving || sharing} />
         <IconButton name="download" onPress={onSave} loading={saving} disabled={sharing} />
         <IconButton name="share-2" onPress={onShare} loading={sharing} disabled={saving} />
       </View>

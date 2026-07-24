@@ -1,9 +1,10 @@
 import { memo, useEffect, useMemo } from "react";
 import { Blur, Canvas, Group, Image as SkiaImage, RoundedRect, useCanvasRef, useImage } from "@shopify/react-native-skia";
 import { useTweetFonts } from "../skia/fonts";
-import { CARD_WIDTH, PADDING, CARD_RADIUS } from "../skia/layout";
+import { CARD_WIDTH, CARD_RADIUS } from "../skia/layout";
 import { elementRegistry } from "./registry";
-import type { CardElement, CardTemplate, ElementVariantProps } from "./types";
+import { computeElementLayout, type ComputedLayout } from "./Layoutengine";
+import type { CardTemplate } from "./types";
 import { type Tweet } from "../../../types/tweet";
 
 type Props = {
@@ -11,6 +12,11 @@ type Props = {
   template: CardTemplate;
   canvasRef: ReturnType<typeof useCanvasRef>;
   onHeightComputed?: (height: number) => void;
+  // Reports the exact same positioned-elements list this instance painted
+  // from, so a consumer (the Advanced Editor's tap/drag overlay) can line
+  // up hit zones with what's on screen without running its own separate
+  // layout pass that could drift out of sync.
+  onLayoutComputed?: (layout: ComputedLayout) => void;
   // Quick-adjust overrides — layered on top of the template rather than
   // part of it, same idea as palette being separate from structure.
   // Undefined = use the template's/layout's own value.
@@ -21,35 +27,12 @@ type Props = {
   cardBackgroundImageBlur?: number;
 };
 
-// Fallback spacing between flow-mode elements when a template doesn't set
-// its own gapBefore. Individual templates can still tighten/loosen this
-// per element via CardElement.gapBefore.
-const DEFAULT_GAP = 28;
-
-type PositionedElement = {
-  element: CardElement;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  data: Tweet;
-};
-
-// Resolves a CardElement's dataBinding (e.g. "quotedTweet") against the
-// root tweet. No binding = the root tweet itself. This indirection is what
-// lets the same element types later render a nested quoted/reply tweet
-// without SceneRenderer itself changing at all.
-function resolveData(tweet: Tweet, dataBinding?: string): Tweet {
-  if (!dataBinding) return tweet;
-  const nested = (tweet as unknown as Record<string, unknown>)[dataBinding];
-  return (nested as Tweet) ?? tweet;
-}
-
 export const SceneRenderer = memo(function SceneRenderer({
   tweet,
   template,
   canvasRef,
   onHeightComputed,
+  onLayoutComputed,
   cardColorOverride,
   cardRadius,
   cardPadding,
@@ -58,77 +41,19 @@ export const SceneRenderer = memo(function SceneRenderer({
 }: Props) {
   const fontMgr = useTweetFonts();
   const backgroundImage = useImage(cardBackgroundImageUri);
-  const padding = cardPadding ?? PADDING;
-  const contentWidth = CARD_WIDTH - padding * 2;
 
   const layout = useMemo(() => {
     if (!fontMgr) return null;
-
-    const visibleElements = template.elements.filter((el) => el.visible !== false);
-    const positioned: PositionedElement[] = [];
-    let flowY = padding;
-    let flowElementCount = 0;
-
-    for (const element of visibleElements) {
-      const variant = elementRegistry[element.type][element.variant];
-      if (!variant) continue; // unregistered variant — skip rather than crash
-
-      const data = resolveData(tweet, element.dataBinding);
-
-      if (element.position) {
-        // Absolute override: render exactly where a user placed it in the
-        // advanced editor, and don't let it participate in — or be pushed
-        // by — the flow elements around it.
-        positioned.push({
-          element,
-          x: element.position.x,
-          y: element.position.y,
-          width: element.position.width,
-          height: element.position.height,
-          data,
-        });
-        continue;
-      }
-
-      // edgeToEdge elements (e.g. media.fullBleed) skip the card's usual
-      // padding inset and span the full card width instead.
-      const elementX = element.edgeToEdge ? 0 : padding;
-      const elementWidth = element.edgeToEdge ? CARD_WIDTH : contentWidth;
-
-      const variantProps: ElementVariantProps = {
-        data,
-        width: elementWidth,
-        palette: template.palette,
-        style: element.style,
-        fontMgr,
-      };
-
-      const height = variant.measure(variantProps);
-
-      // An element that measures to zero (e.g. a tweet with no media)
-      // contributes nothing to the layout at all — no gap consumed before
-      // it, and it doesn't count as "the previous element" for whatever
-      // comes next. This is what makes each element's own gapBefore fall
-      // back correctly onto whatever the nearest *visible* element before
-      // it actually is, matching how the original hand-written layout
-      // conditionally skipped the text-to-media gap when there was no
-      // media, while still always applying the media-to-engagement gap.
-      if (height <= 0) continue;
-
-      const gap = flowElementCount > 0 ? (element.gapBefore ?? DEFAULT_GAP) : 0;
-      flowY += gap;
-      positioned.push({ element, x: elementX, y: flowY, width: elementWidth, height, data });
-      flowY += height;
-      flowElementCount += 1;
-    }
-
-    const cardHeight = flowY + padding;
-    return { positioned, cardHeight };
-  }, [fontMgr, tweet, template, contentWidth, padding]);
+    return computeElementLayout({ tweet, template, fontMgr, cardPadding });
+  }, [fontMgr, tweet, template, cardPadding]);
 
   useEffect(() => {
     if (layout) onHeightComputed?.(layout.cardHeight);
   }, [layout?.cardHeight, onHeightComputed]);
+
+  useEffect(() => {
+    if (layout) onLayoutComputed?.(layout);
+  }, [layout, onLayoutComputed]);
 
   if (!fontMgr || !layout) return null;
 

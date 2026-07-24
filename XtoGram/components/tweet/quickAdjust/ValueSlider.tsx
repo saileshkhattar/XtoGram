@@ -36,7 +36,9 @@ const styles = StyleSheet.create({
   wrap: { gap: Spacing.xs },
   header: { flexDirection: 'row', justifyContent: 'flex-end' },
   value: { color: Colors.TEXT_MED, fontSize: FontSize.caption, fontVariant: ['tabular-nums'] },
-  track: { height: 28, justifyContent: 'center' },
+  // Reserve half a thumb at each end so the visual thumb never spills out
+  // of its parent while still allowing the value to reach min/max.
+  track: { height: 28, marginHorizontal: 9, justifyContent: 'center' },
   fill: { position: 'absolute', left: 0, height: 4, borderRadius: Radius.full, backgroundColor: Colors.TEXT_HIGH },
   thumb: { position: 'absolute', width: 18, height: 18, marginLeft: -9, borderRadius: Radius.full, backgroundColor: Colors.TEXT_HIGH, borderWidth: 3, borderColor: Colors.SURFACE_RAISED },
 });

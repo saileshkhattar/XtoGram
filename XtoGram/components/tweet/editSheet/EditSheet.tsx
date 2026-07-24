@@ -38,8 +38,6 @@ type Props = {
   backgroundColor: string;
   onBackgroundColorChange: (color: string) => void;
   cardColor?: string;
-  onCardColorChange: (color: string | undefined) => void;
-  defaultCardColor: string;
   cardRadius: number;
   onCardRadiusChange: (value: number) => void;
   cardPadding: number;
@@ -47,11 +45,9 @@ type Props = {
   backgroundImageUri?: string;
   onBackgroundImageChange: (uri: string | undefined) => void;
   cardBackgroundImageUri?: string;
-  onCardBackgroundImageChange: (uri: string | undefined) => void;
   backgroundImageBlur: number;
   onBackgroundImageBlurChange: (value: number) => void;
   cardBackgroundImageBlur: number;
-  onCardBackgroundImageBlurChange: (value: number) => void;
 };
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -78,8 +74,6 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
     backgroundColor,
     onBackgroundColorChange,
     cardColor,
-    onCardColorChange,
-    defaultCardColor,
     cardRadius,
     onCardRadiusChange,
     cardPadding,
@@ -87,11 +81,9 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
     backgroundImageUri,
     onBackgroundImageChange,
     cardBackgroundImageUri,
-    onCardBackgroundImageChange,
     backgroundImageBlur,
     onBackgroundImageBlurChange,
     cardBackgroundImageBlur,
-    onCardBackgroundImageBlurChange,
   },
   ref
 ) {
@@ -227,21 +219,14 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
             <AdjustTab
               backgroundColor={backgroundColor}
               onBackgroundColorChange={onBackgroundColorChange}
-              cardColor={cardColor}
-              onCardColorChange={onCardColorChange}
-              defaultCardColor={defaultCardColor}
               cardRadius={cardRadius}
               onCardRadiusChange={onCardRadiusChange}
               cardPadding={cardPadding}
               onCardPaddingChange={onCardPaddingChange}
               backgroundImageUri={backgroundImageUri}
               onBackgroundImageChange={onBackgroundImageChange}
-              cardImageUri={cardBackgroundImageUri}
-              onCardImageChange={onCardBackgroundImageChange}
               backgroundImageBlur={backgroundImageBlur}
               onBackgroundImageBlurChange={onBackgroundImageBlurChange}
-              cardImageBlur={cardBackgroundImageBlur}
-              onCardImageBlurChange={onCardBackgroundImageBlurChange}
             />
           </View>
         </ScrollView>

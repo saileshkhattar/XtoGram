@@ -19,14 +19,12 @@ import HomeHero from '../../components/tweet/HomeHero';
 import CardResult, { type CardResultHandle } from '../../components/tweet/CardResult';
 import { EditSheet, type EditSheetHandle, PEEK_HEIGHT } from '../../components/tweet/editSheet/EditSheet';
 import { ThumbnailGeneratorProvider } from '../../components/tweet/thumbnail/ThumbnailGeneratorProvider';
-import { darkClassicTemplate } from '../../components/tweet/templates/definations';
-import type { CardTemplate } from '../../components/tweet/scene/types';
-import { PADDING } from '../../components/tweet/skia/layout';
 import { Colors, Spacing } from '../../constants/theme';
+import { useCard } from '../../context/CardContext';
 import ScatteredIcons from '../../utils/scatteredIcons';
 import { fetchTweetByUrl } from '../../utils/tweetApi';
 import { saveImageToLibrary, shareImage } from '../../components/tweet/exportCard';
-import type { ParsedTweetResponse, Tweet } from '../../types/tweet';
+import type { ParsedTweetResponse } from '../../types/tweet';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -43,27 +41,32 @@ export default function Home() {
   const [saving, setSaving] = useState(false);
   const [sharing, setSharing] = useState(false);
   const [isCardReady, setIsCardReady] = useState(false);
-  // Persists across a new tweet being pasted in the same session, same as
-  // how Instagram remembers your last-used filter rather than resetting it
-  // per photo. Change the default/reset behavior here if that's not the
-  // experience you want.
-  const [selectedTemplate, setSelectedTemplate] = useState<CardTemplate>(darkClassicTemplate);
 
-  // Quick-adjust state — lifted up here (rather than living inside
-  // CardResult) so it can be shared with EditSheet's Adjust tab and so a
-  // future template-switch reset (see TODO below) has one place to act.
-  // These persist across template switches for now, same reasoning as
-  // selectedTemplate persisting across a new tweet.
-  const [frameBackgroundColor, setFrameBackgroundColor] = useState(Colors.SURFACE);
-  const [cardColorOverride, setCardColorOverride] = useState<string | undefined>(undefined);
-  const [cardRadius, setCardRadius] = useState(0);
-  const [cardPadding, setCardPadding] = useState(PADDING);
-  // Image URIs stay at the screen level so the card, frame and editor sheet
-  // all redraw from one source of truth.
-  const [backgroundImageUri, setBackgroundImageUri] = useState<string | undefined>();
-  const [cardBackgroundImageUri, setCardBackgroundImageUri] = useState<string | undefined>();
-  const [backgroundImageBlur, setBackgroundImageBlur] = useState(0);
-  const [cardBackgroundImageBlur, setCardBackgroundImageBlur] = useState(0);
+  // Card state (tweet, template, quick-adjust values) now lives in
+  // CardContext instead of local state here — same fields, same defaults,
+  // just readable from any screen (home, and the upcoming Advanced
+  // Editor route) via useCard(). selectedTemplate persisting across a new
+  // tweet, and quick-adjust values persisting across template switches,
+  // are unchanged behaviors — just relocated.
+  const {
+    tweet,
+    setTweet,
+    template: selectedTemplate,
+    setTemplate: setSelectedTemplate,
+    frameBackgroundColor,
+    setFrameBackgroundColor,
+    cardColorOverride,
+    cardRadius,
+    setCardRadius,
+    cardPadding,
+    setCardPadding,
+    backgroundImageUri,
+    setBackgroundImageUri,
+    cardBackgroundImageUri,
+    backgroundImageBlur,
+    setBackgroundImageBlur,
+    cardBackgroundImageBlur,
+  } = useCard();
 
   // TODO (agreed, not yet implemented): switching to a genuinely different
   // template should reset frameBackgroundColor/cardColorOverride/cardRadius
@@ -88,16 +91,21 @@ export default function Home() {
   }, []);
 
 
-  let tweet: Tweet | null;
-
-  if (!parsed) {
-    tweet = null;
-  } else if (parsed.type === 'original') {
-    tweet = parsed.tweet;
-  } else {
-    const chainTweet = parsed.chain[parsed.chain.length - 1];
-    tweet = chainTweet ?? null;
-  }
+  // Tweet now lives in CardContext (see `tweet`/`setTweet` above) so the
+  // Advanced Editor route can read the same one. This effect is just the
+  // "derive it from the fetch result" step, run whenever a new fetch
+  // resolves.
+  useEffect(() => {
+    if (!parsed) {
+      setTweet(null);
+    } else if (parsed.type === 'original') {
+      setTweet(parsed.tweet);
+    } else {
+      const chainTweet = parsed.chain[parsed.chain.length - 1];
+      setTweet(chainTweet ?? null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [parsed]);
 
   const handleSubmit = async () => {
     if (!url.trim() || loading) return;
@@ -206,8 +214,6 @@ export default function Home() {
           backgroundColor={frameBackgroundColor}
           onBackgroundColorChange={setFrameBackgroundColor}
           cardColor={cardColorOverride}
-          onCardColorChange={setCardColorOverride}
-          defaultCardColor={selectedTemplate.palette.cardSurface}
           cardRadius={cardRadius}
           onCardRadiusChange={setCardRadius}
           cardPadding={cardPadding}
@@ -215,11 +221,9 @@ export default function Home() {
           backgroundImageUri={backgroundImageUri}
           onBackgroundImageChange={setBackgroundImageUri}
           cardBackgroundImageUri={cardBackgroundImageUri}
-          onCardBackgroundImageChange={setCardBackgroundImageUri}
           backgroundImageBlur={backgroundImageBlur}
           onBackgroundImageBlurChange={setBackgroundImageBlur}
           cardBackgroundImageBlur={cardBackgroundImageBlur}
-          onCardBackgroundImageBlurChange={setCardBackgroundImageBlur}
         />
       )}
     </View>
