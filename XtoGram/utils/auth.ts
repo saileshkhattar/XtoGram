@@ -1,4 +1,3 @@
-// lib/auth.ts
 import * as SecureStore from 'expo-secure-store';
 
 const ACCESS_KEY = 'xtogram_access_token';

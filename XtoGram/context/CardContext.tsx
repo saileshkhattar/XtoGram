@@ -1,13 +1,3 @@
-// context/CardContext.tsx
-//
-// Single source of truth for "the card currently being built" — the tweet,
-// the working template, and every quick-adjust value. Home screen preview,
-// CardResult, EditSheet, and (soon) the Advanced Editor all read/write this
-// instead of passing the same dozen props down through each other.
-//
-// Pattern deliberately mirrors AuthContext.tsx (createContext + Provider +
-// a useX() hook that throws outside the provider) so the app only has one
-// kind of global state mechanism, not two.
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { darkClassicTemplate } from '../components/tweet/templates/definations';
 import { PADDING } from '../components/tweet/skia/layout';
@@ -18,19 +8,10 @@ import type { CardTemplate, ElementPosition } from '../components/tweet/scene/ty
 import type { Tweet } from '../types/tweet';
 
 type CardContextType = {
-  // The tweet currently loaded. Null before anything's been pasted/fetched.
   tweet: Tweet | null;
   setTweet: (tweet: Tweet | null) => void;
-
-  // The active template. This is a *working copy* — picking a template
-  // just points here at one of the shared objects from definitions.ts, but
-  // every update below goes through setTemplate with a spread/copy, so the
-  // original objects in the cardTemplates array are never mutated in place.
   template: CardTemplate;
   setTemplate: (template: CardTemplate) => void;
-
-  // Quick-adjust values — same fields home.tsx already tracked locally,
-  // just lifted here so every screen shares one copy.
   frameBackgroundColor: string;
   setFrameBackgroundColor: (color: string) => void;
   cardColorOverride?: string;
@@ -47,29 +28,10 @@ type CardContextType = {
   setBackgroundImageBlur: (value: number) => void;
   cardBackgroundImageBlur: number;
   setCardBackgroundImageBlur: (value: number) => void;
-
-  // Advanced Editor only — which element is currently tapped/selected.
-  // Lives here (not local editor state) so it resets cleanly if the editor
-  // unmounts and remounts, and so other pieces (e.g. a future property
-  // panel rendered outside the canvas) can read it without prop drilling.
   selectedElementId: string | null;
   setSelectedElementId: (id: string | null) => void;
-
-  // Commits a dragged/resized element's final box into the template. This
-  // also permanently takes that element out of flow layout — same rule
-  // SceneRenderer already follows for any element with `position` set
-  // (see scene/types.ts).
   updateElementPosition: (id: string, position: ElementPosition) => void;
-
-  // Removes an element from the template entirely. Also clears selection
-  // if the deleted element was the selected one, so the property panel
-  // doesn't keep referencing an id that no longer exists.
   deleteElement: (id: string) => void;
-
-  // Swaps which registered variant an element uses (e.g. authorBlock
-  // "default" -> "compact"). The element keeps its id/position/gapBefore —
-  // only its `variant` field changes, so an absolute-positioned element
-  // stays in the same box and a flow element re-measures in place.
   setElementVariant: (id: string, variant: string) => void;
 };
 

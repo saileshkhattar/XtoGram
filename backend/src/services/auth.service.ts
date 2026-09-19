@@ -154,7 +154,7 @@ export async function loginWithGoogle(
       email: payload.email,
       name: payload.name || "",
       provider: "google",
-      emailVerified: true, // Google already verified this email
+      emailVerified: true, 
     });
   }
 

@@ -1,4 +1,3 @@
-// components/auth/AuthScreenShell.tsx
 import { View, StyleSheet, Animated, Easing, Text } from 'react-native';
 import TopNavBar from '../ui/TopNavbar';
 import { Colors, Spacing } from '../../constants/theme';
