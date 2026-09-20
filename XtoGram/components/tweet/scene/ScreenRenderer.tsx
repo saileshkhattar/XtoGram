@@ -12,14 +12,7 @@ type Props = {
   template: CardTemplate;
   canvasRef: ReturnType<typeof useCanvasRef>;
   onHeightComputed?: (height: number) => void;
-  // Reports the exact same positioned-elements list this instance painted
-  // from, so a consumer (the Advanced Editor's tap/drag overlay) can line
-  // up hit zones with what's on screen without running its own separate
-  // layout pass that could drift out of sync.
   onLayoutComputed?: (layout: ComputedLayout) => void;
-  // Quick-adjust overrides — layered on top of the template rather than
-  // part of it, same idea as palette being separate from structure.
-  // Undefined = use the template's/layout's own value.
   cardColorOverride?: string;
   cardRadius?: number;
   cardPadding?: number;
