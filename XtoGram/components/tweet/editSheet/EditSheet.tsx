@@ -53,16 +53,8 @@ type Props = {
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 export const PEEK_HEIGHT = 168;
-// Capped noticeably below full-screen — the sheet does not get to eat the
-// whole screen just because there's a lot of tab content (that content
-// scrolls instead). This is what keeps the docked card preview at a
-// comfortable, legible size instead of everything getting squeezed thinner
-// as more content gets added to a tab.
 const EXPANDED_HEIGHT = Math.min(SCREEN_HEIGHT * 0.58, 480);
 const DRAG_RANGE = EXPANDED_HEIGHT - PEEK_HEIGHT;
-
-// A controlled ease instead of a spring — a spring's overshoot/bounce on
-// open and close read as glitchy rather than polished.
 const TIMING = { duration: 260, easing: Easing.out(Easing.cubic) };
 
 export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
@@ -89,9 +81,6 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
 ) {
   const insets = useSafeAreaInsets();
   const [tab, setTab] = useState<EditSheetTab>('templates');
-  // Mirrors the shared-value expanded state on the JS thread, purely to
-  // decide what to mount (docked preview, tab bar) — the actual open/close
-  // motion is driven by the shared value below, not this.
   const [expandedUI, setExpandedUI] = useState(false);
 
   const { recentIds, recordTemplateUsed } = useRecentTemplates();
@@ -101,7 +90,6 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
     return resolved.length > 0 ? resolved : cardTemplates.slice(0, 5);
   }, [recentIds]);
 
-  // 0 = fully expanded, DRAG_RANGE = peeked (resting state)
   const translateY = useSharedValue(DRAG_RANGE);
   const startY = useSharedValue(DRAG_RANGE);
   const isExpanded = useSharedValue(false);
@@ -122,15 +110,8 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
   }));
 
   const pan = Gesture.Pan()
-    // Lets ordinary taps on the arrow/Done/tab labels inside this same
-    // region pass through to their own onPress instead of being captured
-    // by the drag — only a real drag (>10px) activates this gesture.
     .activeOffsetY([-10, 10])
     .onStart(() => {
-      // Capture wherever the sheet ACTUALLY is right now, not an assumed
-      // 0/DRAG_RANGE. Without this, starting a new drag while the previous
-      // open/close animation was still finishing caused a visible jump —
-      // the root cause of needing repeated swipes before.
       startY.value = translateY.value;
     })
     .onUpdate((e) => {
@@ -164,10 +145,6 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
       ]}
     >
       {expandedUI && <BlurView intensity={100} tint="dark" experimentalBlurMethod="dimezisBlurView" style={styles.focusBackdrop} />}
-      {/* Drag surface: the handle, plus (peeked) the "For you" row, or
-          (expanded) the docked card + tab bar. Deliberately excludes the
-          scrollable tab content below, so dragging there scrolls instead
-          of fighting the sheet's own open/close gesture. */}
       <GestureDetector gesture={pan}>
         <View>
           <View style={styles.handleRow}>
@@ -209,9 +186,6 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
 
       {expandedUI && (
         <ScrollView style={styles.content} contentContainerStyle={styles.contentInner} showsVerticalScrollIndicator={false}>
-          {/* Keep both tab trees mounted after opening. Switching is now only
-              a visibility change, so Skia thumbnails and picker state do not
-              restart and flash when moving back and forth. */}
           <View style={tab === 'templates' ? undefined : styles.inactiveTab}>
             <TemplatesTab selectedTemplateId={selectedTemplateId} onSelect={handleSelectTemplate} />
           </View>

@@ -1,4 +1,3 @@
-// app/(tabs)/home.tsx
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   View,
@@ -42,12 +41,6 @@ export default function Home() {
   const [sharing, setSharing] = useState(false);
   const [isCardReady, setIsCardReady] = useState(false);
 
-  // Card state (tweet, template, quick-adjust values) now lives in
-  // CardContext instead of local state here — same fields, same defaults,
-  // just readable from any screen (home, and the upcoming Advanced
-  // Editor route) via useCard(). selectedTemplate persisting across a new
-  // tweet, and quick-adjust values persisting across template switches,
-  // are unchanged behaviors — just relocated.
   const {
     tweet,
     setTweet,
@@ -68,13 +61,6 @@ export default function Home() {
     cardBackgroundImageBlur,
   } = useCard();
 
-  // TODO (agreed, not yet implemented): switching to a genuinely different
-  // template should reset frameBackgroundColor/cardColorOverride/cardRadius
-  // /cardPadding back to defaults, with a confirmation prompt — but only
-  // when there's actually something to lose (i.e. at least one of these is
-  // already non-default). Frame preset/size (owned inside CardResult) should
-  // NOT reset — that's a canvas-format choice, a different axis from the
-  // card's own visual style.
 
   const cardResultRef = useRef<CardResultHandle>(null);
   const editSheetRef = useRef<EditSheetHandle>(null);
@@ -90,11 +76,6 @@ export default function Home() {
     }).start();
   }, []);
 
-
-  // Tweet now lives in CardContext (see `tweet`/`setTweet` above) so the
-  // Advanced Editor route can read the same one. This effect is just the
-  // "derive it from the fetch result" step, run whenever a new fetch
-  // resolves.
   useEffect(() => {
     if (!parsed) {
       setTweet(null);
@@ -104,7 +85,6 @@ export default function Home() {
       const chainTweet = parsed.chain[parsed.chain.length - 1];
       setTweet(chainTweet ?? null);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [parsed]);
 
   const handleSubmit = async () => {

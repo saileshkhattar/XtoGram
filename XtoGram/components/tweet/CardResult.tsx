@@ -21,20 +21,12 @@ export type CardResultHandle = {
 type Props = {
   tweet: Tweet;
   previewWidth: number;
-  // Which CardTemplate to render. Defaults to Dark Classic so any existing
-  // caller not yet passing this (or a future one that doesn't care) keeps
-  // working unchanged.
   template?: CardTemplate;
   onSave: () => void;
   onShare: () => void;
   saving: boolean;
   sharing: boolean;
   onReady?: () => void;
-
-  // Quick-adjust values — now owned by the parent screen (home.tsx), not
-  // local state here, so the parent (and the EditSheet it hosts) can
-  // coordinate resetting these when the template changes. CardResult just
-  // renders whatever it's given and forwards the "open the sheet" tap.
   frameBackgroundColor: string;
   cardColorOverride?: string;
   cardRadius: number;
@@ -79,7 +71,6 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
   const cardCanvasRef = useCanvasRef();
   const [cardHeight, setCardHeight] = useState(0);
 
-  // checkbox 1 — background/frame box around the card
   const [showBackground, setShowBackground] = useState(false);
   const [preset, setPreset] = useState<FramePreset>('post_square');
   const [customWidth, setCustomWidth] = useState('1080');
@@ -91,15 +82,11 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
   const previewScale = previewWidth / CARD_WIDTH;
   const scaledCardHeight = cardHeight * previewScale;
 
-  // size of the background/frame box (checkbox 1) — feeds export sizing too
   const frameWidth = previewWidth;
   const frameHeight =
     preset === 'custom'
       ? frameWidth * ((Number(customHeight) || 1) / (Number(customWidth) || 1))
       : frameWidth / PRESET_RATIOS[preset as Exclude<FramePreset, 'custom'>];
-  // Fit the complete card into a newly selected frame. This avoids exporting
-  // the initial 1× card as a cropped, zoomed image; users can still pinch
-  // smaller or larger afterwards.
   const initialFrameScale = cardHeight
     ? Math.min(frameWidth / previewWidth, frameHeight / scaledCardHeight)
     : 1;
@@ -113,14 +100,8 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
         const cardImage = canvas.makeImageSnapshot();
         if (!cardImage) throw new Error('Could not snapshot the card');
 
-        // Export only includes the card, or the card + background box.
         if (!showBackground) return cardImage;
 
-        // cardImage is the Skia canvas's raw backing-store pixels, which is
-        // rendered at the device's pixel ratio (e.g. 3x) — NOT at the logical
-        // CARD_WIDTH the rest of this math assumes. Correct for that here so
-        // the card lands at the right size regardless of device pixel ratio,
-        // instead of getting drawn ~pixelRatio× too large and off-center.
         const cardPixelRatio = cardImage.width() / CARD_WIDTH;
 
         const exportScale = EXPORT_LONG_SIDE / Math.max(frameWidth, frameHeight);
@@ -149,10 +130,6 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
     }),
     [showBackground, frameWidth, frameHeight, previewScale, frameBackgroundColor, backgroundImageUri, backgroundImageBlur]
   );
-
-  // Do not collapse the home hero until Skia has had a frame to paint the new
-  // card. Frame size changes (preset/custom width/height) no longer redraw
-  // the card itself, so they don't need to re-trigger this overlay anymore.
   useEffect(() => {
     if (!cardHeight) return;
     setIsRendering(true);
@@ -165,8 +142,6 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
     return () => cancelAnimationFrame(firstFrame);
   }, [tweet.id, cardHeight, onReady]);
 
-  // Selecting a frame image is an explicit request for a visible frame, so
-  // do not leave it hidden behind the optional background toggle.
   useEffect(() => {
     if (backgroundImageUri) setShowBackground(true);
   }, [backgroundImageUri]);

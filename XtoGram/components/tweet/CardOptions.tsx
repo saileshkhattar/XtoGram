@@ -4,12 +4,8 @@ import { Colors, Spacing, Radius, FontSize } from '../../constants/theme';
 
 export type FramePreset = 'post_square' | 'story' | 'custom';
 
-// Instagram-preview feature — deferred. Keep this type with the related
-// controls below so the feature can be restored without rebuilding it.
-// export type InstagramPreset = Exclude<FramePreset, 'custom'>;
 
 type Props = {
-  // checkbox 1 — background/frame box around the card
   enabled: boolean;
   onToggle: (value: boolean) => void;
   preset: FramePreset;
@@ -18,12 +14,6 @@ type Props = {
   customHeight: string;
   onCustomWidthChange: (value: string) => void;
   onCustomHeightChange: (value: string) => void;
-
-  // Instagram-preview feature — deferred.
-  // showInstagramPreview: boolean;
-  // onToggleInstagramPreview: (value: boolean) => void;
-  // instagramPreset: InstagramPreset;
-  // onInstagramPresetChange: (preset: InstagramPreset) => void;
 };
 
 const PRESETS: { key: FramePreset; label: string }[] = [
