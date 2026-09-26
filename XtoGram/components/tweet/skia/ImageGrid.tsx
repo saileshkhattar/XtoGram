@@ -7,19 +7,12 @@ type Props = {
   x: number;
   y: number;
   width: number;
-  height: number; // total height allotted to the grid
-  radius?: number; // corner radius per slot — defaults to IMAGE_RADIUS
+  height: number; 
+  radius?: number;
 };
 
-// Mirrors X's actual image-grid rules:
-//   1 image  -> full width, single rounded rect
-//   2 images -> side by side, even split
-//   3 images -> one tall image left, two stacked right
-//   4 images -> even 2x2 grid
-// (Only up to 4 — the backend/parser doesn't fetch more than that.)
+
 export function ImageGrid({ media, x, y, width, height, radius = IMAGE_RADIUS }: Props) {
-  // Fixed number of hook calls regardless of how many images actually
-  // exist — required since hooks can't be called conditionally/in a loop.
   const img0 = useImage(media[0]?.url);
   const img1 = useImage(media[1]?.url);
   const img2 = useImage(media[2]?.url);
@@ -52,8 +45,6 @@ export function ImageGrid({ media, x, y, width, height, radius = IMAGE_RADIUS }:
 
 export type Slot = { x: number; y: number; width: number; height: number };
 
-// Exported so variants that need the same 1/2/3/4 grid geometry (e.g.
-// Framed, to draw a border per slot) don't have to duplicate this math.
 export function computeSlots(count: number, x: number, y: number, width: number, height: number): Slot[] {
   if (count === 1) {
     return [{ x, y, width, height }];

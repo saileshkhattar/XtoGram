@@ -10,9 +10,7 @@ type Props = {
   strokeWidth?: number;
 };
 
-// Icon paths are authored on a 24x24 viewBox. We place the group's
-// origin at (x, y) and scale down to the target size, so every path
-// can be reused at any size without redrawing it.
+
 export function Icon({ name, x, y, size, color, strokeWidth = 2 }: Props) {
   const scale = size / 24;
   return (
