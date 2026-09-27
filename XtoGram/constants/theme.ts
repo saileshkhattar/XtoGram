@@ -1,16 +1,15 @@
 // constants/theme.js
 
 export const Colors = {
-  BG_BASE: '#000000',        // pure black now, not near-black
+  BG_BASE: '#000000',        
   SURFACE: '#0F0F0F',
   SURFACE_RAISED: '#1A1A1A',
   BORDER: 'rgba(255,255,255,0.12)',
   BORDER_SOFT: 'rgba(255,255,255,0.06)',
 
-  PRIMARY: '#FFFFFF',        // primary text/fill on dark
-  PRIMARY_DIM: '#4A4A4E',    // inactive dots, subtle fills
+  PRIMARY: '#FFFFFF',        
+  PRIMARY_DIM: '#4A4A4E',    
 
-  // Glow gradient accent (used for hero image + button border only)
   GLOW_VIOLET: '#8B5CF6',
   GLOW_MAGENTA: '#B54AF0',
   GLOW_ORANGE: '#FF6B4A',
