@@ -9,7 +9,6 @@ import {
   Keyboard,
   ScrollView,
   Dimensions,
-  Alert,
   LayoutAnimation,
   UIManager,
 } from 'react-native';
@@ -24,6 +23,9 @@ import ScatteredIcons from '../../utils/scatteredIcons';
 import { fetchTweetByUrl } from '../../utils/tweetApi';
 import { saveImageToLibrary, shareImage } from '../../components/tweet/exportCard';
 import type { ParsedTweetResponse } from '../../types/tweet';
+import { useAuth } from '../../context/AuthContext';
+import GuestBanner from '../../components/ui/GuestBanner';
+import { useToast } from '../../context/ToastContext';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -61,6 +63,9 @@ export default function Home() {
     cardBackgroundImageBlur,
   } = useCard();
 
+  const { setGuestRemaining } = useAuth();
+  const { showToast } = useToast();
+
 
   const cardResultRef = useRef<CardResultHandle>(null);
   const editSheetRef = useRef<EditSheetHandle>(null);
@@ -97,8 +102,19 @@ export default function Home() {
       const data = await fetchTweetByUrl(url.trim());
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       setParsed(data);
+      if (data.type === 'original' && data.guest) {
+        setGuestRemaining(data.guest.remaining);
+        if (data.guest.limited) {
+          showToast('Sign up to see the full thread or quoted tweet.');
+        }
+      }
     } catch (e: any) {
-      setError(e.message || 'Could not fetch that tweet — check the link and try again');
+      if (e.code === 'GUEST_LIMIT_REACHED') {
+        setGuestRemaining(0);
+        showToast('Free limit reached. Sign up from the banner to keep creating.', 'error');
+      } else {
+        setError(e.message || 'Could not fetch that tweet — check the link and try again');
+      }
     } finally {
       setLoading(false);
     }
@@ -110,9 +126,9 @@ export default function Home() {
       const image = await cardResultRef.current?.getExportImage();
       if (!image) throw new Error('Card is not ready yet');
       await saveImageToLibrary(image);
-      Alert.alert('Saved', 'Card saved to your photo library.');
+      showToast('Card saved to your photo library.', 'success');
     } catch (e: any) {
-      Alert.alert('Could not save', e.message || 'Something went wrong');
+      showToast(e.message || 'Could not save your card.', 'error');
     } finally {
       setSaving(false);
     }
@@ -125,7 +141,7 @@ export default function Home() {
       if (!image) throw new Error('Card is not ready yet');
       await shareImage(image);
     } catch (e: any) {
-      Alert.alert('Could not share', e.message || 'Something went wrong');
+      showToast(e.message || 'Could not share your card.', 'error');
     } finally {
       setSharing(false);
     }
@@ -137,6 +153,7 @@ export default function Home() {
       <ScatteredIcons fadeIn={scatterFade} />
 
       <TopNavBar title="Home" showBack={false} />
+      <GuestBanner />
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}

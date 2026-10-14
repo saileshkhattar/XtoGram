@@ -9,9 +9,7 @@ const SAMPLE_MEDIA = [
   Image.resolveAssetSource(require('../../../assets/placeholders/sample-desk.jpg')).uri,
 ];
 
-// Never tied to a real user's tweet, so the same fixture — and therefore
-// the same cache key/thumbnail — is reused for every template preview
-// regardless of what tweet the user actually has loaded at the time.
+
 export const THUMBNAIL_SAMPLE_TWEET: Tweet = {
   id: 'thumbnail-sample',
   text: 'Small steps every day add up to something big. Keep going.',

@@ -10,6 +10,7 @@ import {
   signup,
   verifyEmailLink,
   verifyEmailOtp,
+  startGuest
 } from "../controllers/auth.controller.js";
 import { authRateLimiter } from "../middleware/rateLimiter.js";
 import { validateRequest } from "../middleware/validateRequest.js";
@@ -22,7 +23,9 @@ import {
   signupSchema,
   verifyEmailLinkSchema,
   verifyEmailOtpSchema,
+  guestSchema
 } from "../validators/auth.validator.js";
+
 
 const router = Router();
 
@@ -66,5 +69,6 @@ router.post(
 );
 router.post("/refresh", validateRequest(refreshSchema), refresh);
 router.post("/logout", validateRequest(refreshSchema), logout);
+router.post("/guest", authRateLimiter, validateRequest(guestSchema), startGuest);
 
 export default router;

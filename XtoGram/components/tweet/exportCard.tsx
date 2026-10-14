@@ -6,8 +6,6 @@ import * as Sharing from "expo-sharing";
 type CanvasRef = ReturnType<typeof useCanvasRef>;
 
 async function imageToFile(image: SkImage): Promise<string> {
-  // Skia's SkImage encodes straight to base64 — no Buffer polyfill
-  // needed, which RN doesn't have by default.
   const base64 = image.encodeToBase64(ImageFormat.PNG, 100);
 
   const path = `${FileSystem.cacheDirectory}xtogram-${Date.now()}.png`;
@@ -26,7 +24,6 @@ function snapshotFromCanvas(canvasRef: CanvasRef): SkImage {
   return image;
 }
 
-// Saves directly to the camera roll. Requires media library permission.
 export async function saveImageToLibrary(image: SkImage): Promise<void> {
   const { status } = await MediaLibrary.requestPermissionsAsync();
   if (status !== "granted") {
@@ -36,7 +33,6 @@ export async function saveImageToLibrary(image: SkImage): Promise<void> {
   await MediaLibrary.saveToLibraryAsync(path);
 }
 
-// Opens the native share sheet (Instagram, Messages, etc.) with the PNG.
 export async function shareImage(image: SkImage): Promise<void> {
   const path = await imageToFile(image);
   const available = await Sharing.isAvailableAsync();
@@ -44,7 +40,6 @@ export async function shareImage(image: SkImage): Promise<void> {
   await Sharing.shareAsync(path, { mimeType: "image/png" });
 }
 
-// Back-compat wrappers for the plain (non-framed) canvas-ref export path.
 export async function saveCardToLibrary(canvasRef: CanvasRef): Promise<void> {
   await saveImageToLibrary(snapshotFromCanvas(canvasRef));
 }

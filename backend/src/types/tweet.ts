@@ -40,6 +40,8 @@ export interface Tweet {
   parentTweet: Tweet | null;
 }
 
+export type GuestInfo = { remaining: number; limited: boolean };
+
 export type ParsedTweetResponse =
-  | { type: "original"; tweet: Tweet }
+  | { type: "original"; tweet: Tweet; guest?: GuestInfo }
   | { type: "reply"; focusTweetId: string; chain: Tweet[] };

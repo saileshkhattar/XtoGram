@@ -11,7 +11,6 @@ type Options = {
   backgroundImageBlur?: number;
 };
 
-/** Draws an image with the same cover behaviour as React Native Image. */
 function drawCoverImage(canvas: ReturnType<NonNullable<ReturnType<typeof Skia.Surface.MakeOffscreen>>['getCanvas']>, image: SkImage, width: number, height: number, blur = 0) {
   const scale = Math.max(width / image.width(), height / image.height());
   const destinationWidth = image.width() * scale;

@@ -17,6 +17,12 @@ export function signAccessToken(userId: UserId): string {
   });
 }
 
+export function signGuestToken(guestId: UserId): string {
+  return jwt.sign({ sub: guestId.toString(), guest: true }, env.jwtAccessSecret, {
+    expiresIn: env.guestTokenTtl,
+  });
+}
+
 export async function issueRefreshToken(
   userId: UserId,
   meta: TokenMeta = {},

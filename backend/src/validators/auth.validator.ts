@@ -52,3 +52,9 @@ export const refreshSchema = z.object({
     refreshToken: z.string().min(1),
   }),
 });
+
+export const guestSchema = z.object({
+  body: z.object({
+    deviceId: z.string().min(16).max(100),
+  }),
+});

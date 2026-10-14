@@ -1,6 +1,6 @@
 // app/signup.tsx
 import { useState } from 'react';
-import { View, Text, StyleSheet, Animated } from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import AuthScreenShell from '../components/auth/authScreenShell';
 import TextField from '../components/ui/TextField';
@@ -10,6 +10,7 @@ import { useAuth } from '../context/AuthContext';
 // import { useGoogleAuth } from '../hooks/useGoogleAuth';
 import { useFadeUpSequence } from '../hooks/useFadeUp';
 import { Colors, Spacing, FontSize } from '../constants/theme';
+
 
 export default function Signup() {
   const { signup, loginWithGoogle } = useAuth();
@@ -60,10 +61,19 @@ export default function Signup() {
       <Animated.View style={f4}><Button label={loading ? 'Creating account...' : 'Sign Up'} onPress={handleSignup} /></Animated.View>
       <View style={{ height: Spacing.sm }} />
       {/* <Animated.View style={f5}><GoogleButton onPress={() => promptAsync()} /></Animated.View> */}
+      <Animated.View style={[f5, styles.footerRow]}>
+        <Text style={styles.footerText}>Already have an account? </Text>
+        <TouchableOpacity onPress={() => router.replace('/login')} activeOpacity={0.7}>
+          <Text style={styles.footerLink}>Log in</Text>
+        </TouchableOpacity>
+      </Animated.View>
     </AuthScreenShell>
   );
 }
 
 const styles = StyleSheet.create({
   error: { color: Colors.ERROR, fontSize: FontSize.bodySmall, marginTop: Spacing.sm },
+  footerRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: Spacing.md },
+  footerText: { color: Colors.TEXT_MED, fontSize: FontSize.bodySmall },
+  footerLink: { color: Colors.TEXT_HIGH, fontSize: FontSize.bodySmall, fontWeight: '600' },
 });

@@ -37,9 +37,6 @@ export async function apiFetch(path: string, options: RequestInit = {}, retry = 
   });
 
 
-  console.log(res)
-
-
   if (res.status === 401 && retry && path !== '/auth/refresh') {
     if (!refreshPromise) refreshPromise = refreshAccessToken();
     const newToken = await refreshPromise;
@@ -52,7 +49,9 @@ export async function apiFetch(path: string, options: RequestInit = {}, retry = 
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
-    throw new Error(err.error || 'Request failed');
+    const error = new Error(err.error || 'Request failed') as Error & { code?: string };
+    error.code = err.code;
+    throw error;
   }
   return res.json();
 }

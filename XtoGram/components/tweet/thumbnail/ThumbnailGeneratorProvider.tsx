@@ -20,14 +20,7 @@ type ContextValue = {
 
 const ThumbnailGeneratorContext = createContext<ContextValue | null>(null);
 
-// Mounts ONE off-screen (invisible, but genuinely rendered — Skia needs an
-// actual paint to snapshot) Canvas that renders templates one at a time
-// from a queue, snapshots each, and caches the PNG to disk. Concurrent
-// requests for the SAME template share one in-flight promise rather than
-// rendering it twice. Wrap this around wherever templates get shown
-// (currently just home.tsx) — if templates end up used from another
-// screen later (e.g. the advanced editor), move this up to a shared layout
-// instead of duplicating it.
+
 export function ThumbnailGeneratorProvider({ children }: { children: React.ReactNode }) {
   const canvasRef = useCanvasRef();
   const queueRef = useRef<QueueItem[]>([]);
@@ -42,7 +35,7 @@ export function ThumbnailGeneratorProvider({ children }: { children: React.React
     const next = queueRef.current.shift();
     if (!next) return;
     processingRef.current = true;
-    setRenderedHeight(0); // reset before mounting the next template — see the snapshot effect below
+    setRenderedHeight(0);
     setCurrent(next);
   }, []);
 
@@ -53,9 +46,6 @@ export function ThumbnailGeneratorProvider({ children }: { children: React.React
     processNext();
   }, [processNext]);
 
-  // Once the off-screen SceneRenderer reports a real height, give Skia one
-  // extra frame to actually paint before snapshotting (same double-RAF
-  // pattern used for the "isRendering" overlay elsewhere).
   useEffect(() => {
     if (!current || !renderedHeight) return;
     let cancelled = false;
@@ -79,7 +69,6 @@ export function ThumbnailGeneratorProvider({ children }: { children: React.React
       cancelled = true;
       cancelAnimationFrame(raf);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current, renderedHeight]);
 
   const requestThumbnail = useCallback(
@@ -109,9 +98,6 @@ export function ThumbnailGeneratorProvider({ children }: { children: React.React
   return (
     <ThumbnailGeneratorContext.Provider value={value}>
       {children}
-      {/* Off-screen render target. Positioned off the visible canvas rather
-          than opacity:0 or width:0 — those can still skip layout/paint on
-          some platforms, and this needs a genuine paint to snapshot. */}
       <View style={styles.offscreen} pointerEvents="none">
         {current && (
           <SceneRenderer

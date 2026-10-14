@@ -1,0 +1,33 @@
+1.8 notify and onChange
+ts
+const notify = useCallback(() => {
+  onChange?.({ translateX: translateX.value, ... });
+}, [onChange]);
+
+After each gesture ends, it reads the current values and tells the parent, if the parent supplied onChange. In your CardResult, nobody passes onChange, so this is currently a no-op; the export reads values on demand through getSnapshot instead.
+
+Also, because this view covers the whole frame, touching anywhere in the frame drags the card, not just touching the card.....transfpormable view??????
+
+
+
+
+Pinch pivots at the center, not your fingers. The transform origin is the frame center, so pinching doesn’t zoom toward where your fingers are. Fixing it needs focal-point math.
+reset() returns scale to 1, not the fit scale (initialFrameScale), so after a reset the card may overflow the frame until setScale runs again.
+Blur may differ between preview and export. The preview uses React Native’s blurRadius, and the export uses a Skia blur sigma (not multiplied by exportScale). The two scales aren’t identical, so the exported blur can look different from what the user saw.
+onReady identity: Effect 1 depends on onReady. If the parent passes a new function every render, the effect re-runs, and the spinner can flicker repeatedly. Wrapping it in useCallback in the parent avoids that.
+Gesture objects are recreated every render (Gesture.Pan() etc. aren’t memoized). This works, but wrapping the gesture creation in useMemo is the common optimization.
+Gesture handler setup: GestureDetector only works if the app root is wrapped in GestureHandlerRootView.
+Surface cleanup: the offscreen surface in renderFramedImage isn’t explicitly disposed, so repeated exports hold native memory until garbage collected.
+
+
+useRecentTemplates is called twice (in EditSheet and in TemplatesTab). Each call creates its own independent state, not shared state. It works because both record on selection, but the two copies can drift apart, and storage gets written twice. Cleaner: call it once in EditSheet and pass recentTemplates down as a prop (or move it into a Context).
+
+
+Duplicated recentTemplates logic. The same useMemo block appears in both EditSheet and TemplatesTab. It should be one shared helper.
+
+Side effect inside a state updater. recordTemplateUsed calls SecureStore.setItemAsync inside setRecentIds((prev) => ...). Updaters are supposed to be pure. In React StrictMode they run twice in development, so you’d get two identical writes. It’s harmless here, but the cleaner pattern is to compute next outside and write in an effect.
+
+
+SecureStore for recents. It’s meant for secrets (tokens). It works for this, but it’s slower and has size limits. The file’s own comment already notes AsyncStorage or MMKV as a later swap.
+
+FRAME_WIDTH is computed once at import time from Dimensions.get('window'). It won’t update on rotation or split-screen resize. useWindowDimensions() is the live alternative.

@@ -1,6 +1,7 @@
 import { type NextFunction, type Request, type Response } from "express";
 import * as authService from "../services/auth.service.js";
 import * as tokenService from "../services/token.service.js";
+import * as guestService from "../services/guest.service.js";
 import { type TokenMeta } from "../services/token.service.js";
 
 function getMeta(req: Request): TokenMeta {
@@ -138,6 +139,19 @@ export async function logout(
   try {
     await tokenService.revokeRefreshToken(req.body.refreshToken);
     res.json({ success: true });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function startGuest(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const result = await guestService.startGuestSession(req.body.deviceId, req.ip);
+    res.json(result);
   } catch (err) {
     next(err);
   }

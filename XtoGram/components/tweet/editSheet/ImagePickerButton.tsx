@@ -1,16 +1,19 @@
-import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { Colors, FontSize, Radius, Spacing } from '../../../constants/theme';
+import { useToast } from '../../../context/ToastContext';
 
 type Props = { imageUri?: string; onChange: (uri: string | undefined) => void; label: string };
 
 /** Shared image-library action used by both editable surfaces. */
 export function ImagePickerButton({ imageUri, onChange, label }: Props) {
+  const { showToast } = useToast();
+
   const pickImage = async () => {
     const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!permission.granted) {
-      Alert.alert('Photo access needed', 'Allow photo access to use an image in your design.');
+      showToast('Allow photo access to use an image in your design.', 'error');
       return;
     }
     const result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], quality: 1 });

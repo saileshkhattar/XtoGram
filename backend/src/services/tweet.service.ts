@@ -8,10 +8,11 @@ import type {
   TweetMedia,
   ParsedTweetResponse,
 } from "../types/tweet.js";
+import { reserveGuestGeneration, refundGuestGeneration } from "./guest.service.js";
 
 const BASE_URL = "https://api.twitterapi.io/twitter";
 const MAX_CHAIN_DEPTH = 5;
-const CHAIN_DELAY_MS = 3000;
+const CHAIN_DELAY_MS = 5500;
 const CACHE_TTL_MINUTES = 30;
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -35,6 +36,9 @@ async function fetchRawTweet(tweetId: string): Promise<any> {
     const errorBody = await response.text();
     console.error("TwitterAPI.io error status:", response.status);
     console.error("TwitterAPI.io error body:", errorBody);
+    if (response.status === 429) {
+      throw new AppError("We're busy right now. Please try again in a few seconds.", 429);
+    }
     throw new AppError(`Tweet API error: ${response.status}`, 502);
   }
 
@@ -124,15 +128,37 @@ async function fetchChain(tweetId: string, depth = 0): Promise<Tweet[]> {
   return [...parentChain, tweet];
 }
 
-export async function processTweet(url: string): Promise<ParsedTweetResponse> {
+export async function processTweet(url: string, guestId?: string): Promise<ParsedTweetResponse> {
   const tweetId = extractTweetId(url);
   console.log("tweetid", tweetId)
   if (!tweetId) throw new AppError("Invalid tweet URL", 400);
 
   const wasCached = await TweetCache.exists({ tweetId });
   const raw = await fetchRawTweet(tweetId);
-  console.log(raw);
   if (!raw) throw new AppError("Tweet not found", 404);
+
+  if (guestId) {
+    const reservation = await reserveGuestGeneration(guestId, tweetId);
+    try {
+      const raw = await fetchRawTweet(tweetId);
+      if (!raw) throw new AppError("Tweet not found", 404);
+
+      const parsed = parseTweet(raw);
+      const tweet: Tweet = { ...parsed, quotedTweet: null, parentTweet: null };
+
+      return {
+        type: "original",
+        tweet,
+        guest: {
+          remaining: reservation.remaining,
+          limited: parsed.isReply || parsed.isQuote,
+        },
+      };
+    } catch (err) {
+      if (reservation.charged) await refundGuestGeneration(guestId, tweetId);
+      throw err;
+    }
+  }
 
   const tweet = parseTweet(raw);
 

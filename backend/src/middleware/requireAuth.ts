@@ -4,6 +4,7 @@ import { env } from "../config/env.js";
 
 type AccessTokenPayload = jwt.JwtPayload & {
   sub: string;
+  guest?: boolean;
 };
 
 export const requireAuth: RequestHandler = (req, res, next) => {
@@ -22,6 +23,7 @@ export const requireAuth: RequestHandler = (req, res, next) => {
       return;
     }
     req.userId = payload.sub;
+    req.isGuest = payload.guest === true;
     next();
   } catch {
     res.status(401).json({ error: "Invalid or expired access token" });

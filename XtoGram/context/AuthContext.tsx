@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { getAccessToken, getRefreshToken, saveTokens, clearTokens } from '../utils/auth';
+import { getAccessToken, getRefreshToken, saveTokens, clearTokens, getDeviceId, saveGuestToken, isGuestMode } from '../utils/auth';
 import { apiFetch } from '../utils/api';
 
 type User = { id: string; email: string; name: string; emailVerified: boolean } | null;
@@ -11,6 +11,10 @@ type AuthContextType = {
   login: (email: string, password: string) => Promise<void>;
   loginWithGoogle: (idToken: string) => Promise<void>;
   logout: () => Promise<void>;
+  isGuest: boolean;
+  guestRemaining: number | null;
+  setGuestRemaining: (n: number | null) => void;
+  continueAsGuest: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -18,19 +22,38 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isGuest, setIsGuest] = useState(false);
+  const [guestRemaining, setGuestRemaining] = useState<number | null>(null);
+
+  const continueAsGuest = async () => {
+    const deviceId = await getDeviceId();
+    const data = await apiFetch('/auth/guest', { method: 'POST', body: JSON.stringify({ deviceId }) });
+    await saveGuestToken(data.accessToken);
+    setIsGuest(true);
+    setGuestRemaining(data.guest.remaining);
+  };
 
   useEffect(() => {
     (async () => {
       const access = await getAccessToken();
       const refresh = await getRefreshToken();
-      setUser(access && refresh ? ({} as User) : null);
+      if (access && refresh) {
+        setUser({} as User);
+      } else if (await isGuestMode()) {
+        try {
+          await continueAsGuest();
+        } catch {}
+      }
       setIsLoading(false);
     })();
   }, []);
 
+
   const handleAuthResponse = async (data: any) => {
     await saveTokens(data.accessToken, data.refreshToken);
     setUser(data.user);
+    setIsGuest(false);
+    setGuestRemaining(null);
   };
 
   const signup = async (email: string, password: string, name: string) => {
@@ -55,10 +78,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     await clearTokens();
     setUser(null);
+    setIsGuest(false);
+    setGuestRemaining(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, signup, login, loginWithGoogle, logout }}>
+    <AuthContext.Provider value={{ user, isLoading, isGuest, guestRemaining, setGuestRemaining, continueAsGuest, signup, login, loginWithGoogle, logout }}>
       {children}
     </AuthContext.Provider>
   );

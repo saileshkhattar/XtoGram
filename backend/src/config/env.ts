@@ -31,5 +31,7 @@ export const env = {
   appScheme: getRequiredEnv("APP_SCHEME"),
   googleClientId: getRequiredEnv("GOOGLE_CLIENT_ID"),
   accessTokenTtl: "15m",
+  guestTokenTtl: "30d",
+  guestFreeGenerations: 5,
   refreshTokenTtlDays: 30,
 } as const;

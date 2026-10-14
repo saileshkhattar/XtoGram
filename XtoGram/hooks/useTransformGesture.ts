@@ -16,14 +16,7 @@ type Options = {
   onChange?: (t: TransformState) => void;
 };
 
-// Generic pan + pinch + rotate transform. Deliberately knows nothing
-// about tweets, cards, or frames — it just needs *some* view to attach
-// its gesture + animated style to. That's what makes it reusable for
-// both the frame-crop preview today and the component-level editor
-// (repositioning an avatar, a text block, etc.) later.
 export function useTransformGesture(options: Options = {}) {
-  // A framed card may be intentionally tiny. Keep a small positive floor to
-  // avoid a singular transform while allowing it to be reduced substantially.
   const { minScale = 0.05, maxScale = 4, initial, onChange } = options;
 
   const translateX = useSharedValue(initial?.translateX ?? 0);
@@ -42,7 +35,6 @@ export function useTransformGesture(options: Options = {}) {
       scale: scale.value,
       rotation: rotation.value,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onChange]);
 
   const pan = Gesture.Pan()

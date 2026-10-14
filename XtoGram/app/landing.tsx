@@ -12,9 +12,10 @@ import Button from '../components/ui/Button';
 import GoogleButton from '../components/ui/GoogleButton';
 import { useAuth } from '../context/AuthContext';
 import { useGoogleAuth } from '../hooks/useGoogleAuth';
+import { useToast } from '../context/ToastContext';
 
 export default function LandingScreen() {
-  const { loginWithGoogle } = useAuth();
+  const { loginWithGoogle, continueAsGuest } = useAuth();
   const { promptAsync } = useGoogleAuth(async (idToken) => {
     await loginWithGoogle(idToken);
     router.replace('/(tabs)/home');
@@ -31,6 +32,8 @@ export default function LandingScreen() {
   const btn4 = useRef(new Animated.Value(0)).current;
   const drift = useRef(new Animated.Value(0)).current;
   const scatterFade = useRef(new Animated.Value(0)).current;
+
+  const { showToast } = useToast();
 
   useEffect(() => {
     Animated.sequence([
@@ -121,7 +124,14 @@ export default function LandingScreen() {
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={styles.guestLink}
-                onPress={() => router.replace('/(tabs)/home')}
+                onPress={async () => {
+                  try {
+                    await continueAsGuest();
+                    router.replace('/(tabs)/home');
+                  } catch {
+                                        showToast('Could not continue. Check your connection and try again.', 'error');
+                  }
+                }}
               >
                 <Text style={styles.guestLinkText}>Continue as guest</Text>
               </TouchableOpacity>

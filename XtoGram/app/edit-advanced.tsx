@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { Dimensions, ImageBackground, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useCanvasRef } from '@shopify/react-native-skia';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -15,6 +15,9 @@ import { ImagePickerButton } from '../components/tweet/editSheet/ImagePickerButt
 import { cardTemplates } from '../components/tweet/templates/definations';
 import { Colors, FontSize, Radius, Spacing } from '../constants/theme';
 import { useCard } from '../context/CardContext';
+import { useAuth } from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
+import GuestLock from '../components/ui/GuestLock';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const PREVIEW_WIDTH = SCREEN_WIDTH - Spacing.screen * 2 - Spacing.md * 2;
@@ -50,6 +53,13 @@ export default function EditAdvanced() {
   const handleLayoutComputed = useCallback((layout: { positioned: PositionedElement[] }) => {
     setPositioned(layout.positioned);
   }, []);
+
+  const { isGuest } = useAuth();
+  const { showToast } = useToast();
+
+  useEffect(() => {
+    if (isGuest) showToast('Preview only. Sign up to use the advanced editor.');
+  }, [isGuest, showToast]);
 
   const previewScale = PREVIEW_WIDTH / CARD_WIDTH;
   // Keep a stable stage while Skia fonts/layout initialise instead of
@@ -142,11 +152,18 @@ export default function EditAdvanced() {
               onSelect={setSelectedElementId}
               onCommitPosition={updateElementPosition}
             />
+            {isGuest && (
+              <Pressable
+                style={[StyleSheet.absoluteFill, { zIndex: 10 }]}
+                onPress={() => showToast('Sign up to move and resize elements.')}
+              />
+            )}
           </View>
         </ScrollView>
       </View>
 
       <View style={[styles.propertyPanel, { paddingBottom: Math.max(Spacing.lg, insets.bottom + Spacing.sm) }]}>
+        <GuestLock style={{ gap: Spacing.sm }}>
         {selectedElement ? (
           <>
             <View style={styles.panelHeader}>
@@ -187,6 +204,7 @@ export default function EditAdvanced() {
             <Text style={styles.panelHint}>Use Home → Adjust for card padding and corner rounding. Tap a card element to move it, resize it, or change its layout.</Text>
           </>
         )}
+        </GuestLock>
       </View>
     </View>
   );

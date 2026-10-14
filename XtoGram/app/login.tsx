@@ -17,7 +17,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [f1, f2, f3, f4] = useFadeUpSequence(4);
+  const [f1, f2, f3, f4, f5] = useFadeUpSequence(5);
 
   // const { promptAsync } = useGoogleAuth(async (idToken) => {
   //   try {
@@ -65,6 +65,13 @@ export default function Login() {
       <Animated.View style={f4}>
         {/* <GoogleButton onPress={() => promptAsync()} /> */}
       </Animated.View>
+            <Animated.View style={[f5, styles.footerRow]}>
+              <Text style={styles.footerText}>New? </Text>
+              <TouchableOpacity onPress={() => router.replace('/login')} activeOpacity={0.7}>
+                <Text style={styles.footerLink}>SignUp</Text>
+              </TouchableOpacity>
+              <Text style={styles.footerText}> instead</Text>
+            </Animated.View>
     </AuthScreenShell>
   );
 }
@@ -73,4 +80,7 @@ const styles = StyleSheet.create({
   error: { color: Colors.ERROR, fontSize: FontSize.bodySmall, marginTop: Spacing.sm },
   forgotLink: { alignSelf: 'flex-end', marginTop: Spacing.sm },
   forgotText: { color: Colors.TEXT_LOW, fontSize: FontSize.bodySmall, textDecorationLine: 'underline' },
+  footerRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: Spacing.md },
+  footerText: { color: Colors.TEXT_MED, fontSize: FontSize.bodySmall },
+  footerLink: { color: Colors.TEXT_HIGH, fontSize: FontSize.bodySmall, fontWeight: '600' },
 });

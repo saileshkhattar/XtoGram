@@ -113,8 +113,13 @@ export async function signupUser(
     10,
   );
 
-  console.log("otp", otp)
-  await sendVerificationEmail({ to: email, otp, linkToken: linkTokenRaw });
+  console.log("otp", otp);
+  try {
+    await sendVerificationEmail({ to: email, otp, linkToken: linkTokenRaw });
+  } catch (err) {
+    if (process.env.NODE_ENV === "production") throw err;
+    console.warn("Email failed (ignored in dev):", err);
+  }
 
   const tokens = await issueTokenPair(user._id, meta);
   return { ...tokens, user: toPublicUser(user) };
@@ -223,7 +228,13 @@ export async function resendVerification({ email }: EmailInput): Promise<void> {
     "email_verify",
     10,
   );
-  await sendVerificationEmail({ to: email, otp, linkToken: linkTokenRaw });
+  console.log("otp", otp);
+  try {
+    await sendVerificationEmail({ to: email, otp, linkToken: linkTokenRaw });
+  } catch (err) {
+    if (process.env.NODE_ENV === "production") throw err;
+    console.warn("Email failed (ignored in dev):", err);
+  }
 }
 
 export async function requestPasswordReset({ email }: EmailInput): Promise<void> {

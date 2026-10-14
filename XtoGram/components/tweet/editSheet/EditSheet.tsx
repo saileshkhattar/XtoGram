@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useMemo, useState } from 'react';
+import { forwardRef, useImperativeHandle, useMemo, useState,  useEffect} from 'react';
 import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 import Animated, {
@@ -21,6 +21,9 @@ import { useRecentTemplates } from '../../../hooks/useRecentTemplate';
 import { cardTemplates } from '../templates/definations';
 import type { CardTemplate } from '../scene/types';
 import type { Tweet } from '../../../types/tweet';
+import { useAuth } from '../../../context/AuthContext';
+import { useToast } from '../../../context/ToastContext';
+import GuestLock from '../../ui/GuestLock';
 
 export type EditSheetTab = 'templates' | 'adjust';
 
@@ -93,6 +96,15 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
   const translateY = useSharedValue(DRAG_RANGE);
   const startY = useSharedValue(DRAG_RANGE);
   const isExpanded = useSharedValue(false);
+
+    const { isGuest } = useAuth();
+  const { showToast } = useToast();
+
+  useEffect(() => {
+    if (isGuest && expandedUI && tab === 'adjust') {
+      showToast('Preview only. Sign up to use these tools.');
+    }
+  }, [isGuest, expandedUI, tab, showToast]);
 
   const setExpanded = (next: boolean) => {
     'worklet';
@@ -175,7 +187,7 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
                 <Pressable onPress={() => setTab('templates')} style={styles.tab}>
                   <Text style={[styles.tabLabel, tab === 'templates' && styles.tabLabelActive]}>Templates</Text>
                 </Pressable>
-                <Pressable onPress={() => setTab('adjust')} style={styles.tab}>
+                  <Pressable onPress={() => setTab('adjust')} style={styles.tab}>
                   <Text style={[styles.tabLabel, tab === 'adjust' && styles.tabLabelActive]}>Adjust</Text>
                 </Pressable>
               </View>
@@ -190,6 +202,7 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
             <TemplatesTab selectedTemplateId={selectedTemplateId} onSelect={handleSelectTemplate} />
           </View>
           <View style={tab === 'adjust' ? undefined : styles.inactiveTab}>
+            <GuestLock>
             <AdjustTab
               backgroundColor={backgroundColor}
               onBackgroundColorChange={onBackgroundColorChange}
@@ -202,6 +215,7 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
               backgroundImageBlur={backgroundImageBlur}
               onBackgroundImageBlurChange={onBackgroundImageBlurChange}
             />
+            </GuestLock>
           </View>
         </ScrollView>
       )}
