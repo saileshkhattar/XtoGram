@@ -1,0 +1,251 @@
+{
+  "startedFrom": "https://x.com/krodhidaanav/status/2110993216208261171",
+  "ranAt": "2026-10-16T08:50:22.232Z",
+  "knownThreadSize": "6 tweets by the same author (first four ids known from the earlier capture)",
+  "experiments": [
+    {
+      "label": "thread_context",
+      "request": "https://api.twitterapi.io/twitter/tweet/thread_context?tweetId=2110993216208261171&cursor=<paged>",
+      "pages": [
+        {
+          "pageIndex": 0,
+          "itemCount": 3,
+          "has_next_page": true,
+          "next_cursor": "DAAKCgABHUvWhVU__-kLAAIA...",
+          "status": "success",
+          "rows": [
+            {
+              "id": "2110993216208261171",
+              "handle": "krodhidaanav",
+              "isReply": false,
+              "inReplyToId": null,
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:17 +0000 2026",
+              "replyCount": 1,
+              "textLen": 249,
+              "textStart": "Thread 1/6 🧵 There’s a lot of buzz around Tesla’s new Roads"
+            },
+            {
+              "id": "2110993218854912215",
+              "handle": "krodhidaanav",
+              "isReply": true,
+              "inReplyToId": "2110993216208261171",
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:18 +0000 2026",
+              "replyCount": 1,
+              "textLen": 320,
+              "textStart": "2/6 — Is it the first car to jump or fly? No. In 2025, China"
+            },
+            {
+              "id": "2110993709341008235",
+              "handle": "krodhidaanav",
+              "isReply": false,
+              "inReplyToId": null,
+              "conversationId": "2110993709341008235",
+              "createdAt": "Fri Oct 16 07:18:15 +0000 2026",
+              "replyCount": 0,
+              "textLen": 61,
+              "textStart": "Apne desh ka sochein bhaijaan. Hamare desh ka ham dekh lenge"
+            }
+          ]
+        },
+        {
+          "pageIndex": 1,
+          "itemCount": 0,
+          "has_next_page": false,
+          "next_cursor": null,
+          "status": "success",
+          "rows": []
+        }
+      ],
+      "allDistinctTweets": 3,
+      "downwardChain": [
+        "2110993216208261171",
+        "2110993218854912215"
+      ],
+      "unlinkedSameAuthorIds": [
+        "2110993709341008235"
+      ]
+    },
+    {
+      "label": "search-conv-from",
+      "request": "https://api.twitterapi.io/twitter/tweet/advanced_search?query=conversation_id%3A2110993216208261171%20from%3Akrodhidaanav&queryType=Latest",
+      "pages": [
+        {
+          "pageIndex": 0,
+          "itemCount": 6,
+          "has_next_page": true,
+          "next_cursor": "DAADDAABCgABHUvBKLjbUPoK...",
+          "rows": [
+            {
+              "id": "2110993230997442810",
+              "handle": "krodhidaanav",
+              "isReply": true,
+              "inReplyToId": "2110993228455649578",
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:21 +0000 2026",
+              "replyCount": 0,
+              "textLen": 532,
+              "textStart": "6/6 — What can India learn? 🇮🇳 Despite my criticism, I gen"
+            },
+            {
+              "id": "2110993228455649578",
+              "handle": "krodhidaanav",
+              "isReply": true,
+              "inReplyToId": "2110993225414775249",
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:20 +0000 2026",
+              "replyCount": 1,
+              "textLen": 344,
+              "textStart": "5/6 — Is it practical? Right now, I don’t think so. The Rock"
+            },
+            {
+              "id": "2110993225414775249",
+              "handle": "krodhidaanav",
+              "isReply": true,
+              "inReplyToId": "2110993222604620164",
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:19 +0000 2026",
+              "replyCount": 1,
+              "textLen": 312,
+              "textStart": "4/6 — Does it actually fly? From what we’ve seen, it jumps o"
+            },
+            {
+              "id": "2110993222604620164",
+              "handle": "krodhidaanav",
+              "isReply": true,
+              "inReplyToId": "2110993218854912215",
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:19 +0000 2026",
+              "replyCount": 1,
+              "textLen": 247,
+              "textStart": "3/6 — Is it the fastest car? Not in terms of top speed. Tesl"
+            },
+            {
+              "id": "2110993218854912215",
+              "handle": "krodhidaanav",
+              "isReply": true,
+              "inReplyToId": "2110993216208261171",
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:18 +0000 2026",
+              "replyCount": 1,
+              "textLen": 320,
+              "textStart": "2/6 — Is it the first car to jump or fly? No. In 2025, China"
+            },
+            {
+              "id": "2110993216208261171",
+              "handle": "krodhidaanav",
+              "isReply": false,
+              "inReplyToId": null,
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:17 +0000 2026",
+              "replyCount": 1,
+              "textLen": 249,
+              "textStart": "Thread 1/6 🧵 There’s a lot of buzz around Tesla’s new Roads"
+            }
+          ]
+        }
+      ],
+      "allDistinctTweets": 6,
+      "downwardChain": [
+        "2110993216208261171",
+        "2110993218854912215",
+        "2110993222604620164",
+        "2110993225414775249",
+        "2110993228455649578",
+        "2110993230997442810"
+      ],
+      "unlinkedSameAuthorIds": []
+    },
+    {
+      "label": "search-conv-only",
+      "request": "https://api.twitterapi.io/twitter/tweet/advanced_search?query=conversation_id%3A2110993216208261171&queryType=Latest",
+      "pages": [
+        {
+          "pageIndex": 0,
+          "itemCount": 6,
+          "has_next_page": true,
+          "next_cursor": "DAADDAABCgABHUvBKLjbUPoK...",
+          "rows": [
+            {
+              "id": "2110993230997442810",
+              "handle": "krodhidaanav",
+              "isReply": true,
+              "inReplyToId": "2110993228455649578",
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:21 +0000 2026",
+              "replyCount": 0,
+              "textLen": 532,
+              "textStart": "6/6 — What can India learn? 🇮🇳 Despite my criticism, I gen"
+            },
+            {
+              "id": "2110993228455649578",
+              "handle": "krodhidaanav",
+              "isReply": true,
+              "inReplyToId": "2110993225414775249",
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:20 +0000 2026",
+              "replyCount": 1,
+              "textLen": 344,
+              "textStart": "5/6 — Is it practical? Right now, I don’t think so. The Rock"
+            },
+            {
+              "id": "2110993225414775249",
+              "handle": "krodhidaanav",
+              "isReply": true,
+              "inReplyToId": "2110993222604620164",
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:19 +0000 2026",
+              "replyCount": 1,
+              "textLen": 312,
+              "textStart": "4/6 — Does it actually fly? From what we’ve seen, it jumps o"
+            },
+            {
+              "id": "2110993222604620164",
+              "handle": "krodhidaanav",
+              "isReply": true,
+              "inReplyToId": "2110993218854912215",
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:19 +0000 2026",
+              "replyCount": 1,
+              "textLen": 247,
+              "textStart": "3/6 — Is it the fastest car? Not in terms of top speed. Tesl"
+            },
+            {
+              "id": "2110993218854912215",
+              "handle": "krodhidaanav",
+              "isReply": true,
+              "inReplyToId": "2110993216208261171",
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:18 +0000 2026",
+              "replyCount": 1,
+              "textLen": 320,
+              "textStart": "2/6 — Is it the first car to jump or fly? No. In 2025, China"
+            },
+            {
+              "id": "2110993216208261171",
+              "handle": "krodhidaanav",
+              "isReply": false,
+              "inReplyToId": null,
+              "conversationId": "2110993216208261171",
+              "createdAt": "Fri Oct 16 07:16:17 +0000 2026",
+              "replyCount": 1,
+              "textLen": 249,
+              "textStart": "Thread 1/6 🧵 There’s a lot of buzz around Tesla’s new Roads"
+            }
+          ]
+        }
+      ],
+      "allDistinctTweets": 6,
+      "downwardChain": [
+        "2110993216208261171",
+        "2110993218854912215",
+        "2110993222604620164",
+        "2110993225414775249",
+        "2110993228455649578",
+        "2110993230997442810"
+      ],
+      "unlinkedSameAuthorIds": []
+    }
+  ]
+}

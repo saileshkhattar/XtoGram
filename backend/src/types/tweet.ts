@@ -1,3 +1,7 @@
+import type { Tier } from "../config/tiers.js";
+
+export type ConversationKind = "single" | "thread" | "chain";
+
 export interface TweetAuthor {
   name: string;
   handle: string;
@@ -31,6 +35,9 @@ export interface Tweet {
   isQuote: boolean;
   isRetweet: boolean;
   inReplyToId: string | null;
+  conversationId: string | null;     // root tweet id of the conversation
+  inReplyToHandle: string | null;    // from inReplyToUsername, no "@"
+  quotedTweetId: string | null;      // id of the quoted tweet, even when only a stub came back
   metrics: TweetMetrics;
   author: TweetAuthor;
   media: TweetMedia[];
@@ -40,8 +47,21 @@ export interface Tweet {
   parentTweet: Tweet | null;
 }
 
-export type GuestInfo = { remaining: number; limited: boolean };
 
-export type ParsedTweetResponse =
-  | { type: "original"; tweet: Tweet; guest?: GuestInfo }
-  | { type: "reply"; focusTweetId: string; chain: Tweet[] };
+export interface ConversationResponse {
+  kind: ConversationKind;
+  focusTweetId: string;
+  focusIndex: number;
+  nodes: Tweet[];                       // oldest first, capped to the tier
+  more: {
+    earlier: boolean;
+    later: boolean;
+    deeperQuote: boolean;               // set in L4c
+    truncatedByPageCap: boolean;
+  };
+  limits: { tier: Tier; maxNodes: number; quoteDepth: number };
+  defaultRange: { start: number; end: number };   // inclusive; the initial selection
+  guest?: GuestInfo;
+}
+
+export type GuestInfo = { remaining: number; limited: boolean };

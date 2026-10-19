@@ -30,6 +30,7 @@ export const env = {
   emailFrom: getRequiredEnv("EMAIL_FROM"),
   appScheme: getRequiredEnv("APP_SCHEME"),
   googleClientId: getRequiredEnv("GOOGLE_CLIENT_ID"),
+  twitterCallDelayMs: Number(process.env.TWITTER_CALL_DELAY_MS ?? 5500),
   accessTokenTtl: "15m",
   guestTokenTtl: "30d",
   guestFreeGenerations: 5,

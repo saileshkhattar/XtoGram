@@ -1,0 +1,201 @@
+{
+  "label": "long-text",
+  "url": "https://x.com/MostlyKohli/status/2110973443466535395?s=20",
+  "mode": "single",
+  "fetchedAt": "2026-10-16T07:51:04.689Z",
+  "raw": {
+    "type": "tweet",
+    "id": "2110973443466535395",
+    "url": "https://x.com/MostlyKohli/status/2110973443466535395",
+    "twitterUrl": "https://twitter.com/MostlyKohli/status/2110973443466535395",
+    "text": "🚨 Rebel Kid got caught red handed\n\nRebel Kid aka Apoorva kept flexing in videos that she got admission to NYU, which is very tough. Now a Reddit account that claims to be from NYU has exposed her.\n\nNYU students names are registered and can be checked. There's no student named Apoorva. She knows someone there who invited her to some of the classes. Else apoorva isn't her real name.\n\nBut Apoorva isn't that dumb to joke about such a big thing. Reality is, this is her PR account. She's doing groundwork for her next video where she'll cry that she took admission to NYU through hard work and Reddit people are doing baseless trolls.\n\nThis is how these influencers fool their audience 🙏🥲",
+    "source": "",
+    "retweetCount": 15,
+    "replyCount": 7,
+    "likeCount": 251,
+    "quoteCount": 1,
+    "viewCount": 86961,
+    "createdAt": "Fri Oct 16 05:57:43 +0000 2026",
+    "lang": "en",
+    "bookmarkCount": 107,
+    "isReply": false,
+    "inReplyToId": "",
+    "conversationId": "2110973443466535395",
+    "displayTextRange": [
+      0,
+      276
+    ],
+    "inReplyToUserId": "",
+    "inReplyToUsername": "",
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "MostlyKohli",
+      "url": "https://x.com/MostlyKohli",
+      "twitterUrl": "https://twitter.com/MostlyKohli",
+      "id": "1302838520273223681",
+      "name": "Suprvirat",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "verifiedType": null,
+      "profilePicture": "https://pbs.twimg.com/profile_images/2094636517398605825/mWLXgK1w_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1302838520273223681/1788235237",
+      "description": "Decoding narratives. Creating what I see. ✉️ - workmail@gmail.com",
+      "location": " ",
+      "followers": 31396,
+      "following": 796,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": false,
+      "createdAt": "Mon Sep 07 05:18:18 +0000 2020",
+      "entities": {
+        "description": {}
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 67940,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 10165,
+      "statusesCount": 68834,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [],
+      "profile_bio": {
+        "description": "Decoding narratives. Creating what I see. ✉️ - workmail@gmail.com",
+        "entities": {
+          "description": {}
+        }
+      },
+      "isAutomated": false,
+      "automatedBy": null
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "additional_media_info": {
+            "monetizable": false
+          },
+          "allow_download_status": {
+            "allow_download": true
+          },
+          "display_url": "pic.x.com/MbgLqFFez2",
+          "expanded_url": "https://x.com/MostlyKohli/status/2110973443466535395/video/1",
+          "ext_master_playlist_only": [],
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "ext_playlists": [],
+          "id_str": "2110973224423235584",
+          "indices": [
+            277,
+            300
+          ],
+          "media_key": "13_2110973224423235584",
+          "media_results": {
+            "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAAR1LrvaUG6AAAAA=",
+            "result": {
+              "__typename": "ApiMedia",
+              "id": "QXBpTWVkaWE6DAAECgABHUuu9pQboAAAAA==",
+              "media_key": "13_2110973224423235584"
+            }
+          },
+          "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2110973224423235584/img/uhLQUI4q-Z8Jg6Vq.jpg",
+          "original_info": {
+            "focus_rects": [],
+            "height": 1080,
+            "width": 1440
+          },
+          "sizes": {
+            "large": {
+              "h": 1080,
+              "w": 1440
+            }
+          },
+          "type": "video",
+          "url": "https://t.co/MbgLqFFez2",
+          "video_info": {
+            "aspect_ratio": [
+              4,
+              3
+            ],
+            "duration_millis": 12237,
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video-s.twimg.com/amplify_video/2110973224423235584/pl/eSJi3uNLBb4pVmRJ.m3u8?tag=29&v=cfc"
+              },
+              {
+                "bitrate": 256000,
+                "content_type": "video/mp4",
+                "url": "https://video-s.twimg.com/amplify_video/2110973224423235584/vid/avc1/360x270/m7dsZZQ7oH8uP15a.mp4?tag=29"
+              },
+              {
+                "bitrate": 832000,
+                "content_type": "video/mp4",
+                "url": "https://video-s.twimg.com/amplify_video/2110973224423235584/vid/avc1/480x360/-SN_jmZlKRNx6wQx.mp4?tag=29"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video-s.twimg.com/amplify_video/2110973224423235584/vid/avc1/960x720/7xnaUtzFhTjzSc8M.mp4?tag=29"
+              },
+              {
+                "bitrate": 10368000,
+                "content_type": "video/mp4",
+                "url": "https://video-s.twimg.com/amplify_video/2110973224423235584/vid/avc1/1440x1080/VgIOj7YpPAtZfRvT.mp4?tag=29"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "card": null,
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    },
+    "isRetweet": false,
+    "isQuote": false,
+    "isConversationControlled": false,
+    "quoted_tweet": null,
+    "retweeted_tweet": null,
+    "isLimitedReply": false,
+    "communityInfo": null
+  },
+  "parsed": {
+    "id": "2110973443466535395",
+    "text": "🚨 Rebel Kid got caught red handed\n\nRebel Kid aka Apoorva kept flexing in videos that she got admission to NYU, which is very tough. Now a Reddit account that claims to be from NYU has exposed her.\n\nNYU students names are registered and can be checked. There's no student named Apoorva. She knows someone there who invited her to some of the classes. Else apoorva isn't her real name.\n\nBut Apoorva isn't that dumb to joke about such a big thing. Reality is, this is her PR account. She's doing groundwork for her next video where she'll cry that she took admission to NYU through hard work and Reddit people are doing baseless trolls.\n\nThis is how these influencers fool their audience 🙏🥲",
+    "createdAt": "Fri Oct 16 05:57:43 +0000 2026",
+    "lang": "en",
+    "url": "https://twitter.com/MostlyKohli/status/2110973443466535395",
+    "isReply": false,
+    "isQuote": false,
+    "isRetweet": false,
+    "inReplyToId": null,
+    "metrics": {
+      "likes": 251,
+      "retweets": 15,
+      "replies": 7,
+      "quotes": 1,
+      "bookmarks": 107
+    },
+    "author": {
+      "name": "Suprvirat",
+      "handle": "@MostlyKohli",
+      "avatar": "https://pbs.twimg.com/profile_images/2094636517398605825/mWLXgK1w_normal.jpg",
+      "verified": true,
+      "verifiedType": null,
+      "followers": 31396
+    },
+    "media": [],
+    "hashtags": [],
+    "mentions": [],
+    "quotedTweet": null,
+    "parentTweet": null
+  }
+}

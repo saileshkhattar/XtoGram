@@ -1,0 +1,630 @@
+{
+  "label": "reply-chain",
+  "url": "https://x.com/swmonsoon/status/2110995601106276664?s=20",
+  "mode": "chain",
+  "fetchedAt": "2026-10-16T07:50:08.740Z",
+  "raw": [
+    {
+      "type": "tweet",
+      "id": "2110985938885374208",
+      "url": "https://x.com/abhijeet_dipke/status/2110985938885374208",
+      "twitterUrl": "https://twitter.com/abhijeet_dipke/status/2110985938885374208",
+      "text": "Businesses do not suffer because of peaceful protests. They suffer when the govt decides to shut down an entire city, suspend internet services and restrict the movement of its own citizens and turn the city into a war-zone. \n\nSince its inception, the Cockroach Janta Party has maintained that we will always follow Gandhi’s path of peace and non-violence, and we have stood by that commitment. We have organised protests in Mumbai, Pune, Jaipur, Lucknow, Bengaluru and Nagpur, and every single one of them has been peaceful. I was personally assaulted in Jaipur, but even then, I chose not to retaliate because responding to violence with violence goes against everything we believe in. We would rather exercise the rights guaranteed to us by the Constitution, drafted under the leadership of Dr. B. R. Ambedkar, than resort to physical force. Our strength comes from our commitment to constitutional values, and no amount of provocation will make us abandon them.\n\nDespite this, there are constant attempts to portray us as anarchists simply because we refuse to remain silent. But demanding answers from the govt is not anarchy, protesting against injustice on the streets is not anarchy, and questioning those who hold public office is certainly not anarchy. These are the most fundamental expressions of democracy. The very party that is in power today spent decades organising protests, taking to the streets and questioning the governments of the day when it was in opposition. Had the same restrictions, intimidation and police crackdowns been used against them, many of those who occupy positions of power today might never have reached where they are. It is deeply hypocritical to celebrate protests as a democratic right when you are in opposition and treat the same act as a threat to public order when you come to power.\n\nWe are not asking for privileges or special treatment. We are simply asking to exercise the rights that belong to every citizen of this Republic, irrespective of which party is in power. So let us fulfil our duty as citizens of this country by questioning those we elect, demanding accountability and speaking up whenever we witness injustice. \n\nA govt that has been elected by the people is bound to listen to the people, not silence them. Democracy does not end once the votes have been counted.",
+      "source": "",
+      "retweetCount": 2107,
+      "replyCount": 1226,
+      "likeCount": 8913,
+      "quoteCount": 173,
+      "viewCount": 141957,
+      "createdAt": "Fri Oct 16 06:47:22 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 128,
+      "isReply": false,
+      "inReplyToId": "",
+      "conversationId": "2110985938885374208",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": "",
+      "inReplyToUsername": "",
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "abhijeet_dipke",
+        "url": "https://x.com/abhijeet_dipke",
+        "twitterUrl": "https://twitter.com/abhijeet_dipke",
+        "id": "2313552080",
+        "name": "Abhijeet Dipke",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2080997334398140416/rPBE_IDp_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2313552080/1664001336",
+        "description": "Founder & Convenor - Cockroach Janta Party \n\nContact: abhijeet@cockroachjantaparty.org",
+        "location": "",
+        "followers": 583685,
+        "following": 1031,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Mon Jan 27 12:14:45 +0000 2014",
+        "entities": {
+          "description": {},
+          "url": {
+            "urls": [
+              {
+                "display_url": "cockroachjantaparty.org",
+                "expanded_url": "https://cockroachjantaparty.org/",
+                "indices": [
+                  0,
+                  23
+                ],
+                "url": "https://t.co/qTZlj7dR8F"
+              }
+            ]
+          }
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2797,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2346,
+        "statusesCount": 12320,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1232559434775351296"
+        ],
+        "profile_bio": {
+          "description": "Founder & Convenor - Cockroach Janta Party \n\nContact: abhijeet@cockroachjantaparty.org",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "cockroachjantaparty.org",
+                  "expanded_url": "https://cockroachjantaparty.org/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/qTZlj7dR8F"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "isRetweet": false,
+      "isQuote": false,
+      "isConversationControlled": false,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null
+    },
+    {
+      "type": "tweet",
+      "id": "2110991407548899747",
+      "url": "https://x.com/beingsagarneel/status/2110991407548899747",
+      "twitterUrl": "https://twitter.com/beingsagarneel/status/2110991407548899747",
+      "text": "@abhijeet_dipke Dipke,\n\n​Are you attempting to educate the business community of Delhi and the nation? The public remembers the previous protests and the disruptions that followed.\n​True advocacy requires responsibility, not chaotic protests that harm public order and local businesses. Exercise caution before lost public goodwill turns into widespread opposition.",
+      "source": "",
+      "retweetCount": 16,
+      "replyCount": 3,
+      "likeCount": 207,
+      "quoteCount": 0,
+      "viewCount": 7707,
+      "createdAt": "Fri Oct 16 07:09:06 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 6,
+      "isReply": true,
+      "inReplyToId": "2110985938885374208",
+      "conversationId": "2110985938885374208",
+      "displayTextRange": [
+        16,
+        295
+      ],
+      "inReplyToUserId": "2313552080",
+      "inReplyToUsername": "abhijeet_dipke",
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "beingsagarneel",
+        "url": "https://x.com/beingsagarneel",
+        "twitterUrl": "https://twitter.com/beingsagarneel",
+        "id": "48805655",
+        "name": "S A G A R",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2086467680538910720/Y8a5ByFL_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/48805655/1775980368",
+        "description": "|| Human || || Nationalist || || Bharatia || 🇮🇳 #SaveSoil #EarthBuddy || RTs are not endorsement || || Tweets are personal views ||",
+        "location": "India",
+        "followers": 1896,
+        "following": 4887,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Jun 19 19:42:19 +0000 2009",
+        "entities": {
+          "description": {
+            "hashtags": [
+              {
+                "indices": [
+                  48,
+                  57
+                ],
+                "text": "SaveSoil"
+              },
+              {
+                "indices": [
+                  58,
+                  69
+                ],
+                "text": "EarthBuddy"
+              }
+            ]
+          }
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 24666,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1077,
+        "statusesCount": 18993,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2080983777732604122"
+        ],
+        "profile_bio": {
+          "description": "|| Human || || Nationalist || || Bharatia || 🇮🇳 #SaveSoil #EarthBuddy || RTs are not endorsement || || Tweets are personal views ||",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    48,
+                    57
+                  ],
+                  "text": "SaveSoil"
+                },
+                {
+                  "indices": [
+                    58,
+                    69
+                  ],
+                  "text": "EarthBuddy"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/C8oLrwygqp",
+            "expanded_url": "https://x.com/beingsagarneel/status/2110991407548899747/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2110991392717877249",
+            "indices": [
+              296,
+              319
+            ],
+            "media_key": "3_2110991392717877249",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1Lv3y22zABCgACHUu/gCraoaMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHUu/fLbbMAEKAAIdS7+AKtqhowAA",
+                "media_key": "3_2110991392717877249"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HUu_fLbbMAE1bCm.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1366,
+                  "w": 1366,
+                  "x": 494,
+                  "y": 0
+                },
+                {
+                  "h": 1366,
+                  "w": 1198,
+                  "x": 578,
+                  "y": 0
+                },
+                {
+                  "h": 1366,
+                  "w": 683,
+                  "x": 836,
+                  "y": 0
+                },
+                {
+                  "h": 1366,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1366,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1366,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/C8oLrwygqp"
+          },
+          {
+            "display_url": "pic.x.com/C8oLrwygqp",
+            "expanded_url": "https://x.com/beingsagarneel/status/2110991407548899747/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 41,
+                    "w": 41,
+                    "x": 151,
+                    "y": 236
+                  },
+                  {
+                    "h": 44,
+                    "w": 44,
+                    "x": 102,
+                    "y": 240
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 41,
+                    "w": 41,
+                    "x": 151,
+                    "y": 236
+                  },
+                  {
+                    "h": 44,
+                    "w": 44,
+                    "x": 102,
+                    "y": 240
+                  }
+                ]
+              }
+            },
+            "id_str": "2110991401668448257",
+            "indices": [
+              296,
+              319
+            ],
+            "media_key": "3_2110991401668448257",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1Lv37MWhABCgACHUu/gCraoaMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHUu/fsxaEAEKAAIdS7+AKtqhowAA",
+                "media_key": "3_2110991401668448257"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HUu_fsxaEAE-R3j.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 335,
+                  "w": 598,
+                  "x": 0,
+                  "y": 57
+                },
+                {
+                  "h": 521,
+                  "w": 521,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 521,
+                  "w": 457,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 521,
+                  "w": 261,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 521,
+                  "w": 598,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 521,
+              "width": 598
+            },
+            "sizes": {
+              "large": {
+                "h": 521,
+                "w": 598
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/C8oLrwygqp"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "isRetweet": false,
+      "isQuote": false,
+      "isConversationControlled": false,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null
+    },
+    {
+      "type": "tweet",
+      "id": "2110995601106276664",
+      "url": "https://x.com/swmonsoon/status/2110995601106276664",
+      "twitterUrl": "https://twitter.com/swmonsoon/status/2110995601106276664",
+      "text": "@beingsagarneel @abhijeet_dipke Andhbhakt",
+      "source": "",
+      "retweetCount": 0,
+      "replyCount": 3,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 154,
+      "createdAt": "Fri Oct 16 07:25:46 +0000 2026",
+      "lang": "fi",
+      "bookmarkCount": 0,
+      "isReply": true,
+      "inReplyToId": "2110991407548899747",
+      "conversationId": "2110985938885374208",
+      "displayTextRange": [
+        32,
+        41
+      ],
+      "inReplyToUserId": "48805655",
+      "inReplyToUsername": "beingsagarneel",
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "swmonsoon",
+        "url": "https://x.com/swmonsoon",
+        "twitterUrl": "https://twitter.com/swmonsoon",
+        "id": "57625450",
+        "name": "nadodikattu",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1056584032832667650/g2wg4W5T_normal.jpg",
+        "coverPicture": "",
+        "description": "",
+        "location": "",
+        "followers": 12,
+        "following": 205,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Fri Jul 17 12:06:27 +0000 2009",
+        "entities": {
+          "description": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 974,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 16,
+        "statusesCount": 601,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "48805655",
+            "indices": [
+              0,
+              15
+            ],
+            "name": "S A G A R",
+            "screen_name": "beingsagarneel"
+          },
+          {
+            "id_str": "2313552080",
+            "indices": [
+              16,
+              31
+            ],
+            "name": "Abhijeet Dipke",
+            "screen_name": "abhijeet_dipke"
+          }
+        ]
+      },
+      "isRetweet": false,
+      "isQuote": false,
+      "isConversationControlled": false,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null
+    }
+  ],
+  "parsed": [
+    {
+      "id": "2110985938885374208",
+      "text": "Businesses do not suffer because of peaceful protests. They suffer when the govt decides to shut down an entire city, suspend internet services and restrict the movement of its own citizens and turn the city into a war-zone. \n\nSince its inception, the Cockroach Janta Party has maintained that we will always follow Gandhi’s path of peace and non-violence, and we have stood by that commitment. We have organised protests in Mumbai, Pune, Jaipur, Lucknow, Bengaluru and Nagpur, and every single one of them has been peaceful. I was personally assaulted in Jaipur, but even then, I chose not to retaliate because responding to violence with violence goes against everything we believe in. We would rather exercise the rights guaranteed to us by the Constitution, drafted under the leadership of Dr. B. R. Ambedkar, than resort to physical force. Our strength comes from our commitment to constitutional values, and no amount of provocation will make us abandon them.\n\nDespite this, there are constant attempts to portray us as anarchists simply because we refuse to remain silent. But demanding answers from the govt is not anarchy, protesting against injustice on the streets is not anarchy, and questioning those who hold public office is certainly not anarchy. These are the most fundamental expressions of democracy. The very party that is in power today spent decades organising protests, taking to the streets and questioning the governments of the day when it was in opposition. Had the same restrictions, intimidation and police crackdowns been used against them, many of those who occupy positions of power today might never have reached where they are. It is deeply hypocritical to celebrate protests as a democratic right when you are in opposition and treat the same act as a threat to public order when you come to power.\n\nWe are not asking for privileges or special treatment. We are simply asking to exercise the rights that belong to every citizen of this Republic, irrespective of which party is in power. So let us fulfil our duty as citizens of this country by questioning those we elect, demanding accountability and speaking up whenever we witness injustice. \n\nA govt that has been elected by the people is bound to listen to the people, not silence them. Democracy does not end once the votes have been counted.",
+      "createdAt": "Fri Oct 16 06:47:22 +0000 2026",
+      "lang": "en",
+      "url": "https://twitter.com/abhijeet_dipke/status/2110985938885374208",
+      "isReply": false,
+      "isQuote": false,
+      "isRetweet": false,
+      "inReplyToId": null,
+      "metrics": {
+        "likes": 8913,
+        "retweets": 2107,
+        "replies": 1226,
+        "quotes": 173,
+        "bookmarks": 128
+      },
+      "author": {
+        "name": "Abhijeet Dipke",
+        "handle": "@abhijeet_dipke",
+        "avatar": "https://pbs.twimg.com/profile_images/2080997334398140416/rPBE_IDp_normal.jpg",
+        "verified": true,
+        "verifiedType": null,
+        "followers": 583685
+      },
+      "media": [],
+      "hashtags": [],
+      "mentions": [],
+      "quotedTweet": null,
+      "parentTweet": null
+    },
+    {
+      "id": "2110991407548899747",
+      "text": "@abhijeet_dipke Dipke,\n\n​Are you attempting to educate the business community of Delhi and the nation? The public remembers the previous protests and the disruptions that followed.\n​True advocacy requires responsibility, not chaotic protests that harm public order and local businesses. Exercise caution before lost public goodwill turns into widespread opposition.",
+      "createdAt": "Fri Oct 16 07:09:06 +0000 2026",
+      "lang": "en",
+      "url": "https://twitter.com/beingsagarneel/status/2110991407548899747",
+      "isReply": true,
+      "isQuote": false,
+      "isRetweet": false,
+      "inReplyToId": "2110985938885374208",
+      "metrics": {
+        "likes": 207,
+        "retweets": 16,
+        "replies": 3,
+        "quotes": 0,
+        "bookmarks": 6
+      },
+      "author": {
+        "name": "S A G A R",
+        "handle": "@beingsagarneel",
+        "avatar": "https://pbs.twimg.com/profile_images/2086467680538910720/Y8a5ByFL_normal.jpg",
+        "verified": true,
+        "verifiedType": null,
+        "followers": 1896
+      },
+      "media": [
+        {
+          "url": "https://pbs.twimg.com/media/HUu_fLbbMAE1bCm.jpg",
+          "width": 2048,
+          "height": 1366
+        },
+        {
+          "url": "https://pbs.twimg.com/media/HUu_fsxaEAE-R3j.jpg",
+          "width": 598,
+          "height": 521
+        }
+      ],
+      "hashtags": [],
+      "mentions": [],
+      "quotedTweet": null,
+      "parentTweet": null
+    },
+    {
+      "id": "2110995601106276664",
+      "text": "@beingsagarneel @abhijeet_dipke Andhbhakt",
+      "createdAt": "Fri Oct 16 07:25:46 +0000 2026",
+      "lang": "fi",
+      "url": "https://twitter.com/swmonsoon/status/2110995601106276664",
+      "isReply": true,
+      "isQuote": false,
+      "isRetweet": false,
+      "inReplyToId": "2110991407548899747",
+      "metrics": {
+        "likes": 0,
+        "retweets": 0,
+        "replies": 3,
+        "quotes": 0,
+        "bookmarks": 0
+      },
+      "author": {
+        "name": "nadodikattu",
+        "handle": "@swmonsoon",
+        "avatar": "https://pbs.twimg.com/profile_images/1056584032832667650/g2wg4W5T_normal.jpg",
+        "verified": false,
+        "verifiedType": null,
+        "followers": 12
+      },
+      "media": [],
+      "hashtags": [],
+      "mentions": [
+        "beingsagarneel",
+        "abhijeet_dipke"
+      ],
+      "quotedTweet": null,
+      "parentTweet": null
+    }
+  ]
+}

@@ -1,0 +1,3214 @@
+[
+  {
+    "label": "thread-first",
+    "url": "https://x.com/krodhidaanav/status/2110993216208261171?s=20",
+    "mode": "single",
+    "fetchedAt": "2026-10-16T07:49:24.105Z",
+    "raw": {
+      "type": "tweet",
+      "id": "2110993216208261171",
+      "url": "https://x.com/krodhidaanav/status/2110993216208261171",
+      "twitterUrl": "https://twitter.com/krodhidaanav/status/2110993216208261171",
+      "text": "Thread 1/6 🧵\n\nThere’s a lot of buzz around Tesla’s new Roadster, and I must say, it was fascinating to watch a car jump over other vehicles and manoeuvre in mid-air.\n\nBut is it really as revolutionary as people are claiming? I have a few questions.",
+      "source": "",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 16,
+      "createdAt": "Fri Oct 16 07:16:17 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": "",
+      "conversationId": "2110993216208261171",
+      "displayTextRange": [
+        0,
+        248
+      ],
+      "inReplyToUserId": "",
+      "inReplyToUsername": "",
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "krodhidaanav",
+        "url": "https://x.com/krodhidaanav",
+        "twitterUrl": "https://twitter.com/krodhidaanav",
+        "id": "1776658998869344256",
+        "name": "Krodhi Daanav",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1776658998869344256/1746018705",
+        "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+        "location": "Uttarakhand, India",
+        "followers": 41,
+        "following": 108,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Apr 06 17:11:47 +0000 2024",
+        "entities": {
+          "description": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 28684,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 249,
+        "statusesCount": 5232,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "isRetweet": false,
+      "isQuote": false,
+      "isConversationControlled": false,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null
+    },
+    "parsed": {
+      "id": "2110993216208261171",
+      "text": "Thread 1/6 🧵\n\nThere’s a lot of buzz around Tesla’s new Roadster, and I must say, it was fascinating to watch a car jump over other vehicles and manoeuvre in mid-air.\n\nBut is it really as revolutionary as people are claiming? I have a few questions.",
+      "createdAt": "Fri Oct 16 07:16:17 +0000 2026",
+      "lang": "en",
+      "url": "https://twitter.com/krodhidaanav/status/2110993216208261171",
+      "isReply": false,
+      "isQuote": false,
+      "isRetweet": false,
+      "inReplyToId": null,
+      "metrics": {
+        "likes": 0,
+        "retweets": 0,
+        "replies": 1,
+        "quotes": 0,
+        "bookmarks": 0
+      },
+      "author": {
+        "name": "Krodhi Daanav",
+        "handle": "@krodhidaanav",
+        "avatar": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+        "verified": true,
+        "verifiedType": null,
+        "followers": 41
+      },
+      "media": [],
+      "hashtags": [],
+      "mentions": [],
+      "quotedTweet": null,
+      "parentTweet": null
+    }
+  },
+  {
+    "label": "thread-middle",
+    "url": "https://x.com/krodhidaanav/status/2110993225414775249?s=20",
+    "mode": "chain",
+    "fetchedAt": "2026-10-16T07:49:45.619Z",
+    "raw": [
+      {
+        "type": "tweet",
+        "id": "2110993216208261171",
+        "url": "https://x.com/krodhidaanav/status/2110993216208261171",
+        "twitterUrl": "https://twitter.com/krodhidaanav/status/2110993216208261171",
+        "text": "Thread 1/6 🧵\n\nThere’s a lot of buzz around Tesla’s new Roadster, and I must say, it was fascinating to watch a car jump over other vehicles and manoeuvre in mid-air.\n\nBut is it really as revolutionary as people are claiming? I have a few questions.",
+        "source": "",
+        "retweetCount": 0,
+        "replyCount": 1,
+        "likeCount": 0,
+        "quoteCount": 0,
+        "viewCount": 16,
+        "createdAt": "Fri Oct 16 07:16:17 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 0,
+        "isReply": false,
+        "inReplyToId": "",
+        "conversationId": "2110993216208261171",
+        "displayTextRange": [
+          0,
+          248
+        ],
+        "inReplyToUserId": "",
+        "inReplyToUsername": "",
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "krodhidaanav",
+          "url": "https://x.com/krodhidaanav",
+          "twitterUrl": "https://twitter.com/krodhidaanav",
+          "id": "1776658998869344256",
+          "name": "Krodhi Daanav",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1776658998869344256/1746018705",
+          "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+          "location": "Uttarakhand, India",
+          "followers": 41,
+          "following": 108,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": true,
+          "createdAt": "Sat Apr 06 17:11:47 +0000 2024",
+          "entities": {
+            "description": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 28684,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 249,
+          "statusesCount": 5232,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+            "entities": {
+              "description": {}
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {},
+        "isRetweet": false,
+        "isQuote": false,
+        "isConversationControlled": false,
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null
+      },
+      {
+        "type": "tweet",
+        "id": "2110993218854912215",
+        "url": "https://x.com/krodhidaanav/status/2110993218854912215",
+        "twitterUrl": "https://twitter.com/krodhidaanav/status/2110993218854912215",
+        "text": "2/6 — Is it the first car to jump or fly?\n\nNo.\n\nIn 2025, China’s BYD demonstrated its Yangwang U9 jumping over obstacles at 120 km/h, covering more than 6 metres.\n\nAnd flying cars aren’t new either. The Fulton Airphibian was flying back in the 1940s.\n\nTesla’s technology is different, but the concept isn’t entirely new.",
+        "source": "",
+        "retweetCount": 0,
+        "replyCount": 1,
+        "likeCount": 1,
+        "quoteCount": 0,
+        "viewCount": 17,
+        "createdAt": "Fri Oct 16 07:16:18 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 0,
+        "isReply": true,
+        "inReplyToId": "2110993216208261171",
+        "conversationId": "2110993216208261171",
+        "displayTextRange": [
+          0,
+          273
+        ],
+        "inReplyToUserId": "1776658998869344256",
+        "inReplyToUsername": "krodhidaanav",
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "krodhidaanav",
+          "url": "https://x.com/krodhidaanav",
+          "twitterUrl": "https://twitter.com/krodhidaanav",
+          "id": "1776658998869344256",
+          "name": "Krodhi Daanav",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1776658998869344256/1746018705",
+          "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+          "location": "Uttarakhand, India",
+          "followers": 41,
+          "following": 108,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": true,
+          "createdAt": "Sat Apr 06 17:11:47 +0000 2024",
+          "entities": {
+            "description": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 28684,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 249,
+          "statusesCount": 5232,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+            "entities": {
+              "description": {}
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "urls": [],
+          "user_mentions": []
+        },
+        "isRetweet": false,
+        "isQuote": false,
+        "isConversationControlled": false,
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null
+      },
+      {
+        "type": "tweet",
+        "id": "2110993222604620164",
+        "url": "https://x.com/krodhidaanav/status/2110993222604620164",
+        "twitterUrl": "https://twitter.com/krodhidaanav/status/2110993222604620164",
+        "text": "3/6 — Is it the fastest car?\n\nNot in terms of top speed.\n\nTesla claims over 370 km/h, while BYD’s Yangwang U9 Xtreme reached 496.22 km/h in 2025.\n\nHowever, Tesla’s demonstrated 0–60 mph acceleration of around 0.81 seconds is definitely impressive.",
+        "source": "",
+        "retweetCount": 0,
+        "replyCount": 1,
+        "likeCount": 0,
+        "quoteCount": 0,
+        "viewCount": 7,
+        "createdAt": "Fri Oct 16 07:16:19 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 0,
+        "isReply": true,
+        "inReplyToId": "2110993218854912215",
+        "conversationId": "2110993216208261171",
+        "displayTextRange": [
+          0,
+          247
+        ],
+        "inReplyToUserId": "1776658998869344256",
+        "inReplyToUsername": "krodhidaanav",
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "krodhidaanav",
+          "url": "https://x.com/krodhidaanav",
+          "twitterUrl": "https://twitter.com/krodhidaanav",
+          "id": "1776658998869344256",
+          "name": "Krodhi Daanav",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1776658998869344256/1746018705",
+          "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+          "location": "Uttarakhand, India",
+          "followers": 41,
+          "following": 108,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": true,
+          "createdAt": "Sat Apr 06 17:11:47 +0000 2024",
+          "entities": {
+            "description": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 28684,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 249,
+          "statusesCount": 5232,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+            "entities": {
+              "description": {}
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {},
+        "isRetweet": false,
+        "isQuote": false,
+        "isConversationControlled": false,
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null
+      },
+      {
+        "type": "tweet",
+        "id": "2110993225414775249",
+        "url": "https://x.com/krodhidaanav/status/2110993225414775249",
+        "twitterUrl": "https://twitter.com/krodhidaanav/status/2110993225414775249",
+        "text": "4/6 — Does it actually fly?\n\nFrom what we’ve seen, it jumps over a few cars, manoeuvres in mid-air and lands.\n\nThat’s impressive engineering, but it’s not sustained flight. We haven’t seen it fly over long distances or remain airborne for an extended period.\n\nCalling it a flying car might be a little premature.",
+        "source": "",
+        "retweetCount": 0,
+        "replyCount": 1,
+        "likeCount": 0,
+        "quoteCount": 0,
+        "viewCount": 7,
+        "createdAt": "Fri Oct 16 07:16:19 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 0,
+        "isReply": true,
+        "inReplyToId": "2110993222604620164",
+        "conversationId": "2110993216208261171",
+        "displayTextRange": [
+          0,
+          279
+        ],
+        "inReplyToUserId": "1776658998869344256",
+        "inReplyToUsername": "krodhidaanav",
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "krodhidaanav",
+          "url": "https://x.com/krodhidaanav",
+          "twitterUrl": "https://twitter.com/krodhidaanav",
+          "id": "1776658998869344256",
+          "name": "Krodhi Daanav",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1776658998869344256/1746018705",
+          "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+          "location": "Uttarakhand, India",
+          "followers": 41,
+          "following": 108,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": true,
+          "createdAt": "Sat Apr 06 17:11:47 +0000 2024",
+          "entities": {
+            "description": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 28684,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 249,
+          "statusesCount": 5232,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+            "entities": {
+              "description": {}
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "urls": [],
+          "user_mentions": []
+        },
+        "isRetweet": false,
+        "isQuote": false,
+        "isConversationControlled": false,
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null
+      }
+    ],
+    "parsed": [
+      {
+        "id": "2110993216208261171",
+        "text": "Thread 1/6 🧵\n\nThere’s a lot of buzz around Tesla’s new Roadster, and I must say, it was fascinating to watch a car jump over other vehicles and manoeuvre in mid-air.\n\nBut is it really as revolutionary as people are claiming? I have a few questions.",
+        "createdAt": "Fri Oct 16 07:16:17 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/krodhidaanav/status/2110993216208261171",
+        "isReply": false,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": null,
+        "metrics": {
+          "likes": 0,
+          "retweets": 0,
+          "replies": 1,
+          "quotes": 0,
+          "bookmarks": 0
+        },
+        "author": {
+          "name": "Krodhi Daanav",
+          "handle": "@krodhidaanav",
+          "avatar": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "verified": true,
+          "verifiedType": null,
+          "followers": 41
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      },
+      {
+        "id": "2110993218854912215",
+        "text": "2/6 — Is it the first car to jump or fly?\n\nNo.\n\nIn 2025, China’s BYD demonstrated its Yangwang U9 jumping over obstacles at 120 km/h, covering more than 6 metres.\n\nAnd flying cars aren’t new either. The Fulton Airphibian was flying back in the 1940s.\n\nTesla’s technology is different, but the concept isn’t entirely new.",
+        "createdAt": "Fri Oct 16 07:16:18 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/krodhidaanav/status/2110993218854912215",
+        "isReply": true,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": "2110993216208261171",
+        "metrics": {
+          "likes": 1,
+          "retweets": 0,
+          "replies": 1,
+          "quotes": 0,
+          "bookmarks": 0
+        },
+        "author": {
+          "name": "Krodhi Daanav",
+          "handle": "@krodhidaanav",
+          "avatar": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "verified": true,
+          "verifiedType": null,
+          "followers": 41
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      },
+      {
+        "id": "2110993222604620164",
+        "text": "3/6 — Is it the fastest car?\n\nNot in terms of top speed.\n\nTesla claims over 370 km/h, while BYD’s Yangwang U9 Xtreme reached 496.22 km/h in 2025.\n\nHowever, Tesla’s demonstrated 0–60 mph acceleration of around 0.81 seconds is definitely impressive.",
+        "createdAt": "Fri Oct 16 07:16:19 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/krodhidaanav/status/2110993222604620164",
+        "isReply": true,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": "2110993218854912215",
+        "metrics": {
+          "likes": 0,
+          "retweets": 0,
+          "replies": 1,
+          "quotes": 0,
+          "bookmarks": 0
+        },
+        "author": {
+          "name": "Krodhi Daanav",
+          "handle": "@krodhidaanav",
+          "avatar": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "verified": true,
+          "verifiedType": null,
+          "followers": 41
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      },
+      {
+        "id": "2110993225414775249",
+        "text": "4/6 — Does it actually fly?\n\nFrom what we’ve seen, it jumps over a few cars, manoeuvres in mid-air and lands.\n\nThat’s impressive engineering, but it’s not sustained flight. We haven’t seen it fly over long distances or remain airborne for an extended period.\n\nCalling it a flying car might be a little premature.",
+        "createdAt": "Fri Oct 16 07:16:19 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/krodhidaanav/status/2110993225414775249",
+        "isReply": true,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": "2110993222604620164",
+        "metrics": {
+          "likes": 0,
+          "retweets": 0,
+          "replies": 1,
+          "quotes": 0,
+          "bookmarks": 0
+        },
+        "author": {
+          "name": "Krodhi Daanav",
+          "handle": "@krodhidaanav",
+          "avatar": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "verified": true,
+          "verifiedType": null,
+          "followers": 41
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      }
+    ]
+  },
+  {
+    "label": "reply-chain",
+    "url": "https://x.com/swmonsoon/status/2110995601106276664?s=20",
+    "mode": "chain",
+    "fetchedAt": "2026-10-16T07:50:08.740Z",
+    "raw": [
+      {
+        "type": "tweet",
+        "id": "2110985938885374208",
+        "url": "https://x.com/abhijeet_dipke/status/2110985938885374208",
+        "twitterUrl": "https://twitter.com/abhijeet_dipke/status/2110985938885374208",
+        "text": "Businesses do not suffer because of peaceful protests. They suffer when the govt decides to shut down an entire city, suspend internet services and restrict the movement of its own citizens and turn the city into a war-zone. \n\nSince its inception, the Cockroach Janta Party has maintained that we will always follow Gandhi’s path of peace and non-violence, and we have stood by that commitment. We have organised protests in Mumbai, Pune, Jaipur, Lucknow, Bengaluru and Nagpur, and every single one of them has been peaceful. I was personally assaulted in Jaipur, but even then, I chose not to retaliate because responding to violence with violence goes against everything we believe in. We would rather exercise the rights guaranteed to us by the Constitution, drafted under the leadership of Dr. B. R. Ambedkar, than resort to physical force. Our strength comes from our commitment to constitutional values, and no amount of provocation will make us abandon them.\n\nDespite this, there are constant attempts to portray us as anarchists simply because we refuse to remain silent. But demanding answers from the govt is not anarchy, protesting against injustice on the streets is not anarchy, and questioning those who hold public office is certainly not anarchy. These are the most fundamental expressions of democracy. The very party that is in power today spent decades organising protests, taking to the streets and questioning the governments of the day when it was in opposition. Had the same restrictions, intimidation and police crackdowns been used against them, many of those who occupy positions of power today might never have reached where they are. It is deeply hypocritical to celebrate protests as a democratic right when you are in opposition and treat the same act as a threat to public order when you come to power.\n\nWe are not asking for privileges or special treatment. We are simply asking to exercise the rights that belong to every citizen of this Republic, irrespective of which party is in power. So let us fulfil our duty as citizens of this country by questioning those we elect, demanding accountability and speaking up whenever we witness injustice. \n\nA govt that has been elected by the people is bound to listen to the people, not silence them. Democracy does not end once the votes have been counted.",
+        "source": "",
+        "retweetCount": 2107,
+        "replyCount": 1226,
+        "likeCount": 8913,
+        "quoteCount": 173,
+        "viewCount": 141957,
+        "createdAt": "Fri Oct 16 06:47:22 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 128,
+        "isReply": false,
+        "inReplyToId": "",
+        "conversationId": "2110985938885374208",
+        "displayTextRange": [
+          0,
+          277
+        ],
+        "inReplyToUserId": "",
+        "inReplyToUsername": "",
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "abhijeet_dipke",
+          "url": "https://x.com/abhijeet_dipke",
+          "twitterUrl": "https://twitter.com/abhijeet_dipke",
+          "id": "2313552080",
+          "name": "Abhijeet Dipke",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/2080997334398140416/rPBE_IDp_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/2313552080/1664001336",
+          "description": "Founder & Convenor - Cockroach Janta Party \n\nContact: abhijeet@cockroachjantaparty.org",
+          "location": "",
+          "followers": 583685,
+          "following": 1031,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": false,
+          "createdAt": "Mon Jan 27 12:14:45 +0000 2014",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "cockroachjantaparty.org",
+                  "expanded_url": "https://cockroachjantaparty.org/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/qTZlj7dR8F"
+                }
+              ]
+            }
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 2797,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 2346,
+          "statusesCount": 12320,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "1232559434775351296"
+          ],
+          "profile_bio": {
+            "description": "Founder & Convenor - Cockroach Janta Party \n\nContact: abhijeet@cockroachjantaparty.org",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "cockroachjantaparty.org",
+                    "expanded_url": "https://cockroachjantaparty.org/",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/qTZlj7dR8F"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "urls": [],
+          "user_mentions": []
+        },
+        "isRetweet": false,
+        "isQuote": false,
+        "isConversationControlled": false,
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null
+      },
+      {
+        "type": "tweet",
+        "id": "2110991407548899747",
+        "url": "https://x.com/beingsagarneel/status/2110991407548899747",
+        "twitterUrl": "https://twitter.com/beingsagarneel/status/2110991407548899747",
+        "text": "@abhijeet_dipke Dipke,\n\n​Are you attempting to educate the business community of Delhi and the nation? The public remembers the previous protests and the disruptions that followed.\n​True advocacy requires responsibility, not chaotic protests that harm public order and local businesses. Exercise caution before lost public goodwill turns into widespread opposition.",
+        "source": "",
+        "retweetCount": 16,
+        "replyCount": 3,
+        "likeCount": 207,
+        "quoteCount": 0,
+        "viewCount": 7707,
+        "createdAt": "Fri Oct 16 07:09:06 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 6,
+        "isReply": true,
+        "inReplyToId": "2110985938885374208",
+        "conversationId": "2110985938885374208",
+        "displayTextRange": [
+          16,
+          295
+        ],
+        "inReplyToUserId": "2313552080",
+        "inReplyToUsername": "abhijeet_dipke",
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "beingsagarneel",
+          "url": "https://x.com/beingsagarneel",
+          "twitterUrl": "https://twitter.com/beingsagarneel",
+          "id": "48805655",
+          "name": "S A G A R",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/2086467680538910720/Y8a5ByFL_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/48805655/1775980368",
+          "description": "|| Human || || Nationalist || || Bharatia || 🇮🇳 #SaveSoil #EarthBuddy || RTs are not endorsement || || Tweets are personal views ||",
+          "location": "India",
+          "followers": 1896,
+          "following": 4887,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": true,
+          "createdAt": "Fri Jun 19 19:42:19 +0000 2009",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    48,
+                    57
+                  ],
+                  "text": "SaveSoil"
+                },
+                {
+                  "indices": [
+                    58,
+                    69
+                  ],
+                  "text": "EarthBuddy"
+                }
+              ]
+            }
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 24666,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 1077,
+          "statusesCount": 18993,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "2080983777732604122"
+          ],
+          "profile_bio": {
+            "description": "|| Human || || Nationalist || || Bharatia || 🇮🇳 #SaveSoil #EarthBuddy || RTs are not endorsement || || Tweets are personal views ||",
+            "entities": {
+              "description": {
+                "hashtags": [
+                  {
+                    "indices": [
+                      48,
+                      57
+                    ],
+                    "text": "SaveSoil"
+                  },
+                  {
+                    "indices": [
+                      58,
+                      69
+                    ],
+                    "text": "EarthBuddy"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "display_url": "pic.x.com/C8oLrwygqp",
+              "expanded_url": "https://x.com/beingsagarneel/status/2110991407548899747/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "large": {
+                  "faces": []
+                },
+                "orig": {
+                  "faces": []
+                }
+              },
+              "id_str": "2110991392717877249",
+              "indices": [
+                296,
+                319
+              ],
+              "media_key": "3_2110991392717877249",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1Lv3y22zABCgACHUu/gCraoaMAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABHUu/fLbbMAEKAAIdS7+AKtqhowAA",
+                  "media_key": "3_2110991392717877249"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/HUu_fLbbMAE1bCm.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 1147,
+                    "w": 2048,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 1366,
+                    "w": 1366,
+                    "x": 494,
+                    "y": 0
+                  },
+                  {
+                    "h": 1366,
+                    "w": 1198,
+                    "x": 578,
+                    "y": 0
+                  },
+                  {
+                    "h": 1366,
+                    "w": 683,
+                    "x": 836,
+                    "y": 0
+                  },
+                  {
+                    "h": 1366,
+                    "w": 2048,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 1366,
+                "width": 2048
+              },
+              "sizes": {
+                "large": {
+                  "h": 1366,
+                  "w": 2048
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/C8oLrwygqp"
+            },
+            {
+              "display_url": "pic.x.com/C8oLrwygqp",
+              "expanded_url": "https://x.com/beingsagarneel/status/2110991407548899747/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "large": {
+                  "faces": [
+                    {
+                      "h": 41,
+                      "w": 41,
+                      "x": 151,
+                      "y": 236
+                    },
+                    {
+                      "h": 44,
+                      "w": 44,
+                      "x": 102,
+                      "y": 240
+                    }
+                  ]
+                },
+                "orig": {
+                  "faces": [
+                    {
+                      "h": 41,
+                      "w": 41,
+                      "x": 151,
+                      "y": 236
+                    },
+                    {
+                      "h": 44,
+                      "w": 44,
+                      "x": 102,
+                      "y": 240
+                    }
+                  ]
+                }
+              },
+              "id_str": "2110991401668448257",
+              "indices": [
+                296,
+                319
+              ],
+              "media_key": "3_2110991401668448257",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1Lv37MWhABCgACHUu/gCraoaMAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABHUu/fsxaEAEKAAIdS7+AKtqhowAA",
+                  "media_key": "3_2110991401668448257"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/HUu_fsxaEAE-R3j.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 335,
+                    "w": 598,
+                    "x": 0,
+                    "y": 57
+                  },
+                  {
+                    "h": 521,
+                    "w": 521,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 521,
+                    "w": 457,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 521,
+                    "w": 261,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 521,
+                    "w": 598,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 521,
+                "width": 598
+              },
+              "sizes": {
+                "large": {
+                  "h": 521,
+                  "w": 598
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/C8oLrwygqp"
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "urls": [],
+          "user_mentions": []
+        },
+        "isRetweet": false,
+        "isQuote": false,
+        "isConversationControlled": false,
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null
+      },
+      {
+        "type": "tweet",
+        "id": "2110995601106276664",
+        "url": "https://x.com/swmonsoon/status/2110995601106276664",
+        "twitterUrl": "https://twitter.com/swmonsoon/status/2110995601106276664",
+        "text": "@beingsagarneel @abhijeet_dipke Andhbhakt",
+        "source": "",
+        "retweetCount": 0,
+        "replyCount": 3,
+        "likeCount": 0,
+        "quoteCount": 0,
+        "viewCount": 154,
+        "createdAt": "Fri Oct 16 07:25:46 +0000 2026",
+        "lang": "fi",
+        "bookmarkCount": 0,
+        "isReply": true,
+        "inReplyToId": "2110991407548899747",
+        "conversationId": "2110985938885374208",
+        "displayTextRange": [
+          32,
+          41
+        ],
+        "inReplyToUserId": "48805655",
+        "inReplyToUsername": "beingsagarneel",
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "swmonsoon",
+          "url": "https://x.com/swmonsoon",
+          "twitterUrl": "https://twitter.com/swmonsoon",
+          "id": "57625450",
+          "name": "nadodikattu",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1056584032832667650/g2wg4W5T_normal.jpg",
+          "coverPicture": "",
+          "description": "",
+          "location": "",
+          "followers": 12,
+          "following": 205,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": false,
+          "createdAt": "Fri Jul 17 12:06:27 +0000 2009",
+          "entities": {
+            "description": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 974,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 16,
+          "statusesCount": 601,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "",
+            "entities": {
+              "description": {}
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {
+          "user_mentions": [
+            {
+              "id_str": "48805655",
+              "indices": [
+                0,
+                15
+              ],
+              "name": "S A G A R",
+              "screen_name": "beingsagarneel"
+            },
+            {
+              "id_str": "2313552080",
+              "indices": [
+                16,
+                31
+              ],
+              "name": "Abhijeet Dipke",
+              "screen_name": "abhijeet_dipke"
+            }
+          ]
+        },
+        "isRetweet": false,
+        "isQuote": false,
+        "isConversationControlled": false,
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null
+      }
+    ],
+    "parsed": [
+      {
+        "id": "2110985938885374208",
+        "text": "Businesses do not suffer because of peaceful protests. They suffer when the govt decides to shut down an entire city, suspend internet services and restrict the movement of its own citizens and turn the city into a war-zone. \n\nSince its inception, the Cockroach Janta Party has maintained that we will always follow Gandhi’s path of peace and non-violence, and we have stood by that commitment. We have organised protests in Mumbai, Pune, Jaipur, Lucknow, Bengaluru and Nagpur, and every single one of them has been peaceful. I was personally assaulted in Jaipur, but even then, I chose not to retaliate because responding to violence with violence goes against everything we believe in. We would rather exercise the rights guaranteed to us by the Constitution, drafted under the leadership of Dr. B. R. Ambedkar, than resort to physical force. Our strength comes from our commitment to constitutional values, and no amount of provocation will make us abandon them.\n\nDespite this, there are constant attempts to portray us as anarchists simply because we refuse to remain silent. But demanding answers from the govt is not anarchy, protesting against injustice on the streets is not anarchy, and questioning those who hold public office is certainly not anarchy. These are the most fundamental expressions of democracy. The very party that is in power today spent decades organising protests, taking to the streets and questioning the governments of the day when it was in opposition. Had the same restrictions, intimidation and police crackdowns been used against them, many of those who occupy positions of power today might never have reached where they are. It is deeply hypocritical to celebrate protests as a democratic right when you are in opposition and treat the same act as a threat to public order when you come to power.\n\nWe are not asking for privileges or special treatment. We are simply asking to exercise the rights that belong to every citizen of this Republic, irrespective of which party is in power. So let us fulfil our duty as citizens of this country by questioning those we elect, demanding accountability and speaking up whenever we witness injustice. \n\nA govt that has been elected by the people is bound to listen to the people, not silence them. Democracy does not end once the votes have been counted.",
+        "createdAt": "Fri Oct 16 06:47:22 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/abhijeet_dipke/status/2110985938885374208",
+        "isReply": false,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": null,
+        "metrics": {
+          "likes": 8913,
+          "retweets": 2107,
+          "replies": 1226,
+          "quotes": 173,
+          "bookmarks": 128
+        },
+        "author": {
+          "name": "Abhijeet Dipke",
+          "handle": "@abhijeet_dipke",
+          "avatar": "https://pbs.twimg.com/profile_images/2080997334398140416/rPBE_IDp_normal.jpg",
+          "verified": true,
+          "verifiedType": null,
+          "followers": 583685
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      },
+      {
+        "id": "2110991407548899747",
+        "text": "@abhijeet_dipke Dipke,\n\n​Are you attempting to educate the business community of Delhi and the nation? The public remembers the previous protests and the disruptions that followed.\n​True advocacy requires responsibility, not chaotic protests that harm public order and local businesses. Exercise caution before lost public goodwill turns into widespread opposition.",
+        "createdAt": "Fri Oct 16 07:09:06 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/beingsagarneel/status/2110991407548899747",
+        "isReply": true,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": "2110985938885374208",
+        "metrics": {
+          "likes": 207,
+          "retweets": 16,
+          "replies": 3,
+          "quotes": 0,
+          "bookmarks": 6
+        },
+        "author": {
+          "name": "S A G A R",
+          "handle": "@beingsagarneel",
+          "avatar": "https://pbs.twimg.com/profile_images/2086467680538910720/Y8a5ByFL_normal.jpg",
+          "verified": true,
+          "verifiedType": null,
+          "followers": 1896
+        },
+        "media": [
+          {
+            "url": "https://pbs.twimg.com/media/HUu_fLbbMAE1bCm.jpg",
+            "width": 2048,
+            "height": 1366
+          },
+          {
+            "url": "https://pbs.twimg.com/media/HUu_fsxaEAE-R3j.jpg",
+            "width": 598,
+            "height": 521
+          }
+        ],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      },
+      {
+        "id": "2110995601106276664",
+        "text": "@beingsagarneel @abhijeet_dipke Andhbhakt",
+        "createdAt": "Fri Oct 16 07:25:46 +0000 2026",
+        "lang": "fi",
+        "url": "https://twitter.com/swmonsoon/status/2110995601106276664",
+        "isReply": true,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": "2110991407548899747",
+        "metrics": {
+          "likes": 0,
+          "retweets": 0,
+          "replies": 3,
+          "quotes": 0,
+          "bookmarks": 0
+        },
+        "author": {
+          "name": "nadodikattu",
+          "handle": "@swmonsoon",
+          "avatar": "https://pbs.twimg.com/profile_images/1056584032832667650/g2wg4W5T_normal.jpg",
+          "verified": false,
+          "verifiedType": null,
+          "followers": 12
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [
+          "beingsagarneel",
+          "abhijeet_dipke"
+        ],
+        "quotedTweet": null,
+        "parentTweet": null
+      }
+    ]
+  },
+  {
+    "label": "quote",
+    "url": "https://x.com/Justwandyy/status/2110645689155744244?s=20",
+    "mode": "single",
+    "fetchedAt": "2026-10-16T07:50:21.893Z",
+    "raw": {
+      "type": "tweet",
+      "id": "2110645689155744244",
+      "url": "https://x.com/Justwandyy/status/2110645689155744244",
+      "twitterUrl": "https://twitter.com/Justwandyy/status/2110645689155744244",
+      "text": "I don’t think this is a valid reason to break up with anyone😩 https://t.co/zmKVvENPge",
+      "source": "",
+      "retweetCount": 865,
+      "replyCount": 2507,
+      "likeCount": 14185,
+      "quoteCount": 809,
+      "viewCount": 3882864,
+      "createdAt": "Thu Oct 15 08:15:20 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 5623,
+      "isReply": false,
+      "inReplyToId": "",
+      "conversationId": "2110645689155744244",
+      "displayTextRange": [
+        0,
+        61
+      ],
+      "inReplyToUserId": "",
+      "inReplyToUsername": "",
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "Justwandyy",
+        "url": "https://x.com/Justwandyy",
+        "twitterUrl": "https://twitter.com/Justwandyy",
+        "id": "1571487445518090241",
+        "name": "natalee🍒🌸 ✪",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2087956648367202304/Qv3mgeVf_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1571487445518090241/1750004472",
+        "description": "i cook👩🏾‍🍳, i tell stories, fashion 📚& i romanticize everything❤️ backup:@shegetsitxo|| 71980",
+        "location": "",
+        "followers": 12153,
+        "following": 3756,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Sun Sep 18 13:13:08 +0000 2022",
+        "entities": {
+          "description": {
+            "user_mentions": [
+              {
+                "id_str": "",
+                "indices": [
+                  73,
+                  85
+                ],
+                "name": "",
+                "screen_name": "shegetsitxo"
+              }
+            ]
+          }
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 45769,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4199,
+        "statusesCount": 87265,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2110768732981150070"
+        ],
+        "profile_bio": {
+          "description": "i cook👩🏾‍🍳, i tell stories, fashion 📚& i romanticize everything❤️ backup:@shegetsitxo|| 71980",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    73,
+                    85
+                  ],
+                  "name": "",
+                  "screen_name": "shegetsitxo"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/zmKVvENPge",
+            "expanded_url": "https://x.com/Justwandyy/status/2110645689155744244/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 152,
+                    "w": 152,
+                    "x": 710,
+                    "y": 16
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 152,
+                    "w": 152,
+                    "x": 710,
+                    "y": 16
+                  }
+                ]
+              }
+            },
+            "id_str": "2110645676900065280",
+            "indices": [
+              62,
+              85
+            ],
+            "media_key": "3_2110645676900065280",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1KhQ96V6AACgACHUqFElTWcfQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHUqFD3pXoAAKAAIdSoUSVNZx9AAA",
+                "media_key": "3_2110645676900065280"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HUqFD3pXoAA9tYn.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 528,
+                  "w": 942,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 942,
+                  "w": 942,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1074,
+                  "w": 942,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1884,
+                  "w": 942,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 942,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 942
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 942
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/zmKVvENPge"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/zmKVvENPge",
+            "expanded_url": "https://x.com/Justwandyy/status/2110645689155744244/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 94,
+                    "w": 94,
+                    "x": 716,
+                    "y": 1184
+                  },
+                  {
+                    "h": 136,
+                    "w": 136,
+                    "x": 500,
+                    "y": 276
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 94,
+                    "w": 94,
+                    "x": 716,
+                    "y": 1184
+                  },
+                  {
+                    "h": 136,
+                    "w": 136,
+                    "x": 500,
+                    "y": 276
+                  }
+                ]
+              }
+            },
+            "id_str": "2110645676912627712",
+            "indices": [
+              62,
+              85
+            ],
+            "media_key": "3_2110645676912627712",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1KhQ97F1AACgACHUqFElTWcfQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHUqFD3sXUAAKAAIdSoUSVNZx9AAA",
+                "media_key": "3_2110645676912627712"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HUqFD3sXUAAp13l.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 528,
+                  "w": 942,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 942,
+                  "w": 942,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1074,
+                  "w": 942,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1884,
+                  "w": 942,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 942,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 942
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 942
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/zmKVvENPge"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/zmKVvENPge",
+            "expanded_url": "https://x.com/Justwandyy/status/2110645689155744244/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 68,
+                    "w": 68,
+                    "x": 82,
+                    "y": 444
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 68,
+                    "w": 68,
+                    "x": 82,
+                    "y": 444
+                  }
+                ]
+              }
+            },
+            "id_str": "2110645676908367872",
+            "indices": [
+              62,
+              85
+            ],
+            "media_key": "3_2110645676908367872",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1KhQ961lAACgACHUqFElTWcfQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHUqFD3rWUAAKAAIdSoUSVNZx9AAA",
+                "media_key": "3_2110645676908367872"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HUqFD3rWUAAqQlR.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 528,
+                  "w": 942,
+                  "x": 0,
+                  "y": 1016
+                },
+                {
+                  "h": 942,
+                  "w": 942,
+                  "x": 0,
+                  "y": 809
+                },
+                {
+                  "h": 1074,
+                  "w": 942,
+                  "x": 0,
+                  "y": 743
+                },
+                {
+                  "h": 1884,
+                  "w": 942,
+                  "x": 0,
+                  "y": 164
+                },
+                {
+                  "h": 2048,
+                  "w": 942,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 942
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 942
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/zmKVvENPge"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "isRetweet": false,
+      "isQuote": true,
+      "isConversationControlled": false,
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2110621121431433588",
+        "url": "https://x.com/Justwandyy/status/2110621121431433588",
+        "twitterUrl": "https://twitter.com/Justwandyy/status/2110621121431433588",
+        "text": "My friend broke up with her boyfriend, and she has been crashing out.😭",
+        "source": "",
+        "retweetCount": 14,
+        "replyCount": 26,
+        "likeCount": 141,
+        "quoteCount": 0,
+        "viewCount": 3670102,
+        "createdAt": "Thu Oct 15 06:37:43 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 21,
+        "isReply": false,
+        "inReplyToId": "",
+        "conversationId": "2110621121431433588",
+        "displayTextRange": [
+          0,
+          70
+        ],
+        "inReplyToUserId": "",
+        "inReplyToUsername": "",
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "Justwandyy",
+          "url": "https://x.com/Justwandyy",
+          "twitterUrl": "https://twitter.com/Justwandyy",
+          "id": "1571487445518090241",
+          "name": "natalee🍒🌸 ✪",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/2087956648367202304/Qv3mgeVf_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1571487445518090241/1750004472",
+          "description": "i cook👩🏾‍🍳, i tell stories, fashion 📚& i romanticize everything❤️ backup:@shegetsitxo|| 71980",
+          "location": "",
+          "followers": 12153,
+          "following": 3756,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": false,
+          "createdAt": "Sun Sep 18 13:13:08 +0000 2022",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    73,
+                    85
+                  ],
+                  "name": "",
+                  "screen_name": "shegetsitxo"
+                }
+              ]
+            }
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 45769,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 4199,
+          "statusesCount": 87265,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "2110768732981150070"
+          ],
+          "profile_bio": {
+            "description": "i cook👩🏾‍🍳, i tell stories, fashion 📚& i romanticize everything❤️ backup:@shegetsitxo|| 71980",
+            "entities": {
+              "description": {
+                "user_mentions": [
+                  {
+                    "id_str": "",
+                    "indices": [
+                      73,
+                      85
+                    ],
+                    "name": "",
+                    "screen_name": "shegetsitxo"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {},
+        "isRetweet": false,
+        "isQuote": false,
+        "isConversationControlled": false,
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null
+    },
+    "parsed": {
+      "id": "2110645689155744244",
+      "text": "I don’t think this is a valid reason to break up with anyone😩 https://t.co/zmKVvENPge",
+      "createdAt": "Thu Oct 15 08:15:20 +0000 2026",
+      "lang": "en",
+      "url": "https://twitter.com/Justwandyy/status/2110645689155744244",
+      "isReply": false,
+      "isQuote": true,
+      "isRetweet": false,
+      "inReplyToId": null,
+      "metrics": {
+        "likes": 14185,
+        "retweets": 865,
+        "replies": 2507,
+        "quotes": 809,
+        "bookmarks": 5623
+      },
+      "author": {
+        "name": "natalee🍒🌸 ✪",
+        "handle": "@Justwandyy",
+        "avatar": "https://pbs.twimg.com/profile_images/2087956648367202304/Qv3mgeVf_normal.jpg",
+        "verified": true,
+        "verifiedType": null,
+        "followers": 12153
+      },
+      "media": [
+        {
+          "url": "https://pbs.twimg.com/media/HUqFD3pXoAA9tYn.jpg",
+          "width": 942,
+          "height": 2048
+        },
+        {
+          "url": "https://pbs.twimg.com/media/HUqFD3sXUAAp13l.jpg",
+          "width": 942,
+          "height": 2048
+        },
+        {
+          "url": "https://pbs.twimg.com/media/HUqFD3rWUAAqQlR.jpg",
+          "width": 942,
+          "height": 2048
+        }
+      ],
+      "hashtags": [],
+      "mentions": [],
+      "quotedTweet": {
+        "id": "2110621121431433588",
+        "text": "My friend broke up with her boyfriend, and she has been crashing out.😭",
+        "createdAt": "Thu Oct 15 06:37:43 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/Justwandyy/status/2110621121431433588",
+        "isReply": false,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": null,
+        "metrics": {
+          "likes": 141,
+          "retweets": 14,
+          "replies": 26,
+          "quotes": 0,
+          "bookmarks": 21
+        },
+        "author": {
+          "name": "natalee🍒🌸 ✪",
+          "handle": "@Justwandyy",
+          "avatar": "https://pbs.twimg.com/profile_images/2087956648367202304/Qv3mgeVf_normal.jpg",
+          "verified": true,
+          "verifiedType": null,
+          "followers": 12153
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      },
+      "parentTweet": null
+    }
+  },
+  {
+    "label": "quote-of-quote",
+    "url": "https://x.com/RealAnujX/status/2110761483072422124?s=20",
+    "mode": "single",
+    "fetchedAt": "2026-10-16T07:50:29.557Z",
+    "raw": {
+      "type": "tweet",
+      "id": "2110761483072422124",
+      "url": "https://x.com/RealAnujX/status/2110761483072422124",
+      "twitterUrl": "https://twitter.com/RealAnujX/status/2110761483072422124",
+      "text": "He is Prime Minister of India, He can shut down the entire country. 🗿\n\nAnd secondly, talk to me from at least 10 feet away, or I’ll have to take a bath in Ganga water to purify myself. 💀",
+      "source": "",
+      "retweetCount": 255,
+      "replyCount": 318,
+      "likeCount": 3585,
+      "quoteCount": 40,
+      "viewCount": 78987,
+      "createdAt": "Thu Oct 15 15:55:28 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 52,
+      "isReply": false,
+      "inReplyToId": "",
+      "conversationId": "2110761483072422124",
+      "displayTextRange": [
+        0,
+        186
+      ],
+      "inReplyToUserId": "",
+      "inReplyToUsername": "",
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "RealAnujX",
+        "url": "https://x.com/RealAnujX",
+        "twitterUrl": "https://twitter.com/RealAnujX",
+        "id": "2027653576785600512",
+        "name": "ANUJx",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2109182969659445248/JDRcjeqH_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2027653576785600512/1780420095",
+        "description": "🕉️ 🇮🇳 | Plot twist pending… @msdhoni",
+        "location": "",
+        "followers": 2733,
+        "following": 1399,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sat Feb 28 07:54:33 +0000 2026",
+        "entities": {
+          "description": {
+            "user_mentions": [
+              {
+                "id_str": "",
+                "indices": [
+                  28,
+                  36
+                ],
+                "name": "",
+                "screen_name": "msdhoni"
+              }
+            ]
+          }
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7704,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1739,
+        "statusesCount": 6205,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2100092313058115631"
+        ],
+        "profile_bio": {
+          "description": "🕉️ 🇮🇳 | Plot twist pending… @msdhoni",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    28,
+                    36
+                  ],
+                  "name": "",
+                  "screen_name": "msdhoni"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "isRetweet": false,
+      "isQuote": true,
+      "isConversationControlled": false,
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2110753147732025395",
+        "url": "https://x.com/abhijeet_dipke/status/2110753147732025395",
+        "twitterUrl": "https://twitter.com/abhijeet_dipke/status/2110753147732025395",
+        "text": "If we announce 100 places, will Narendra Modi shutdown all 100 places?",
+        "source": "",
+        "retweetCount": 4453,
+        "replyCount": 2496,
+        "likeCount": 26620,
+        "quoteCount": 347,
+        "viewCount": 684590,
+        "createdAt": "Thu Oct 15 15:22:20 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 226,
+        "isReply": false,
+        "inReplyToId": "",
+        "conversationId": "2110753147732025395",
+        "displayTextRange": [
+          0,
+          70
+        ],
+        "inReplyToUserId": "",
+        "inReplyToUsername": "",
+        "isPinned": false,
+        "author": {
+          "type": "user",
+          "userName": "abhijeet_dipke",
+          "url": "https://x.com/abhijeet_dipke",
+          "twitterUrl": "https://twitter.com/abhijeet_dipke",
+          "id": "2313552080",
+          "name": "Abhijeet Dipke",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/2080997334398140416/rPBE_IDp_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/2313552080/1664001336",
+          "description": "Founder & Convenor - Cockroach Janta Party \n\nContact: abhijeet@cockroachjantaparty.org",
+          "location": "",
+          "followers": 583685,
+          "following": 1031,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": false,
+          "createdAt": "Mon Jan 27 12:14:45 +0000 2014",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "cockroachjantaparty.org",
+                  "expanded_url": "https://cockroachjantaparty.org/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/qTZlj7dR8F"
+                }
+              ]
+            }
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 2797,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 2346,
+          "statusesCount": 12320,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "1232559434775351296"
+          ],
+          "profile_bio": {
+            "description": "Founder & Convenor - Cockroach Janta Party \n\nContact: abhijeet@cockroachjantaparty.org",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "cockroachjantaparty.org",
+                    "expanded_url": "https://cockroachjantaparty.org/",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/qTZlj7dR8F"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {},
+        "isRetweet": false,
+        "isQuote": true,
+        "isConversationControlled": false,
+        "quoted_tweet": {
+          "type": "tweet",
+          "id": "2110732254507090145",
+          "url": "",
+          "twitterUrl": "",
+          "text": "",
+          "source": "",
+          "retweetCount": 0,
+          "replyCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 0,
+          "createdAt": "",
+          "lang": "",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": "",
+          "conversationId": "",
+          "displayTextRange": [],
+          "inReplyToUserId": "",
+          "inReplyToUsername": "",
+          "isPinned": false,
+          "author": {},
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "isRetweet": false,
+          "isQuote": false,
+          "isConversationControlled": false,
+          "quoted_tweet": null,
+          "retweeted_tweet": null,
+          "isLimitedReply": false,
+          "communityInfo": null
+        },
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null
+    },
+    "parsed": {
+      "id": "2110761483072422124",
+      "text": "He is Prime Minister of India, He can shut down the entire country. 🗿\n\nAnd secondly, talk to me from at least 10 feet away, or I’ll have to take a bath in Ganga water to purify myself. 💀",
+      "createdAt": "Thu Oct 15 15:55:28 +0000 2026",
+      "lang": "en",
+      "url": "https://twitter.com/RealAnujX/status/2110761483072422124",
+      "isReply": false,
+      "isQuote": true,
+      "isRetweet": false,
+      "inReplyToId": null,
+      "metrics": {
+        "likes": 3585,
+        "retweets": 255,
+        "replies": 318,
+        "quotes": 40,
+        "bookmarks": 52
+      },
+      "author": {
+        "name": "ANUJx",
+        "handle": "@RealAnujX",
+        "avatar": "https://pbs.twimg.com/profile_images/2109182969659445248/JDRcjeqH_normal.jpg",
+        "verified": true,
+        "verifiedType": null,
+        "followers": 2733
+      },
+      "media": [],
+      "hashtags": [],
+      "mentions": [],
+      "quotedTweet": {
+        "id": "2110753147732025395",
+        "text": "If we announce 100 places, will Narendra Modi shutdown all 100 places?",
+        "createdAt": "Thu Oct 15 15:22:20 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/abhijeet_dipke/status/2110753147732025395",
+        "isReply": false,
+        "isQuote": true,
+        "isRetweet": false,
+        "inReplyToId": null,
+        "metrics": {
+          "likes": 26620,
+          "retweets": 4453,
+          "replies": 2496,
+          "quotes": 347,
+          "bookmarks": 226
+        },
+        "author": {
+          "name": "Abhijeet Dipke",
+          "handle": "@abhijeet_dipke",
+          "avatar": "https://pbs.twimg.com/profile_images/2080997334398140416/rPBE_IDp_normal.jpg",
+          "verified": true,
+          "verifiedType": null,
+          "followers": 583685
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": {
+          "id": "2110732254507090145",
+          "text": "",
+          "createdAt": "",
+          "lang": "en",
+          "url": "",
+          "isReply": false,
+          "isQuote": false,
+          "isRetweet": false,
+          "inReplyToId": null,
+          "metrics": {
+            "likes": 0,
+            "retweets": 0,
+            "replies": 0,
+            "quotes": 0,
+            "bookmarks": 0
+          },
+          "author": {
+            "name": "",
+            "handle": "@",
+            "avatar": "",
+            "verified": false,
+            "verifiedType": null,
+            "followers": 0
+          },
+          "media": [],
+          "hashtags": [],
+          "mentions": [],
+          "quotedTweet": null,
+          "parentTweet": null
+        },
+        "parentTweet": null
+      },
+      "parentTweet": null
+    }
+  },
+  {
+    "label": "four-images",
+    "url": "https://x.com/DelhiPolice/status/2110717943978000884?s=20",
+    "mode": "single",
+    "fetchedAt": "2026-10-16T07:50:47.387Z",
+    "raw": {
+      "type": "tweet",
+      "id": "2110717943978000884",
+      "url": "https://x.com/DelhiPolice/status/2110717943978000884",
+      "twitterUrl": "https://twitter.com/DelhiPolice/status/2110717943978000884",
+      "text": "It is easy to stand with the crowd, but it takes courage to stand alone\n\n#DPUpdates https://t.co/JV5kQ3Q2qA",
+      "source": "",
+      "retweetCount": 11938,
+      "replyCount": 2591,
+      "likeCount": 53021,
+      "quoteCount": 866,
+      "viewCount": 1495840,
+      "createdAt": "Thu Oct 15 13:02:27 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1113,
+      "isReply": false,
+      "inReplyToId": "",
+      "conversationId": "2110717943978000884",
+      "displayTextRange": [
+        0,
+        83
+      ],
+      "inReplyToUserId": "",
+      "inReplyToUsername": "",
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "DelhiPolice",
+        "url": "https://x.com/DelhiPolice",
+        "twitterUrl": "https://twitter.com/DelhiPolice",
+        "id": "1850705408",
+        "name": "Delhi Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2087438608697573376/fRFDfDpI_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1850705408/1789458965",
+        "description": "Official Twitter account of Delhi Police |Pls do not report crime here |In case of emergency #Dial112 |#Dial 1930 for Cyber Crimes. Help us to serve you better|",
+        "location": "",
+        "followers": 1105007,
+        "following": 57,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 10 07:29:40 +0000 2013",
+        "entities": {
+          "description": {
+            "hashtags": [
+              {
+                "indices": [
+                  93,
+                  101
+                ],
+                "text": "Dial112"
+              },
+              {
+                "indices": [
+                  103,
+                  108
+                ],
+                "text": "Dial"
+              }
+            ]
+          }
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5907,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9280,
+        "statusesCount": 70764,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2110782259204899079"
+        ],
+        "profile_bio": {
+          "description": "Official Twitter account of Delhi Police |Pls do not report crime here |In case of emergency #Dial112 |#Dial 1930 for Cyber Crimes. Help us to serve you better|",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    93,
+                    101
+                  ],
+                  "text": "Dial112"
+                },
+                {
+                  "indices": [
+                    103,
+                    108
+                  ],
+                  "text": "Dial"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/JV5kQ3Q2qA",
+            "expanded_url": "https://x.com/DelhiPolice/status/2110717943978000884/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 154,
+                    "w": 154,
+                    "x": 564,
+                    "y": 762
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 154,
+                    "w": 154,
+                    "x": 564,
+                    "y": 762
+                  }
+                ]
+              }
+            },
+            "id_str": "2110717830622793728",
+            "indices": [
+              84,
+              107
+            ],
+            "media_key": "3_2110717830622793728",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1Kxq8TWtAACgACHUrGyXfaAfQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHUrGrxNa0AAKAAIdSsbJd9oB9AAA",
+                "media_key": "3_2110717830622793728"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HUrGrxNa0AA2NN8.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 72
+                },
+                {
+                  "h": 1187,
+                  "w": 1187,
+                  "x": 87,
+                  "y": 0
+                },
+                {
+                  "h": 1187,
+                  "w": 1041,
+                  "x": 160,
+                  "y": 0
+                },
+                {
+                  "h": 1187,
+                  "w": 594,
+                  "x": 383,
+                  "y": 0
+                },
+                {
+                  "h": 1187,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1187,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 1187,
+                "w": 1600
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/JV5kQ3Q2qA"
+          },
+          {
+            "display_url": "pic.x.com/JV5kQ3Q2qA",
+            "expanded_url": "https://x.com/DelhiPolice/status/2110717943978000884/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 117,
+                    "w": 117,
+                    "x": 605,
+                    "y": 213
+                  },
+                  {
+                    "h": 321,
+                    "w": 321,
+                    "x": 656,
+                    "y": 669
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 147,
+                    "w": 147,
+                    "x": 757,
+                    "y": 267
+                  },
+                  {
+                    "h": 402,
+                    "w": 402,
+                    "x": 820,
+                    "y": 837
+                  }
+                ]
+              }
+            },
+            "id_str": "2110717873362726912",
+            "indices": [
+              84,
+              107
+            ],
+            "media_key": "3_2110717873362726912",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1KxrkG2nAACgACHUrGyXfaAfQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHUrGuQbacAAKAAIdSsbJd9oB9AAA",
+                "media_key": "3_2110717873362726912"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HUrGuQbacAAdNpL.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1900,
+                  "w": 1900,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1900,
+                  "w": 1667,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1900,
+                  "w": 950,
+                  "x": 355,
+                  "y": 0
+                },
+                {
+                  "h": 1900,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1900,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 1520,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/JV5kQ3Q2qA"
+          },
+          {
+            "display_url": "pic.x.com/JV5kQ3Q2qA",
+            "expanded_url": "https://x.com/DelhiPolice/status/2110717943978000884/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 68,
+                    "w": 68,
+                    "x": 135,
+                    "y": 946
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 68,
+                    "w": 68,
+                    "x": 135,
+                    "y": 946
+                  }
+                ]
+              }
+            },
+            "id_str": "2110717894078472192",
+            "indices": [
+              84,
+              107
+            ],
+            "media_key": "3_2110717894078472192",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1Kxr3Zm6AACgACHUrGyXfaAfQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHUrGvdmboAAKAAIdSsbJd9oB9AAA",
+                "media_key": "3_2110717894078472192"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HUrGvdmboAAMKVO.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 291
+                },
+                {
+                  "h": 1187,
+                  "w": 1187,
+                  "x": 413,
+                  "y": 0
+                },
+                {
+                  "h": 1187,
+                  "w": 1041,
+                  "x": 559,
+                  "y": 0
+                },
+                {
+                  "h": 1187,
+                  "w": 594,
+                  "x": 783,
+                  "y": 0
+                },
+                {
+                  "h": 1187,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1187,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 1187,
+                "w": 1600
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/JV5kQ3Q2qA"
+          },
+          {
+            "display_url": "pic.x.com/JV5kQ3Q2qA",
+            "expanded_url": "https://x.com/DelhiPolice/status/2110717943978000884/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 210,
+                    "w": 210,
+                    "x": 1098,
+                    "y": 128
+                  },
+                  {
+                    "h": 207,
+                    "w": 207,
+                    "x": 1084,
+                    "y": 939
+                  },
+                  {
+                    "h": 214,
+                    "w": 214,
+                    "x": 693,
+                    "y": 328
+                  },
+                  {
+                    "h": 209,
+                    "w": 209,
+                    "x": 903,
+                    "y": 410
+                  },
+                  {
+                    "h": 260,
+                    "w": 260,
+                    "x": 729,
+                    "y": 571
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 210,
+                    "w": 210,
+                    "x": 1098,
+                    "y": 128
+                  },
+                  {
+                    "h": 207,
+                    "w": 207,
+                    "x": 1084,
+                    "y": 939
+                  },
+                  {
+                    "h": 214,
+                    "w": 214,
+                    "x": 693,
+                    "y": 328
+                  },
+                  {
+                    "h": 209,
+                    "w": 209,
+                    "x": 903,
+                    "y": 410
+                  },
+                  {
+                    "h": 260,
+                    "w": 260,
+                    "x": 729,
+                    "y": 571
+                  }
+                ]
+              }
+            },
+            "id_str": "2110717912336187392",
+            "indices": [
+              84,
+              107
+            ],
+            "media_key": "3_2110717912336187392",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1KxsIZ2kAACgACHUrGyXfaAfQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHUrGwhnaQAAKAAIdSsbJd9oB9AAA",
+                "media_key": "3_2110717912336187392"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HUrGwhnaQAAmkeg.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 291
+                },
+                {
+                  "h": 1187,
+                  "w": 1187,
+                  "x": 247,
+                  "y": 0
+                },
+                {
+                  "h": 1187,
+                  "w": 1041,
+                  "x": 320,
+                  "y": 0
+                },
+                {
+                  "h": 1187,
+                  "w": 594,
+                  "x": 543,
+                  "y": 0
+                },
+                {
+                  "h": 1187,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1187,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 1187,
+                "w": 1600
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/JV5kQ3Q2qA"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              73,
+              83
+            ],
+            "text": "DPUpdates"
+          }
+        ]
+      },
+      "isRetweet": false,
+      "isQuote": false,
+      "isConversationControlled": false,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null
+    },
+    "parsed": {
+      "id": "2110717943978000884",
+      "text": "It is easy to stand with the crowd, but it takes courage to stand alone\n\n#DPUpdates https://t.co/JV5kQ3Q2qA",
+      "createdAt": "Thu Oct 15 13:02:27 +0000 2026",
+      "lang": "en",
+      "url": "https://twitter.com/DelhiPolice/status/2110717943978000884",
+      "isReply": false,
+      "isQuote": false,
+      "isRetweet": false,
+      "inReplyToId": null,
+      "metrics": {
+        "likes": 53021,
+        "retweets": 11938,
+        "replies": 2591,
+        "quotes": 866,
+        "bookmarks": 1113
+      },
+      "author": {
+        "name": "Delhi Police",
+        "handle": "@DelhiPolice",
+        "avatar": "https://pbs.twimg.com/profile_images/2087438608697573376/fRFDfDpI_normal.jpg",
+        "verified": true,
+        "verifiedType": "Government",
+        "followers": 1105007
+      },
+      "media": [
+        {
+          "url": "https://pbs.twimg.com/media/HUrGrxNa0AA2NN8.jpg",
+          "width": 1600,
+          "height": 1187
+        },
+        {
+          "url": "https://pbs.twimg.com/media/HUrGuQbacAAdNpL.jpg",
+          "width": 2560,
+          "height": 1900
+        },
+        {
+          "url": "https://pbs.twimg.com/media/HUrGvdmboAAMKVO.jpg",
+          "width": 1600,
+          "height": 1187
+        },
+        {
+          "url": "https://pbs.twimg.com/media/HUrGwhnaQAAmkeg.jpg",
+          "width": 1600,
+          "height": 1187
+        }
+      ],
+      "hashtags": [
+        "DPUpdates"
+      ],
+      "mentions": [],
+      "quotedTweet": null,
+      "parentTweet": null
+    }
+  },
+  {
+    "label": "long-text",
+    "url": "https://x.com/MostlyKohli/status/2110973443466535395?s=20",
+    "mode": "single",
+    "fetchedAt": "2026-10-16T07:51:04.689Z",
+    "raw": {
+      "type": "tweet",
+      "id": "2110973443466535395",
+      "url": "https://x.com/MostlyKohli/status/2110973443466535395",
+      "twitterUrl": "https://twitter.com/MostlyKohli/status/2110973443466535395",
+      "text": "🚨 Rebel Kid got caught red handed\n\nRebel Kid aka Apoorva kept flexing in videos that she got admission to NYU, which is very tough. Now a Reddit account that claims to be from NYU has exposed her.\n\nNYU students names are registered and can be checked. There's no student named Apoorva. She knows someone there who invited her to some of the classes. Else apoorva isn't her real name.\n\nBut Apoorva isn't that dumb to joke about such a big thing. Reality is, this is her PR account. She's doing groundwork for her next video where she'll cry that she took admission to NYU through hard work and Reddit people are doing baseless trolls.\n\nThis is how these influencers fool their audience 🙏🥲",
+      "source": "",
+      "retweetCount": 15,
+      "replyCount": 7,
+      "likeCount": 251,
+      "quoteCount": 1,
+      "viewCount": 86961,
+      "createdAt": "Fri Oct 16 05:57:43 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 107,
+      "isReply": false,
+      "inReplyToId": "",
+      "conversationId": "2110973443466535395",
+      "displayTextRange": [
+        0,
+        276
+      ],
+      "inReplyToUserId": "",
+      "inReplyToUsername": "",
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "MostlyKohli",
+        "url": "https://x.com/MostlyKohli",
+        "twitterUrl": "https://twitter.com/MostlyKohli",
+        "id": "1302838520273223681",
+        "name": "Suprvirat",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2094636517398605825/mWLXgK1w_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1302838520273223681/1788235237",
+        "description": "Decoding narratives. Creating what I see. ✉️ - workmail@gmail.com",
+        "location": " ",
+        "followers": 31396,
+        "following": 796,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Mon Sep 07 05:18:18 +0000 2020",
+        "entities": {
+          "description": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 67940,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 10165,
+        "statusesCount": 68834,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Decoding narratives. Creating what I see. ✉️ - workmail@gmail.com",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/MbgLqFFez2",
+            "expanded_url": "https://x.com/MostlyKohli/status/2110973443466535395/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2110973224423235584",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "13_2110973224423235584",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAAR1LrvaUG6AAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHUuu9pQboAAAAA==",
+                "media_key": "13_2110973224423235584"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2110973224423235584/img/uhLQUI4q-Z8Jg6Vq.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1080,
+              "width": 1440
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1440
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/MbgLqFFez2",
+            "video_info": {
+              "aspect_ratio": [
+                4,
+                3
+              ],
+              "duration_millis": 12237,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video-s.twimg.com/amplify_video/2110973224423235584/pl/eSJi3uNLBb4pVmRJ.m3u8?tag=29&v=cfc"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2110973224423235584/vid/avc1/360x270/m7dsZZQ7oH8uP15a.mp4?tag=29"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2110973224423235584/vid/avc1/480x360/-SN_jmZlKRNx6wQx.mp4?tag=29"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2110973224423235584/vid/avc1/960x720/7xnaUtzFhTjzSc8M.mp4?tag=29"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video-s.twimg.com/amplify_video/2110973224423235584/vid/avc1/1440x1080/VgIOj7YpPAtZfRvT.mp4?tag=29"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "isRetweet": false,
+      "isQuote": false,
+      "isConversationControlled": false,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null
+    },
+    "parsed": {
+      "id": "2110973443466535395",
+      "text": "🚨 Rebel Kid got caught red handed\n\nRebel Kid aka Apoorva kept flexing in videos that she got admission to NYU, which is very tough. Now a Reddit account that claims to be from NYU has exposed her.\n\nNYU students names are registered and can be checked. There's no student named Apoorva. She knows someone there who invited her to some of the classes. Else apoorva isn't her real name.\n\nBut Apoorva isn't that dumb to joke about such a big thing. Reality is, this is her PR account. She's doing groundwork for her next video where she'll cry that she took admission to NYU through hard work and Reddit people are doing baseless trolls.\n\nThis is how these influencers fool their audience 🙏🥲",
+      "createdAt": "Fri Oct 16 05:57:43 +0000 2026",
+      "lang": "en",
+      "url": "https://twitter.com/MostlyKohli/status/2110973443466535395",
+      "isReply": false,
+      "isQuote": false,
+      "isRetweet": false,
+      "inReplyToId": null,
+      "metrics": {
+        "likes": 251,
+        "retweets": 15,
+        "replies": 7,
+        "quotes": 1,
+        "bookmarks": 107
+      },
+      "author": {
+        "name": "Suprvirat",
+        "handle": "@MostlyKohli",
+        "avatar": "https://pbs.twimg.com/profile_images/2094636517398605825/mWLXgK1w_normal.jpg",
+        "verified": true,
+        "verifiedType": null,
+        "followers": 31396
+      },
+      "media": [],
+      "hashtags": [],
+      "mentions": [],
+      "quotedTweet": null,
+      "parentTweet": null
+    }
+  },
+  {
+    "label": "thread-context-test",
+    "url": "https://x.com/krodhidaanav/status/2110993216208261171?s=20",
+    "mode": "thread_context",
+    "fetchedAt": "2026-10-16T07:51:10.211Z",
+    "raw": {
+      "tweets": [
+        {
+          "type": "tweet",
+          "id": "2110993216208261171",
+          "url": "https://x.com/krodhidaanav/status/2110993216208261171",
+          "twitterUrl": "https://twitter.com/krodhidaanav/status/2110993216208261171",
+          "text": "Thread 1/6 🧵\n\nThere’s a lot of buzz around Tesla’s new Roadster, and I must say, it was fascinating to watch a car jump over other vehicles and manoeuvre in mid-air.\n\nBut is it really as revolutionary as people are claiming? I have a few questions.",
+          "source": "Twitter for iPhone",
+          "retweetCount": 0,
+          "replyCount": 1,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 16,
+          "createdAt": "Fri Oct 16 07:16:17 +0000 2026",
+          "lang": "en",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": null,
+          "conversationId": "2110993216208261171",
+          "inReplyToUserId": null,
+          "inReplyToUsername": null,
+          "author": {
+            "type": "user",
+            "userName": "krodhidaanav",
+            "url": "https://x.com/krodhidaanav",
+            "twitterUrl": "https://twitter.com/krodhidaanav",
+            "id": "1776658998869344256",
+            "name": "Krodhi Daanav",
+            "isVerified": false,
+            "isBlueVerified": true,
+            "profilePicture": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+            "coverPicture": "https://pbs.twimg.com/profile_banners/1776658998869344256/1746018705",
+            "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+            "location": "Uttarakhand, India",
+            "followers": 41,
+            "following": 108,
+            "status": "",
+            "canDm": false,
+            "canMediaTag": true,
+            "createdAt": "Sat Apr 06 17:11:47 +0000 2024",
+            "entities": {
+              "description": {}
+            },
+            "fastFollowersCount": 0,
+            "favouritesCount": 28684,
+            "hasCustomTimelines": true,
+            "isTranslator": false,
+            "mediaCount": 249,
+            "statusesCount": 5232,
+            "protected": false,
+            "withheldInCountries": [],
+            "affiliatesHighlightedLabel": {},
+            "possiblySensitive": false,
+            "pinnedTweetIds": [],
+            "profile_bio": "Bhartiya || Pahadi || Sarcastic || Offensive"
+          },
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "quoted_tweet": null,
+          "retweeted_tweet": null
+        },
+        {
+          "type": "tweet",
+          "id": "2110993218854912215",
+          "url": "https://x.com/krodhidaanav/status/2110993218854912215",
+          "twitterUrl": "https://twitter.com/krodhidaanav/status/2110993218854912215",
+          "text": "2/6 — Is it the first car to jump or fly?\n\nNo.\n\nIn 2025, China’s BYD demonstrated its Yangwang U9 jumping over obstacles at 120 km/h, covering more than 6 metres.\n\nAnd flying cars aren’t new either. The Fulton Airphibian was flying back in the 1940s.\n\nTesla’s technology is different, but the concept isn’t entirely new.",
+          "source": "Twitter for iPhone",
+          "retweetCount": 0,
+          "replyCount": 1,
+          "likeCount": 1,
+          "quoteCount": 0,
+          "viewCount": 17,
+          "createdAt": "Fri Oct 16 07:16:18 +0000 2026",
+          "lang": "en",
+          "bookmarkCount": 0,
+          "isReply": true,
+          "inReplyToId": "2110993216208261171",
+          "conversationId": "2110993216208261171",
+          "inReplyToUserId": "1776658998869344256",
+          "inReplyToUsername": "krodhidaanav",
+          "author": {
+            "type": "user",
+            "userName": "krodhidaanav",
+            "url": "https://x.com/krodhidaanav",
+            "twitterUrl": "https://twitter.com/krodhidaanav",
+            "id": "1776658998869344256",
+            "name": "Krodhi Daanav",
+            "isVerified": false,
+            "isBlueVerified": true,
+            "profilePicture": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+            "coverPicture": "https://pbs.twimg.com/profile_banners/1776658998869344256/1746018705",
+            "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+            "location": "Uttarakhand, India",
+            "followers": 41,
+            "following": 108,
+            "status": "",
+            "canDm": false,
+            "canMediaTag": true,
+            "createdAt": "Sat Apr 06 17:11:47 +0000 2024",
+            "entities": {
+              "description": {}
+            },
+            "fastFollowersCount": 0,
+            "favouritesCount": 28684,
+            "hasCustomTimelines": true,
+            "isTranslator": false,
+            "mediaCount": 249,
+            "statusesCount": 5232,
+            "protected": false,
+            "withheldInCountries": [],
+            "affiliatesHighlightedLabel": {},
+            "possiblySensitive": false,
+            "pinnedTweetIds": [],
+            "profile_bio": "Bhartiya || Pahadi || Sarcastic || Offensive"
+          },
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {
+            "hashtags": [],
+            "symbols": [],
+            "urls": [],
+            "user_mentions": []
+          },
+          "quoted_tweet": null,
+          "retweeted_tweet": null
+        },
+        {
+          "type": "tweet",
+          "id": "2110993709341008235",
+          "url": "https://x.com/krodhidaanav/status/2110993709341008235",
+          "twitterUrl": "https://twitter.com/krodhidaanav/status/2110993709341008235",
+          "text": "Apne desh ka sochein bhaijaan. Hamare desh ka ham dekh lenge.",
+          "source": "Twitter for iPhone",
+          "retweetCount": 0,
+          "replyCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 21,
+          "createdAt": "Fri Oct 16 07:18:15 +0000 2026",
+          "lang": "hi",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": null,
+          "conversationId": "2110993709341008235",
+          "inReplyToUserId": null,
+          "inReplyToUsername": null,
+          "author": {
+            "type": "user",
+            "userName": "krodhidaanav",
+            "url": "https://x.com/krodhidaanav",
+            "twitterUrl": "https://twitter.com/krodhidaanav",
+            "id": "1776658998869344256",
+            "name": "Krodhi Daanav",
+            "isVerified": false,
+            "isBlueVerified": true,
+            "profilePicture": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+            "coverPicture": "https://pbs.twimg.com/profile_banners/1776658998869344256/1746018705",
+            "description": "Bhartiya || Pahadi || Sarcastic || Offensive",
+            "location": "Uttarakhand, India",
+            "followers": 41,
+            "following": 108,
+            "status": "",
+            "canDm": false,
+            "canMediaTag": true,
+            "createdAt": "Sat Apr 06 17:11:47 +0000 2024",
+            "entities": {
+              "description": {}
+            },
+            "fastFollowersCount": 0,
+            "favouritesCount": 28684,
+            "hasCustomTimelines": true,
+            "isTranslator": false,
+            "mediaCount": 249,
+            "statusesCount": 5232,
+            "protected": false,
+            "withheldInCountries": [],
+            "affiliatesHighlightedLabel": {},
+            "possiblySensitive": false,
+            "pinnedTweetIds": [],
+            "profile_bio": "Bhartiya || Pahadi || Sarcastic || Offensive"
+          },
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "quoted_tweet": {
+            "type": "tweet",
+            "id": "2110941379329486955",
+            "url": "https://x.com/shivbhaktayano/status/2110941379329486955",
+            "twitterUrl": "https://twitter.com/shivbhaktayano/status/2110941379329486955",
+            "text": "Now we know why Ambani is blocking starlink in India \nMusk will literally destroy jio in 5 yrs with the kind of technology he can infuse in this sector expanding beyond Ambani’s imagination \n&amp; Indians deserve best technology bring starlink in India",
+            "source": "Twitter for iPhone",
+            "retweetCount": 2,
+            "replyCount": 163,
+            "likeCount": 24,
+            "quoteCount": 19,
+            "viewCount": 19167,
+            "createdAt": "Fri Oct 16 03:50:18 +0000 2026",
+            "lang": "en",
+            "bookmarkCount": 19,
+            "isReply": false,
+            "inReplyToId": null,
+            "conversationId": "2110941379329486955",
+            "inReplyToUserId": null,
+            "inReplyToUsername": null,
+            "author": {
+              "type": "user",
+              "userName": "shivbhaktayano",
+              "url": "https://x.com/shivbhaktayano",
+              "twitterUrl": "https://twitter.com/shivbhaktayano",
+              "id": "847874445394010113",
+              "name": "usman khan 🇵🇰",
+              "isVerified": false,
+              "isBlueVerified": false,
+              "profilePicture": "https://pbs.twimg.com/profile_images/2100186612399562752/-mex-AZo_normal.jpg",
+              "coverPicture": "https://pbs.twimg.com/profile_banners/847874445394010113/1750248832",
+              "description": "इन्साविष्णु",
+              "location": "Karachi, Pakistan",
+              "followers": 193,
+              "following": 487,
+              "status": "",
+              "canDm": false,
+              "canMediaTag": false,
+              "createdAt": "Fri Mar 31 18:13:15 +0000 2017",
+              "entities": {
+                "description": {}
+              },
+              "fastFollowersCount": 0,
+              "favouritesCount": 22257,
+              "hasCustomTimelines": true,
+              "isTranslator": false,
+              "mediaCount": 2270,
+              "statusesCount": 15723,
+              "protected": false,
+              "withheldInCountries": [],
+              "affiliatesHighlightedLabel": {},
+              "possiblySensitive": false,
+              "pinnedTweetIds": [
+                "2098761878310944817"
+              ],
+              "profile_bio": "इन्साविष्णु"
+            },
+            "extendedEntities": {},
+            "card": null,
+            "place": {},
+            "entities": {},
+            "quoted_tweet": null,
+            "retweeted_tweet": null
+          },
+          "retweeted_tweet": null
+        }
+      ],
+      "has_next_page": true,
+      "next_cursor": "DAAKCgABHUvJIIn__-kLAAIAAABoRW1QQzZ3QUFBZlEvZ0dKTjB2R3AvQUFBQUFjZFM4RW9JVnFoS2gxTHdTaTQyMUQ2SFV2QkpVZGFVRE1kUzhHWUdGcmhheDFMd1NYbEd3RFhIVXZCSnNTYkFZUWRTOEVuYkJxUjBRPT0IAAMAAAACCwAEAAAABkJvdHRvbQAA",
+      "status": "success",
+      "msg": "success"
+    },
+    "parsed": []
+  }
+]

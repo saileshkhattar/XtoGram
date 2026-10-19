@@ -1,0 +1,586 @@
+{
+  "label": "quote",
+  "url": "https://x.com/Justwandyy/status/2110645689155744244?s=20",
+  "mode": "single",
+  "fetchedAt": "2026-10-16T07:50:21.893Z",
+  "raw": {
+    "type": "tweet",
+    "id": "2110645689155744244",
+    "url": "https://x.com/Justwandyy/status/2110645689155744244",
+    "twitterUrl": "https://twitter.com/Justwandyy/status/2110645689155744244",
+    "text": "I don’t think this is a valid reason to break up with anyone😩 https://t.co/zmKVvENPge",
+    "source": "",
+    "retweetCount": 865,
+    "replyCount": 2507,
+    "likeCount": 14185,
+    "quoteCount": 809,
+    "viewCount": 3882864,
+    "createdAt": "Thu Oct 15 08:15:20 +0000 2026",
+    "lang": "en",
+    "bookmarkCount": 5623,
+    "isReply": false,
+    "inReplyToId": "",
+    "conversationId": "2110645689155744244",
+    "displayTextRange": [
+      0,
+      61
+    ],
+    "inReplyToUserId": "",
+    "inReplyToUsername": "",
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "Justwandyy",
+      "url": "https://x.com/Justwandyy",
+      "twitterUrl": "https://twitter.com/Justwandyy",
+      "id": "1571487445518090241",
+      "name": "natalee🍒🌸 ✪",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "verifiedType": null,
+      "profilePicture": "https://pbs.twimg.com/profile_images/2087956648367202304/Qv3mgeVf_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1571487445518090241/1750004472",
+      "description": "i cook👩🏾‍🍳, i tell stories, fashion 📚& i romanticize everything❤️ backup:@shegetsitxo|| 71980",
+      "location": "",
+      "followers": 12153,
+      "following": 3756,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": false,
+      "createdAt": "Sun Sep 18 13:13:08 +0000 2022",
+      "entities": {
+        "description": {
+          "user_mentions": [
+            {
+              "id_str": "",
+              "indices": [
+                73,
+                85
+              ],
+              "name": "",
+              "screen_name": "shegetsitxo"
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 45769,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 4199,
+      "statusesCount": 87265,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "2110768732981150070"
+      ],
+      "profile_bio": {
+        "description": "i cook👩🏾‍🍳, i tell stories, fashion 📚& i romanticize everything❤️ backup:@shegetsitxo|| 71980",
+        "entities": {
+          "description": {
+            "user_mentions": [
+              {
+                "id_str": "",
+                "indices": [
+                  73,
+                  85
+                ],
+                "name": "",
+                "screen_name": "shegetsitxo"
+              }
+            ]
+          }
+        }
+      },
+      "isAutomated": false,
+      "automatedBy": null
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "allow_download_status": {
+            "allow_download": true
+          },
+          "display_url": "pic.x.com/zmKVvENPge",
+          "expanded_url": "https://x.com/Justwandyy/status/2110645689155744244/photo/1",
+          "ext_master_playlist_only": [],
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "ext_playlists": [],
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "h": 152,
+                  "w": 152,
+                  "x": 710,
+                  "y": 16
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "h": 152,
+                  "w": 152,
+                  "x": 710,
+                  "y": 16
+                }
+              ]
+            }
+          },
+          "id_str": "2110645676900065280",
+          "indices": [
+            62,
+            85
+          ],
+          "media_key": "3_2110645676900065280",
+          "media_results": {
+            "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1KhQ96V6AACgACHUqFElTWcfQAAA==",
+            "result": {
+              "__typename": "ApiMedia",
+              "id": "QXBpTWVkaWE6DAABCgABHUqFD3pXoAAKAAIdSoUSVNZx9AAA",
+              "media_key": "3_2110645676900065280"
+            }
+          },
+          "media_url_https": "https://pbs.twimg.com/media/HUqFD3pXoAA9tYn.jpg",
+          "original_info": {
+            "focus_rects": [
+              {
+                "h": 528,
+                "w": 942,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "h": 942,
+                "w": 942,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "h": 1074,
+                "w": 942,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "h": 1884,
+                "w": 942,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "h": 2048,
+                "w": 942,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "height": 2048,
+            "width": 942
+          },
+          "sizes": {
+            "large": {
+              "h": 2048,
+              "w": 942
+            }
+          },
+          "type": "photo",
+          "url": "https://t.co/zmKVvENPge"
+        },
+        {
+          "allow_download_status": {
+            "allow_download": true
+          },
+          "display_url": "pic.x.com/zmKVvENPge",
+          "expanded_url": "https://x.com/Justwandyy/status/2110645689155744244/photo/1",
+          "ext_master_playlist_only": [],
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "ext_playlists": [],
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "h": 94,
+                  "w": 94,
+                  "x": 716,
+                  "y": 1184
+                },
+                {
+                  "h": 136,
+                  "w": 136,
+                  "x": 500,
+                  "y": 276
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "h": 94,
+                  "w": 94,
+                  "x": 716,
+                  "y": 1184
+                },
+                {
+                  "h": 136,
+                  "w": 136,
+                  "x": 500,
+                  "y": 276
+                }
+              ]
+            }
+          },
+          "id_str": "2110645676912627712",
+          "indices": [
+            62,
+            85
+          ],
+          "media_key": "3_2110645676912627712",
+          "media_results": {
+            "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1KhQ97F1AACgACHUqFElTWcfQAAA==",
+            "result": {
+              "__typename": "ApiMedia",
+              "id": "QXBpTWVkaWE6DAABCgABHUqFD3sXUAAKAAIdSoUSVNZx9AAA",
+              "media_key": "3_2110645676912627712"
+            }
+          },
+          "media_url_https": "https://pbs.twimg.com/media/HUqFD3sXUAAp13l.jpg",
+          "original_info": {
+            "focus_rects": [
+              {
+                "h": 528,
+                "w": 942,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "h": 942,
+                "w": 942,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "h": 1074,
+                "w": 942,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "h": 1884,
+                "w": 942,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "h": 2048,
+                "w": 942,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "height": 2048,
+            "width": 942
+          },
+          "sizes": {
+            "large": {
+              "h": 2048,
+              "w": 942
+            }
+          },
+          "type": "photo",
+          "url": "https://t.co/zmKVvENPge"
+        },
+        {
+          "allow_download_status": {
+            "allow_download": true
+          },
+          "display_url": "pic.x.com/zmKVvENPge",
+          "expanded_url": "https://x.com/Justwandyy/status/2110645689155744244/photo/1",
+          "ext_master_playlist_only": [],
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "ext_playlists": [],
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "h": 68,
+                  "w": 68,
+                  "x": 82,
+                  "y": 444
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "h": 68,
+                  "w": 68,
+                  "x": 82,
+                  "y": 444
+                }
+              ]
+            }
+          },
+          "id_str": "2110645676908367872",
+          "indices": [
+            62,
+            85
+          ],
+          "media_key": "3_2110645676908367872",
+          "media_results": {
+            "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1KhQ961lAACgACHUqFElTWcfQAAA==",
+            "result": {
+              "__typename": "ApiMedia",
+              "id": "QXBpTWVkaWE6DAABCgABHUqFD3rWUAAKAAIdSoUSVNZx9AAA",
+              "media_key": "3_2110645676908367872"
+            }
+          },
+          "media_url_https": "https://pbs.twimg.com/media/HUqFD3rWUAAqQlR.jpg",
+          "original_info": {
+            "focus_rects": [
+              {
+                "h": 528,
+                "w": 942,
+                "x": 0,
+                "y": 1016
+              },
+              {
+                "h": 942,
+                "w": 942,
+                "x": 0,
+                "y": 809
+              },
+              {
+                "h": 1074,
+                "w": 942,
+                "x": 0,
+                "y": 743
+              },
+              {
+                "h": 1884,
+                "w": 942,
+                "x": 0,
+                "y": 164
+              },
+              {
+                "h": 2048,
+                "w": 942,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "height": 2048,
+            "width": 942
+          },
+          "sizes": {
+            "large": {
+              "h": 2048,
+              "w": 942
+            }
+          },
+          "type": "photo",
+          "url": "https://t.co/zmKVvENPge"
+        }
+      ]
+    },
+    "card": null,
+    "place": {},
+    "entities": {},
+    "isRetweet": false,
+    "isQuote": true,
+    "isConversationControlled": false,
+    "quoted_tweet": {
+      "type": "tweet",
+      "id": "2110621121431433588",
+      "url": "https://x.com/Justwandyy/status/2110621121431433588",
+      "twitterUrl": "https://twitter.com/Justwandyy/status/2110621121431433588",
+      "text": "My friend broke up with her boyfriend, and she has been crashing out.😭",
+      "source": "",
+      "retweetCount": 14,
+      "replyCount": 26,
+      "likeCount": 141,
+      "quoteCount": 0,
+      "viewCount": 3670102,
+      "createdAt": "Thu Oct 15 06:37:43 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 21,
+      "isReply": false,
+      "inReplyToId": "",
+      "conversationId": "2110621121431433588",
+      "displayTextRange": [
+        0,
+        70
+      ],
+      "inReplyToUserId": "",
+      "inReplyToUsername": "",
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "Justwandyy",
+        "url": "https://x.com/Justwandyy",
+        "twitterUrl": "https://twitter.com/Justwandyy",
+        "id": "1571487445518090241",
+        "name": "natalee🍒🌸 ✪",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2087956648367202304/Qv3mgeVf_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1571487445518090241/1750004472",
+        "description": "i cook👩🏾‍🍳, i tell stories, fashion 📚& i romanticize everything❤️ backup:@shegetsitxo|| 71980",
+        "location": "",
+        "followers": 12153,
+        "following": 3756,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Sun Sep 18 13:13:08 +0000 2022",
+        "entities": {
+          "description": {
+            "user_mentions": [
+              {
+                "id_str": "",
+                "indices": [
+                  73,
+                  85
+                ],
+                "name": "",
+                "screen_name": "shegetsitxo"
+              }
+            ]
+          }
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 45769,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4199,
+        "statusesCount": 87265,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2110768732981150070"
+        ],
+        "profile_bio": {
+          "description": "i cook👩🏾‍🍳, i tell stories, fashion 📚& i romanticize everything❤️ backup:@shegetsitxo|| 71980",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    73,
+                    85
+                  ],
+                  "name": "",
+                  "screen_name": "shegetsitxo"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "isRetweet": false,
+      "isQuote": false,
+      "isConversationControlled": false,
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null
+    },
+    "retweeted_tweet": null,
+    "isLimitedReply": false,
+    "communityInfo": null
+  },
+  "parsed": {
+    "id": "2110645689155744244",
+    "text": "I don’t think this is a valid reason to break up with anyone😩 https://t.co/zmKVvENPge",
+    "createdAt": "Thu Oct 15 08:15:20 +0000 2026",
+    "lang": "en",
+    "url": "https://twitter.com/Justwandyy/status/2110645689155744244",
+    "isReply": false,
+    "isQuote": true,
+    "isRetweet": false,
+    "inReplyToId": null,
+    "metrics": {
+      "likes": 14185,
+      "retweets": 865,
+      "replies": 2507,
+      "quotes": 809,
+      "bookmarks": 5623
+    },
+    "author": {
+      "name": "natalee🍒🌸 ✪",
+      "handle": "@Justwandyy",
+      "avatar": "https://pbs.twimg.com/profile_images/2087956648367202304/Qv3mgeVf_normal.jpg",
+      "verified": true,
+      "verifiedType": null,
+      "followers": 12153
+    },
+    "media": [
+      {
+        "url": "https://pbs.twimg.com/media/HUqFD3pXoAA9tYn.jpg",
+        "width": 942,
+        "height": 2048
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HUqFD3sXUAAp13l.jpg",
+        "width": 942,
+        "height": 2048
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HUqFD3rWUAAqQlR.jpg",
+        "width": 942,
+        "height": 2048
+      }
+    ],
+    "hashtags": [],
+    "mentions": [],
+    "quotedTweet": {
+      "id": "2110621121431433588",
+      "text": "My friend broke up with her boyfriend, and she has been crashing out.😭",
+      "createdAt": "Thu Oct 15 06:37:43 +0000 2026",
+      "lang": "en",
+      "url": "https://twitter.com/Justwandyy/status/2110621121431433588",
+      "isReply": false,
+      "isQuote": false,
+      "isRetweet": false,
+      "inReplyToId": null,
+      "metrics": {
+        "likes": 141,
+        "retweets": 14,
+        "replies": 26,
+        "quotes": 0,
+        "bookmarks": 21
+      },
+      "author": {
+        "name": "natalee🍒🌸 ✪",
+        "handle": "@Justwandyy",
+        "avatar": "https://pbs.twimg.com/profile_images/2087956648367202304/Qv3mgeVf_normal.jpg",
+        "verified": true,
+        "verifiedType": null,
+        "followers": 12153
+      },
+      "media": [],
+      "hashtags": [],
+      "mentions": [],
+      "quotedTweet": null,
+      "parentTweet": null
+    },
+    "parentTweet": null
+  }
+}

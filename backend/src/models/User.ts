@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema(
     name: { type: String, default: "" },
     provider: { type: String, enum: ["password", "google"], required: true },
     emailVerified: { type: Boolean, default: false },
+    tier: { type: String, enum: ["free", "premium"], default: "free" },
   },
   { timestamps: true },
 );

@@ -1,0 +1,342 @@
+{
+  "label": "quote-of-quote",
+  "url": "https://x.com/RealAnujX/status/2110761483072422124?s=20",
+  "mode": "single",
+  "fetchedAt": "2026-10-16T07:50:29.557Z",
+  "raw": {
+    "type": "tweet",
+    "id": "2110761483072422124",
+    "url": "https://x.com/RealAnujX/status/2110761483072422124",
+    "twitterUrl": "https://twitter.com/RealAnujX/status/2110761483072422124",
+    "text": "He is Prime Minister of India, He can shut down the entire country. 🗿\n\nAnd secondly, talk to me from at least 10 feet away, or I’ll have to take a bath in Ganga water to purify myself. 💀",
+    "source": "",
+    "retweetCount": 255,
+    "replyCount": 318,
+    "likeCount": 3585,
+    "quoteCount": 40,
+    "viewCount": 78987,
+    "createdAt": "Thu Oct 15 15:55:28 +0000 2026",
+    "lang": "en",
+    "bookmarkCount": 52,
+    "isReply": false,
+    "inReplyToId": "",
+    "conversationId": "2110761483072422124",
+    "displayTextRange": [
+      0,
+      186
+    ],
+    "inReplyToUserId": "",
+    "inReplyToUsername": "",
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "RealAnujX",
+      "url": "https://x.com/RealAnujX",
+      "twitterUrl": "https://twitter.com/RealAnujX",
+      "id": "2027653576785600512",
+      "name": "ANUJx",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "verifiedType": null,
+      "profilePicture": "https://pbs.twimg.com/profile_images/2109182969659445248/JDRcjeqH_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/2027653576785600512/1780420095",
+      "description": "🕉️ 🇮🇳 | Plot twist pending… @msdhoni",
+      "location": "",
+      "followers": 2733,
+      "following": 1399,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Sat Feb 28 07:54:33 +0000 2026",
+      "entities": {
+        "description": {
+          "user_mentions": [
+            {
+              "id_str": "",
+              "indices": [
+                28,
+                36
+              ],
+              "name": "",
+              "screen_name": "msdhoni"
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 7704,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1739,
+      "statusesCount": 6205,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "2100092313058115631"
+      ],
+      "profile_bio": {
+        "description": "🕉️ 🇮🇳 | Plot twist pending… @msdhoni",
+        "entities": {
+          "description": {
+            "user_mentions": [
+              {
+                "id_str": "",
+                "indices": [
+                  28,
+                  36
+                ],
+                "name": "",
+                "screen_name": "msdhoni"
+              }
+            ]
+          }
+        }
+      },
+      "isAutomated": false,
+      "automatedBy": null
+    },
+    "extendedEntities": {},
+    "card": null,
+    "place": {},
+    "entities": {},
+    "isRetweet": false,
+    "isQuote": true,
+    "isConversationControlled": false,
+    "quoted_tweet": {
+      "type": "tweet",
+      "id": "2110753147732025395",
+      "url": "https://x.com/abhijeet_dipke/status/2110753147732025395",
+      "twitterUrl": "https://twitter.com/abhijeet_dipke/status/2110753147732025395",
+      "text": "If we announce 100 places, will Narendra Modi shutdown all 100 places?",
+      "source": "",
+      "retweetCount": 4453,
+      "replyCount": 2496,
+      "likeCount": 26620,
+      "quoteCount": 347,
+      "viewCount": 684590,
+      "createdAt": "Thu Oct 15 15:22:20 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 226,
+      "isReply": false,
+      "inReplyToId": "",
+      "conversationId": "2110753147732025395",
+      "displayTextRange": [
+        0,
+        70
+      ],
+      "inReplyToUserId": "",
+      "inReplyToUsername": "",
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "abhijeet_dipke",
+        "url": "https://x.com/abhijeet_dipke",
+        "twitterUrl": "https://twitter.com/abhijeet_dipke",
+        "id": "2313552080",
+        "name": "Abhijeet Dipke",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2080997334398140416/rPBE_IDp_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2313552080/1664001336",
+        "description": "Founder & Convenor - Cockroach Janta Party \n\nContact: abhijeet@cockroachjantaparty.org",
+        "location": "",
+        "followers": 583685,
+        "following": 1031,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Mon Jan 27 12:14:45 +0000 2014",
+        "entities": {
+          "description": {},
+          "url": {
+            "urls": [
+              {
+                "display_url": "cockroachjantaparty.org",
+                "expanded_url": "https://cockroachjantaparty.org/",
+                "indices": [
+                  0,
+                  23
+                ],
+                "url": "https://t.co/qTZlj7dR8F"
+              }
+            ]
+          }
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2797,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2346,
+        "statusesCount": 12320,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1232559434775351296"
+        ],
+        "profile_bio": {
+          "description": "Founder & Convenor - Cockroach Janta Party \n\nContact: abhijeet@cockroachjantaparty.org",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "cockroachjantaparty.org",
+                  "expanded_url": "https://cockroachjantaparty.org/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/qTZlj7dR8F"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "isRetweet": false,
+      "isQuote": true,
+      "isConversationControlled": false,
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2110732254507090145",
+        "url": "",
+        "twitterUrl": "",
+        "text": "",
+        "source": "",
+        "retweetCount": 0,
+        "replyCount": 0,
+        "likeCount": 0,
+        "quoteCount": 0,
+        "viewCount": 0,
+        "createdAt": "",
+        "lang": "",
+        "bookmarkCount": 0,
+        "isReply": false,
+        "inReplyToId": "",
+        "conversationId": "",
+        "displayTextRange": [],
+        "inReplyToUserId": "",
+        "inReplyToUsername": "",
+        "isPinned": false,
+        "author": {},
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {},
+        "isRetweet": false,
+        "isQuote": false,
+        "isConversationControlled": false,
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null
+    },
+    "retweeted_tweet": null,
+    "isLimitedReply": false,
+    "communityInfo": null
+  },
+  "parsed": {
+    "id": "2110761483072422124",
+    "text": "He is Prime Minister of India, He can shut down the entire country. 🗿\n\nAnd secondly, talk to me from at least 10 feet away, or I’ll have to take a bath in Ganga water to purify myself. 💀",
+    "createdAt": "Thu Oct 15 15:55:28 +0000 2026",
+    "lang": "en",
+    "url": "https://twitter.com/RealAnujX/status/2110761483072422124",
+    "isReply": false,
+    "isQuote": true,
+    "isRetweet": false,
+    "inReplyToId": null,
+    "metrics": {
+      "likes": 3585,
+      "retweets": 255,
+      "replies": 318,
+      "quotes": 40,
+      "bookmarks": 52
+    },
+    "author": {
+      "name": "ANUJx",
+      "handle": "@RealAnujX",
+      "avatar": "https://pbs.twimg.com/profile_images/2109182969659445248/JDRcjeqH_normal.jpg",
+      "verified": true,
+      "verifiedType": null,
+      "followers": 2733
+    },
+    "media": [],
+    "hashtags": [],
+    "mentions": [],
+    "quotedTweet": {
+      "id": "2110753147732025395",
+      "text": "If we announce 100 places, will Narendra Modi shutdown all 100 places?",
+      "createdAt": "Thu Oct 15 15:22:20 +0000 2026",
+      "lang": "en",
+      "url": "https://twitter.com/abhijeet_dipke/status/2110753147732025395",
+      "isReply": false,
+      "isQuote": true,
+      "isRetweet": false,
+      "inReplyToId": null,
+      "metrics": {
+        "likes": 26620,
+        "retweets": 4453,
+        "replies": 2496,
+        "quotes": 347,
+        "bookmarks": 226
+      },
+      "author": {
+        "name": "Abhijeet Dipke",
+        "handle": "@abhijeet_dipke",
+        "avatar": "https://pbs.twimg.com/profile_images/2080997334398140416/rPBE_IDp_normal.jpg",
+        "verified": true,
+        "verifiedType": null,
+        "followers": 583685
+      },
+      "media": [],
+      "hashtags": [],
+      "mentions": [],
+      "quotedTweet": {
+        "id": "2110732254507090145",
+        "text": "",
+        "createdAt": "",
+        "lang": "en",
+        "url": "",
+        "isReply": false,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": null,
+        "metrics": {
+          "likes": 0,
+          "retweets": 0,
+          "replies": 0,
+          "quotes": 0,
+          "bookmarks": 0
+        },
+        "author": {
+          "name": "",
+          "handle": "@",
+          "avatar": "",
+          "verified": false,
+          "verifiedType": null,
+          "followers": 0
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      },
+      "parentTweet": null
+    },
+    "parentTweet": null
+  }
+}

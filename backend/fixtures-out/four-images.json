@@ -1,0 +1,608 @@
+{
+  "label": "four-images",
+  "url": "https://x.com/DelhiPolice/status/2110717943978000884?s=20",
+  "mode": "single",
+  "fetchedAt": "2026-10-16T07:50:47.387Z",
+  "raw": {
+    "type": "tweet",
+    "id": "2110717943978000884",
+    "url": "https://x.com/DelhiPolice/status/2110717943978000884",
+    "twitterUrl": "https://twitter.com/DelhiPolice/status/2110717943978000884",
+    "text": "It is easy to stand with the crowd, but it takes courage to stand alone\n\n#DPUpdates https://t.co/JV5kQ3Q2qA",
+    "source": "",
+    "retweetCount": 11938,
+    "replyCount": 2591,
+    "likeCount": 53021,
+    "quoteCount": 866,
+    "viewCount": 1495840,
+    "createdAt": "Thu Oct 15 13:02:27 +0000 2026",
+    "lang": "en",
+    "bookmarkCount": 1113,
+    "isReply": false,
+    "inReplyToId": "",
+    "conversationId": "2110717943978000884",
+    "displayTextRange": [
+      0,
+      83
+    ],
+    "inReplyToUserId": "",
+    "inReplyToUsername": "",
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "DelhiPolice",
+      "url": "https://x.com/DelhiPolice",
+      "twitterUrl": "https://twitter.com/DelhiPolice",
+      "id": "1850705408",
+      "name": "Delhi Police",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "verifiedType": "Government",
+      "profilePicture": "https://pbs.twimg.com/profile_images/2087438608697573376/fRFDfDpI_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1850705408/1789458965",
+      "description": "Official Twitter account of Delhi Police |Pls do not report crime here |In case of emergency #Dial112 |#Dial 1930 for Cyber Crimes. Help us to serve you better|",
+      "location": "",
+      "followers": 1105007,
+      "following": 57,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Tue Sep 10 07:29:40 +0000 2013",
+      "entities": {
+        "description": {
+          "hashtags": [
+            {
+              "indices": [
+                93,
+                101
+              ],
+              "text": "Dial112"
+            },
+            {
+              "indices": [
+                103,
+                108
+              ],
+              "text": "Dial"
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 5907,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 9280,
+      "statusesCount": 70764,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "2110782259204899079"
+      ],
+      "profile_bio": {
+        "description": "Official Twitter account of Delhi Police |Pls do not report crime here |In case of emergency #Dial112 |#Dial 1930 for Cyber Crimes. Help us to serve you better|",
+        "entities": {
+          "description": {
+            "hashtags": [
+              {
+                "indices": [
+                  93,
+                  101
+                ],
+                "text": "Dial112"
+              },
+              {
+                "indices": [
+                  103,
+                  108
+                ],
+                "text": "Dial"
+              }
+            ]
+          }
+        }
+      },
+      "isAutomated": false,
+      "automatedBy": null
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "display_url": "pic.x.com/JV5kQ3Q2qA",
+          "expanded_url": "https://x.com/DelhiPolice/status/2110717943978000884/photo/1",
+          "ext_master_playlist_only": [],
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "ext_playlists": [],
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "h": 154,
+                  "w": 154,
+                  "x": 564,
+                  "y": 762
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "h": 154,
+                  "w": 154,
+                  "x": 564,
+                  "y": 762
+                }
+              ]
+            }
+          },
+          "id_str": "2110717830622793728",
+          "indices": [
+            84,
+            107
+          ],
+          "media_key": "3_2110717830622793728",
+          "media_results": {
+            "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1Kxq8TWtAACgACHUrGyXfaAfQAAA==",
+            "result": {
+              "__typename": "ApiMedia",
+              "id": "QXBpTWVkaWE6DAABCgABHUrGrxNa0AAKAAIdSsbJd9oB9AAA",
+              "media_key": "3_2110717830622793728"
+            }
+          },
+          "media_url_https": "https://pbs.twimg.com/media/HUrGrxNa0AA2NN8.jpg",
+          "original_info": {
+            "focus_rects": [
+              {
+                "h": 896,
+                "w": 1600,
+                "x": 0,
+                "y": 72
+              },
+              {
+                "h": 1187,
+                "w": 1187,
+                "x": 87,
+                "y": 0
+              },
+              {
+                "h": 1187,
+                "w": 1041,
+                "x": 160,
+                "y": 0
+              },
+              {
+                "h": 1187,
+                "w": 594,
+                "x": 383,
+                "y": 0
+              },
+              {
+                "h": 1187,
+                "w": 1600,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "height": 1187,
+            "width": 1600
+          },
+          "sizes": {
+            "large": {
+              "h": 1187,
+              "w": 1600
+            }
+          },
+          "type": "photo",
+          "url": "https://t.co/JV5kQ3Q2qA"
+        },
+        {
+          "display_url": "pic.x.com/JV5kQ3Q2qA",
+          "expanded_url": "https://x.com/DelhiPolice/status/2110717943978000884/photo/1",
+          "ext_master_playlist_only": [],
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "ext_playlists": [],
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "h": 117,
+                  "w": 117,
+                  "x": 605,
+                  "y": 213
+                },
+                {
+                  "h": 321,
+                  "w": 321,
+                  "x": 656,
+                  "y": 669
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "h": 147,
+                  "w": 147,
+                  "x": 757,
+                  "y": 267
+                },
+                {
+                  "h": 402,
+                  "w": 402,
+                  "x": 820,
+                  "y": 837
+                }
+              ]
+            }
+          },
+          "id_str": "2110717873362726912",
+          "indices": [
+            84,
+            107
+          ],
+          "media_key": "3_2110717873362726912",
+          "media_results": {
+            "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1KxrkG2nAACgACHUrGyXfaAfQAAA==",
+            "result": {
+              "__typename": "ApiMedia",
+              "id": "QXBpTWVkaWE6DAABCgABHUrGuQbacAAKAAIdSsbJd9oB9AAA",
+              "media_key": "3_2110717873362726912"
+            }
+          },
+          "media_url_https": "https://pbs.twimg.com/media/HUrGuQbacAAdNpL.jpg",
+          "original_info": {
+            "focus_rects": [
+              {
+                "h": 1434,
+                "w": 2560,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "h": 1900,
+                "w": 1900,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "h": 1900,
+                "w": 1667,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "h": 1900,
+                "w": 950,
+                "x": 355,
+                "y": 0
+              },
+              {
+                "h": 1900,
+                "w": 2560,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "height": 1900,
+            "width": 2560
+          },
+          "sizes": {
+            "large": {
+              "h": 1520,
+              "w": 2048
+            }
+          },
+          "type": "photo",
+          "url": "https://t.co/JV5kQ3Q2qA"
+        },
+        {
+          "display_url": "pic.x.com/JV5kQ3Q2qA",
+          "expanded_url": "https://x.com/DelhiPolice/status/2110717943978000884/photo/1",
+          "ext_master_playlist_only": [],
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "ext_playlists": [],
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "h": 68,
+                  "w": 68,
+                  "x": 135,
+                  "y": 946
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "h": 68,
+                  "w": 68,
+                  "x": 135,
+                  "y": 946
+                }
+              ]
+            }
+          },
+          "id_str": "2110717894078472192",
+          "indices": [
+            84,
+            107
+          ],
+          "media_key": "3_2110717894078472192",
+          "media_results": {
+            "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1Kxr3Zm6AACgACHUrGyXfaAfQAAA==",
+            "result": {
+              "__typename": "ApiMedia",
+              "id": "QXBpTWVkaWE6DAABCgABHUrGvdmboAAKAAIdSsbJd9oB9AAA",
+              "media_key": "3_2110717894078472192"
+            }
+          },
+          "media_url_https": "https://pbs.twimg.com/media/HUrGvdmboAAMKVO.jpg",
+          "original_info": {
+            "focus_rects": [
+              {
+                "h": 896,
+                "w": 1600,
+                "x": 0,
+                "y": 291
+              },
+              {
+                "h": 1187,
+                "w": 1187,
+                "x": 413,
+                "y": 0
+              },
+              {
+                "h": 1187,
+                "w": 1041,
+                "x": 559,
+                "y": 0
+              },
+              {
+                "h": 1187,
+                "w": 594,
+                "x": 783,
+                "y": 0
+              },
+              {
+                "h": 1187,
+                "w": 1600,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "height": 1187,
+            "width": 1600
+          },
+          "sizes": {
+            "large": {
+              "h": 1187,
+              "w": 1600
+            }
+          },
+          "type": "photo",
+          "url": "https://t.co/JV5kQ3Q2qA"
+        },
+        {
+          "display_url": "pic.x.com/JV5kQ3Q2qA",
+          "expanded_url": "https://x.com/DelhiPolice/status/2110717943978000884/photo/1",
+          "ext_master_playlist_only": [],
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "ext_playlists": [],
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "h": 210,
+                  "w": 210,
+                  "x": 1098,
+                  "y": 128
+                },
+                {
+                  "h": 207,
+                  "w": 207,
+                  "x": 1084,
+                  "y": 939
+                },
+                {
+                  "h": 214,
+                  "w": 214,
+                  "x": 693,
+                  "y": 328
+                },
+                {
+                  "h": 209,
+                  "w": 209,
+                  "x": 903,
+                  "y": 410
+                },
+                {
+                  "h": 260,
+                  "w": 260,
+                  "x": 729,
+                  "y": 571
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "h": 210,
+                  "w": 210,
+                  "x": 1098,
+                  "y": 128
+                },
+                {
+                  "h": 207,
+                  "w": 207,
+                  "x": 1084,
+                  "y": 939
+                },
+                {
+                  "h": 214,
+                  "w": 214,
+                  "x": 693,
+                  "y": 328
+                },
+                {
+                  "h": 209,
+                  "w": 209,
+                  "x": 903,
+                  "y": 410
+                },
+                {
+                  "h": 260,
+                  "w": 260,
+                  "x": 729,
+                  "y": 571
+                }
+              ]
+            }
+          },
+          "id_str": "2110717912336187392",
+          "indices": [
+            84,
+            107
+          ],
+          "media_key": "3_2110717912336187392",
+          "media_results": {
+            "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAAR1KxsIZ2kAACgACHUrGyXfaAfQAAA==",
+            "result": {
+              "__typename": "ApiMedia",
+              "id": "QXBpTWVkaWE6DAABCgABHUrGwhnaQAAKAAIdSsbJd9oB9AAA",
+              "media_key": "3_2110717912336187392"
+            }
+          },
+          "media_url_https": "https://pbs.twimg.com/media/HUrGwhnaQAAmkeg.jpg",
+          "original_info": {
+            "focus_rects": [
+              {
+                "h": 896,
+                "w": 1600,
+                "x": 0,
+                "y": 291
+              },
+              {
+                "h": 1187,
+                "w": 1187,
+                "x": 247,
+                "y": 0
+              },
+              {
+                "h": 1187,
+                "w": 1041,
+                "x": 320,
+                "y": 0
+              },
+              {
+                "h": 1187,
+                "w": 594,
+                "x": 543,
+                "y": 0
+              },
+              {
+                "h": 1187,
+                "w": 1600,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "height": 1187,
+            "width": 1600
+          },
+          "sizes": {
+            "large": {
+              "h": 1187,
+              "w": 1600
+            }
+          },
+          "type": "photo",
+          "url": "https://t.co/JV5kQ3Q2qA"
+        }
+      ]
+    },
+    "card": null,
+    "place": {},
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            73,
+            83
+          ],
+          "text": "DPUpdates"
+        }
+      ]
+    },
+    "isRetweet": false,
+    "isQuote": false,
+    "isConversationControlled": false,
+    "quoted_tweet": null,
+    "retweeted_tweet": null,
+    "isLimitedReply": false,
+    "communityInfo": null
+  },
+  "parsed": {
+    "id": "2110717943978000884",
+    "text": "It is easy to stand with the crowd, but it takes courage to stand alone\n\n#DPUpdates https://t.co/JV5kQ3Q2qA",
+    "createdAt": "Thu Oct 15 13:02:27 +0000 2026",
+    "lang": "en",
+    "url": "https://twitter.com/DelhiPolice/status/2110717943978000884",
+    "isReply": false,
+    "isQuote": false,
+    "isRetweet": false,
+    "inReplyToId": null,
+    "metrics": {
+      "likes": 53021,
+      "retweets": 11938,
+      "replies": 2591,
+      "quotes": 866,
+      "bookmarks": 1113
+    },
+    "author": {
+      "name": "Delhi Police",
+      "handle": "@DelhiPolice",
+      "avatar": "https://pbs.twimg.com/profile_images/2087438608697573376/fRFDfDpI_normal.jpg",
+      "verified": true,
+      "verifiedType": "Government",
+      "followers": 1105007
+    },
+    "media": [
+      {
+        "url": "https://pbs.twimg.com/media/HUrGrxNa0AA2NN8.jpg",
+        "width": 1600,
+        "height": 1187
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HUrGuQbacAAdNpL.jpg",
+        "width": 2560,
+        "height": 1900
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HUrGvdmboAAMKVO.jpg",
+        "width": 1600,
+        "height": 1187
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HUrGwhnaQAAmkeg.jpg",
+        "width": 1600,
+        "height": 1187
+      }
+    ],
+    "hashtags": [
+      "DPUpdates"
+    ],
+    "mentions": [],
+    "quotedTweet": null,
+    "parentTweet": null
+  }
+}
