@@ -31,3 +31,12 @@ Side effect inside a state updater. recordTemplateUsed calls SecureStore.setItem
 SecureStore for recents. It’s meant for secrets (tokens). It works for this, but it’s slower and has size limits. The file’s own comment already notes AsyncStorage or MMKV as a later swap.
 
 FRAME_WIDTH is computed once at import time from Dimensions.get('window'). It won’t update on rotation or split-screen resize. useWindowDimensions() is the live alternative.
+
+add a feature to so user can click share from twitter select the axtogram app...default teplmplete type is already applied adn tehn abutton of post to instagram(Bu we do not post  fdirectly, we just open the screen wedit screen for reels. wweher user can enter theirt caption or add filters and music.)
+this featuire will belike just exporting to instagram not p[osting so we dont need to user to conenct iinstagrram.]
+
+
+allow user to choose fonte.I know in native we have to load fontss..so If we load a lot of fonts..our app size will  get bigger..but we can allow user to download fonts ont heir own.
+
+edit text and add/remove images option in content tab. (Here we also have to atake care of divisions..like suppose iths a thraead so 10 different text items are editable, oiimages can be added on any card
+samne for replies and quotes)

@@ -12,7 +12,7 @@ import { elementRegistry } from '../components/tweet/scene/registry';
 import { ValueSlider } from '../components/tweet/quickAdjust/ValueSlider';
 import { ColorSwatchRow } from '../components/tweet/quickAdjust/ColorsWatchRow';
 import { ImagePickerButton } from '../components/tweet/editSheet/ImagePickerButton';
-import { cardTemplates } from '../components/tweet/templates/definations';
+import { getTemplatesForShape } from '../components/tweet/templates/definations';
 import { Colors, FontSize, Radius, Spacing } from '../constants/theme';
 import { useCard } from '../context/CardContext';
 import { useAuth } from '../context/AuthContext';
@@ -44,6 +44,7 @@ export default function EditAdvanced() {
     updateElementPosition,
     deleteElement,
     setElementVariant,
+    shape
   } = useCard();
 
   const canvasRef = useCanvasRef();
@@ -85,7 +86,7 @@ export default function EditAdvanced() {
       <View style={styles.templateBar}>
         <Text style={styles.sectionLabel}>Templates</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.templateRow}>
-          {cardTemplates.map((item) => {
+          {getTemplatesForShape(shape).map((item) => {
             const active = item.id === template.id;
             return (
               <Pressable

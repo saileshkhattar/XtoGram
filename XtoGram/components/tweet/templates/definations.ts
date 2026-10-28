@@ -82,3 +82,56 @@ export const cardTemplates: CardTemplate[] = [
   noEngagementTemplate,
   minimalCompactTemplate,
 ];
+
+export const darkQuoteTemplate: CardTemplate = {
+  id: "dark-quote",
+  name: "Dark Quote",
+  appliesTo: ["quote"],
+  palette: darkPalette,
+  elements: [
+    { id: "author", type: "authorBlock", variant: "default" },
+    { id: "body", type: "bodyText", variant: "default", gapBefore: AUTHOR_TO_TEXT_GAP },
+    { id: "media", type: "media", variant: "default", gapBefore: TEXT_TO_MEDIA_GAP },
+    { id: "quote", type: "quoteEmbed", variant: "default", dataBinding: "quotedTweet", gapBefore: TEXT_TO_MEDIA_GAP },
+    { id: "engagement", type: "engagementRow", variant: "default", gapBefore: MEDIA_TO_ENGAGEMENT_GAP },
+  ],
+};
+
+// A quote version of any template: identical look, plus the embed before the engagement row.
+function withQuoteEmbed(base: CardTemplate): CardTemplate {
+  const embed: CardElement = {
+    id: "quote", type: "quoteEmbed", variant: "default",
+    dataBinding: "quotedTweet", gapBefore: TEXT_TO_MEDIA_GAP,
+  };
+  const engagementAt = base.elements.findIndex((e) => e.type === "engagementRow");
+  const at = engagementAt === -1 ? base.elements.length : engagementAt;
+  return {
+    ...base,
+    id: `${base.id}-quote`,
+    appliesTo: ["quote"],
+    elements: [...base.elements.slice(0, at), embed, ...base.elements.slice(at)],
+  };
+}
+
+const singleTemplates: CardTemplate[] = [
+  darkClassicTemplate,
+  lightClassicTemplate,
+  textOnlyQuoteTemplate,
+  noEngagementTemplate,
+  minimalCompactTemplate,
+];
+
+export const cardTemplates: CardTemplate[] = [...singleTemplates, ...singleTemplates.map(withQuoteEmbed)];
+
+
+export function getTemplatesForShape(shape: TweetType): CardTemplate[] {
+  const exact = cardTemplates.filter((t) => t.appliesTo.includes(shape));
+  return exact.length > 0 ? exact : cardTemplates.filter((t) => t.appliesTo.includes("original"));
+}
+
+
+export function counterpartTemplate(current: CardTemplate, shape: TweetType): CardTemplate {
+  const available = getTemplatesForShape(shape);
+  const baseId = current.id.replace(/-quote$/, "");
+  return available.find((t) => t.id === baseId || t.id === `${baseId}-quote`) ?? available[0];
+}

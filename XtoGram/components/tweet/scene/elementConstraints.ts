@@ -9,4 +9,5 @@ export const MIN_ELEMENT_SIZE: Record<ElementType, { width: number; height: numb
   bodyText: { width: 280, height: 80 },
   media: { width: 280, height: 180 },
   engagementRow: { width: 300, height: 40 },
+  quoteEmbed: { width: 420, height: 200 },
 };

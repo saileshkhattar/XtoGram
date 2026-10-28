@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useThumbnailGenerator } from './ThumbnailGeneratorProvider';
-import { THUMBNAIL_SAMPLE_TWEET } from './sampleTweet';
+import { THUMBNAIL_SAMPLE_TWEET, THUMBNAIL_SAMPLE_QUOTE_TWEET } from './sampleTweet';
 import type { CardTemplate } from '../scene/types';
 
 // Returns null until the thumbnail is ready (cached instantly, or
@@ -14,7 +14,8 @@ export function useTemplateThumbnail(template: CardTemplate): string | null {
   useEffect(() => {
     let cancelled = false;
     setUri(null);
-    requestThumbnail(template, THUMBNAIL_SAMPLE_TWEET)
+    const sample = template.appliesTo[0] === 'quote' ? THUMBNAIL_SAMPLE_QUOTE_TWEET : THUMBNAIL_SAMPLE_TWEET;
+    requestThumbnail(template, sample)
       .then((result) => {
         if (!cancelled) setUri(result);
       })

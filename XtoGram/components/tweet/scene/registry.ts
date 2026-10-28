@@ -16,6 +16,8 @@ import { EngagementRowDefault } from "./variants/engagementRow/Default";
 import { EngagementRowMinimal } from "./variants/engagementRow/Minimal";
 import { EngagementRowIconsOnly } from "./variants/engagementRow/IconsOnly";
 
+import { QuoteEmbedDefault } from "./variants/quoteEmbed/Default";
+
 // Registering a new variant is the entire integration step — add the file
 // under scene/variants/<type>/, then one line here. SceneRenderer,
 // CardTemplate, and the advanced editor's per-element picker (later) never
@@ -41,4 +43,7 @@ export const elementRegistry: ElementRegistry = {
     minimal: EngagementRowMinimal,
     iconsOnly: EngagementRowIconsOnly,
   },
+  quoteEmbed: {
+      default: QuoteEmbedDefault,
+    },
 };

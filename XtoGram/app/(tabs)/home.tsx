@@ -22,7 +22,6 @@ import { useCard } from '../../context/CardContext';
 import ScatteredIcons from '../../utils/scatteredIcons';
 import { fetchTweetByUrl } from '../../utils/tweetApi';
 import { saveImageToLibrary, shareImage } from '../../components/tweet/exportCard';
-import type { ParsedTweetResponse } from '../../types/tweet';
 import { useAuth } from '../../context/AuthContext';
 import GuestBanner from '../../components/ui/GuestBanner';
 import { useToast } from '../../context/ToastContext';
@@ -38,14 +37,13 @@ export default function Home() {
   const [url, setUrl] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [parsed, setParsed] = useState<ParsedTweetResponse | null>(null);
   const [saving, setSaving] = useState(false);
   const [sharing, setSharing] = useState(false);
   const [isCardReady, setIsCardReady] = useState(false);
 
   const {
     tweet,
-    setTweet,
+    setConversation,
     template: selectedTemplate,
     setTemplate: setSelectedTemplate,
     frameBackgroundColor,
@@ -81,17 +79,6 @@ export default function Home() {
     }).start();
   }, []);
 
-  useEffect(() => {
-    if (!parsed) {
-      setTweet(null);
-    } else if (parsed.type === 'original') {
-      setTweet(parsed.tweet);
-    } else {
-      const chainTweet = parsed.chain[parsed.chain.length - 1];
-      setTweet(chainTweet ?? null);
-    }
-  }, [parsed]);
-
   const handleSubmit = async () => {
     if (!url.trim() || loading) return;
     Keyboard.dismiss();
@@ -101,8 +88,8 @@ export default function Home() {
     try {
       const data = await fetchTweetByUrl(url.trim());
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-      setParsed(data);
-      if (data.type === 'original' && data.guest) {
+      setConversation(data);
+      if (data.guest) {
         setGuestRemaining(data.guest.remaining);
         if (data.guest.limited) {
           showToast('Sign up to see the full thread or quoted tweet.');

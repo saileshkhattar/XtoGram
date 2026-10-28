@@ -3,24 +3,26 @@ import { View, StyleSheet } from 'react-native';
 import { Spacing } from '../../../constants/theme';
 import { TemplateSection } from '../templatePicker/TemplateSection';
 import { useRecentTemplates } from '../../../hooks/useRecentTemplate';
-import { cardTemplates } from '../templates/definations';
 import type { CardTemplate } from '../scene/types';
+import { getTemplatesForShape } from '../templates/definations';
+import { useCard } from '../../../context/CardContext';
 
 type Props = {
   selectedTemplateId: string;
   onSelect: (template: CardTemplate) => void;
 };
 
-// TODO once quote/reply/thread tweets are supported: filter cardTemplates
-// here by `appliesTo` against the current tweet's type.
 export function TemplatesTab({ selectedTemplateId, onSelect }: Props) {
   const { recentIds, recordTemplateUsed } = useRecentTemplates();
 
+  const { shape } = useCard();
+  const templates = useMemo(() => getTemplatesForShape(shape), [shape]);
+
   const recentTemplates = useMemo(() => {
-    const byId = new Map(cardTemplates.map((t) => [t.id, t]));
+    const byId = new Map(templates.map((t) => [t.id, t]));
     const resolved = recentIds.map((id) => byId.get(id)).filter((t): t is CardTemplate => !!t);
-    return resolved.length > 0 ? resolved : cardTemplates.slice(0, 5);
-  }, [recentIds]);
+    return resolved.length > 0 ? resolved : templates.slice(0, 5);
+  }, [recentIds, templates]);
 
   const userTemplates: CardTemplate[] = [];
   const storeTemplates: CardTemplate[] = [];
@@ -40,7 +42,7 @@ export function TemplatesTab({ selectedTemplateId, onSelect }: Props) {
       />
       <TemplateSection
         title="System templates"
-        templates={cardTemplates}
+        templates={templates}
         selectedId={selectedTemplateId}
         onSelect={handleSelect}
       />

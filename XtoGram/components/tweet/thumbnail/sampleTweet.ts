@@ -20,6 +20,9 @@ export const THUMBNAIL_SAMPLE_TWEET: Tweet = {
   isQuote: false,
   isRetweet: false,
   inReplyToId: null,
+  conversationId: null,
+  inReplyToHandle: null,
+  quotedTweetId: null,
   metrics: { likes: 1204, retweets: 312, replies: 48, quotes: 12, bookmarks: 96 },
   author: {
     name: 'Sample User',
@@ -34,4 +37,19 @@ export const THUMBNAIL_SAMPLE_TWEET: Tweet = {
   mentions: [],
   quotedTweet: null,
   parentTweet: null,
+};
+
+export const THUMBNAIL_SAMPLE_QUOTE_TWEET: Tweet = {
+  ...THUMBNAIL_SAMPLE_TWEET,
+  id: 'thumbnail-sample-quote',
+  text: 'This is exactly what I needed to read today.',
+  isQuote: true,
+  media: [],
+  quotedTweet: {
+    ...THUMBNAIL_SAMPLE_TWEET,
+    id: 'thumbnail-sample-quoted',
+    text: 'Small steps every day add up to something big. Keep going.',
+    author: { ...THUMBNAIL_SAMPLE_TWEET.author, name: 'Another User', handle: '@anotheruser' },
+    media: [],
+  },
 };

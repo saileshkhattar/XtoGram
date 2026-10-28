@@ -41,3 +41,16 @@ export const FONT_SIZE_METRIC_MINIMAL = 24;
 export const IMAGE_BORDER_WIDTH = 4;
 
 export const MAX_BODY_TEXT_CHARS = 560;
+
+export const EMBED_PADDING = 28;
+export const EMBED_RADIUS = 28;
+export const EMBED_BORDER_WIDTH = 3;
+export const EMBED_AVATAR_SIZE = 56;
+export const EMBED_AVATAR_GAP = 14;
+export const EMBED_GAP = 16;                  // between rows inside the embed
+export const EMBED_MEDIA_RADIUS = 16;
+export const EMBED_FONT_SIZE_NAME = 28;
+export const EMBED_FONT_SIZE_HANDLE = 24;
+export const EMBED_FONT_SIZE_BODY = 32;
+export const EMBED_LINE_HEIGHT_BODY = 44;
+export const EMBED_MAX_CHARS = 400;           // embeds stay compact; independent of MAX_BODY_TEXT_CHARS

@@ -18,12 +18,13 @@ import { TemplatesTab } from './TemplateTab';
 import { AdjustTab } from './AdjustTab';
 import { DockedCardPreview } from './DockerCardPreview';
 import { useRecentTemplates } from '../../../hooks/useRecentTemplate';
-import { cardTemplates } from '../templates/definations';
 import type { CardTemplate } from '../scene/types';
 import type { Tweet } from '../../../types/tweet';
 import { useAuth } from '../../../context/AuthContext';
 import { useToast } from '../../../context/ToastContext';
 import GuestLock from '../../ui/GuestLock';
+import { useCard } from '../../../context/CardContext';
+import { getTemplatesForShape } from '../templates/definations';
 
 export type EditSheetTab = 'templates' | 'adjust';
 
@@ -87,11 +88,15 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
   const [expandedUI, setExpandedUI] = useState(false);
 
   const { recentIds, recordTemplateUsed } = useRecentTemplates();
+
+  const { shape } = useCard();
+  const templates = useMemo(() => getTemplatesForShape(shape), [shape]);
+  
   const recentTemplates = useMemo(() => {
-    const byId = new Map(cardTemplates.map((t) => [t.id, t]));
+    const byId = new Map(templates.map((t) => [t.id, t]));
     const resolved = recentIds.map((id) => byId.get(id)).filter((t): t is CardTemplate => !!t);
-    return resolved.length > 0 ? resolved : cardTemplates.slice(0, 5);
-  }, [recentIds]);
+    return resolved.length > 0 ? resolved : templates.slice(0, 5);
+  }, [recentIds, templates]);
 
   const translateY = useSharedValue(DRAG_RANGE);
   const startY = useSharedValue(DRAG_RANGE);

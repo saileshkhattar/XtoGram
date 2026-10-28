@@ -31,6 +31,9 @@ export interface Tweet {
   isQuote: boolean;
   isRetweet: boolean;
   inReplyToId: string | null;
+  conversationId: string | null;     
+  inReplyToHandle: string | null;    
+  quotedTweetId: string | null;      
   metrics: TweetMetrics;
   author: TweetAuthor;
   media: TweetMedia[];
@@ -41,6 +44,16 @@ export interface Tweet {
 }
 export type GuestInfo = { remaining: number; limited: boolean };
 
-export type ParsedTweetResponse =
-  | { type: "original"; tweet: Tweet; guest?: GuestInfo }
-  | { type: "reply"; focusTweetId: string; chain: Tweet[] };
+export type Tier = 'guest' | 'free' | 'premium';
+export type ConversationKind = 'single' | 'thread' | 'chain';
+
+export interface ConversationResponse {
+  kind: ConversationKind;
+  focusTweetId: string;
+  focusIndex: number;
+  defaultRange: { start: number; end: number };   // inclusive; the initial selection
+  nodes: Tweet[];                                  // oldest first; the candidate range
+  more: { earlier: boolean; later: boolean; deeperQuote: boolean; truncatedByPageCap: boolean };
+  limits: { tier: Tier; maxNodes: number; quoteDepth: number };
+  guest?: GuestInfo;
+}

@@ -10,6 +10,9 @@ import {
   LINE_HEIGHT_QUOTE,
   NAME_HANDLE_GAP,
   MAX_BODY_TEXT_CHARS,
+  EMBED_FONT_SIZE_BODY,
+  EMBED_LINE_HEIGHT_BODY,
+  EMBED_MAX_CHARS,
 } from "./layout";
 
 // All Skia paragraph building is centralized here as plain functions
@@ -148,6 +151,24 @@ export function buildSimpleParagraph(
 ): { paragraph: SkParagraph; height: number; width: number } {
   const paragraph = buildParagraph(fontMgr, text, opts);
   return { paragraph, height: paragraph.getHeight(), width: paragraph.getLongestLine() };
+}
+
+
+// Smaller body text for text inside a quote embed.
+export function buildEmbedTextLayout(
+  fontMgr: SkTypefaceFontProvider,
+  text: string,
+  maxWidth: number,
+  color: string = "#F0EEF8",
+): BodyTextLayout {
+  const paragraph = buildParagraph(fontMgr, truncateBodyText(text, EMBED_MAX_CHARS), {
+    size: EMBED_FONT_SIZE_BODY,
+    weight: FONT_WEIGHT_REGULAR,
+    color,
+    maxWidth,
+    height: EMBED_LINE_HEIGHT_BODY,
+  });
+  return { paragraph, height: paragraph.getHeight() };
 }
 
 export { TextAlign };

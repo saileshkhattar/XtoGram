@@ -1,7 +1,7 @@
 import type { SkTypefaceFontProvider } from "@shopify/react-native-skia";
 import { type Tweet } from "../../../types/tweet";
 
-export type ElementType = "authorBlock" | "bodyText" | "media" | "engagementRow";
+export type ElementType = "authorBlock" | "bodyText" | "media" | "engagementRow" | "quoteEmbed";
 
 export type Palette = {
   background: string;

@@ -20,10 +20,9 @@ export type ComputedLayout = {
   cardHeight: number;
 };
 
-function resolveData(tweet: Tweet, dataBinding?: string): Tweet {
+function resolveData(tweet: Tweet, dataBinding?: string): Tweet | null {
   if (!dataBinding) return tweet;
-  const nested = (tweet as unknown as Record<string, unknown>)[dataBinding];
-  return (nested as Tweet) ?? tweet;
+  return ((tweet as unknown as Record<string, unknown>)[dataBinding] as Tweet | null) ?? null;
 }
 
 type ComputeArgs = {
@@ -47,6 +46,8 @@ export function computeElementLayout({ tweet, template, fontMgr, cardPadding }: 
     if (!variant) continue; 
 
     const data = resolveData(tweet, element.dataBinding);
+
+    if (!data) continue;
 
     if (element.position) {
       positioned.push({

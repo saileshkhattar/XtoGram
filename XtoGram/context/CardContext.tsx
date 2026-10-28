@@ -1,15 +1,22 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useMemo, useEffect } from 'react';
 import { darkClassicTemplate } from '../components/tweet/templates/definations';
 import { PADDING } from '../components/tweet/skia/layout';
 import { CARD_WIDTH } from '../components/tweet/skia/layout';
 import { MIN_ELEMENT_SIZE } from '../components/tweet/scene/elementConstraints';
 import { Colors } from '../constants/theme';
 import type { CardTemplate, ElementPosition } from '../components/tweet/scene/types';
-import type { Tweet } from '../types/tweet';
+import { trimQuoteDepth, getShape } from '../utils/conversation';
+import type { ConversationResponse, Tweet } from '../types/tweet';
+import { getTemplatesForShape, counterpartTemplate } from '../components/tweet/templates/definations';
+import { TweetType } from '../components/tweet/scene/types';
 
 type CardContextType = {
   tweet: Tweet | null;
-  setTweet: (tweet: Tweet | null) => void;
+  conversation: ConversationResponse | null;
+  setConversation: (c: ConversationResponse | null) => void;
+  selection: { start: number; end: number; quoteDepth: number } | null;
+  setSelection: (s: { start: number; end: number; quoteDepth: number }) => void;
+  visibleNodes: Tweet[];
   template: CardTemplate;
   setTemplate: (template: CardTemplate) => void;
   frameBackgroundColor: string;
@@ -33,13 +40,45 @@ type CardContextType = {
   updateElementPosition: (id: string, position: ElementPosition) => void;
   deleteElement: (id: string) => void;
   setElementVariant: (id: string, variant: string) => void;
+  shape: TweetType;
 };
 
 const CardContext = createContext<CardContextType | null>(null);
 
 export function CardProvider({ children }: { children: ReactNode }) {
-  const [tweet, setTweet] = useState<Tweet | null>(null);
+  const [conversation, setConversationState] = useState<ConversationResponse | null>(null);
+const [selection, setSelection] = useState<{ start: number; end: number; quoteDepth: number } | null>(null);
+
+const setConversation = (c: ConversationResponse | null) => {
+  setConversationState(c);
+  // Default selection: the server's suggested range, level-1 quote only (tier permitting).
+  setSelection(c ? { ...c.defaultRange, quoteDepth: Math.min(1, c.limits.quoteDepth) } : null);
+};
+
+  const visibleNodes = useMemo(() => {
+    if (!conversation || !selection) return [];
+    return conversation.nodes
+      .slice(selection.start, selection.end + 1)
+      .map((n) => trimQuoteDepth(n, selection.quoteDepth));
+  }, [conversation, selection]);
+
+// Until the pager exists (later steps), every card still renders the pasted tweet only.
+  const tweet = useMemo<Tweet | null>(() => {
+    if (!conversation || !selection) return null;
+    return trimQuoteDepth(conversation.nodes[conversation.focusIndex], selection.quoteDepth);
+  }, [conversation, selection]);
+
+  const shape = useMemo(() => getShape(visibleNodes), [visibleNodes]);
+
+
+
   const [template, setTemplate] = useState<CardTemplate>(darkClassicTemplate);
+
+  useEffect(() => {
+    if (!conversation) return;
+    if (getTemplatesForShape(shape).some((t) => t.id === template.id)) return;
+    setTemplate(counterpartTemplate(template, shape));
+  }, [conversation, shape, template.id]);
 
   const [frameBackgroundColor, setFrameBackgroundColor] = useState(Colors.SURFACE);
   const [cardColorOverride, setCardColorOverride] = useState<string | undefined>(undefined);
@@ -86,7 +125,11 @@ export function CardProvider({ children }: { children: ReactNode }) {
     <CardContext.Provider
       value={{
         tweet,
-        setTweet,
+        conversation,
+        setConversation,
+        selection,
+        setSelection,
+        visibleNodes,
         template,
         setTemplate,
         frameBackgroundColor,
@@ -110,6 +153,7 @@ export function CardProvider({ children }: { children: ReactNode }) {
         updateElementPosition,
         deleteElement,
         setElementVariant,
+        shape
       }}
     >
       {children}
