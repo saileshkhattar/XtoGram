@@ -9,7 +9,7 @@ import type {
 } from "../types/tweet.js";
 import { reserveGuestGeneration, refundGuestGeneration } from "./guest.service.js";
 import { assembleConversation, kindOf, isSelfReply } from "./conversation.assemble.js";
-import { ABSOLUTE_MAX_NODES, type TierLimits } from "../config/tiers.js";
+import { ABSOLUTE_MAX_NODES, ABSOLUTE_MAX_QUOTE_DEPTH, type TierLimits } from "../config/tiers.js";
 import type { ConversationResponse } from "../types/tweet.js";
 import { TIER_LIMITS, type Tier } from "../config/tiers.js";
 
@@ -20,6 +20,18 @@ const BASE_URL = "https://api.twitterapi.io/twitter";
 const CACHE_TTL_MINUTES = 30;
 const RETRY_DELAY_MS = 12000;
 
+const MAX_LIVE_CALLS_PER_REQUEST = 24;     // every real API attempt counts, retries included
+const REQUEST_TIME_BUDGET_MS = 50_000;
+
+class BudgetExceededError extends Error {}
+
+class CallBudget {
+  private calls = 0;
+  private readonly deadline = Date.now() + REQUEST_TIME_BUDGET_MS;
+  canCall() { return this.calls < MAX_LIVE_CALLS_PER_REQUEST && Date.now() < this.deadline; }
+  spend() { this.calls++; }
+}
+
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export function extractTweetId(url: string): string | null {
@@ -27,10 +39,12 @@ export function extractTweetId(url: string): string | null {
   return match ? match[1] : null;
 }
 
-
-
-async function twitterGet(pathAndQuery: string): Promise<any> {
+async function twitterGet(pathAndQuery: string, budget?: CallBudget ): Promise<any> {
   for (let attempt = 0; attempt < 2; attempt++) {
+    if (budget) {
+      if (!budget.canCall()) throw new BudgetExceededError();
+      budget.spend();
+    }
     const response = await fetch(`${BASE_URL}${pathAndQuery}`, {
       headers: { "x-api-key": env.twitterApiKey },
     });
@@ -64,20 +78,20 @@ async function cacheRawTweet(raw: any): Promise<void> {
 }
 
 
-async function fetchRawTweet(tweetId: string): Promise<any> {
+async function fetchRawTweet(tweetId: string, budget?: CallBudget): Promise<any> {
   const cached = await TweetCache.findOne({ tweetId });
   if (cached) return cached.rawData;
 
-  const data = await twitterGet(`/tweets?tweet_ids=${tweetId}`);
+  const data = await twitterGet(`/tweets?tweet_ids=${tweetId}`, budget);
   const raw = data?.tweets?.[0] || null;
   if (raw) await cacheRawTweet(raw);
   return raw;
 }
 
-export async function searchAuthorConversation(conversationId: string, handle: string): Promise<any[]> {
+export async function searchAuthorConversation(conversationId: string, handle: string, budget?: CallBudget): Promise<any[]> {
   const cleanHandle = handle.replace(/^@/, "");
   const query = encodeURIComponent(`conversation_id:${conversationId} from:${cleanHandle} to:${cleanHandle}`);
-  const data = await twitterGet(`/tweet/advanced_search?query=${query}&queryType=Latest`);
+  const data = await twitterGet(`/tweet/advanced_search?query=${query}&queryType=Latest`, budget);
   return data?.tweets ?? [];
 }
 
@@ -153,85 +167,100 @@ export async function buildConversation(
   limits: TierLimits,
 ): Promise<Omit<ConversationResponse, "limits" | "guest">> {
   const maxNodes = Math.min(limits.maxNodes, ABSOLUTE_MAX_NODES);
+  const quoteDepth = Math.min(limits.quoteDepth, ABSOLUTE_MAX_QUOTE_DEPTH);
+  const budget = new CallBudget();
+  let budgetExhausted = false;
 
   const focusWasCached = !!(await TweetCache.exists({ tweetId }));
-  const rawFocus = await fetchRawTweet(tweetId);
+  const rawFocus = await fetchRawTweet(tweetId, budget);      // first call: a fresh budget always allows it
   if (!rawFocus) throw new AppError("Tweet not found", 404);
+  const focus = parseTweet(rawFocus);
 
   let lastWasLive = !focusWasCached;
   const gap = async () => { if (lastWasLive) await delay(env.twitterCallDelayMs); };
 
+  // Fetch missing quote levels, up to the tier depth.
   const resolveQuotes = async (nodes: Tweet[], range: { start: number; end: number }) => {
-  for (let i = range.start; i <= range.end; i++) {
-    let holder = nodes[i];
-    for (let level = 1; level < limits.quoteDepth; level++) {
-      const q = holder.quotedTweet;
-      if (!q) break;
-      if (!q.quotedTweet && q.quotedTweetId) {
-        const cached = !!(await TweetCache.exists({ tweetId: q.quotedTweetId }));
-        if (!cached) await gap();
-        const raw = await fetchRawTweet(q.quotedTweetId);
-        lastWasLive = !cached;
-        if (!raw) break;                 // deleted or protected
-        q.quotedTweet = parseTweet(raw);
+    for (let i = range.start; i <= range.end; i++) {
+      let holder = nodes[i];
+      for (let level = 1; level < quoteDepth; level++) {
+        const q = holder.quotedTweet;
+        if (!q) break;
+        if (!q.quotedTweet && q.quotedTweetId) {
+          const cached = !!(await TweetCache.exists({ tweetId: q.quotedTweetId }));
+          if (!cached) await gap();
+          let raw: any;
+          try {
+            raw = await fetchRawTweet(q.quotedTweetId, budget);
+          } catch (e) {
+            if (e instanceof BudgetExceededError) { budgetExhausted = true; break; }
+            throw e;
+          }
+          lastWasLive = !cached;
+          if (!raw) break;                       // deleted or protected
+          q.quotedTweet = parseTweet(raw);
+        }
+        holder = q;
       }
-      holder = q;
+      if (budgetExhausted) break;                // stop the outer loop too
     }
-  }
-  nodes.forEach((n) => limitQuoteDepth(n, limits.quoteDepth));  // also trims what a fetch brought along
-  return nodes.some(hasDeeperQuote);
-};
+    nodes.forEach((n) => limitQuoteDepth(n, quoteDepth));
+    return nodes.some(hasDeeperQuote);
+  };
 
-
-  const focus = parseTweet(rawFocus);
-
-  // Nothing to assemble: tier allows one tweet, or a plain tweet with no replies.
+  // Nothing to assemble: one tweet allowed, or a plain tweet with no replies.
   if (maxNodes <= 1 || (!focus.isReply && focus.metrics.replies === 0)) {
-
     const deeperQuote = await resolveQuotes([focus], { start: 0, end: 0 });
-
     return {
       kind: "single",
       focusTweetId: tweetId,
       focusIndex: 0,
       defaultRange: { start: 0, end: 0 },
       nodes: [focus],
-      more: { earlier: !!focus.inReplyToId, later: false, deeperQuote: deeperQuote, truncatedByPageCap: false },
+      more: { earlier: !!focus.inReplyToId, later: false, deeperQuote, truncatedByPageCap: false, budgetExhausted },
     };
   }
-
 
   const pool: Tweet[] = [];
   let truncatedByPageCap = false;
 
-  // Threads: a self-reply, or a top tweet that has replies. Replies to strangers skip the search.
+  // Threads: a self-reply, or a top tweet that has replies.
   if (isSelfReply(focus) || (!focus.isReply && focus.metrics.replies > 0)) {
-    await gap();
-    const page = (await searchAuthorConversation(focus.conversationId ?? focus.id, focus.author.handle)).map(parseTweet);
-    lastWasLive = true;
-    pool.push(...page);
+    try {
+      await gap();
+      const page = (await searchAuthorConversation(focus.conversationId ?? focus.id, focus.author.handle, budget)).map(parseTweet);
+      lastWasLive = true;
+      pool.push(...page);
 
-    // Newest first, so the last item is the oldest. A full page whose oldest tweet
-    // sits after the focus and points at a tweet we don't hold means the thread was cut off.
-    const oldest = page[page.length - 1];
-    const known = new Set([focus.id, ...page.map((t) => t.id)]);
-    truncatedByPageCap =
-      page.length >= SEARCH_PAGE_SIZE &&
-      !!oldest?.inReplyToId &&
-      !known.has(oldest.inReplyToId) &&
-      BigInt(oldest.id) > BigInt(focus.id);
+      const oldest = page[page.length - 1];
+      const known = new Set([focus.id, ...page.map((t) => t.id)]);
+      truncatedByPageCap =
+        page.length >= SEARCH_PAGE_SIZE &&
+        !!oldest?.inReplyToId &&
+        !known.has(oldest.inReplyToId) &&
+        BigInt(oldest.id) > BigInt(focus.id);
+    } catch (e) {
+      if (e instanceof BudgetExceededError) budgetExhausted = true;
+      else throw e;
+    }
   }
 
-  // Walk up by id until the window is full or the top is reached.
+  // Walk up by id until there are enough tweets above the focus, or the top is reached.
   let result = assembleConversation({ focus, pool, maxNodes });
   let parentUnavailable = false;
   for (let i = 0; i < maxNodes && result.missingParentId && result.focusIndex < maxNodes - 1; i++) {
     const parentId = result.missingParentId;
     const cached = !!(await TweetCache.exists({ tweetId: parentId }));
     if (!cached) await gap();
-    const rawParent = await fetchRawTweet(parentId);
+    let rawParent: any;
+    try {
+      rawParent = await fetchRawTweet(parentId, budget);
+    } catch (e) {
+      if (e instanceof BudgetExceededError) { budgetExhausted = true; break; }
+      throw e;
+    }
     lastWasLive = !cached;
-    if (!rawParent) { parentUnavailable = true; break; }   // deleted or protected
+    if (!rawParent) { parentUnavailable = true; break; }
     pool.push(parseTweet(rawParent));
     result = assembleConversation({ focus, pool, maxNodes });
   }
@@ -243,13 +272,14 @@ export async function buildConversation(
     kind: kindOf(result.nodes),
     focusTweetId: tweetId,
     focusIndex: result.focusIndex,
+    defaultRange: result.defaultRange,
     nodes: result.nodes,
-    defaultRange: { start: 0, end: 0 },
     more: {
       earlier: result.earlier,
       later: result.later || truncatedByPageCap,
-      deeperQuote: deeperQuote,           // L4c
+      deeperQuote,
       truncatedByPageCap,
+      budgetExhausted,
     },
   };
 }

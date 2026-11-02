@@ -14,6 +14,7 @@ export const TIER_LIMITS: Record<Tier, TierLimits> = {
 };
 
 export const ABSOLUTE_MAX_NODES = 10;
+export const ABSOLUTE_MAX_QUOTE_DEPTH = 3;   // like ABSOLUTE_MAX_NODES: a config typo can't fan out
 
 
 export async function resolveTier(ctx: { isGuest?: boolean; userId?: string }): Promise<Tier> {

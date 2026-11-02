@@ -58,6 +58,7 @@ export interface ConversationResponse {
     later: boolean;
     deeperQuote: boolean;               // set in L4c
     truncatedByPageCap: boolean;
+    budgetExhausted: boolean
   };
   limits: { tier: Tier; maxNodes: number; quoteDepth: number };
   defaultRange: { start: number; end: number };   // inclusive; the initial selection
