@@ -41,6 +41,7 @@ export interface Tweet {
   mentions: string[];
   quotedTweet: Tweet | null;
   parentTweet: Tweet | null;
+  edited?: boolean;     // set locally when the user changed text or photos
 }
 export type GuestInfo = { remaining: number; limited: boolean };
 
@@ -53,7 +54,7 @@ export interface ConversationResponse {
   focusIndex: number;
   defaultRange: { start: number; end: number };   // inclusive; the initial selection
   nodes: Tweet[];                                  // oldest first; the candidate range
-  more: { earlier: boolean; later: boolean; deeperQuote: boolean; truncatedByPageCap: boolean };
+  more: { earlier: boolean; later: boolean; deeperQuote: boolean; truncatedByPageCap: boolean, budgetExhausted: boolean };
   limits: { tier: Tier; maxNodes: number; quoteDepth: number };
   guest?: GuestInfo;
 }

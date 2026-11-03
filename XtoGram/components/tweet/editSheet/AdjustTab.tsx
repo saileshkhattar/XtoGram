@@ -16,6 +16,7 @@ type Props = {
   onBackgroundImageChange: (uri: string | undefined) => void;
   backgroundImageBlur: number;
   onBackgroundImageBlurChange: (value: number) => void;
+  multi?: boolean;
 };
 
 const BACKGROUND_SWATCHES = ['#13121E', '#0A0A0F', '#1E1C2A', '#2D1F6E', '#6C5CE7', '#000000', '#F5F4FA', '#FFFFFF'];
@@ -34,13 +35,15 @@ export function AdjustTab({
   onBackgroundImageChange,
   backgroundImageBlur,
   onBackgroundImageBlurChange,
+  multi, 
 }: Props) {
   return (
     <View style={styles.wrap}>
       <View style={styles.group}>
-        <Text style={styles.groupLabel}>Background color</Text>
+        <Text style={styles.groupLabel}>{multi ? 'Page color' : 'Background color'}.</Text>
         <ColorSwatchRow swatches={BACKGROUND_SWATCHES} selected={backgroundColor} onSelect={onBackgroundColorChange} />
         <ColorPicker color={backgroundColor} onChange={onBackgroundColorChange} />
+        {!multi && (<>
         <ImagePickerButton label="background" imageUri={backgroundImageUri} onChange={onBackgroundImageChange} />
         {backgroundImageUri && (
           <>
@@ -48,6 +51,8 @@ export function AdjustTab({
             <ValueSlider value={backgroundImageBlur} min={0} max={40} onChange={onBackgroundImageBlurChange} />
           </>
         )}
+      </>)
+      }
 
         <Text style={styles.groupLabel}>Corner rounding</Text>
         <ValueSlider value={cardRadius} min={0} max={64} step={8} onChange={onCardRadiusChange} />

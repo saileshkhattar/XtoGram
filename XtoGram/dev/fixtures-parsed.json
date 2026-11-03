@@ -1,0 +1,559 @@
+[
+  {
+    "label": "thread-first",
+    "sourceUrl": "https://x.com/krodhidaanav/status/2110993216208261171?s=20",
+    "nodes": [
+      {
+        "author": {
+          "avatar": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "followers": 41,
+          "handle": "@krodhidaanav",
+          "name": "Krodhi Daanav",
+          "verified": true,
+          "verifiedType": null
+        },
+        "createdAt": "Fri Oct 16 07:16:17 +0000 2026",
+        "hashtags": [],
+        "id": "2110993216208261171",
+        "inReplyToId": null,
+        "isQuote": false,
+        "isReply": false,
+        "isRetweet": false,
+        "lang": "en",
+        "media": [],
+        "mentions": [],
+        "metrics": {
+          "bookmarks": 0,
+          "likes": 0,
+          "quotes": 0,
+          "replies": 1,
+          "retweets": 0
+        },
+        "parentTweet": null,
+        "quotedTweet": null,
+        "text": "Thread 1/6 🧵\n\nThere’s a lot of buzz around Tesla’s new Roadster, and I must say, it was fascinating to watch a car jump over other vehicles and manoeuvre in mid-air.\n\nBut is it really as revolutionary as people are claiming? I have a few questions.",
+        "url": "https://twitter.com/krodhidaanav/status/2110993216208261171"
+      }
+    ]
+  },
+  {
+    "label": "thread-middle",
+    "sourceUrl": "https://x.com/krodhidaanav/status/2110993225414775249?s=20",
+    "nodes": [
+      {
+        "author": {
+          "avatar": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "followers": 41,
+          "handle": "@krodhidaanav",
+          "name": "Krodhi Daanav",
+          "verified": true,
+          "verifiedType": null
+        },
+        "createdAt": "Fri Oct 16 07:16:17 +0000 2026",
+        "hashtags": [],
+        "id": "2110993216208261171",
+        "inReplyToId": null,
+        "isQuote": false,
+        "isReply": false,
+        "isRetweet": false,
+        "lang": "en",
+        "media": [],
+        "mentions": [],
+        "metrics": {
+          "bookmarks": 0,
+          "likes": 0,
+          "quotes": 0,
+          "replies": 1,
+          "retweets": 0
+        },
+        "parentTweet": null,
+        "quotedTweet": null,
+        "text": "Thread 1/6 🧵\n\nThere’s a lot of buzz around Tesla’s new Roadster, and I must say, it was fascinating to watch a car jump over other vehicles and manoeuvre in mid-air.\n\nBut is it really as revolutionary as people are claiming? I have a few questions.",
+        "url": "https://twitter.com/krodhidaanav/status/2110993216208261171"
+      },
+      {
+        "id": "2110993218854912215",
+        "text": "2/6 — Is it the first car to jump or fly?\n\nNo.\n\nIn 2025, China’s BYD demonstrated its Yangwang U9 jumping over obstacles at 120 km/h, covering more than 6 metres.\n\nAnd flying cars aren’t new either. The Fulton Airphibian was flying back in the 1940s.\n\nTesla’s technology is different, but the concept isn’t entirely new.",
+        "createdAt": "Fri Oct 16 07:16:18 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/krodhidaanav/status/2110993218854912215",
+        "isReply": true,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": "2110993216208261171",
+        "metrics": {
+          "likes": 1,
+          "retweets": 0,
+          "replies": 1,
+          "quotes": 0,
+          "bookmarks": 0
+        },
+        "author": {
+          "avatar": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "followers": 41,
+          "handle": "@krodhidaanav",
+          "name": "Krodhi Daanav",
+          "verified": true,
+          "verifiedType": null
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      },
+      {
+        "id": "2110993222604620164",
+        "text": "3/6 — Is it the fastest car?\n\nNot in terms of top speed.\n\nTesla claims over 370 km/h, while BYD’s Yangwang U9 Xtreme reached 496.22 km/h in 2025.\n\nHowever, Tesla’s demonstrated 0–60 mph acceleration of around 0.81 seconds is definitely impressive.",
+        "createdAt": "Fri Oct 16 07:16:19 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/krodhidaanav/status/2110993222604620164",
+        "isReply": true,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": "2110993218854912215",
+        "metrics": {
+          "likes": 0,
+          "retweets": 0,
+          "replies": 1,
+          "quotes": 0,
+          "bookmarks": 0
+        },
+        "author": {
+          "avatar": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "followers": 41,
+          "handle": "@krodhidaanav",
+          "name": "Krodhi Daanav",
+          "verified": true,
+          "verifiedType": null
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      },
+      {
+        "id": "2110993225414775249",
+        "text": "4/6 — Does it actually fly?\n\nFrom what we’ve seen, it jumps over a few cars, manoeuvres in mid-air and lands.\n\nThat’s impressive engineering, but it’s not sustained flight. We haven’t seen it fly over long distances or remain airborne for an extended period.\n\nCalling it a flying car might be a little premature.",
+        "createdAt": "Fri Oct 16 07:16:19 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/krodhidaanav/status/2110993225414775249",
+        "isReply": true,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": "2110993222604620164",
+        "metrics": {
+          "likes": 0,
+          "retweets": 0,
+          "replies": 1,
+          "quotes": 0,
+          "bookmarks": 0
+        },
+        "author": {
+          "avatar": "https://pbs.twimg.com/profile_images/1921206434941071363/mAtmWYOf_normal.jpg",
+          "followers": 41,
+          "handle": "@krodhidaanav",
+          "name": "Krodhi Daanav",
+          "verified": true,
+          "verifiedType": null
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      }
+    ]
+  },
+  {
+    "label": "reply-chain",
+    "sourceUrl": "https://x.com/swmonsoon/status/2110995601106276664?s=20",
+    "nodes": [
+      {
+        "id": "2110985938885374208",
+        "text": "Businesses do not suffer because of peaceful protests. They suffer when the govt decides to shut down an entire city, suspend internet services and restrict the movement of its own citizens and turn the city into a war-zone. \n\nSince its inception, the Cockroach Janta Party has maintained that we will always follow Gandhi’s path of peace and non-violence, and we have stood by that commitment. We have organised protests in Mumbai, Pune, Jaipur, Lucknow, Bengaluru and Nagpur, and every single one of them has been peaceful. I was personally assaulted in Jaipur, but even then, I chose not to retaliate because responding to violence with violence goes against everything we believe in. We would rather exercise the rights guaranteed to us by the Constitution, drafted under the leadership of Dr. B. R. Ambedkar, than resort to physical force. Our strength comes from our commitment to constitutional values, and no amount of provocation will make us abandon them.\n\nDespite this, there are constant attempts to portray us as anarchists simply because we refuse to remain silent. But demanding answers from the govt is not anarchy, protesting against injustice on the streets is not anarchy, and questioning those who hold public office is certainly not anarchy. These are the most fundamental expressions of democracy. The very party that is in power today spent decades organising protests, taking to the streets and questioning the governments of the day when it was in opposition. Had the same restrictions, intimidation and police crackdowns been used against them, many of those who occupy positions of power today might never have reached where they are. It is deeply hypocritical to celebrate protests as a democratic right when you are in opposition and treat the same act as a threat to public order when you come to power.\n\nWe are not asking for privileges or special treatment. We are simply asking to exercise the rights that belong to every citizen of this Republic, irrespective of which party is in power. So let us fulfil our duty as citizens of this country by questioning those we elect, demanding accountability and speaking up whenever we witness injustice. \n\nA govt that has been elected by the people is bound to listen to the people, not silence them. Democracy does not end once the votes have been counted.",
+        "createdAt": "Fri Oct 16 06:47:22 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/abhijeet_dipke/status/2110985938885374208",
+        "isReply": false,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": null,
+        "metrics": {
+          "likes": 8913,
+          "retweets": 2107,
+          "replies": 1226,
+          "quotes": 173,
+          "bookmarks": 128
+        },
+        "author": {
+          "avatar": "https://pbs.twimg.com/profile_images/2080997334398140416/rPBE_IDp_normal.jpg",
+          "followers": 583685,
+          "handle": "@abhijeet_dipke",
+          "name": "Abhijeet Dipke",
+          "verified": true,
+          "verifiedType": null
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      },
+      {
+        "id": "2110991407548899747",
+        "text": "@abhijeet_dipke Dipke,\n\n​Are you attempting to educate the business community of Delhi and the nation? The public remembers the previous protests and the disruptions that followed.\n​True advocacy requires responsibility, not chaotic protests that harm public order and local businesses. Exercise caution before lost public goodwill turns into widespread opposition.",
+        "createdAt": "Fri Oct 16 07:09:06 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/beingsagarneel/status/2110991407548899747",
+        "isReply": true,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": "2110985938885374208",
+        "metrics": {
+          "likes": 207,
+          "retweets": 16,
+          "replies": 3,
+          "quotes": 0,
+          "bookmarks": 6
+        },
+        "author": {
+          "name": "S A G A R",
+          "handle": "@beingsagarneel",
+          "avatar": "https://pbs.twimg.com/profile_images/2086467680538910720/Y8a5ByFL_normal.jpg",
+          "verified": true,
+          "verifiedType": null,
+          "followers": 1896
+        },
+        "media": [
+          {
+            "url": "https://pbs.twimg.com/media/HUu_fLbbMAE1bCm.jpg",
+            "width": 2048,
+            "height": 1366
+          },
+          {
+            "url": "https://pbs.twimg.com/media/HUu_fsxaEAE-R3j.jpg",
+            "width": 598,
+            "height": 521
+          }
+        ],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      },
+      {
+        "id": "2110995601106276664",
+        "text": "@beingsagarneel @abhijeet_dipke Andhbhakt",
+        "createdAt": "Fri Oct 16 07:25:46 +0000 2026",
+        "lang": "fi",
+        "url": "https://twitter.com/swmonsoon/status/2110995601106276664",
+        "isReply": true,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": "2110991407548899747",
+        "metrics": {
+          "likes": 0,
+          "retweets": 0,
+          "replies": 3,
+          "quotes": 0,
+          "bookmarks": 0
+        },
+        "author": {
+          "name": "nadodikattu",
+          "handle": "@swmonsoon",
+          "avatar": "https://pbs.twimg.com/profile_images/1056584032832667650/g2wg4W5T_normal.jpg",
+          "verified": false,
+          "verifiedType": null,
+          "followers": 12
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [
+          "beingsagarneel",
+          "abhijeet_dipke"
+        ],
+        "quotedTweet": null,
+        "parentTweet": null
+      }
+    ]
+  },
+  {
+    "label": "quote",
+    "sourceUrl": "https://x.com/Justwandyy/status/2110645689155744244?s=20",
+    "nodes": [
+      {
+        "id": "2110645689155744244",
+        "text": "I don’t think this is a valid reason to break up with anyone😩 https://t.co/zmKVvENPge",
+        "createdAt": "Thu Oct 15 08:15:20 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/Justwandyy/status/2110645689155744244",
+        "isReply": false,
+        "isQuote": true,
+        "isRetweet": false,
+        "inReplyToId": null,
+        "metrics": {
+          "likes": 14185,
+          "retweets": 865,
+          "replies": 2507,
+          "quotes": 809,
+          "bookmarks": 5623
+        },
+        "author": {
+          "avatar": "https://pbs.twimg.com/profile_images/2087956648367202304/Qv3mgeVf_normal.jpg",
+          "followers": 12153,
+          "handle": "@Justwandyy",
+          "name": "natalee🍒🌸 ✪",
+          "verified": true,
+          "verifiedType": null
+        },
+        "media": [
+          {
+            "url": "https://pbs.twimg.com/media/HUqFD3pXoAA9tYn.jpg",
+            "width": 942,
+            "height": 2048
+          },
+          {
+            "url": "https://pbs.twimg.com/media/HUqFD3sXUAAp13l.jpg",
+            "width": 942,
+            "height": 2048
+          },
+          {
+            "url": "https://pbs.twimg.com/media/HUqFD3rWUAAqQlR.jpg",
+            "width": 942,
+            "height": 2048
+          }
+        ],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": {
+          "id": "2110621121431433588",
+          "text": "My friend broke up with her boyfriend, and she has been crashing out.😭",
+          "createdAt": "Thu Oct 15 06:37:43 +0000 2026",
+          "lang": "en",
+          "url": "https://twitter.com/Justwandyy/status/2110621121431433588",
+          "isReply": false,
+          "isQuote": false,
+          "isRetweet": false,
+          "inReplyToId": null,
+          "metrics": {
+            "likes": 141,
+            "retweets": 14,
+            "replies": 26,
+            "quotes": 0,
+            "bookmarks": 21
+          },
+          "author": {
+            "avatar": "https://pbs.twimg.com/profile_images/2087956648367202304/Qv3mgeVf_normal.jpg",
+            "followers": 12153,
+            "handle": "@Justwandyy",
+            "name": "natalee🍒🌸 ✪",
+            "verified": true,
+            "verifiedType": null
+          },
+          "media": [],
+          "hashtags": [],
+          "mentions": [],
+          "quotedTweet": null,
+          "parentTweet": null
+        },
+        "parentTweet": null
+      }
+    ]
+  },
+  {
+    "label": "quote-of-quote",
+    "sourceUrl": "https://x.com/RealAnujX/status/2110761483072422124?s=20",
+    "nodes": [
+      {
+        "id": "2110761483072422124",
+        "text": "He is Prime Minister of India, He can shut down the entire country. 🗿\n\nAnd secondly, talk to me from at least 10 feet away, or I’ll have to take a bath in Ganga water to purify myself. 💀",
+        "createdAt": "Thu Oct 15 15:55:28 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/RealAnujX/status/2110761483072422124",
+        "isReply": false,
+        "isQuote": true,
+        "isRetweet": false,
+        "inReplyToId": null,
+        "metrics": {
+          "likes": 3585,
+          "retweets": 255,
+          "replies": 318,
+          "quotes": 40,
+          "bookmarks": 52
+        },
+        "author": {
+          "name": "ANUJx",
+          "handle": "@RealAnujX",
+          "avatar": "https://pbs.twimg.com/profile_images/2109182969659445248/JDRcjeqH_normal.jpg",
+          "verified": true,
+          "verifiedType": null,
+          "followers": 2733
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": {
+          "id": "2110753147732025395",
+          "text": "If we announce 100 places, will Narendra Modi shutdown all 100 places?",
+          "createdAt": "Thu Oct 15 15:22:20 +0000 2026",
+          "lang": "en",
+          "url": "https://twitter.com/abhijeet_dipke/status/2110753147732025395",
+          "isReply": false,
+          "isQuote": true,
+          "isRetweet": false,
+          "inReplyToId": null,
+          "metrics": {
+            "likes": 26620,
+            "retweets": 4453,
+            "replies": 2496,
+            "quotes": 347,
+            "bookmarks": 226
+          },
+          "author": {
+            "avatar": "https://pbs.twimg.com/profile_images/2080997334398140416/rPBE_IDp_normal.jpg",
+            "followers": 583685,
+            "handle": "@abhijeet_dipke",
+            "name": "Abhijeet Dipke",
+            "verified": true,
+            "verifiedType": null
+          },
+          "media": [],
+          "hashtags": [],
+          "mentions": [],
+          "quotedTweet": {
+            "id": "2110732254507090145",
+            "text": "",
+            "createdAt": "",
+            "lang": "en",
+            "url": "",
+            "isReply": false,
+            "isQuote": false,
+            "isRetweet": false,
+            "inReplyToId": null,
+            "metrics": {
+              "likes": 0,
+              "retweets": 0,
+              "replies": 0,
+              "quotes": 0,
+              "bookmarks": 0
+            },
+            "author": {
+              "name": "",
+              "handle": "@",
+              "avatar": "",
+              "verified": false,
+              "verifiedType": null,
+              "followers": 0
+            },
+            "media": [],
+            "hashtags": [],
+            "mentions": [],
+            "quotedTweet": null,
+            "parentTweet": null
+          },
+          "parentTweet": null
+        },
+        "parentTweet": null
+      }
+    ]
+  },
+  {
+    "label": "four-images",
+    "sourceUrl": "https://x.com/DelhiPolice/status/2110717943978000884?s=20",
+    "nodes": [
+      {
+        "id": "2110717943978000884",
+        "text": "It is easy to stand with the crowd, but it takes courage to stand alone\n\n#DPUpdates https://t.co/JV5kQ3Q2qA",
+        "createdAt": "Thu Oct 15 13:02:27 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/DelhiPolice/status/2110717943978000884",
+        "isReply": false,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": null,
+        "metrics": {
+          "likes": 53021,
+          "retweets": 11938,
+          "replies": 2591,
+          "quotes": 866,
+          "bookmarks": 1113
+        },
+        "author": {
+          "name": "Delhi Police",
+          "handle": "@DelhiPolice",
+          "avatar": "https://pbs.twimg.com/profile_images/2087438608697573376/fRFDfDpI_normal.jpg",
+          "verified": true,
+          "verifiedType": "Government",
+          "followers": 1105007
+        },
+        "media": [
+          {
+            "url": "https://pbs.twimg.com/media/HUrGrxNa0AA2NN8.jpg",
+            "width": 1600,
+            "height": 1187
+          },
+          {
+            "url": "https://pbs.twimg.com/media/HUrGuQbacAAdNpL.jpg",
+            "width": 2560,
+            "height": 1900
+          },
+          {
+            "url": "https://pbs.twimg.com/media/HUrGvdmboAAMKVO.jpg",
+            "width": 1600,
+            "height": 1187
+          },
+          {
+            "url": "https://pbs.twimg.com/media/HUrGwhnaQAAmkeg.jpg",
+            "width": 1600,
+            "height": 1187
+          }
+        ],
+        "hashtags": [
+          "DPUpdates"
+        ],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      }
+    ]
+  },
+  {
+    "label": "long-text",
+    "sourceUrl": "https://x.com/MostlyKohli/status/2110973443466535395?s=20",
+    "nodes": [
+      {
+        "id": "2110973443466535395",
+        "text": "🚨 Rebel Kid got caught red handed\n\nRebel Kid aka Apoorva kept flexing in videos that she got admission to NYU, which is very tough. Now a Reddit account that claims to be from NYU has exposed her.\n\nNYU students names are registered and can be checked. There's no student named Apoorva. She knows someone there who invited her to some of the classes. Else apoorva isn't her real name.\n\nBut Apoorva isn't that dumb to joke about such a big thing. Reality is, this is her PR account. She's doing groundwork for her next video where she'll cry that she took admission to NYU through hard work and Reddit people are doing baseless trolls.\n\nThis is how these influencers fool their audience 🙏🥲",
+        "createdAt": "Fri Oct 16 05:57:43 +0000 2026",
+        "lang": "en",
+        "url": "https://twitter.com/MostlyKohli/status/2110973443466535395",
+        "isReply": false,
+        "isQuote": false,
+        "isRetweet": false,
+        "inReplyToId": null,
+        "metrics": {
+          "likes": 251,
+          "retweets": 15,
+          "replies": 7,
+          "quotes": 1,
+          "bookmarks": 107
+        },
+        "author": {
+          "name": "Suprvirat",
+          "handle": "@MostlyKohli",
+          "avatar": "https://pbs.twimg.com/profile_images/2094636517398605825/mWLXgK1w_normal.jpg",
+          "verified": true,
+          "verifiedType": null,
+          "followers": 31396
+        },
+        "media": [],
+        "hashtags": [],
+        "mentions": [],
+        "quotedTweet": null,
+        "parentTweet": null
+      }
+    ]
+  }
+]

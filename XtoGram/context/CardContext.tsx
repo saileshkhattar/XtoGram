@@ -9,6 +9,12 @@ import { trimQuoteDepth, getShape } from '../utils/conversation';
 import type { ConversationResponse, Tweet } from '../types/tweet';
 import { getTemplatesForShape, counterpartTemplate } from '../components/tweet/templates/definations';
 import { TweetType } from '../components/tweet/scene/types';
+import { useTweetFonts } from '../components/tweet/skia/fonts';
+import { planPages, type Page, type PagePlan } from '../components/tweet/scene/plan';
+import { clearImageCache } from '../components/tweet/skia/imageCache';
+import { applyOverrides, type Overrides, type TweetOverride } from '../utils/conversation';
+
+
 
 type CardContextType = {
   tweet: Tweet | null;
@@ -41,16 +47,40 @@ type CardContextType = {
   deleteElement: (id: string) => void;
   setElementVariant: (id: string, variant: string) => void;
   shape: TweetType;
+  isMulti: boolean;                       // more than one tweet selected
+  plan: PagePlan | null;
+  pages: Page[];                          // what the pager should show
+  layoutChoice: 'auto' | 'one' | 'series';
+  setLayoutChoice: (c: 'auto' | 'one' | 'series') => void;
+  pageColor?: string;                     // page background in multi-page mode
+  frameEnabled: boolean; 
+  setFrameEnabled: (v: boolean) => void
+  overrides: Overrides;
+  setOverride: (id: string, o: TweetOverride) => void;
+  resetOverride: (id: string) => void;
 };
 
 const CardContext = createContext<CardContextType | null>(null);
 
 export function CardProvider({ children }: { children: ReactNode }) {
-  const [conversation, setConversationState] = useState<ConversationResponse | null>(null);
+const [conversation, setConversationState] = useState<ConversationResponse | null>(null);
+const [layoutChoice, setLayoutChoice] = useState<'auto' | 'one' | 'series'>('auto');
 const [selection, setSelection] = useState<{ start: number; end: number; quoteDepth: number } | null>(null);
 
+const [overrides, setOverrides] = useState<Overrides>({});
+
+
+const setOverride = (id: string, o: TweetOverride) => setOverrides((prev) => ({ ...prev, [id]: o }));
+const resetOverride = (id: string) =>
+  setOverrides((prev) => { const { [id]: _removed, ...rest } = prev; return rest; });
+
+
+
 const setConversation = (c: ConversationResponse | null) => {
+  clearImageCache();
+  setOverrides({});
   setConversationState(c);
+  setLayoutChoice('auto');
   // Default selection: the server's suggested range, level-1 quote only (tier permitting).
   setSelection(c ? { ...c.defaultRange, quoteDepth: Math.min(1, c.limits.quoteDepth) } : null);
 };
@@ -59,14 +89,14 @@ const setConversation = (c: ConversationResponse | null) => {
     if (!conversation || !selection) return [];
     return conversation.nodes
       .slice(selection.start, selection.end + 1)
-      .map((n) => trimQuoteDepth(n, selection.quoteDepth));
-  }, [conversation, selection]);
+      .map((n) => trimQuoteDepth(applyOverrides(n, overrides), selection.quoteDepth));
+  }, [conversation, selection, overrides]);
 
 // Until the pager exists (later steps), every card still renders the pasted tweet only.
   const tweet = useMemo<Tweet | null>(() => {
     if (!conversation || !selection) return null;
-    return trimQuoteDepth(conversation.nodes[conversation.focusIndex], selection.quoteDepth);
-  }, [conversation, selection]);
+   return trimQuoteDepth(applyOverrides(conversation.nodes[conversation.focusIndex], overrides), selection.quoteDepth);
+  }, [conversation, selection, overrides]);
 
   const shape = useMemo(() => getShape(visibleNodes), [visibleNodes]);
 
@@ -80,7 +110,8 @@ const setConversation = (c: ConversationResponse | null) => {
     setTemplate(counterpartTemplate(template, shape));
   }, [conversation, shape, template.id]);
 
-  const [frameBackgroundColor, setFrameBackgroundColor] = useState(Colors.SURFACE);
+  const [frameColorOverride, setFrameColorOverride] = useState<string | undefined>(undefined);
+  const frameBackgroundColor = frameColorOverride ?? template.palette.cardSurface;
   const [cardColorOverride, setCardColorOverride] = useState<string | undefined>(undefined);
   const [cardRadius, setCardRadius] = useState(0);
   const [cardPadding, setCardPadding] = useState(PADDING);
@@ -88,8 +119,29 @@ const setConversation = (c: ConversationResponse | null) => {
   const [cardBackgroundImageUri, setCardBackgroundImageUri] = useState<string | undefined>();
   const [backgroundImageBlur, setBackgroundImageBlur] = useState(0);
   const [cardBackgroundImageBlur, setCardBackgroundImageBlur] = useState(0);
+  const [frameEnabled, setFrameEnabled] = useState(true);
 
   const [selectedElementId, setSelectedElementId] = useState<string | null>(null);
+
+  
+  
+  const fontMgr = useTweetFonts();
+
+  const plan = useMemo(
+    () => (fontMgr && visibleNodes.length > 0 ? planPages({ nodes: visibleNodes, template, fontMgr, cardPadding }) : null),
+    [fontMgr, visibleNodes, template, cardPadding],
+  );
+
+  const isMulti = visibleNodes.length > 1 || (!!plan && plan.mode === 'series' && plan.series.length > 1);
+
+  const pages = useMemo(() => {
+    if (!plan || !isMulti) return [];
+    const one = layoutChoice === 'one' || (layoutChoice === 'auto' && plan.mode === 'one');
+    return one && plan.onePage ? [plan.onePage] : plan.series;
+  }, [plan, layoutChoice]);
+
+
+  const pageColor = cardColorOverride ?? frameColorOverride;
 
   const updateElementPosition = (id: string, position: ElementPosition) => {
     setTemplate((prev) => ({
@@ -133,7 +185,7 @@ const setConversation = (c: ConversationResponse | null) => {
         template,
         setTemplate,
         frameBackgroundColor,
-        setFrameBackgroundColor,
+        setFrameBackgroundColor: setFrameColorOverride,
         cardColorOverride,
         setCardColorOverride,
         cardRadius,
@@ -153,7 +205,18 @@ const setConversation = (c: ConversationResponse | null) => {
         updateElementPosition,
         deleteElement,
         setElementVariant,
-        shape
+        shape,
+        isMulti, 
+        plan, 
+        pages, 
+        layoutChoice, 
+        setLayoutChoice, 
+        pageColor,
+        frameEnabled, 
+        setFrameEnabled,
+        overrides, 
+        setOverride,
+        resetOverride,
       }}
     >
       {children}

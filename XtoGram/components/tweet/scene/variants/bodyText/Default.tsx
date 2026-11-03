@@ -3,6 +3,7 @@ import { buildBodyTextLayout } from "../../../skia/paragraphs";
 import type { ElementRenderProps, ElementVariant, ElementVariantProps } from "../../types";
 
 function measure({ data, width, fontMgr }: ElementVariantProps): number {
+  if (!data.text.trim()) return 0;
   return buildBodyTextLayout(fontMgr, data.text, width).height;
 }
 

@@ -3,6 +3,7 @@ import { buildQuoteTextLayout } from "../../../skia/paragraphs";
 import type { ElementRenderProps, ElementVariant, ElementVariantProps } from "../../types";
 
 function measure({ data, width, palette, fontMgr }: ElementVariantProps): number {
+  if (!data.text.trim()) return 0;
   return buildQuoteTextLayout(fontMgr, data.text, width, palette.textPrimary).height;
 }
 

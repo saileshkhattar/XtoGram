@@ -6,6 +6,11 @@ import { elementRegistry } from "./registry";
 import { computeElementLayout, type ComputedLayout } from "./Layoutengine";
 import type { CardTemplate } from "./types";
 import { type Tweet } from "../../../types/tweet";
+import { PADDING } from "../skia/layout";           // extend the existing layout import
+import { buildSimpleParagraph } from "../skia/paragraphs";
+import { TweetText } from "../skia/TweetText";
+import { FONT_WEIGHT_REGULAR } from "../skia/fonts";
+import { hasEdits } from "../../../utils/conversation";
 
 type Props = {
   tweet: Tweet;
@@ -50,6 +55,10 @@ export const SceneRenderer = memo(function SceneRenderer({
 
   if (!fontMgr || !layout) return null;
 
+  const mark = hasEdits([tweet])
+  ? buildSimpleParagraph(fontMgr, "Edited", { size: 22, weight: FONT_WEIGHT_REGULAR, color: template.palette.textMuted, maxWidth: 200 })
+  : null;
+
   return (
     <Canvas ref={canvasRef} style={{ width: CARD_WIDTH, height: layout.cardHeight }}>
       {backgroundImage ? (
@@ -78,6 +87,10 @@ export const SceneRenderer = memo(function SceneRenderer({
           />
         );
       })}
+
+      {mark && (
+      <TweetText paragraph={mark.paragraph} x={CARD_WIDTH - PADDING - mark.width} y={layout.cardHeight - 16 - mark.height} width={mark.width} />
+    )}
     </Canvas>
   );
 });

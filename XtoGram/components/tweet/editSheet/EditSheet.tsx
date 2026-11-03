@@ -25,8 +25,11 @@ import { useToast } from '../../../context/ToastContext';
 import GuestLock from '../../ui/GuestLock';
 import { useCard } from '../../../context/CardContext';
 import { getTemplatesForShape } from '../templates/definations';
+import { ContentTab } from './ContentTab';
+import { DockedPagesPreview } from './DockedPagesPreview';
+import { contentTabLabel } from '../../../utils/conversation';
 
-export type EditSheetTab = 'templates' | 'adjust';
+export type EditSheetTab = 'templates' | 'adjust' | 'content';
 
 export type EditSheetHandle = {
   expand: (tab?: EditSheetTab) => void;
@@ -61,6 +64,7 @@ const EXPANDED_HEIGHT = Math.min(SCREEN_HEIGHT * 0.58, 480);
 const DRAG_RANGE = EXPANDED_HEIGHT - PEEK_HEIGHT;
 const TIMING = { duration: 260, easing: Easing.out(Easing.cubic) };
 
+
 export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
   {
     tweet,
@@ -89,8 +93,17 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
 
   const { recentIds, recordTemplateUsed } = useRecentTemplates();
 
-  const { shape } = useCard();
+  const { shape, conversation, visibleNodes, isMulti, pages, pageColor } = useCard();
   const templates = useMemo(() => getTemplatesForShape(shape), [shape]);
+
+  const contentLabel = conversation ? contentTabLabel(conversation, visibleNodes.length) : null;
+
+// A new paste with nothing to choose must not leave the sheet on a tab that no longer exists.
+useEffect(() => {
+  if (tab === 'content' && !contentLabel) setTab('templates');
+}, [tab, contentLabel]);
+
+
   
   const recentTemplates = useMemo(() => {
     const byId = new Map(templates.map((t) => [t.id, t]));
@@ -195,6 +208,11 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
                   <Pressable onPress={() => setTab('adjust')} style={styles.tab}>
                   <Text style={[styles.tabLabel, tab === 'adjust' && styles.tabLabelActive]}>Adjust</Text>
                 </Pressable>
+                {contentLabel && (
+                  <Pressable onPress={() => setTab('content')} style={styles.tab}>
+                    <Text style={[styles.tabLabel, tab === 'content' && styles.tabLabelActive]}>{contentLabel}</Text>
+                  </Pressable>
+                )}
               </View>
             </>
           )}
@@ -219,13 +237,25 @@ export const EditSheet = forwardRef<EditSheetHandle, Props>(function EditSheet(
               onBackgroundImageChange={onBackgroundImageChange}
               backgroundImageBlur={backgroundImageBlur}
               onBackgroundImageBlurChange={onBackgroundImageBlurChange}
+              multi={isMulti}
             />
+
+              {contentLabel && (
+                <View style={tab === 'content' ? undefined : styles.inactiveTab}>
+                  <ContentTab />
+                </View>
+              )}
             </GuestLock>
           </View>
         </ScrollView>
       )}
       <Animated.View pointerEvents="none" style={[styles.dockedPreview, dockStyle]}>
+
+        {isMulti && pages.length > 0 ? (
+        <DockedPagesPreview pages={pages} template={template} pageColor={pageColor} />
+      ) : (
         <DockedCardPreview tweet={tweet} template={template} cardColorOverride={cardColor} cardRadius={cardRadius} cardPadding={cardPadding} cardBackgroundImageUri={cardBackgroundImageUri} backgroundColor={backgroundColor} backgroundImageUri={backgroundImageUri} backgroundImageBlur={backgroundImageBlur} cardBackgroundImageBlur={cardBackgroundImageBlur} />
+      )}
       </Animated.View>
     </Animated.View>
   );

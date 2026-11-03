@@ -24,10 +24,11 @@ type Props = {
 // left in the sheet, so it always stays legible. A second, independent
 // Skia canvas from the main CardResult one; only mounted while the sheet
 // is expanded (see EditSheet), so it costs nothing while peeked.
-const FRAME_WIDTH = Math.min(Dimensions.get('window').width - Spacing.screen * 2, 392);
+const FRAME_HEIGHT = Math.min(Dimensions.get('window').width - Spacing.screen * 2, 392);
+const FRAME_WIDTH = FRAME_HEIGHT * 0.8;      // 4:5, the default frame
 const FRAME_PADDING = Spacing.md;
 const CARD_WIDTH_IN_PREVIEW = FRAME_WIDTH - FRAME_PADDING * 2;
-const CARD_MAX_HEIGHT_IN_PREVIEW = FRAME_WIDTH - FRAME_PADDING * 2;
+const CARD_MAX_HEIGHT_IN_PREVIEW = FRAME_HEIGHT - FRAME_PADDING * 2;
 
 export function DockedCardPreview({ tweet, template, cardColorOverride, cardRadius, cardPadding, cardBackgroundImageUri, backgroundColor, backgroundImageUri, backgroundImageBlur, cardBackgroundImageBlur }: Props) {
   const canvasRef = useCanvasRef();
@@ -40,13 +41,13 @@ export function DockedCardPreview({ tweet, template, cardColorOverride, cardRadi
   const cardPreviewWidth = CARD_WIDTH * scale;
   const cardPreviewHeight = cardHeight * scale;
   const cardLeft = (FRAME_WIDTH - cardPreviewWidth) / 2;
-  const cardTop = (FRAME_WIDTH - cardPreviewHeight) / 2;
+  const cardTop = (FRAME_HEIGHT - cardPreviewHeight) / 2
 
   return (
     <View
       style={{
         width: FRAME_WIDTH,
-        height: FRAME_WIDTH,
+        height: FRAME_HEIGHT,
         alignSelf: 'center',
         overflow: 'hidden',
         borderRadius: Radius.md,

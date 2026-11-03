@@ -2,7 +2,7 @@ import { View, Text, Pressable, TextInput, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Colors, Spacing, Radius, FontSize } from '../../constants/theme';
 
-export type FramePreset = 'post_square' | 'story' | 'custom';
+export type FramePreset = 'post_portrait' | 'post_square' | 'story' | 'custom';
 
 
 type Props = {
@@ -17,8 +17,8 @@ type Props = {
 };
 
 const PRESETS: { key: FramePreset; label: string }[] = [
+  { key: 'post_portrait', label: '4:5' },
   { key: 'post_square', label: '1:1' },
-  // { key: 'post_portrait', label: 'Post 4:5' }, // redundant for now
   { key: 'story', label: '9:16' },
   { key: 'custom', label: 'Custom' },
 ];

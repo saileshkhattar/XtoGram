@@ -15,6 +15,7 @@ type Props = {
   maxScale?: number;
   initial?: Partial<TransformState>;
   onChange?: (t: TransformState) => void;
+  panMinPointers : number;
 };
 
 export type TransformableViewHandle = {
@@ -26,7 +27,7 @@ export type TransformableViewHandle = {
 
 export const TransformableView = forwardRef<TransformableViewHandle, Props>(
   function TransformableView(
-    { children, frameWidth, frameHeight, backgroundColor, backgroundImageUri, backgroundImageBlur = 0, minScale, maxScale, initial, onChange },
+    { children, frameWidth, frameHeight, backgroundColor, backgroundImageUri, backgroundImageBlur = 0, minScale, maxScale, initial, onChange,panMinPointers },
     ref
   ) {
     const { gesture, animatedStyle, reset, getSnapshot, setScale } = useTransformGesture({
@@ -34,6 +35,7 @@ export const TransformableView = forwardRef<TransformableViewHandle, Props>(
       maxScale,
       initial,
       onChange,
+      panMinPointers,
     });
 
     useImperativeHandle(

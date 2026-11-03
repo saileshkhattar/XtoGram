@@ -35,6 +35,7 @@ export type CardElement = {
   edgeToEdge?: boolean;
   position?: ElementPosition;
   style?: ElementStyleOverrides;
+  inset?: number;
 };
 
 export type TweetType = "original" | "quote" | "reply" | "thread";
@@ -46,6 +47,7 @@ export type CardTemplate = {
   appliesTo: TweetType[];
   palette: Palette;
   elements: CardElement[];
+  rail?: boolean;
 };
 
 export type ElementVariantProps = {

@@ -13,6 +13,7 @@ import { CardOptions, type FramePreset } from './CardOptions';
 import { TransformableView, type TransformableViewHandle } from '../shared/TransformableView';
 import { renderFramedImage } from './exportFrame';
 import type { Tweet } from '../../types/tweet';
+import { useCard } from '../../context/CardContext';
 
 export type CardResultHandle = {
   getExportImage: () => Promise<SkImage>;
@@ -41,10 +42,10 @@ type Props = {
 const PRESET_RATIOS: Record<Exclude<FramePreset, 'custom'>, number> = {
   post_square: 1,
   story: 9 / 16,
-  // post_portrait: 4 / 5, // redundant for now
+  post_portrait: 4 / 5
 };
 
-const EXPORT_LONG_SIDE = 1080;
+const EXPORT_SHORT_SIDE = 1080;
 
 const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
   {
@@ -71,8 +72,8 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
   const cardCanvasRef = useCanvasRef();
   const [cardHeight, setCardHeight] = useState(0);
 
-  const [showBackground, setShowBackground] = useState(false);
-  const [preset, setPreset] = useState<FramePreset>('post_square');
+  const { frameEnabled: showBackground, setFrameEnabled: setShowBackground } = useCard();
+  const [preset, setPreset] = useState<FramePreset>('post_portrait');
   const [customWidth, setCustomWidth] = useState('1080');
   const [customHeight, setCustomHeight] = useState('1080');
   const [isRendering, setIsRendering] = useState(true);
@@ -104,7 +105,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
 
         const cardPixelRatio = cardImage.width() / CARD_WIDTH;
 
-        const exportScale = EXPORT_LONG_SIDE / Math.max(frameWidth, frameHeight);
+        const exportScale = EXPORT_SHORT_SIDE / Math.min(frameWidth, frameHeight);
         const t = transformRef.current?.getSnapshot() ?? {
           translateX: 0,
           translateY: 0,
@@ -184,6 +185,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
       backgroundImageBlur={backgroundImageBlur}
       minScale={0.05}
       initial={{ scale: initialFrameScale }}
+      panMinPointers={2}
     >
       {cardOnly}
     </TransformableView>

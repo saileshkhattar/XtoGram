@@ -14,10 +14,11 @@ type Options = {
   maxScale?: number;
   initial?: Partial<TransformState>;
   onChange?: (t: TransformState) => void;
+  panMinPointers?: number
 };
 
 export function useTransformGesture(options: Options = {}) {
-  const { minScale = 0.05, maxScale = 4, initial, onChange } = options;
+  const { minScale = 0.05, maxScale = 4, initial, onChange, panMinPointers =1 } = options;
 
   const translateX = useSharedValue(initial?.translateX ?? 0);
   const translateY = useSharedValue(initial?.translateY ?? 0);
@@ -37,7 +38,7 @@ export function useTransformGesture(options: Options = {}) {
     });
   }, [onChange]);
 
-  const pan = Gesture.Pan()
+  const pan = Gesture.Pan().minPointers(panMinPointers)
     .onStart(() => {
       start.value = { ...start.value, x: translateX.value, y: translateY.value };
     })

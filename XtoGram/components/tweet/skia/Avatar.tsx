@@ -1,4 +1,5 @@
-import { Group, Image, useImage, Circle, Skia } from "@shopify/react-native-skia";
+import { Group, Image, Circle, Skia } from "@shopify/react-native-skia";
+import { useSkImage } from "./imageCache";
 
 type Props = {
   uri: string;
@@ -8,7 +9,7 @@ type Props = {
 };
 
 export function Avatar({ uri, x, y, size }: Props) {
-  const image = useImage(uri);
+  const image = useSkImage(uri);
   const r = size / 2;
   const cx = x + r;
   const cy = y + r;

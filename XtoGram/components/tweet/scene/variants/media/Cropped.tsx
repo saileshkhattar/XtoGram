@@ -10,9 +10,9 @@ function measure({ data, width }: ElementVariantProps): number {
   return data.media.length === 0 ? 0 : width;
 }
 
-function Render({ data, x, y, width }: ElementRenderProps) {
+function Render({ data, x, y, width, height }: ElementRenderProps) {
   if (data.media.length === 0) return null;
-  return <ImageGrid media={data.media} x={x} y={y} width={width} height={width} />;
+  return <ImageGrid media={data.media} x={x} y={y} width={width} height={height ?? width} />;
 }
 
 export const MediaCropped: ElementVariant = { measure, Render };

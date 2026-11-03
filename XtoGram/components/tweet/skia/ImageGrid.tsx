@@ -1,6 +1,7 @@
-import { Group, Image, useImage, RoundedRect, Skia } from "@shopify/react-native-skia";
+import { Group, Image, RoundedRect, Skia } from "@shopify/react-native-skia";
 import { type TweetMedia } from "../../../types/tweet";
 import { IMAGE_GAP, IMAGE_RADIUS } from "./layout";
+import { useSkImage } from "./imageCache";
 
 type Props = {
   media: TweetMedia[];
@@ -13,10 +14,10 @@ type Props = {
 
 
 export function ImageGrid({ media, x, y, width, height, radius = IMAGE_RADIUS }: Props) {
-  const img0 = useImage(media[0]?.url);
-  const img1 = useImage(media[1]?.url);
-  const img2 = useImage(media[2]?.url);
-  const img3 = useImage(media[3]?.url);
+  const img0 = useSkImage(media[0]?.url);
+  const img1 = useSkImage(media[1]?.url);
+  const img2 = useSkImage(media[2]?.url);
+  const img3 = useSkImage(media[3]?.url);
   const images = [img0, img1, img2, img3];
 
   if (media.length === 0) return null;

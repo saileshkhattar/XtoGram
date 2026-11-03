@@ -1,42 +1,93 @@
-1.8 notify and onChange
-ts
-const notify = useCallback(() => {
-  onChange?.({ translateX: translateX.value, ... });
-}, [onChange]);
+XTOGRAM: IDEAS AND BACKLOG
+Tags: [bug] [debt] [feature] [research] [decision]
 
-After each gesture ends, it reads the current values and tells the parent, if the parent supplied onChange. In your CardResult, nobody passes onChange, so this is currently a no-op; the export reads values on demand through getSnapshot instead.
+=== 1. IN THE CURRENT BUILD PLAN ===
+- Step 7f: edit text and photos in the Content tab (see section 2).
+- Step 8: save the whole series (in progress).
+- Step 9: thread and reply templates, plus the connecting rail between avatars.
+- Run the deferred live backend test (about 10 real calls) end to end.
 
-Also, because this view covers the whole frame, touching anywhere in the frame drags the card, not just touching the card.....transfpormable view??????
+=== 2. FEATURES ===
+[feature] Share-to-XtoGram intake
+  Share from the X app, choose XtoGram, the link is read, the card is generated with the
+  default template.
+  - Needs a share-intent library and a dev build; it does not work in Expo Go.
+  - A shared item contains text with an x.com or t.co URL; extract the URL, then reuse
+    the normal fetch flow.
+  - Open: what if the user is signed out and out of guest generations?
 
+[feature] "Post to Instagram" hand-off (no connection to Instagram, nothing is posted)
+  [research] Instagram has no public API that opens the Reels editor with prefilled media.
+  Likely options, each to be verified against current Instagram behaviour before building:
+  - Stories: a Stories share intent takes a background image; the editor offers music and
+    stickers.
+  - Feed: the system share sheet; multiple images only on some platforms.
+  - Reels: needs a video, so the cards would have to be rendered into a short video first.
+  [decision] Which of Stories, Feed or Reels is the target? This decides the whole feature.
 
+[feature] Font choice with on-demand download
+  - Fonts are downloaded by the user and stored on the device; none are bundled.
+  - Thumbnail cache keys must include the font.
+  - Layout depends on font metrics, so planPages must re-run when the font changes.
+  - Check licences before offering any font for download.
+  [research] Check Devanagari/Hindi and emoji rendering in the current font setup.
 
+[feature] Edit text and add/remove photos in the Content tab (step 7f)
+  - Edits are kept as overrides keyed by tweet id (also for quoted tweets); the server
+    data is never changed, and "Reset" deletes the override.
+  - After an edit the page plan re-runs, so a longer text splits into more pages by itself.
+  - [decision] Photos currently belong to a tweet and land on its last page. "Add images
+    on any card" needs per-page media instead. Decide which model before building.
+  - [decision] "Edited" mark on exported cards (recommended).
+  - Add a clause to the Terms of Service: users are responsible for what they create and
+    must not misrepresent others. Have a lawyer check the wording.
 
-Pinch pivots at the center, not your fingers. The transform origin is the frame center, so pinching doesn’t zoom toward where your fingers are. Fixing it needs focal-point math.
-reset() returns scale to 1, not the fit scale (initialFrameScale), so after a reset the card may overflow the frame until setScale runs again.
-Blur may differ between preview and export. The preview uses React Native’s blurRadius, and the export uses a Skia blur sigma (not multiplied by exportScale). The two scales aren’t identical, so the exported blur can look different from what the user saw.
-onReady identity: Effect 1 depends on onReady. If the parent passes a new function every render, the effect re-runs, and the spinner can flicker repeatedly. Wrapping it in useCallback in the parent avoids that.
-Gesture objects are recreated every render (Gesture.Pan() etc. aren’t memoized). This works, but wrapping the gesture creation in useMemo is the common optimization.
-Gesture handler setup: GestureDetector only works if the app root is wrapped in GestureHandlerRootView.
-Surface cleanup: the offscreen surface in renderFramedImage isn’t explicitly disposed, so repeated exports hold native memory until garbage collected.
+=== 3. SERIES / CAROUSEL ===
+[bug] 12-page ceiling per tweet; anything beyond is clipped silently. Show a notice, pick a
+      real limit (maybe by tier), consider truncating with an ellipsis.
+[feature] Background image and blur for carousel pages (the single framed card has it; the
+      controls are hidden in multi mode).
+[feature] "Continued" marker between the text pages of a split tweet.
+[bug] A big photo plus a quote that has its own big photo can overflow the last page.
+[debt] A single long tweet that becomes a carousel loses the frame toggle and advanced editor.
+[feature] Share a whole series (the system share sheet takes one file at a time; needs a
+      multi-file share library).
+[debt] A reply to a stranger that starts a self-thread is treated as a chain, so the
+      tweets below it are missed.
 
+=== 4. BACKEND AND API ===
+[feature] Per-user daily quota of live Twitter API calls (today: per IP and per request).
+[research] Verify the search call price; recheck the host HTTP timeout when moving to the
+      paid plan; set TWITTER_CALL_DELAY_MS=0 then.
+[debt] A thread of 20+ self-replies exceeds one search page (paging is not built).
+[debt] Only the default selection gets its second-level quotes resolved.
+[feature] Premium: tier is set by hand in Mongo today; billing and a paywall screen are
+      missing (locks only show a "Premium feature" toast).
 
-useRecentTemplates is called twice (in EditSheet and in TemplatesTab). Each call creates its own independent state, not shared state. It works because both record on selection, but the two copies can drift apart, and storage gets written twice. Cleaner: call it once in EditSheet and pass recentTemplates down as a prop (or move it into a Context).
+=== 5. KNOWN BUGS AND TECH DEBT ===
+TransformableView and the card frame
+[bug] Pinch pivots at the frame centre, not at the fingers (needs focal-point math).
+[bug] reset() returns scale to 1, not to the fit scale (initialFrameScale).
+[bug] Preview and export blur can differ: the preview uses RN blurRadius, the export a
+      Skia sigma that is not multiplied by exportScale.
+[debt] Gesture objects are recreated every render; wrap in useMemo.
+[debt] The offscreen surface in renderFramedImage is not disposed after export.
+[done/mitigated] The view covers the whole frame; one finger now scrolls, two move the card.
 
+Recent templates
+[debt] useRecentTemplates is called in both EditSheet and TemplatesTab (two separate states
+      that can drift; storage is written twice). Call it once and pass it down, or use Context.
+[debt] The recentTemplates useMemo is duplicated in both files; share one helper.
+[debt] recordTemplateUsed writes to SecureStore inside a setState updater (should be pure).
+[debt] SecureStore is meant for secrets; swap to AsyncStorage or MMKV.
 
-Duplicated recentTemplates logic. The same useMemo block appears in both EditSheet and TemplatesTab. It should be one shared helper.
+Layout
+[bug] FRAME_WIDTH / PREVIEW_WIDTH are computed once from Dimensions at import, so rotation
+      and split screen don't update them. Use useWindowDimensions.
 
-Side effect inside a state updater. recordTemplateUsed calls SecureStore.setItemAsync inside setRecentIds((prev) => ...). Updaters are supposed to be pure. In React StrictMode they run twice in development, so you’d get two identical writes. It’s harmless here, but the cleaner pattern is to compute next outside and write in an effect.
-
-
-SecureStore for recents. It’s meant for secrets (tokens). It works for this, but it’s slower and has size limits. The file’s own comment already notes AsyncStorage or MMKV as a later swap.
-
-FRAME_WIDTH is computed once at import time from Dimensions.get('window'). It won’t update on rotation or split-screen resize. useWindowDimensions() is the live alternative.
-
-add a feature to so user can click share from twitter select the axtogram app...default teplmplete type is already applied adn tehn abutton of post to instagram(Bu we do not post  fdirectly, we just open the screen wedit screen for reels. wweher user can enter theirt caption or add filters and music.)
-this featuire will belike just exporting to instagram not p[osting so we dont need to user to conenct iinstagrram.]
-
-
-allow user to choose fonte.I know in native we have to load fontss..so If we load a lot of fonts..our app size will  get bigger..but we can allow user to download fonts ont heir own.
-
-edit text and add/remove images option in content tab. (Here we also have to atake care of divisions..like suppose iths a thraead so 10 different text items are editable, oiimages can be added on any card
-samne for replies and quotes)
+=== 6. RESOLVED (kept for the record) ===
+- pageColor shortcut that compared against the default frame colour: replaced by
+  frameColorOverride; the frame follows the template colour until the user picks one.
+- onReady identity causing spinner flicker: the parent already wraps it in useCallback.
+- GestureHandlerRootView: gestures work today, so the root view is in place.
+- Parent and quote fetch loops are bounded; per-request call budget and client timeout added.
