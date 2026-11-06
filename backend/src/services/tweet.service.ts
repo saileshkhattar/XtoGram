@@ -370,7 +370,7 @@ export async function processConversation(
       ...conversation,
       limits: { tier, ...limits },
       ...(reservation && {
-        guest: { remaining: reservation.remaining, limited: focus.isReply || focus.isQuote },
+        guest: { remaining: reservation.remaining, limited: false },
       }),
     };
   } catch (err) {

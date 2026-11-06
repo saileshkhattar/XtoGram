@@ -48,7 +48,7 @@ export function CardOptions({
         <View style={[styles.checkbox, enabled && styles.checkboxChecked]}>
           {enabled && <Feather name="check" size={14} color={Colors.BG_BASE} />}
         </View>
-        <Text style={styles.checkboxLabel}>Add background/frame</Text>
+        <Text style={styles.checkboxLabel}>Frame</Text>
       </Pressable>
 
       {enabled && (
@@ -124,7 +124,7 @@ export function CardOptions({
 }
 
 const styles = StyleSheet.create({
-  wrap: { gap: Spacing.sm, width: '100%' },
+  wrap: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: Spacing.sm, width: '100%' },
   checkboxRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm },
   checkbox: {
     width: 20,
@@ -139,8 +139,8 @@ const styles = StyleSheet.create({
   checkboxLabel: { color: Colors.TEXT_MED, fontSize: FontSize.bodySmall, fontWeight: '600' },
   presetsRow: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.sm },
   presetChip: {
-    paddingHorizontal: Spacing.md,
-    paddingVertical: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     borderRadius: Radius.full,
     borderWidth: 1,
     borderColor: Colors.BORDER,
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   presetChipActive: { backgroundColor: Colors.PRIMARY, borderColor: Colors.PRIMARY },
   presetText: { color: Colors.TEXT_MED, fontSize: FontSize.caption, fontWeight: '600' },
   presetTextActive: { color: Colors.BG_BASE },
-  customRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm },
+  customRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm, width: '100%' },
   customInput: {
     flex: 1,
     backgroundColor: Colors.SURFACE,

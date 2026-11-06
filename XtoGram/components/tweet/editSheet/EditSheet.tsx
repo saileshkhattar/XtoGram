@@ -239,14 +239,13 @@ useEffect(() => {
               onBackgroundImageBlurChange={onBackgroundImageBlurChange}
               multi={isMulti}
             />
-
+            </GuestLock>
+          </View>
               {contentLabel && (
                 <View style={tab === 'content' ? undefined : styles.inactiveTab}>
                   <ContentTab />
                 </View>
               )}
-            </GuestLock>
-          </View>
         </ScrollView>
       )}
       <Animated.View pointerEvents="none" style={[styles.dockedPreview, dockStyle]}>

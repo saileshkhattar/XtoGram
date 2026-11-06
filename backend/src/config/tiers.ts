@@ -8,7 +8,7 @@ export interface TierLimits {
 }
 
 export const TIER_LIMITS: Record<Tier, TierLimits> = {
-  guest:   { maxNodes: 1,  quoteDepth: 0 },
+    guest:   { maxNodes: 3,  quoteDepth: 1 },
   free:    { maxNodes: 3,  quoteDepth: 1 },
   premium: { maxNodes: 10, quoteDepth: 2 },
 };

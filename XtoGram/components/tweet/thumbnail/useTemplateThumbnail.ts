@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useThumbnailGenerator } from './ThumbnailGeneratorProvider';
 import { THUMBNAIL_SAMPLE_TWEET, THUMBNAIL_SAMPLE_QUOTE_TWEET } from './sampleTweet';
 import type { CardTemplate } from '../scene/types';
+import { getThumbnailCacheKey } from './thumbnailCache';
 
 // Returns null until the thumbnail is ready (cached instantly, or
 // generated — first time only, then cached for every future mount/app
@@ -10,11 +11,13 @@ import type { CardTemplate } from '../scene/types';
 export function useTemplateThumbnail(template: CardTemplate): string | null {
   const { requestThumbnail } = useThumbnailGenerator();
   const [uri, setUri] = useState<string | null>(null);
+  const cacheKey = getThumbnailCacheKey(template);
+  const usesQuoteSample = template.appliesTo.includes('quote');
 
   useEffect(() => {
     let cancelled = false;
     setUri(null);
-    const sample = template.appliesTo[0] === 'quote' ? THUMBNAIL_SAMPLE_QUOTE_TWEET : THUMBNAIL_SAMPLE_TWEET;
+    const sample = usesQuoteSample ? THUMBNAIL_SAMPLE_QUOTE_TWEET : THUMBNAIL_SAMPLE_TWEET;
     requestThumbnail(template, sample)
       .then((result) => {
         if (!cancelled) setUri(result);
@@ -26,7 +29,7 @@ export function useTemplateThumbnail(template: CardTemplate): string | null {
     return () => {
       cancelled = true;
     };
-  }, [template.id]);
+  }, [cacheKey, requestThumbnail, usesQuoteSample]);
 
   return uri;
 }

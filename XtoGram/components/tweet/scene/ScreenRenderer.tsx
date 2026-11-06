@@ -21,6 +21,7 @@ type Props = {
   cardColorOverride?: string;
   cardRadius?: number;
   cardPadding?: number;
+  cardWidth?: number;
   cardBackgroundImageUri?: string;
   cardBackgroundImageBlur?: number;
 };
@@ -34,6 +35,7 @@ export const SceneRenderer = memo(function SceneRenderer({
   cardColorOverride,
   cardRadius,
   cardPadding,
+  cardWidth = CARD_WIDTH,
   cardBackgroundImageUri,
   cardBackgroundImageBlur = 0,
 }: Props) {
@@ -42,8 +44,8 @@ export const SceneRenderer = memo(function SceneRenderer({
 
   const layout = useMemo(() => {
     if (!fontMgr) return null;
-    return computeElementLayout({ tweet, template, fontMgr, cardPadding });
-  }, [fontMgr, tweet, template, cardPadding]);
+    return computeElementLayout({ tweet, template, fontMgr, cardPadding, cardWidth });
+  }, [fontMgr, tweet, template, cardPadding, cardWidth]);
 
   useEffect(() => {
     if (layout) onHeightComputed?.(layout.cardHeight);
@@ -60,14 +62,14 @@ export const SceneRenderer = memo(function SceneRenderer({
   : null;
 
   return (
-    <Canvas ref={canvasRef} style={{ width: CARD_WIDTH, height: layout.cardHeight }}>
+    <Canvas ref={canvasRef} style={{ width: cardWidth, height: layout.cardHeight }}>
       {backgroundImage ? (
         <Group>
           {cardBackgroundImageBlur > 0 && <Blur blur={cardBackgroundImageBlur} />}
-          <SkiaImage image={backgroundImage} x={0} y={0} width={CARD_WIDTH} height={layout.cardHeight} fit="cover" />
+          <SkiaImage image={backgroundImage} x={0} y={0} width={cardWidth} height={layout.cardHeight} fit="cover" />
         </Group>
       ) : (
-        <RoundedRect x={0} y={0} width={CARD_WIDTH} height={layout.cardHeight} r={cardRadius ?? CARD_RADIUS} color={cardColorOverride ?? template.palette.cardSurface} />
+        <RoundedRect x={0} y={0} width={cardWidth} height={layout.cardHeight} r={cardRadius ?? CARD_RADIUS} color={cardColorOverride ?? template.palette.cardSurface} />
       )}
 
       {layout.positioned.map(({ element, x, y, width, height, data }) => {
@@ -89,7 +91,7 @@ export const SceneRenderer = memo(function SceneRenderer({
       })}
 
       {mark && (
-      <TweetText paragraph={mark.paragraph} x={CARD_WIDTH - PADDING - mark.width} y={layout.cardHeight - 16 - mark.height} width={mark.width} />
+      <TweetText paragraph={mark.paragraph} x={cardWidth - PADDING - mark.width} y={layout.cardHeight - 16 - mark.height} width={mark.width} />
     )}
     </Canvas>
   );

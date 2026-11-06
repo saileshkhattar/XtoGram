@@ -49,7 +49,7 @@ export function ContentChip({ onPress }: { onPress: () => void }) {
 }
 
 const s = StyleSheet.create({
-  wrap: { alignItems: 'center', marginTop: Spacing.lg, gap: Spacing.xs },
+  wrap: { alignItems: 'center', marginTop: Spacing.sm, gap: Spacing.xs },
   chip: {
     flexDirection: 'row', alignItems: 'center', gap: Spacing.sm,
     paddingHorizontal: Spacing.md, paddingVertical: Spacing.sm,

@@ -5,6 +5,7 @@ import { SceneRenderer } from '../scene/ScreenRenderer';
 import { getCachedThumbnail, getThumbnailCacheKey, saveThumbnailToCache } from './thumbnailCache';
 import type { CardTemplate } from '../scene/types';
 import type { Tweet } from '../../../types/tweet';
+import { imageUrisOf, loadImage } from '../skia/imageCache';
 
 type QueueItem = {
   key: string;
@@ -12,10 +13,12 @@ type QueueItem = {
   tweet: Tweet;
   resolve: (uri: string) => void;
   reject: (err: unknown) => void;
+  persist: boolean;
+  cardWidth?: number;
 };
 
 type ContextValue = {
-  requestThumbnail: (template: CardTemplate, tweet: Tweet) => Promise<string>;
+  requestThumbnail: (template: CardTemplate, tweet: Tweet, cacheKey?: string, cardWidth?: number) => Promise<string>;
 };
 
 const ThumbnailGeneratorContext = createContext<ContextValue | null>(null);
@@ -56,7 +59,7 @@ export function ThumbnailGeneratorProvider({ children }: { children: React.React
           const canvas = canvasRef.current;
           const image = canvas?.makeImageSnapshot();
           if (!image) throw new Error('Thumbnail snapshot failed');
-          const uri = await saveThumbnailToCache(current.key, image);
+          const uri = await saveThumbnailToCache(current.persist ? current.key : `${current.key}-partial`, image);
           current.resolve(uri);
         } catch (e) {
           current.reject(e);
@@ -72,16 +75,18 @@ export function ThumbnailGeneratorProvider({ children }: { children: React.React
   }, [current, renderedHeight]);
 
   const requestThumbnail = useCallback(
-    (template: CardTemplate, tweet: Tweet): Promise<string> => {
-      const key = getThumbnailCacheKey(template);
+    (template: CardTemplate, tweet: Tweet, cacheKey?: string, cardWidth?: number): Promise<string> => {
+      const key = cacheKey ?? getThumbnailCacheKey(template);
       const existing = inFlightRef.current.get(key);
       if (existing) return existing;
 
       const promise = (async () => {
         const cached = await getCachedThumbnail(key);
         if (cached) return cached;
+        const loaded = await Promise.all(imageUrisOf(tweet).map(loadImage));   // wait for the images first
+        const complete = loaded.every(Boolean);
         return new Promise<string>((resolve, reject) => {
-          queueRef.current.push({ key, template, tweet, resolve, reject });
+          queueRef.current.push({ key, template, tweet, persist: complete, cardWidth, resolve, reject });
           processNext();
         });
       })();
@@ -104,6 +109,7 @@ export function ThumbnailGeneratorProvider({ children }: { children: React.React
             key={current.key}
             tweet={current.tweet}
             template={current.template}
+            cardWidth={current.cardWidth}
             canvasRef={canvasRef}
             onHeightComputed={setRenderedHeight}
           />

@@ -1,6 +1,6 @@
 import * as FileSystem from 'expo-file-system/legacy';
 import { ImageFormat, type SkImage } from '@shopify/react-native-skia';
-import type { CardTemplate } from '../scene/types';
+import type { CardTemplate, ElementType, Palette } from '../scene/types';
 
 const CACHE_DIR = `${FileSystem.cacheDirectory}template-thumbnails/`;
 
@@ -37,5 +37,9 @@ function hashString(input: string): string {
 
 export function getThumbnailCacheKey(template: CardTemplate): string {
   const content = JSON.stringify({ palette: template.palette, elements: template.elements });
-  return `${template.id}-${hashString(content)}`;
+  return `v2-${template.id}-${hashString(content)}`;
+}
+
+export function getElementThumbnailCacheKey(type: ElementType, variant: string, palette: Palette, cardWidth: number): string {
+  return `element-v1-${type}-${variant}-w${cardWidth}-${hashString(JSON.stringify(palette))}`;
 }

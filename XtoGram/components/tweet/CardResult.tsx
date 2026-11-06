@@ -14,6 +14,7 @@ import { TransformableView, type TransformableViewHandle } from '../shared/Trans
 import { renderFramedImage } from './exportFrame';
 import type { Tweet } from '../../types/tweet';
 import { useCard } from '../../context/CardContext';
+import { PreviewOutline, PREVIEW_RADIUS } from '../ui/PreviewOutline';
 
 export type CardResultHandle = {
   getExportImage: () => Promise<SkImage>;
@@ -22,6 +23,7 @@ export type CardResultHandle = {
 type Props = {
   tweet: Tweet;
   previewWidth: number;
+  availableHeight: number;
   template?: CardTemplate;
   onSave: () => void;
   onShare: () => void;
@@ -46,11 +48,13 @@ const PRESET_RATIOS: Record<Exclude<FramePreset, 'custom'>, number> = {
 };
 
 const EXPORT_SHORT_SIDE = 1080;
+const CARD_CHROME_HEIGHT = 110;
 
 const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
   {
     tweet,
     previewWidth,
+    availableHeight,
     template = darkClassicTemplate,
     onSave,
     onShare,
@@ -80,16 +84,20 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
 
   const transformRef = useRef<TransformableViewHandle>(null);
 
-  const previewScale = previewWidth / CARD_WIDTH;
+  const frameRatio = preset === 'custom'
+    ? (Number(customWidth) || 1) / (Number(customHeight) || 1)
+    : PRESET_RATIOS[preset as Exclude<FramePreset, 'custom'>];
+  const maxHeight = Math.max(160, availableHeight - CARD_CHROME_HEIGHT - (showBackground && preset === 'custom' ? 40 : 0));
+  const width = showBackground
+    ? Math.min(previewWidth, maxHeight * frameRatio)
+    : cardHeight ? Math.min(previewWidth, (maxHeight * CARD_WIDTH) / cardHeight) : previewWidth;
+  const previewScale = width / CARD_WIDTH;
   const scaledCardHeight = cardHeight * previewScale;
 
-  const frameWidth = previewWidth;
-  const frameHeight =
-    preset === 'custom'
-      ? frameWidth * ((Number(customHeight) || 1) / (Number(customWidth) || 1))
-      : frameWidth / PRESET_RATIOS[preset as Exclude<FramePreset, 'custom'>];
+  const frameWidth = width;
+  const frameHeight = frameWidth / frameRatio;
   const initialFrameScale = cardHeight
-    ? Math.min(frameWidth / previewWidth, frameHeight / scaledCardHeight)
+    ? Math.min(frameWidth / width, frameHeight / scaledCardHeight)
     : 1;
 
   useImperativeHandle(
@@ -148,7 +156,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
   }, [backgroundImageUri]);
 
   const cardOnly = (
-    <View style={{ width: previewWidth, height: scaledCardHeight, overflow: 'hidden', borderRadius: cardRadius }}>
+    <View style={{ width, height: scaledCardHeight, overflow: 'hidden', borderRadius: cardRadius }}>
       <View
         style={{
           width: CARD_WIDTH,
@@ -185,7 +193,7 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
       backgroundImageBlur={backgroundImageBlur}
       minScale={0.05}
       initial={{ scale: initialFrameScale }}
-      panMinPointers={2}
+      panMinPointers={1}
     >
       {cardOnly}
     </TransformableView>
@@ -253,11 +261,11 @@ const CardResult = forwardRef<CardResultHandle, Props>(function CardResult(
               ? frameHeight
               : cardHeight
                 ? scaledCardHeight
-                : previewWidth * 1.25, // placeholder aspect until the real card height is known
+                : width * 1.25, // placeholder aspect until the real card height is known
           },
         ]}
       >
-        {displayed}
+        <View style={{ borderRadius: PREVIEW_RADIUS, overflow: 'hidden' }}>{displayed}<PreviewOutline /></View>
         {isRendering && (
           <View pointerEvents="none" style={styles.renderingOverlay}>
             <ActivityIndicator size="small" color={Colors.PRIMARY} />
@@ -280,8 +288,8 @@ export default CardResult;
 const styles = StyleSheet.create({
   wrap: {
     alignItems: 'center',
-    gap: Spacing.md,
-    marginTop: Spacing.lg,
+    gap: Spacing.sm,
+    marginTop: 0,
     width: '100%',
   },
   actions: {

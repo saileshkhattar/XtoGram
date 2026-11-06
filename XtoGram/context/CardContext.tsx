@@ -13,6 +13,8 @@ import { useTweetFonts } from '../components/tweet/skia/fonts';
 import { planPages, type Page, type PagePlan } from '../components/tweet/scene/plan';
 import { clearImageCache } from '../components/tweet/skia/imageCache';
 import { applyOverrides, type Overrides, type TweetOverride } from '../utils/conversation';
+import { frameColorFor } from '../utils/colors';
+
 
 
 
@@ -47,12 +49,12 @@ type CardContextType = {
   deleteElement: (id: string) => void;
   setElementVariant: (id: string, variant: string) => void;
   shape: TweetType;
-  isMulti: boolean;                       // more than one tweet selected
+  isMulti: boolean;                       
   plan: PagePlan | null;
-  pages: Page[];                          // what the pager should show
+  pages: Page[];                          
   layoutChoice: 'auto' | 'one' | 'series';
   setLayoutChoice: (c: 'auto' | 'one' | 'series') => void;
-  pageColor?: string;                     // page background in multi-page mode
+  pageColor?: string;                     
   frameEnabled: boolean; 
   setFrameEnabled: (v: boolean) => void
   overrides: Overrides;
@@ -111,19 +113,19 @@ const setConversation = (c: ConversationResponse | null) => {
   }, [conversation, shape, template.id]);
 
   const [frameColorOverride, setFrameColorOverride] = useState<string | undefined>(undefined);
-  const frameBackgroundColor = frameColorOverride ?? template.palette.cardSurface;
+    const frameBackgroundColor = frameColorOverride ?? frameColorFor(template.palette.cardSurface);
   const [cardColorOverride, setCardColorOverride] = useState<string | undefined>(undefined);
-  const [cardRadius, setCardRadius] = useState(0);
   const [cardPadding, setCardPadding] = useState(PADDING);
   const [backgroundImageUri, setBackgroundImageUri] = useState<string | undefined>();
   const [cardBackgroundImageUri, setCardBackgroundImageUri] = useState<string | undefined>();
   const [backgroundImageBlur, setBackgroundImageBlur] = useState(0);
   const [cardBackgroundImageBlur, setCardBackgroundImageBlur] = useState(0);
   const [frameEnabled, setFrameEnabled] = useState(true);
+  const [cardRadiusOverride, setCardRadiusOverride] = useState<number | undefined>(undefined);
+  const cardRadius = cardRadiusOverride ?? (frameEnabled ? 24 : 0);
 
   const [selectedElementId, setSelectedElementId] = useState<string | null>(null);
 
-  
   
   const fontMgr = useTweetFonts();
 
@@ -189,7 +191,7 @@ const setConversation = (c: ConversationResponse | null) => {
         cardColorOverride,
         setCardColorOverride,
         cardRadius,
-        setCardRadius,
+        setCardRadius: setCardRadiusOverride,
         cardPadding,
         setCardPadding,
         backgroundImageUri,

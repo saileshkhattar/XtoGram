@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import { AuthProvider } from '../context/AuthContext';
 import { CardProvider } from '../context/CardContext';
 import { ToastProvider } from '../context/ToastContext';
+import { ThumbnailGeneratorProvider } from '../components/tweet/thumbnail/ThumbnailGeneratorProvider';
 
 export default function RootLayout() {
   return (
@@ -14,8 +15,10 @@ export default function RootLayout() {
         <CardProvider>
           <SafeAreaProvider>
             <ToastProvider>
-            <StatusBar style="dark" />
-            <Stack screenOptions={{ headerShown: false }} />
+              <ThumbnailGeneratorProvider>
+                <StatusBar style="dark" />
+                <Stack screenOptions={{ headerShown: false }} />
+              </ThumbnailGeneratorProvider>
             </ToastProvider>
           </SafeAreaProvider>
         </CardProvider>

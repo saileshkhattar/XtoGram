@@ -10,15 +10,11 @@ import {
   ScrollView,
   Dimensions,
   LayoutAnimation,
-  UIManager,
-  Text, 
-  Pressable
 } from 'react-native';
 import TopNavBar from '../../components/ui/TopNavbar';
 import HomeHero from '../../components/tweet/HomeHero';
 import CardResult, { type CardResultHandle } from '../../components/tweet/CardResult';
 import { EditSheet, type EditSheetHandle, PEEK_HEIGHT } from '../../components/tweet/editSheet/EditSheet';
-import { ThumbnailGeneratorProvider } from '../../components/tweet/thumbnail/ThumbnailGeneratorProvider';
 import { Colors, Spacing } from '../../constants/theme';
 import { useCard } from '../../context/CardContext';
 import ScatteredIcons from '../../utils/scatteredIcons';
@@ -27,16 +23,11 @@ import { saveImageToLibrary, shareImage } from '../../components/tweet/exportCar
 import { useAuth } from '../../context/AuthContext';
 import GuestBanner from '../../components/ui/GuestBanner';
 import { useToast } from '../../context/ToastContext';
-import { router } from 'expo-router';
 import { PagePager } from '../../components/tweet/scene/PagePager';
 import IconButton from '../../components/ui/iconButton';
 import { ContentChip } from '../../components/tweet/ContentChip';
 import { SeriesExporter, type SeriesExporterHandle } from '../../components/tweet/scene/SeriesExporter';
 
-
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const PREVIEW_WIDTH = SCREEN_WIDTH - Spacing.screen * 2;
@@ -48,6 +39,8 @@ export default function Home() {
   const [saving, setSaving] = useState(false);
   const [sharing, setSharing] = useState(false);
   const [isCardReady, setIsCardReady] = useState(false);
+  const [stage, setStage] = useState({ w: 0, h: 0 });
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
 
   const {
     tweet,
@@ -96,6 +89,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const a = Keyboard.addListener('keyboardDidShow', () => setKeyboardOpen(true));
+    const b = Keyboard.addListener('keyboardDidHide', () => setKeyboardOpen(false));
+    return () => { a.remove(); b.remove(); };
+  }, []);
+
+  useEffect(() => {
   if (isMulti) setIsCardReady(true);
 }, [isMulti, conversation]);
 
@@ -118,9 +117,6 @@ export default function Home() {
       }
       if (data.guest) {
         setGuestRemaining(data.guest.remaining);
-        if (data.guest.limited) {
-          showToast('Sign up to see the full thread or quoted tweet.');
-        }
       }
     } catch (e: any) {
       if (e.code === 'GUEST_LIMIT_REACHED') {
@@ -178,7 +174,6 @@ export default function Home() {
   };
 
   return (
-    <ThumbnailGeneratorProvider>
       <View style={styles.root}>
       <ScatteredIcons fadeIn={scatterFade} />
       <SeriesExporter ref={exporterRef} />
@@ -192,6 +187,7 @@ export default function Home() {
         <ScrollView
           contentContainerStyle={styles.content}
           keyboardShouldPersistTaps="handled"
+          scrollEnabled={!tweet}
         >
           <HomeHero
             url={url}
@@ -207,46 +203,55 @@ export default function Home() {
 
           <ContentChip onPress={() => editSheetRef.current?.expand('content')} />
 
-          {isMulti ? (
-  <View style={{ alignItems: 'center', gap: Spacing.md, marginTop: Spacing.lg }}>
-    <PagePager
-      key={`${conversation?.focusTweetId}-${selection?.start}-${selection?.end}-${pages.length}`}
-      pages={pages}
-      template={selectedTemplate}
-      width={PREVIEW_WIDTH}
-      pageColor={pageColor}
-    />
-    <View style={{ flexDirection: 'row', gap: Spacing.md }}>
-      <IconButton name="sliders" onPress={() => editSheetRef.current?.expand('adjust')} />
-      <IconButton name="edit-3" onPress={() => showToast('Editing a series is coming soon.')} />
-      <IconButton name="download" onPress={handleSaveSeries} />
-      <IconButton name="share-2" onPress={() => showToast('Sharing a series is coming soon.')} />
-    </View>
-  </View>
-) : (
-  tweet && (
-            <CardResult
-              key={tweet.id}
-              ref={cardResultRef}
-              tweet={tweet}
-              previewWidth={PREVIEW_WIDTH}
-              template={selectedTemplate}
-              onSave={handleSave}
-              onShare={handleShare}
-              saving={saving}
-              sharing={sharing}
-              onReady={handleCardReady}
-              frameBackgroundColor={frameBackgroundColor}
-              cardColorOverride={cardColorOverride}
-              cardRadius={cardRadius}
-              cardPadding={cardPadding}
-              backgroundImageUri={backgroundImageUri}
-              cardBackgroundImageUri={cardBackgroundImageUri}
-              backgroundImageBlur={backgroundImageBlur}
-              cardBackgroundImageBlur={cardBackgroundImageBlur}
-              onOpenAdjust={() => editSheetRef.current?.expand('adjust')}
-            />
-))}
+          <View
+            style={{ flex: 1 }}
+            onLayout={(e) => {
+              if (!keyboardOpen) setStage({ w: e.nativeEvent.layout.width, h: e.nativeEvent.layout.height });
+            }}
+          >
+            {stage.h > 0 && (isMulti ? (
+              <View style={{ alignItems: 'center', gap: Spacing.md }}>
+                <PagePager
+                  key={`${conversation?.focusTweetId}-${selection?.start}-${selection?.end}-${pages.length}`}
+                  pages={pages}
+                  template={selectedTemplate}
+                  width={Math.min(PREVIEW_WIDTH, Math.max(120, (stage.h - 90) * 0.8))}
+                  pageColor={pageColor}
+                />
+                <View style={{ flexDirection: 'row', gap: Spacing.md }}>
+                  <IconButton name="sliders" onPress={() => editSheetRef.current?.expand('adjust')} />
+                  <IconButton name="edit-3" onPress={() => showToast('Editing a series is coming soon.')} />
+                  <IconButton name="download" onPress={handleSaveSeries} />
+                  <IconButton name="share-2" onPress={() => showToast('Sharing a series is coming soon.')} />
+                </View>
+              </View>
+            ) : (
+              tweet && (
+                <CardResult
+                  key={tweet.id}
+                  ref={cardResultRef}
+                  tweet={tweet}
+                  previewWidth={PREVIEW_WIDTH}
+                  availableHeight={stage.h}
+                  template={selectedTemplate}
+                  onSave={handleSave}
+                  onShare={handleShare}
+                  saving={saving}
+                  sharing={sharing}
+                  onReady={handleCardReady}
+                  frameBackgroundColor={frameBackgroundColor}
+                  cardColorOverride={cardColorOverride}
+                  cardRadius={cardRadius}
+                  cardPadding={cardPadding}
+                  backgroundImageUri={backgroundImageUri}
+                  cardBackgroundImageUri={cardBackgroundImageUri}
+                  backgroundImageBlur={backgroundImageBlur}
+                  cardBackgroundImageBlur={cardBackgroundImageBlur}
+                  onOpenAdjust={() => editSheetRef.current?.expand('adjust')}
+                />
+              )
+            ))}
+          </View>
 
 
         </ScrollView>
@@ -276,7 +281,6 @@ export default function Home() {
         />
       )}
     </View>
-    </ThumbnailGeneratorProvider>
   );
 }
 
@@ -289,6 +293,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingHorizontal: Spacing.screen,
     paddingTop: Spacing.lg,
-    paddingBottom: Spacing.xxl + PEEK_HEIGHT,
+    paddingBottom: Spacing.md + PEEK_HEIGHT,
   },
 });

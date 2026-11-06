@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Animated, Easing, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, Animated, Easing, ActivityIndicator, Pressable } from 'react-native';
 import { FontAwesome6, Feather } from '@expo/vector-icons';
 import TextField from '../ui/TextField';
 import Button from '../ui/Button';
@@ -42,6 +42,22 @@ export default function HomeHero({ url, onChangeUrl, error, loading, onSubmit, c
 
   const glowOpacity = glowPulse.interpolate({ inputRange: [0, 1], outputRange: [0.25, 0.55] });
   const glowScale = glowPulse.interpolate({ inputRange: [0, 1], outputRange: [0.96, 1.06] });
+
+  if (compact) {
+    return (
+      <View style={styles.compactRow}>
+        <View style={{ flex: 1 }}>
+          <TextField value={url} onChangeText={onChangeUrl} placeholder="Paste another tweet link" />
+          {error ? <Text style={styles.error}>{error}</Text> : null}
+        </View>
+        <Pressable onPress={onSubmit} disabled={loading} style={styles.compactBtn}>
+          {loading
+            ? <ActivityIndicator size="small" color={Colors.BG_BASE} />
+            : <Feather name="arrow-right" size={20} color={Colors.BG_BASE} />}
+        </Pressable>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -97,6 +113,8 @@ const styles = StyleSheet.create({
   container: {
     gap: Spacing.md,
   },
+  compactRow: { flexDirection: 'row', gap: Spacing.sm, alignItems: 'flex-start' },
+  compactBtn: { width: 50, height: 50, borderRadius: Radius.md, backgroundColor: Colors.PRIMARY, alignItems: 'center', justifyContent: 'center' },
   badge: {
     flexDirection: 'row',
     alignItems: 'center',

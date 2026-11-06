@@ -61,9 +61,10 @@ function Rail({ page, offsetY, color }: { page: Page; offsetY: number; color: st
 
 export const PageRenderer = memo(function PageRenderer({ page, template, width, canvasRef, pageColor, onReady }: Props) {
   const fontMgr = useTweetFonts();
+  
   useEffect(() => {
-  if (fontMgr) onReady?.();
-}, [fontMgr]);
+      if (fontMgr) onReady?.();
+  }, [fontMgr]);
 
   if (!fontMgr) return null;
 

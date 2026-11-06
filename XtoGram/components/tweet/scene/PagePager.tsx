@@ -3,10 +3,12 @@ import { FlatList, Text, View } from "react-native";
 import { PageRenderer } from "./PageRenderer";
 import type { Page } from "./plan";
 import type { CardTemplate } from "./types";
+import { PREVIEW_RADIUS } from "../../ui/PreviewOutline";
 
 export function PagePager({ pages, template, width, pageColor }: { pages: Page[]; template: CardTemplate, width : number, pageColor? :string }) {
 
   const [index, setIndex] = useState(0);
+  if (pages.length === 0) return null;
 
   return (
     <View>
@@ -21,7 +23,7 @@ export function PagePager({ pages, template, width, pageColor }: { pages: Page[]
         style={{ width }}
         onMomentumScrollEnd={(e) => setIndex(Math.round(e.nativeEvent.contentOffset.x / width))}
         renderItem={({ item }) => (
-          <View style={{ width, alignItems: "center" }}>
+          <View style={{ width, borderRadius: PREVIEW_RADIUS, overflow: 'hidden' }}>
             <PageRenderer page={item} template={template} width={width} pageColor={pageColor} />
           </View>
         )}

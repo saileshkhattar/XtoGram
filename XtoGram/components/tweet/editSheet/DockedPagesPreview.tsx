@@ -4,7 +4,6 @@ import type { Page } from '../scene/plan';
 import type { CardTemplate } from '../scene/types';
 import { Colors, FontSize, Radius, Spacing } from '../../../constants/theme';
 
-const FRAME = Math.min(Dimensions.get('window').width - Spacing.screen * 2, 392);
 const PAGE_H = Math.min(Dimensions.get('window').width - Spacing.screen * 2, 392);
 const PAGE_W = PAGE_H * 0.8;
 

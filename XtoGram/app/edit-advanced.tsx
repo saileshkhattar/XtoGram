@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from 'react';
-import { Dimensions, ImageBackground, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, Image, ImageBackground, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useCanvasRef } from '@shopify/react-native-skia';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import TopNavBar from '../components/ui/TopNavbar';
@@ -18,10 +18,41 @@ import { useCard } from '../context/CardContext';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import GuestLock from '../components/ui/GuestLock';
+import { useElementThumbnail } from '../components/tweet/thumbnail/useElementThumbnail';
+import type { ElementType, Palette } from '../components/tweet/scene/types';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const PREVIEW_WIDTH = SCREEN_WIDTH - Spacing.screen * 2 - Spacing.md * 2;
 const CARD_SWATCHES = ['#0A0A0F', '#13121E', '#1E1C2A', '#2D1F6E', '#F5F4FA', '#FFFFFF'];
+
+function VariantChip({
+  type,
+  variant,
+  palette,
+  active,
+  onPress,
+}: {
+  type: ElementType;
+  variant: string;
+  palette: Palette;
+  active: boolean;
+  onPress: () => void;
+}) {
+  const thumbnailUri = useElementThumbnail(type, variant, palette);
+
+  return (
+    <Pressable onPress={onPress} style={[styles.variantChip, active && styles.variantChipActive]}>
+      <View style={styles.variantPreview}>
+        {thumbnailUri ? (
+          <Image source={{ uri: thumbnailUri }} style={styles.variantImage} resizeMode="contain" />
+        ) : (
+          <ActivityIndicator size="small" color={palette.accent} />
+        )}
+      </View>
+      <Text numberOfLines={1} style={[styles.variantLabel, active && styles.variantLabelActive]}>{variant}</Text>
+    </Pressable>
+  );
+}
 
 export default function EditAdvanced() {
   const insets = useSafeAreaInsets();
@@ -178,9 +209,14 @@ export default function EditAdvanced() {
               {Object.keys(elementRegistry[selectedElement.type]).map((variantName) => {
                 const isActive = variantName === selectedElement.variant;
                 return (
-                  <Pressable key={variantName} onPress={() => setElementVariant(selectedElement.id, variantName)} style={[styles.variantChip, isActive && styles.variantChipActive]}>
-                    <Text style={[styles.variantLabel, isActive && styles.variantLabelActive]}>{variantName}</Text>
-                  </Pressable>
+                  <VariantChip
+                    key={variantName}
+                    type={selectedElement.type}
+                    variant={variantName}
+                    palette={template.palette}
+                    active={isActive}
+                    onPress={() => setElementVariant(selectedElement.id, variantName)}
+                  />
                 );
               })}
             </ScrollView>
@@ -233,10 +269,12 @@ const styles = StyleSheet.create({
   panelTitle: { color: Colors.TEXT_HIGH, fontSize: FontSize.body, fontWeight: '700' },
   panelHint: { color: Colors.TEXT_LOW, fontSize: FontSize.caption, lineHeight: 17 },
   variantRow: { gap: Spacing.sm, paddingVertical: 2 },
-  variantChip: { paddingHorizontal: Spacing.md, paddingVertical: Spacing.sm, borderRadius: Radius.full, borderWidth: 1, borderColor: Colors.BORDER, backgroundColor: Colors.SURFACE },
-  variantChipActive: { backgroundColor: Colors.PRIMARY, borderColor: Colors.PRIMARY },
-  variantLabel: { color: Colors.TEXT_MED, fontSize: FontSize.bodySmall, fontWeight: '600' },
-  variantLabelActive: { color: Colors.BG_BASE },
+  variantChip: { width: 118, gap: Spacing.xs, padding: Spacing.xs, borderRadius: Radius.sm, borderWidth: 1, borderColor: Colors.BORDER, backgroundColor: Colors.SURFACE },
+  variantChipActive: { borderColor: Colors.PRIMARY, borderWidth: 2 },
+  variantPreview: { height: 104, borderRadius: Radius.xs, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.BG_BASE },
+  variantImage: { width: '100%', height: '100%' },
+  variantLabel: { color: Colors.TEXT_MED, fontSize: FontSize.caption, fontWeight: '600', textAlign: 'center' },
+  variantLabelActive: { color: Colors.TEXT_HIGH },
   imageBlurControl: { gap: Spacing.xs },
   adjustLabel: { color: Colors.TEXT_MED, fontSize: FontSize.caption, fontWeight: '600' },
   emptyState: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: Spacing.screen },
